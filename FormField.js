@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 define([
     'underscore', 'react', 'platform/debug',
-    'platform/controls/react/AutoControl',
+    'wingspan-forms/AutoControl',
     'wingspan-forms/ControlCommon'
 ], function (_, React, debug, AutoControl, ControlCommon) {
     'use strict';
