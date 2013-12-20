@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'react', 'platform/debug',
+    'underscore', 'react', 'wingspan-forms/util/debug',
     'wingspan-forms/AutoControl',
     'wingspan-forms/ControlCommon'
 ], function (_, React, debug, AutoControl, ControlCommon) {

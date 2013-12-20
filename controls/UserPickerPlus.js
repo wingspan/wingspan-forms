@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 define([
     'underscore', 'react',
-    'platform/debug',
+    'wingspan-forms/util/debug',
     'wingspan-forms/controls/RadioGroup',
     'wingspan-forms/controls/UserPicker'
 ], function (_, React, debug, RadioGroup, UserPicker) {

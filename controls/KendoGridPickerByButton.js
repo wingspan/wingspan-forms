@@ -4,8 +4,8 @@ define([
     'jquery',
     'kendo',
     'react',
-    'platform/debug',
-    'platform/util',
+    'wingspan-forms/util/debug',
+    'wingspan-forms/util/util',
     'text!textassets/platform/controls/react/KendoGridPickerByButtonTemplate.kendo.html'
 ], function (_, $, kendo, React, debug, util, KendoGridPickerByButtonTemplate) {
     'use strict';

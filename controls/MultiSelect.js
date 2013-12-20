@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'jquery', 'react', 'platform/util', 'wingspan-forms/ControlCommon'
+    'underscore', 'jquery', 'react', 'wingspan-forms/util/util', 'wingspan-forms/ControlCommon'
 ], function (_, $, React, u, controlCommon) {
     'use strict';
 

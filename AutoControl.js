@@ -1,5 +1,5 @@
 define([
-    'underscore', 'react', 'platform/debug',
+    'underscore', 'react', 'wingspan-forms/util/debug',
     'wingspan-forms/controls/KendoText',
     'wingspan-forms/controls/MultilineText',
     'wingspan-forms/controls/SwitchBox',

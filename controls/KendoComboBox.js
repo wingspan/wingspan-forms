@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 define([
     'underscore', 'jquery', 'react', 'kendo',
-    'platform/debug',
+    'wingspan-forms/util/debug',
     'wingspan-forms/ControlCommon',
     'wingspan-forms/ImmutableOptimizations'
 ], function (_, $, React, kendo, debug, ControlCommon, ImmutableOptimizations) {

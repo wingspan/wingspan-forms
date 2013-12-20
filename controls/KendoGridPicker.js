@@ -3,8 +3,8 @@ define([
     'underscore',
     'jquery',
     'react',
-    'platform/debug',
-    'platform/util',
+    'wingspan-forms/util/debug',
+    'wingspan-forms/util/util',
     'platform/kendoutil',
     'text!textassets/platform/controls/react/KendoGridPickerTemplate.kendo.html'
 ], function (_, $, React, debug, util, kendoutil, KendoGridPickerTemplate) {
