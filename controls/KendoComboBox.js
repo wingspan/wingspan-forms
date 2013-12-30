@@ -7,8 +7,6 @@ define([
 ], function (_, $, React, kendo, debug, ControlCommon, ImmutableOptimizations) {
     'use strict';
 
-    var FILTER_KIND = 'startswith';
-
     // (AHG) This "turns off" behavior in the kendo.ui.Select widget that selects the first option when refreshing the
     // combo with new data. When the widget has no value set, this causes a value change without firing an event.
     // We don't want the combo selection to change unless the user makes the change
@@ -62,6 +60,7 @@ define([
                 valueField: undefined,
                 dataSource: undefined,
                 template: undefined,
+                filter: 'startswith',
                 width: null, // use default width whatever that is...
                 disabled: false,
                 readonly: false,
@@ -106,7 +105,7 @@ define([
             }
             $el.kendoComboBox({
                 autoBind: false,
-                filter: FILTER_KIND,
+                filter: this.props.filter,
                 highlightFirst: false,
                 dataTextField: _.isFunction(props.displayField) ? '' : props.displayField,
                 dataValueField: _.isFunction(props.valueField) ? '' : props.valueField,
@@ -129,7 +128,7 @@ define([
         },
 
         componentWillReceiveProps: function (nextProps) {
-            var cantChange = ['template', 'placeholderText'];
+            var cantChange = ['template', 'placeholderText', 'filter'];
             debug.verify(_.isEqual(_.pick(nextProps, cantChange), _.pick(this.props, cantChange)), 'these props cant change after mount');
         },
 
