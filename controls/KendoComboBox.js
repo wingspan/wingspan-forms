@@ -26,12 +26,22 @@ define([
     function setComboValue(comboWidget, props) {
         var value = props.value;
 
+        function applyPropToValue(propName) {
+            var prop = props[propName];
+
+            if (_.isFunction(prop)) {
+                return prop.call(undefined, value);
+            } else {
+                return value[prop];
+            }
+        }
+
         // (AHG) If we have an object (with both display text and value), set both the text and the value. The value needs to be set
         // so the widget knows if the value changes and needs to fire the event. The text needs to be set in case the store has no
         // data.
         if (_.isObject(value)) {
-            comboWidget.value(value[props.valueField]);
-            comboWidget.text(value[props.displayField]);
+            comboWidget.value(applyPropToValue('valueField'));
+            comboWidget.text(applyPropToValue('displayField'));
         }
         else if (value !== undefined) {
             comboWidget.value(value);
@@ -98,8 +108,8 @@ define([
                 autoBind: false,
                 filter: FILTER_KIND,
                 highlightFirst: false,
-                dataTextField: props.displayField,
-                dataValueField: props.valueField,
+                dataTextField: _.isFunction(props.displayField) ? '' : props.displayField,
+                dataValueField: _.isFunction(props.valueField) ? '' : props.valueField,
                 dataSource: props.dataSource,
                 placeholder: props.placeholderText,
                 template: props.template,
@@ -119,7 +129,7 @@ define([
         },
 
         componentWillReceiveProps: function (nextProps) {
-            var cantChange = ['template', 'valueField', 'displayField', 'placeholderText'];
+            var cantChange = ['template', 'placeholderText'];
             debug.verify(_.isEqual(_.pick(nextProps, cantChange), _.pick(this.props, cantChange)), 'these props cant change after mount');
         },
 
