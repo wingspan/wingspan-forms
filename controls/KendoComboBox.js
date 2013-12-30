@@ -160,9 +160,8 @@ define([
 
             // pass up the same structure as was originally passed down to us.
             if (_.isString(this.props.value) || _.isNumber(this.props.value)) {
-                this.props.onChange(model.get(this.props.valueField));
-            }
-            else {
+                this.props.onChange((model && model.get && model.get(this.props.valueField)));
+            } else {
                 // Do not return the internal kendo model objects, since they're an implementation detail of the combo/store.
                 this.props.onChange((model instanceof kendo.data.Model) ? model.toJSON() : model);
             }
