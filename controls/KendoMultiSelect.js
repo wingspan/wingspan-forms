@@ -72,7 +72,7 @@ define([
                 return;
             }
 
-            var $el = $(rootNode).find('#'+this.stableUniqueId);
+            var $el = $(rootNode).find('#' + this.stableUniqueId);
             debug.verify($el);
 
             if (this.props.width) {
@@ -93,7 +93,7 @@ define([
 
             // the 'value' method is a getter/setter that gets/sets the valueField. It will look up the record
             // in the store via the value set here.
-            kendoWidget.value((!_.isEmpty(this.props.value)) ? this.props.value[this.props.valueField] : "");
+            kendoWidget.value((!_.isEmpty(this.props.value)) ? this.props.value[this.props.valueField] : '');
 
             if (this.props.disabled) {
                 // disabled beats readonly
@@ -118,7 +118,7 @@ define([
                 return;
             }
 
-            var $el = $(rootNode).find('#'+this.stableUniqueId);
+            var $el = $(rootNode).find('#' + this.stableUniqueId);
             var kendoWidget = $el.data('kendoMultiSelect');
 
             if (prevProps.dataSource !== this.props.dataSource) {
