@@ -24,22 +24,12 @@ define([
     function setComboValue(comboWidget, props) {
         var value = props.value;
 
-        function applyPropToValue(propName) {
-            var prop = props[propName];
-
-            if (_.isFunction(prop)) {
-                return prop.call(undefined, value);
-            } else {
-                return value[prop];
-            }
-        }
-
         // (AHG) If we have an object (with both display text and value), set both the text and the value. The value needs to be set
         // so the widget knows if the value changes and needs to fire the event. The text needs to be set in case the store has no
         // data.
         if (_.isObject(value)) {
-            comboWidget.value(applyPropToValue('valueField'));
-            comboWidget.text(applyPropToValue('displayField'));
+            comboWidget.value(value[props.valueField]);
+            comboWidget.text(value[props.displayField]);
         }
         else if (value !== undefined) {
             comboWidget.value(value);
@@ -107,8 +97,8 @@ define([
                 autoBind: false,
                 filter: this.props.filter,
                 highlightFirst: false,
-                dataTextField: _.isFunction(props.displayField) ? '' : props.displayField,
-                dataValueField: _.isFunction(props.valueField) ? '' : props.valueField,
+                dataTextField: props.displayField,
+                dataValueField: props.valueField,
                 dataSource: props.dataSource,
                 placeholder: props.placeholderText,
                 template: props.template,
@@ -128,7 +118,7 @@ define([
         },
 
         componentWillReceiveProps: function (nextProps) {
-            var cantChange = ['template', 'placeholderText', 'filter'];
+            var cantChange = ['template', 'valueField', 'displayField', 'placeholderText', 'filter'];
             debug.verify(_.isEqual(_.pick(nextProps, cantChange), _.pick(this.props, cantChange)), 'these props cant change after mount');
         },
 
@@ -159,7 +149,7 @@ define([
 
             // pass up the same structure as was originally passed down to us.
             if (_.isString(this.props.value) || _.isNumber(this.props.value)) {
-                this.props.onChange((model && model.get && model.get(this.props.valueField)));
+                this.props.onChange((model ? model.get(this.props.valueField) : model));
             } else {
                 // Do not return the internal kendo model objects, since they're an implementation detail of the combo/store.
                 this.props.onChange((model instanceof kendo.data.Model) ? model.toJSON() : model);
