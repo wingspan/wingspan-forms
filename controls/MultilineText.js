@@ -28,7 +28,7 @@ define([
                 return (<pre>{this.props.value}</pre>);
             }
             return (
-                <textarea class="k-textbox"
+                <textarea className="k-textbox"
                     value={this.props.value || ''}
                     id={this.props.id}
                     onChange={this.onChange}

@@ -55,10 +55,10 @@ define([
 
             return (
                 <div className="carousel">
-                    <button class="carouselButton backButton" onClick={_.partial(this.onChange, 'left')}><i class="icon iconPrev"/></button>
-                    <input class="carouselInput" placeholder={this.props.placeholder} value={displayVal} readOnly={true} id={this.props.id} />
-                    <button class="carouselButton forwardButton" onClick={_.partial(this.onChange, 'right')}><i class="icon iconNext"/></button>
-                    <button class="carouselButton editButton" disabled={this.props.disabled} onClick={this.props.onEdit}>Edit Indices<i class="icon iconCaret"/></button>
+                    <button className="carouselButton backButton" onClick={_.partial(this.onChange, 'left')}><i className="icon iconPrev"/></button>
+                    <input className="carouselInput" placeholder={this.props.placeholder} value={displayVal} readOnly={true} id={this.props.id} />
+                    <button className="carouselButton forwardButton" onClick={_.partial(this.onChange, 'right')}><i className="icon iconNext"/></button>
+                    <button className="carouselButton editButton" disabled={this.props.disabled} onClick={this.props.onEdit}>Edit Indices<i className="icon iconCaret"/></button>
                 </div>
                 );
         },

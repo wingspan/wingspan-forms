@@ -26,7 +26,7 @@ define([
 
         /* jshint ignore:start */
         render: function () {
-            return (<div class={this.props.className} />);
+            return (<div className={this.props.className} />);
         },
         /* jshint ignore:end */
 

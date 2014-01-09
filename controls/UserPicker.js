@@ -127,7 +127,7 @@ define([
         /*jshint ignore:start */
         render: function () {
             debug.verify(!this.props.noControl);
-            return (<input type="text" id={this.props.id} class="k-textbox"/>);
+            return (<input type="text" id={this.props.id} className="k-textbox"/>);
         }
         /*jshint ignore:end */
     });

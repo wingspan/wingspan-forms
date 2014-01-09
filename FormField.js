@@ -68,7 +68,7 @@ define([
             ]);
 
             var lockedClasses = _.compact(['fieldLock', this.state.locked ? 'fieldLockOn' : null]);
-            var lockDiv = this.props.lockable ? (<div class={lockedClasses.join(' ')} onClick={this.toggleLock} />) : null;
+            var lockDiv = this.props.lockable ? (<div className={lockedClasses.join(' ')} onClick={this.toggleLock} />) : null;
 
             var styles = {
                'width': this.props.width,
