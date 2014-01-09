@@ -81,8 +81,13 @@ define([
                 props = this.props;
 
             if (props.noControl) {
-                // fetch the data and update the text in the span...
+                // If the value is just an ID, we need to fetch data from the server to get the display value.
                 if (!_.isObject(props.value)) {
+                    // However, if the ID is the display value, we can use it as is.
+                    if (props.valueField === props.displayField) {
+                        $el.text(props.value);
+                        return;
+                    }
                     props.dataSource.fetch().then(function () {
                         $el.text(getDisplayValue(props.dataSource.get(props.value), props.displayField));
                     }).done();
