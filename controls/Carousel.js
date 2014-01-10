@@ -43,8 +43,8 @@ define([
             if (this.props.options.length === 0) {
                 // If we have zero options (which can make sense sometimes),
                 // a selected value does not make sense.
-                displayVal = '';
                 debug.verify(_.contains([undefined, null], this.props.value));
+                displayVal = '0 of 0';
             }
             else {
                 var i = _.indexOf(this.props.options, this.props.value);

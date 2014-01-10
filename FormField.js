@@ -75,7 +75,7 @@ define([
                'margin-left': this.props.marginLeft
             };
 
-            var statusIcon = (hasInfoTooltip || hasErrorTooltip ? (<span className="statusIcon" />) : null);
+            var statusIcon = (hasInfoTooltip ? (<span className="statusIcon" />) : null);
 
             // If there is no label and no icon, we must render &nbsp; so the fields line up right.
 
