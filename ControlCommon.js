@@ -95,6 +95,16 @@ define([
         $body.data('kendoErrorTooltip').hide();
     }
 
+    kendo.ui.Tooltip.fn.hide = function () {
+        if (this.popup) {
+            this.popup.close();
+        }
+        // (AHG) If we're in the middle of a delay to show the popup, we want to cancel the delayed show too.
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
+    };
+
     return {
         quadState: quadState,
         parseDate: parseDate,
