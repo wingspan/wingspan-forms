@@ -15,7 +15,7 @@ define([
             if (children.props.fieldInfo) {
                 return AutoControl.fieldClassForField(children.props.fieldInfo);
             }
-            console.warn('Unknown fieldClass for child component', children);
+            //console.warn('Unknown fieldClass for child component', children);
 
             return 'formFieldInput';
         }
