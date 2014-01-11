@@ -10,6 +10,8 @@ define([
         height: '38px'
     };
 
+    function ignoreClick() { }
+
     var SwitchBox = React.createClass({
 
         fieldClass: 'formFieldSwitch',
@@ -37,13 +39,16 @@ define([
             var yes = this.props.value === true;
             var no = this.props.value === false;
 
+            var clickYes = this.props.readonly ? ignoreClick : _.partial(this.props.onChange, true);
+            var clickNo =  this.props.readonly ? ignoreClick : _.partial(this.props.onChange, false);
+
             // this <label> is part of the switchbox markup, not the <FormField>'s label
             // < span style={SPAN_STYLE}
             return (
                 <div tabIndex="0" className="switch">
                     <ul>
-                        <li className={yes ? 'active' : ''} onClick={_.partial(this.props.onChange, true)}><span className={yes ? 'pos' : ''}>Yes</span></li>
-                        <li className={no ? 'active' : ''} onClick={_.partial(this.props.onChange, false)}><span className={no ? 'neg' : ''}>No</span></li>
+                        <li className={yes ? 'active' : ''} onClick={clickYes}><span className={yes ? 'pos' : ''}>Yes</span></li>
+                        <li className={no ? 'active' : ''} onClick={clickNo}><span className={no ? 'neg' : ''}>No</span></li>
                     </ul>
                 </div>
             );
