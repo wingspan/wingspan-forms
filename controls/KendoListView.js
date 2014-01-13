@@ -39,7 +39,7 @@ define([
                 : null);
 
             // Verify that we found the child we were looking for, if any
-            if (self.props.selectedId) {
+            if (!selectedChild) {
                 // This happens when a user disposes an item out of a details page.  The Top-level details page controller
                 // hangs onto state.record too long, so it attempts to make this selection after the data store is reloaded
                 // and the item the action was performed on no longer exists.
@@ -50,8 +50,6 @@ define([
                 // Another thought would be to set state.record to null when the actions are taken, though by itself this may cause other
                 // problems
                 console.warn('Could not find props.selectedId in KendoList view.  Check warning block for details.');
-            } else {
-                console.debug('kendo list view selected id: ' + this.props.selectedId);
             }
 
             this.suppressEvents = true;
