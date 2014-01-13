@@ -81,37 +81,27 @@ define([
                 props = this.props;
 
             if (props.noControl) {
-                // If the value is just an ID, we need to fetch data from the server to get the display value.
-                if (!_.isObject(props.value)) {
-                    // However, if the ID is the display value, we can use it as is.
-                    if (props.valueField === props.displayField) {
-                        $el.text(props.value);
-                        return;
-                    }
-                    props.dataSource.fetch().then(function () {
-                        $el.text(getDisplayValue(props.dataSource.get(props.value), props.displayField));
-                    }).done();
+                this.setNoControlValue($el);
+            }
+            else {
+                if (props.width) {
+                    $el.width(props.width);
                 }
-                return;
-            }
+                $el.kendoComboBox({
+                    autoBind: false,
+                    filter: this.props.filter,
+                    highlightFirst: false,
+                    dataTextField: props.displayField,
+                    dataValueField: props.valueField,
+                    dataSource: props.dataSource,
+                    placeholder: props.placeholderText,
+                    template: props.template,
+                    change: this.onChange
+                });
 
-            if (props.width) {
-                $el.width(props.width);
+                setComboValue($el.data('kendoComboBox'), props);
+                ControlCommon.setKendoDisabledReadonly($el.data('kendoComboBox'), props.disabled, props.readonly);
             }
-            $el.kendoComboBox({
-                autoBind: false,
-                filter: this.props.filter,
-                highlightFirst: false,
-                dataTextField: props.displayField,
-                dataValueField: props.valueField,
-                dataSource: props.dataSource,
-                placeholder: props.placeholderText,
-                template: props.template,
-                change: this.onChange
-            });
-
-            setComboValue($el.data('kendoComboBox'), props);
-            ControlCommon.setKendoDisabledReadonly($el.data('kendoComboBox'), props.disabled, props.readonly);
         },
 
         componentWillUnmount: function () {
@@ -129,24 +119,25 @@ define([
 
         componentDidUpdate: function (prevProps, prevState, rootNode) {
             debug.verify(!!rootNode);
+            var $el = $(rootNode)
 
             if (this.props.noControl) {
-                // nothing left to do - it was all done in JSX
-                return;
+                this.setNoControlValue($el);
             }
+            else {
+                var kendoWidget = $el.data('kendoComboBox');
 
-            var kendoWidget = $(rootNode).data('kendoComboBox');
+                if (prevProps.dataSource !== this.props.dataSource) {
+                    kendoWidget.setDataSource(this.props.dataSource);
+                    //AHG: Well, this is needed to workaround some odd behavior in the kendo refresh() method,
+                    // specifically the call to _selectItem(). That causes a surprise change in value without firing the change event.
+                    // It's important to refresh() the widget _before_ updating the value, because the _selectItem in refresh() changes the value.
+                    kendoWidget.refresh();
+                }
 
-            if (prevProps.dataSource !== this.props.dataSource) {
-                kendoWidget.setDataSource(this.props.dataSource);
-                //AHG: Well, this is needed to workaround some odd behavior in the kendo refresh() method,
-                // specifically the call to _selectItem(). That causes a surprise change in value without firing the change event.
-                // It's important to refresh() the widget _before_ updating the value, because the _selectItem in refresh() changes the value.
-                kendoWidget.refresh();
+                setComboValue(kendoWidget, this.props);
+                ControlCommon.setKendoDisabledReadonly(kendoWidget, this.props.disabled, this.props.readonly);
             }
-
-            setComboValue(kendoWidget, this.props);
-            ControlCommon.setKendoDisabledReadonly(kendoWidget, this.props.disabled, this.props.readonly);
         },
 
         onChange: function (event) {
@@ -158,6 +149,21 @@ define([
             } else {
                 // Do not return the internal kendo model objects, since they're an implementation detail of the combo/store.
                 this.props.onChange((model instanceof kendo.data.Model) ? model.toJSON() : model);
+            }
+        },
+
+        setNoControlValue: function ($el) {
+            // If the value is just an ID, we need to fetch data from the server to get the display value.
+            if (!_.isObject(this.props.value)) {
+                // However, if the ID is the display value, we can use it as is.
+                if (this.props.valueField === this.props.displayField) {
+                    $el.text(this.props.value);
+                    return;
+                }
+                var self = this;
+                this.props.dataSource.fetch().then(function () {
+                    $el.text(getDisplayValue(self.props.dataSource.get(self.props.value), self.props.displayField));
+                }).done();
             }
         }
 /*
