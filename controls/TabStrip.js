@@ -27,12 +27,19 @@ define([
             var self = this;
 
             var lis = [];
-            _.each(_.keys(this.props.tabs), function (title, index) {
+            var keys = _.keys(this.props.tabs),
+                len = keys.length;
+            _.each(keys, function (title, index) {
                 var id = _.str.sprintf('%s-%s', self.stableUniqueId, index);
-                var jsx = (index === self.state.activeIndex
-                    ? (<li key={index} className="k-item k-state-default k-first" role="tab" aria-controls={id}><a className="k-link" onClick={_.partial(self.onTabClick, index)}>{title}</a></li>)
-                    : (<li key={index} className="k-item k-state-default"         role="tab" aria-controls={id}><a className="k-link" onClick={_.partial(self.onTabClick, index)}>{title}</a></li>));
-                lis.push(jsx);
+                var classes = [
+                    index === 0 ? 'k-first' : null,
+                    index === len - 1 ? 'k-last' : null,
+                    'k-state-default',
+                    'k-item',
+                    index === self.state.activeIndex ? 'k-tab-on-top k-state-active' : null
+                ];
+
+                lis.push((<li key={index} className={_.compact(classes).join(' ')} role="tab" aria-controls={id}><a className="k-link" onClick={_.partial(self.onTabClick, index)}>{title}</a></li>));
             });
 
             var divs = [];
