@@ -86,11 +86,6 @@ define([
         return exports.typedObjectValueToDisplayValue2(value, fieldName, fieldInfo, localeManager);
     };
 
-    exports.displayDateOnly = function (value) {
-        var date = Date.parse(value);
-        return moment(date).format('DD-MMM-YYYY');
-    };
-
     exports.typedObjectValueToDisplayValue2 = function (value, fieldName, fieldInfo, localeManager) {
         if (null === value || undefined === value) {
             return '';
@@ -111,16 +106,14 @@ define([
         if ('boolean' === dataType) {
             return localeManager.localize(value === true ? 'true' : 'false');
         }
-        var date;
+
         // TODO DATE NEEDS TO COME FROM SERVER CONFIGURATION
         if ('datetime' === dataType && _.isString(value)) {
-            date = Date.parse(value);
-            return moment(date).format('DD-MMM-YYYY h:mm:ss A');
+            return moment(value).format('DD-MMM-YYYY h:mm:ss A');
         }
         // todo need to be able to handle date only fields here
         if ('date' === dataType && _.isString(value)) {
-            date = Date.parse(value);
-            return moment(date).format('DD-MMM-YYYY');
+            return moment(value).format('DD-MMM-YYYY');
         }
 
         // so it's a complex object, and we'll just try to sort it out at the moment
