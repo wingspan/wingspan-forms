@@ -52,7 +52,7 @@ define([
             });
 
             return (
-                <div data-role="tabstrip" tabindex="0" className="k-widget k-header k-tabstrip" role="tablist">
+                <div data-role="tabstrip" tabIndex="0" className="k-widget k-header k-tabstrip" role="tablist">
                     <ul className="k-tabstrip-items k-reset">
                         {lis}
                     </ul>
