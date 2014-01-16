@@ -18,6 +18,8 @@ define([
                 isValid: [true, ''],
                 readonly: false,
                 noControl: false,
+                minLength: undefined,
+                maxLength: undefined,
                 id: undefined
             };
         },
@@ -39,6 +41,9 @@ define([
                 return;
             }
             var val = event.target.value;
+            if (this.props.maxLength && val.length > this.props.maxLength) {
+                return;
+            }
             this.props.onChange(val);
         }
 

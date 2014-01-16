@@ -69,6 +69,8 @@ define([
             controlProps.min = fieldInfo.minValue;
             controlProps.max = fieldInfo.maxValue;
             controlProps.step = fieldInfo.stepValue;
+            controlProps.minLength = fieldInfo.minLength;
+            controlProps.maxLength = fieldInfo.maxLength;
 
             if (fieldInfo.options) {
                 controlProps.dataSource = fieldInfo.options.dataSource;

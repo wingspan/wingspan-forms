@@ -16,7 +16,9 @@ define([
                 onChange: function () {},
                 isValid: [true, ''],
                 noControl: false,
-                placeholder: undefined,
+                placeholder: '',
+                minLength: undefined,
+                maxLength: undefined,
                 id: undefined
             };
         },
@@ -42,6 +44,9 @@ define([
 
         onChange: function (event) {
             var val = event.target.value;
+            if (this.props.maxLength && val.length > this.props.maxLength) {
+                return;
+            }
             this.props.onChange(val);
         }
 
