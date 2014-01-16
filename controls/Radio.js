@@ -39,7 +39,7 @@ define([
         },
 
         onChange: function (e) {
-            this.props.onChange(e.target.value);
+            !this.props.readonly && this.props.onChange(e.target.value);
         }
     });
 
