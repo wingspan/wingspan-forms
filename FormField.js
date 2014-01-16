@@ -56,7 +56,7 @@ define([
             });
 
             var hasInfoTooltip = !!fieldInfo.helpText;
-            var hasErrorTooltip = (!this.props.isValid[0] && this.props.isValid[1].length > 0);
+            var hasErrorTooltip = (!this.props.isValid[0] && (this.props.isValid[1] || '').length > 0);
 
             var classes = _.compact([
                 this.props.layout,
