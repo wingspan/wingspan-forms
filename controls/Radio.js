@@ -32,7 +32,7 @@ define([
             return (
                 <span>
                     <input type="radio" name={this.props.name} id={this.stableUniqueId} value={this.props.value} onChange={this.onChange}
-                           checked={this.props.checked} disabled={this.props.disabled} readonly={this.props.readonly} />
+                           checked={this.props.checked} disabled={this.props.disabled} readOnly={this.props.readonly} />
                     <label htmlFor={this.stableUniqueId}>{this.props.children}</label>
                 </span>
             );
