@@ -33,7 +33,7 @@ define([
             return (
                 <span tabIndex="0">
                     <input type="checkbox" id={elemId}
-                        checked={this.props.value}
+                        checked={this.props.value} data-checked={this.props.value ? '' : null}
                         onChange={this.onChange}
                         disabled={this.props.disabled || this.props.readonly} />
                     <label htmlFor={elemId}>{this.props.label}</label>

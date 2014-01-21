@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'react', 'jquery', 'wingspan-forms/util/debug', 'wingspan-forms/util/util'
-], function (_, React, $, debug, util) {
+    'underscore', 'react', 'jquery', 'wingspan-forms/util/debug'
+], function (_, React, $, debug) {
     'use strict';
 
     /**
@@ -32,7 +32,8 @@ define([
             return (
                 <span>
                     <input type="radio" name={this.props.name} id={this.stableUniqueId} value={this.props.value} onChange={this.onChange}
-                           checked={this.props.checked} disabled={this.props.disabled} readOnly={this.props.readonly} />
+                           checked={this.props.checked} data-checked={this.props.checked ? '' : null}
+                           disabled={this.props.disabled} readOnly={this.props.readonly} />
                     <label htmlFor={this.stableUniqueId}>{this.props.children}</label>
                 </span>
             );
