@@ -11,9 +11,9 @@ define([
 ], function (_, $, React, kendo, debug, util, kendoutil, KendoGridPickerTemplate) {
     'use strict';
 
-    var $el = null;
-
     var KendoGridPicker = React.createClass({
+        $el: null,
+
         getDefaultProps: function () {
             return {
                 autoBind: true,
@@ -46,12 +46,12 @@ define([
 
         componentDidMount: function (rootNode) {
             debug.verify(!!rootNode);
-            $el = $(rootNode);
+            this.$el = $(rootNode);
 
             var columns = [{ title: '', template: kendo.template(KendoGridPickerTemplate), width: 34 }];
             columns = columns.concat(this.props.columns);
 
-            $el.kendoGrid({
+            this.$el.kendoGrid({
                 dataSource: this.props.dataSource,
                 height: this.props.height,
                 columns: columns,
@@ -63,22 +63,22 @@ define([
             }).data('kendoGrid');
 
             if (!this.props.autoBind) {
-                $el.data('kendoGrid').refresh();
+                this.$el.data('kendoGrid').refresh();
             }
 
-            $el.on('click', 'tr', this.onRowClick);
+            this.$el.on('click', 'tr', this.onRowClick);
 
             this.applySelectionStateToDom();
         },
 
         componentWillUnmount: function () {
-            $el.data('kendoGrid').destroy();
-            $el = null;
+            this.$el.data('kendoGrid').destroy();
+            this.$el = null;
         },
 
         componentDidUpdate: function (prevProps, prevState, rootNode) {
             debug.verify(rootNode);
-            $el = $(rootNode);
+            this.$el = $(rootNode);
 
             this.applySelectionStateToDom();
         },
@@ -86,13 +86,13 @@ define([
         applySelectionStateToDom: function () {
             // the SSP page has changed, so we have new DOM.
             // Sync up the DOM with the checked state.
-            var grid = $el.data('kendoGrid');
+            var grid = this.$el.data('kendoGrid');
             var valueIDs = _.pluck(this.props.value, 'id');
 
             // Update the checked state of checkbox inputs
-            $el.find('input[type="checkbox"]').val(valueIDs);
+            this.$el.find('input[type="checkbox"]').val(valueIDs);
 
-            $el.find('tr').each(function (i, elem) {
+            this.$el.find('tr').each(function (i, elem) {
                 var record = grid.dataItem(elem);
 
                 if (record) {
@@ -112,7 +112,7 @@ define([
             var $target = $(e.target);
             var $row = $target.closest('tr');
 
-            var model = $el.data('kendoGrid').dataItem($row);
+            var model = this.$el.data('kendoGrid').dataItem($row);
             var record = _.extend(model.toJSON(), { id: model.id });
 
             // Determine the current selection state of this record
