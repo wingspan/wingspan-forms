@@ -63,7 +63,7 @@ define([
         },
 
         componentDidUpdate: function (prevProps, prevState, rootNode) {
-            if(this.props.selectable){
+            if (this.props.selectable) {
                 this.syncSelectionWithKendo($(rootNode));
             }
         },
@@ -85,8 +85,8 @@ define([
             // system wants to generate the details view AND select the item the user clicked on
             // at the same time
             listView.refresh();
-            if(this.props.selectable){
 
+            if (this.props.selectable) {
                 // Initialize this member variable so it is always set.  We use it to prevent
                 // our control from firing events as a result of us changing the Kendo state ourselves
                 this.suppressEvents = false;
