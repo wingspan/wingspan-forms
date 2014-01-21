@@ -51,7 +51,7 @@ define([
             var columns = [{ title: '', template: kendo.template(KendoGridPickerTemplate), width: 34 }];
             columns = columns.concat(this.props.columns);
 
-            this.kendoGrid = $el.kendoGrid({
+            $el.kendoGrid({
                 dataSource: this.props.dataSource,
                 height: this.props.height,
                 columns: columns,
@@ -72,10 +72,8 @@ define([
         },
 
         componentWillUnmount: function () {
+            $el.data('kendoGrid').destroy();
             $el = null;
-
-            this.kendoGrid.destroy();
-            this.kendoGrid = null;
         },
 
         componentDidUpdate: function (prevProps, prevState, rootNode) {
@@ -88,7 +86,7 @@ define([
         applySelectionStateToDom: function () {
             // the SSP page has changed, so we have new DOM.
             // Sync up the DOM with the checked state.
-            var grid = this.kendoGrid;
+            var grid = $el.data('kendoGrid');
             var valueIDs = _.pluck(this.props.value, 'id');
 
             // Update the checked state of checkbox inputs
@@ -114,7 +112,7 @@ define([
             var $target = $(e.target);
             var $row = $target.closest('tr');
 
-            var model = this.kendoGrid.dataItem($row);
+            var model = $el.data('kendoGrid').dataItem($row);
             var record = _.extend(model.toJSON(), { id: model.id });
 
             // Determine the current selection state of this record
