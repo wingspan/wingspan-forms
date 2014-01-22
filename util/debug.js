@@ -40,8 +40,7 @@ define([
             catch (e) {
                 message = _.str.sprintf('wspt.verify: exception inside wspt.verify: `%s` (`%s`)\n%s', e, fmt, stacktrace);
             }
-            debugger;
-            throw (message + '\n' + stacktrace);
+            throw new Error(message + '\n' + stacktrace);
         }
     }
     function verifyField(object, fieldName) {
