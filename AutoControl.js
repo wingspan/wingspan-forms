@@ -89,7 +89,7 @@ define([
      * @returns {*}
      */
     AutoControl.fieldClassForField = function (fieldInfo) {
-        return controlForField(fieldInfo).originalSpec.fieldClass;
+        return ((controlForField(fieldInfo) || {}).originalSpec || {}).fieldClass;
     };
 
     return AutoControl;

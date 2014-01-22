@@ -11,8 +11,9 @@ define([
             children = children[0];
         }
 
-        if (_.isUndefined(children.fieldClass)) {
-            if (children.props.fieldInfo) {
+        if (children && _.isUndefined(children.fieldClass)) {
+            // Support a textnode child, which won't have a fieldinfo
+            if (children.props && children.props.fieldInfo) {
                 return AutoControl.fieldClassForField(children.props.fieldInfo);
             }
             //console.warn('Unknown fieldClass for child component', children);
@@ -20,7 +21,7 @@ define([
             return 'formFieldInput';
         }
 
-        return children.fieldClass;
+        return children && children.fieldClass;
     }
 
     ControlCommon.attachFormTooltips();
