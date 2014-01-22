@@ -68,7 +68,6 @@ define([
 
             this.$el.on('click', 'tr', this.onRowClick);
 
-            this.applySelectionStateToDom();
         },
 
         componentWillUnmount: function () {
