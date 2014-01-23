@@ -1,6 +1,6 @@
 define([
-    'underscore', 'jquery', 'kendo', 'platform/util', 'text!textassets/print.html'
-], function (_, $, kendo, util, printHtml) {
+    'underscore', 'jquery', 'kendo', '../util/util'
+], function (_, $, kendo, util) {
     'use strict';
     var my = {};
 
@@ -76,28 +76,7 @@ define([
 
     my.resizeKendoGrids = resizeKendoGrids;
 
-    /**
-     * Useful for printing something already rendered in HTML.
-     * e.g. printAnnouncements(u.snippet(this.$el, 'snippet', 'announcementsGrid'), 1000, 1000);
-     * This implementation was originally developed for a grid.  Remains to be seen whether it works equally well with other controls.
-     * @param title The title of the window.
-     * @param content will be spliced into the body to be printed.
-     * @param width [optional] The width of the print window (default = 800)
-     * @param height [optional] The height of the print window (default = 500)
-     */
-    my.printContents = function (title, content, width, height) {
-        var html = String(printHtml);
-        var win = window.open('print.html', '', _.str.sprintf('width=%d, height=%d, toolbar=no, location=no, resizable=yes', width || 800, height || 500));
-        var body = content.clone()[0].outerHTML;
-        var baseURL = window.location.protocol + '//' + window.location.host + '/tmf2_web';
-        html = html.replace('{{title}}', title);
-        html = html.replace(/\{\{baseURL\}\}/g, baseURL);
-        html = html.replace('{{body}}', body);
-        var doc = win.document.open();
-        doc.write(html);
-        doc.close();
-        win.print();
-    };
+
 
     my.templateWith = function templateWith(template, f) {
         return function (record) {
