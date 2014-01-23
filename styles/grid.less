@@ -1,0 +1,350 @@
+@import "vars.less";
+
+@checkboxWidth: 40px;
+@iconWidth:85px;
+@minHeight: 115px;
+@controlsWidth: 170px;
+@paddingLeft: 14px;
+@paddingRight: 14px;
+
+/* ******************************************
+ *
+ *   GRID OVERRIDES
+ *
+ * *************************************** */
+
+.templateGridWrap {
+
+	.k-grid {
+
+		.k-grid-content {
+
+			tr {
+				border: 0;
+				td {
+					margin-top: -1px; // border collapse (overlap)
+					padding: 0;
+					border: 0;
+				}
+			}
+		}
+	}
+}
+
+/* ******************************************
+ *
+ *   GENERAL FORM CLASSES
+ *
+ * *************************************** */
+
+.gridRow {
+	color: @darkTextColor;
+	border: solid 1px transparent !important;
+	float: left;
+	width: 100%;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+
+	.gridRowCheckbox {
+		position: absolute;
+		top: 0;
+		left: @paddingLeft;
+		height: 100%;
+		width: @checkboxWidth;
+		background: url("common/assets/check_off.png") center left no-repeat;
+	}
+
+	.gridRowIcon {
+		position: absolute;
+		top: 14px;
+		left: @paddingLeft;
+		width: @iconWidth;
+
+	}
+
+	.gridRowName {
+		margin-bottom: 5px;
+		&, a {
+			color: @documentLinkColor;
+			font-size: 1.25em;
+			font-weight: bold;
+			&:hover {
+				text-decoration: underline;
+				cursor: pointer;
+			}
+		}
+	}
+
+	.gridRowColumns {
+
+		.gridRowColumn {
+			float: left;
+			width: 100%;
+			box-sizing:border-box;
+			-moz-box-sizing:border-box;
+			padding: 0 0 0 15px;
+		}
+		.gridRowColumn:first-child {
+			padding-left: 0;
+		}
+
+		&.gridRowColumnsDouble {
+			.gridRowColumn {
+				width: 50%;
+			}
+		}
+
+		&.gridRowColumnsTriple {
+			.gridRowColumn {
+				width: 33%;
+			}
+		}
+	}
+
+	.gridRowControls {
+		position: absolute;
+		top: 0;
+		right: -@paddingRight;
+		width: @controlsWidth;
+
+		.actionButton {
+			margin-right: 12px;
+		}
+
+		.divider {
+			width: 1px;
+			height: 35px;
+			margin-top: 1px;
+			margin-right: 12px;
+			background: #c4dae8;
+		}
+	}
+
+	.gridRowColumnsWrap {
+		position: relative;
+		float: left;
+		width: 100%;
+	}
+
+	.gridRowTop {
+		border: solid 1px white;
+		border-bottom: none;
+		padding: 13px @paddingRight 4px @paddingLeft;
+		float: left;
+		width: 100%;
+		position: relative;
+		min-height: @minHeight;
+		box-sizing:border-box;
+		-moz-box-sizing:border-box;
+	}
+
+	.gridRowDetails {
+		display: none;
+		clear: left;
+		float: left;
+		width: 100%;
+		border: solid 1px white;
+		border-top: solid 1px @listHighlightBorder;
+		padding: 6px @paddingRight 6px @paddingLeft;
+		background: @listMouseOverColor;
+		box-sizing:border-box;
+		-moz-box-sizing:border-box;
+	}
+
+}
+
+
+
+/* ******************************************
+ *
+ *   ELEMENT MIXINS
+ *
+ * *************************************** */
+
+.gridRow {
+
+	&.hasCheckbox {
+		.gridRowName, .gridRowColumns {	
+			margin-left: @checkboxWidth;
+		}
+	}
+
+	&.hasIcon {
+		.gridRowName, .gridRowColumns {
+			margin-left: @iconWidth;
+		}
+
+		&.hasCheckbox {
+			.gridRowIcon {
+				left: @checkboxWidth + @paddingLeft;
+			}
+			.gridRowName, .gridRowColumns {
+				margin-left: @checkboxWidth + @iconWidth;
+			}
+		}
+	}
+
+	&.hasControls {
+		.gridRowColumns {
+			margin-right: @controlsWidth;
+		}
+	}
+
+}
+
+
+/* ******************************************
+ *
+ *   STATES (k-state-selected, k-state-disabled)
+ *
+ * *************************************** */
+
+tr:hover:not(.k-state-disabled) {
+
+	.gridRow {
+		border: solid 1px @listHighlightBorder !important;
+		background: @listMouseOverColor !important;
+	}
+
+}
+
+tr.k-state-selected, tr.k-state-selected:hover {
+	.gridRow {
+		border: solid 1px @listHighlightBorder !important;
+		background: @listSelectedColor !important;
+
+		.gridRowDetails {
+			display: block;
+		}
+	}
+}
+
+tr.k-state-selected {
+	.gridRow {
+		.gridRowCheckbox {
+			background-image: url("common/assets/check_on.png");
+		}
+	}
+}
+
+tr.k-state-disabled {
+	.gridRow {
+		.gridRowCheckbox {
+			background-image: url("common/assets/check_off_disabled.png");
+		}
+	}
+}
+
+
+/* ******************************************
+ *
+ *   CONTENT ELEMENTS
+ *
+ * *************************************** */
+
+
+.detailsList {
+
+	li {
+		overflow: hidden;
+		text-overflow: ellipsis;
+
+		.detailsLabel {
+			font-weight: bold;
+			color: #333;
+		}
+
+		.detailsValue {
+			color: #666;
+		}
+
+		.detailsSplit {
+			padding: 0 3px;
+			color: #333;
+		}
+	}
+
+}
+
+/* ******************************************
+ *
+ *   COLORS (red, yellow, green, gray, default)
+ *
+ * *************************************** */
+
+
+.gridRowRed {
+	border-color: #EECDCD !important;
+	background: #F7E9E9 !important;
+
+	.gridRowDetails {
+		border-top-color: #EECDCD !important;
+		background: #FAF2F2 !important;
+	}
+
+	.highlight {
+		&, .detailsLabel {
+			color: red !important;
+		}
+	}
+
+}
+
+.gridRowYellow {
+	border-color: #F2D892 !important;
+	background: #FFF2CF !important;
+
+	.gridRowDetails {
+		border-top-color: #F2D892 !important;
+		background: #FEF7E2 !important;
+	}
+
+}
+
+.gridRowGreen {
+	border-color: #B5DEAD !important;
+	background: #EBF6E8 !important;
+
+	.gridRowDetails {
+		border-top-color: #B5DEAD !important;
+		background: #F3F9F2;
+	}
+}
+
+.gridRowGray {
+	border-color: #CCC !important;
+	background: #F0F0F0 !important;
+
+	.gridRowDetails {
+		border-top-color: #CCC !important;
+		background: #F5F5F5 !important;
+	}
+}
+
+/* if you wanted hover/selected states on colors, they would go here */
+tr:hover:not(.k-state-disabled), tr.k-state-selected, tr.k-state-selected:hover {
+	.gridRowRed {
+		.gridRowRed;
+	}
+	.gridRowYellow {
+		.gridRowYellow;
+	}
+	.gridRowGreen {
+		.gridRowGreen;
+	}
+	.gridRowGray {
+		.gridRowGray;
+	}
+}
+
+/* sample selected state 
+ tr.k-state-selected, tr.k-state-selected:hover {
+	.gridRowGreen {
+		background: black !important;
+		.gridRowDetails {
+			background: orange;
+		}
+	}
+
+ }
+*/

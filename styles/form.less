@@ -1,0 +1,1473 @@
+@import "vars.less";
+
+
+/* ******************************************
+ *
+ *   GENERAL FORM CLASSES
+ *
+ * *************************************** */
+ 
+//larger title
+.formTitle {
+	font-size: 18px;
+	font-weight: bold;
+	padding: 10px 0;
+	float: left;
+	width: 100%;
+}
+
+//title used on form fields, same as a label
+.formFieldTitle {
+	padding: 10px 0 10px;
+	float: left;
+	width: 100%;
+	font-size: 12px;
+	line-height: 15px;
+}
+
+//100% width field
+.formField {
+	float: left;
+	width: 100%;
+	padding: 0 0 10px 0;
+	position: relative;
+
+	.formLabel {
+		padding: 0 0 @labelPaddingBottom 0;
+		float: left;
+		width: 100%;
+		font-size: 12px;
+		line-height: @labelHeight - @labelPaddingBottom;
+		color: @inputLabelColor;
+	}
+
+	.formElement {
+		position: relative;
+		float: left;
+		width: 100%;
+	}
+
+	&.lockable {
+
+		.formElement {
+			padding-right: 30px;
+			box-sizing: border-box;
+			-moz-box-sizing:border-box;
+		}
+
+		.fieldLock {
+			.absolute(20px, 5px, auto, auto);
+			cursor: pointer;
+		}
+
+		.fieldLockOn {
+			right: 9px;
+		}
+	}
+
+	&.formFieldDisabled {
+		.formLabel {
+			color: @inputLabelDisabledColor;
+		}
+	}
+
+	&.formFieldReadonly {
+		.formLabel {
+			color: @inputLabelReadonlyColor;
+		}
+	}
+
+	&.noControl {
+		.formElement {
+			line-height: @inputHeight;
+		}
+	}
+
+	//tooltips (after states so color gets applied)
+	&.hasTooltip {
+		.formLabel {
+			color: @inputLabelTooltipColor;
+
+			.statusIcon {
+				padding-right: 15px; //icon defined in icons.less
+			}	
+		}				
+	}
+
+
+	//states
+	&.formFieldError {
+		.formLabel {
+			color: @inputLabelErrorColor;
+
+			.statusIcon {
+				padding-right: 15px; //icon defined in icons.less
+			}	
+		}
+	}
+}
+
+//fields stacking next to eachother
+.formFieldInline {
+	.formField;
+
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	padding-right: 10px;
+}
+
+//inline group, used to group multiple inline elements so spacing can be appropriately applied\
+.formInlineGroup {
+	float: left;
+	clear: left;
+	width: 100%;
+
+	.formFieldInline {
+		padding-right: 0; //put padding on left instead of right
+		padding-left: 10px;
+	}
+	.formFieldInline:first-child {
+		padding-left: 0; //first element can now be detected, remove padding on it
+	}
+	.formFieldOffset:first-child {
+		padding-left: 10px;
+	}
+}
+
+//fields are NoWrapr as label is side by side with the field
+.formFieldNoWrap {
+	.formField;
+
+	.formLabel {
+		width: 37%;
+		padding: 0 3% 0 0;
+		text-align: right;
+		line-height: @inputHeight;
+	}
+
+	.formElement {
+		width: 60%;
+	}
+
+}
+
+
+//form column
+.formColumn {
+	float: left;
+	padding-left: 20px;
+	box-sizing: border-box;
+	-moz-box-sizing:border-box;
+}
+
+.formColumnFirst {
+	padding-left: 0;
+}
+
+//form buttons
+.formButtons {
+	float: left;
+	width: 100%;
+}
+
+//form clear, clear end of form so container displays correctly
+.formClear {
+	clear: both;
+}
+
+/* ******************************************
+ *
+ *   SPECIFIC FORM ELEMENTS
+ *
+ * *************************************** */
+ 
+.formFieldCheckbox, .formFieldRadio, .formFieldSwitchbox {
+	.formElement {
+		label {
+			padding-right: 10px;
+			line-height: 25px;
+		}
+		label:last-child {
+			padding-right: 0;
+		}
+		span label:last-child {
+			padding-right: 10px;
+		}
+		span:last-child label:last-child {
+			padding-right: 0;
+		}
+	}
+	&.formFieldError {
+		.formElement {	
+			label {
+				color: @inputErrorColor;
+			}
+		}
+	}
+	&.formFieldDisabled {
+		.formElement {
+			label {
+				color: @inputDisabledColor;
+			}
+		}
+	}
+	&.formFieldReadonly {
+		.formElement {
+			label {
+				color: @inputReadonlyColor;
+			}
+		}
+	}
+	&.formFieldNoWrap {
+		.formLabel {
+			padding-top: 5px;
+			line-height: 20px;
+		}		
+	}
+}
+
+.formFieldSwitchbox {
+	&.formFieldNoWrap {
+		.formLabel {
+			padding-top: 10px;
+		}		
+	}
+}
+
+//form field input with default, error, and disabled states
+.formFieldInput, .formFieldTextarea, .formFieldAutocomplete {
+	.formElement {
+		.k-textbox {
+			background: @inputBackground;
+			border: 1px solid @inputBorder;
+			color: @inputColor;
+			padding: 0px 10px;
+			width: 100%;
+			height: @inputHeight;
+			resize: none;
+		}
+
+		.k-textbox:hover, .k-textbox:focus {
+			background: @inputHoverBackground;
+			border: 1px solid @inputHoverBorder;
+			color: @inputHoverColor;
+		}
+	}
+	&.formFieldError {
+		.formElement {
+			.k-textbox {
+				background: @inputErrorBackground;
+				border: 1px solid @inputErrorBorder;
+				color: @inputErrorColor;
+			}
+			.k-textbox:hover, .k-textbox:focus {
+				background: @inputErrorHoverBackground;
+				border: 1px solid @inputErrorHoverBorder;
+				color: @inputErrorHoverColor;
+			}
+		}
+	}
+	&.formFieldDisabled {
+		.formElement {
+			.k-textbox {
+				background: @inputDisabledBackground;
+				border: 1px solid @inputDisabledBorder;
+				color: @inputDisabledColor;
+			}
+			.k-textbox:hover, .k-textbox:focus {
+				background: @inputDisabledHoverBackground;
+				border: 1px solid @inputDisabledHoverBorder;
+				color: @inputDisabledHoverColor;
+			}
+		}
+	}
+	&.formFieldReadonly {
+		.formElement {
+			.k-textbox {
+				background: @inputReadonlyBackground;
+				border: 1px solid @inputReadonlyBorder;
+				color: @inputReadonlyColor;
+			}
+			.k-textbox:hover, .k-textbox:focus {
+				background: @inputReadonlyHoverBackground;
+				border: 1px solid @inputReadonlyHoverBorder;
+				color: @inputReadonlyHoverColor;
+			}
+		}
+	}
+}
+
+.formFieldTextarea {
+	.formFieldTextarea;
+
+	.formElement {
+		.k-textbox {
+			height: @textareaHeight - 1px; /* 1px fix */
+			padding-right: 0;
+		}
+	}
+
+	&.formFieldNoWrap {
+		.formLabel {
+			line-height: @textareaHeight;
+		}
+	}
+
+}
+
+.formFieldAutocomplete {
+	.formElement {
+		.k-autocomplete {
+			padding: 0;
+			border: 0 !important;
+			input {
+				padding-left: 5px;
+			}
+		}
+	}
+}
+
+
+.formFieldDropdown, .formFieldCombobox {
+	.formElement {
+		.k-dropdown, .k-combobox {
+			width: 100%;
+			.k-dropdown-wrap {    
+				height: @inputHeight - 2px;
+				background: @inputBackground;
+				border: 1px solid @inputBorder;
+				.k-input {
+					color: @inputColor;
+					background: none;
+					line-height: @inputHeight - 6px;
+					height: @inputHeight - 6px;
+					padding-left: 7px;
+				}
+				.k-select {
+					border-color: @inputBorder;
+					.k-icon {
+						margin-top: (@inputHeight - 16px) / 2;
+					}
+				}
+			}
+		}
+		.k-dropdown:hover, .k-dropdown:focus, .k-combobox:hover, .k-combobox:focus {
+			.k-dropdown-wrap {
+				background: @inputHoverBackground;
+				border: 1px solid @inputHoverBorder;
+				.k-input {
+					color: @inputHoverColor;
+				}
+				.k-select {
+					border-color: @inputHoverBorder;
+				}
+			}
+		}
+	}
+
+
+	&.formFieldError {
+		.formElement {
+			.k-dropdown, .k-combobox {
+				.k-dropdown-wrap {    
+					background: @inputErrorBackground;
+					border: 1px solid @inputErrorBorder;
+					.k-input {
+						color: @inputErrorColor;
+					}
+					.k-select {
+						border-color: @inputErrorBorder;
+					}
+				}
+			}
+			.k-dropdown:hover, .k-dropdown:focus, .k-combobox:hover, .k-combobox:focus {
+				.k-dropdown-wrap {
+					background: @inputErrorHoverBackground;
+					border: 1px solid @inputErrorHoverBorder;			
+					.k-input {
+						color: @inputErrorHoverColor;
+					}
+					.k-select {
+						border-color: @inputErrorHoverBorder;
+					}
+				}
+			}
+		}
+	}
+
+	&.formFieldDisabled {
+		.formElement {
+			.k-dropdown, .k-combobox {
+				.k-dropdown-wrap {    
+					background: @inputDisabledBackground;
+					border: 1px solid @inputDisabledBorder;
+					.k-input {
+						color: @inputDisabledColor;
+					}
+					.k-select {
+						border-color: @inputDisabledBorder;
+					}
+				}
+			}
+			.k-dropdown:hover, .k-dropdown:focus, .k-combobox:hover, .k-combobox:focus {
+				.k-dropdown-wrap {
+					background: @inputDisabledHoverBackground;
+					border: 1px solid @inputDisabledHoverBorder;
+					.k-input {
+						color: @inputDisabledHoverColor;
+					}
+					.k-select {
+						border-color: @inputDisabledHoverBorder;
+					}
+				}
+			}
+		}
+	}
+
+	&.formFieldReadonly {
+		.formElement {
+			.k-dropdown, .k-combobox {
+				.k-dropdown-wrap {    
+					background: @inputReadonlyBackground;
+					border: 1px solid @inputReadonlyBorder;
+					.k-input {
+						color: @inputReadonlyColor;
+					}
+					.k-select {
+						border-color: @inputReadonlyBorder;
+					}
+				}
+			}
+			.k-dropdown:hover, .k-dropdown:focus, .k-combobox:hover, .k-combobox:focus {
+				.k-dropdown-wrap {
+					background: @inputReadonlyHoverBackground;
+					border: 1px solid @inputReadonlyHoverBorder;
+					.k-input {
+						color: @inputReadonlyHoverColor;
+					}
+					.k-select {
+						border-color: @inputReadonlyHoverBorder;
+					}
+				}
+			}
+		}
+	}
+}
+
+.formFieldMultiselect {
+	.formElement {
+		.k-multiselect {
+			width: 100%;
+			border: 1px solid @inputBorder;
+			line-height: 0px;
+			.k-multiselect-wrap {    
+				background: @inputBackground;
+				padding-top: 1px; 
+				padding-bottom: 0px;
+				line-height: 0px;
+				box-sizing: content-box;
+				-moz-box-sizing:content-box;
+
+				.k-button {
+					background: none;
+					color: @inputColor;
+					line-height: @inputHeight - 10px;
+					height: @inputHeight - 7px;
+					overflow: hidden;
+					border: 1px solid @inputBorder;
+					margin: 0 0 0 3px;
+					span {
+						padding-left: 3px;
+					}
+				}
+			}
+		}
+		.k-multiselect:hover, .k-multiselect:focus {
+			border: 1px solid @inputHoverBorder;
+			.k-multiselect-wrap {
+				background: @inputHoverBackground;
+				.k-button {
+					color: @inputHoverColor;
+					border: 1px solid @inputBorder;
+				}
+			}
+		}
+		//select multiselect
+		select {
+			width: 100%;
+			border: 1px solid @inputBorder;
+			background: @inputBackground;
+			color: @inputColor;
+			height: @textareaHeight;
+			.rounded(5px);
+		}
+		select:hover, select:focus {
+			border: 1px solid @inputHoverBorder;
+			background: @inputHoverBackground;
+			color: @inputHoverColor;
+		}
+	}
+	&.formFieldError {
+		.formElement {
+			.k-multiselect {
+				border: 1px solid @inputErrorBorder;
+				.k-multiselect-wrap {    
+					background: @inputErrorBackground;
+					
+					.k-button {
+						color: @inputErrorColor;
+						border-color: @inputErrorBorder;
+					}
+				}
+			}
+			.k-multiselect:hover, .k-multiselect:focus {
+				border: 1px solid @inputErrorHoverBorder;
+				.k-multiselect-wrap {
+					background: @inputErrorHoverBackground;
+					.k-button {
+						color: @inputErrorHoverColor;
+						border-color: @inputErrorBorder;
+					}
+				}
+			}
+		}
+		//select multiselect
+		select {
+			border: 1px solid @inputErrorBorder;
+			background: @inputErrorBackground;
+			color: @inputErrorColor;
+		}
+		select:hover, select:focus {
+			border: 1px solid @inputErrorHoverBorder;
+			background: @inputErrorHoverBackground;
+			color: @inputErrorHoverColor;
+		}
+	}
+	&.formFieldDisabled {
+		.formElement {
+			.k-multiselect {
+				border: 1px solid @inputDisabledBorder;
+				.k-multiselect-wrap {    
+					background: @inputDisabledBackground;
+					
+					.k-button {
+						color: @inputDisabledColor;
+						border-color: @inputDisabledBorder;
+					}
+				}
+			}
+			.k-multiselect:hover, .k-multiselect:focus {
+				border: 1px solid @inputDisabledHoverBorder;
+				.k-multiselect-wrap {
+					background: @inputDisabledHoverBackground;
+					.k-button {
+						color: @inputDisabledHoverColor;
+						border-color: @inputDisabledBorder;
+					}
+				}
+			}
+		}
+		//select multiselect
+		select {
+			border: 1px solid @inputDisabledBorder;
+			background: @inputDisabledBackground;
+			color: @inputDisabledColor;
+		}
+		select:hover, select:focus {
+			border: 1px solid @inputDisabledHoverBorder;
+			background: @inputDisabledHoverBackground;
+			color: @inputDisabledHoverColor;
+		}
+	}
+
+	&.formFieldReadonly {
+		.formElement {
+			.k-multiselect {
+				border: 1px solid @inputReadonlyBorder;
+				.k-multiselect-wrap {    
+					background: @inputReadonlyBackground;
+					
+					.k-button {
+						color: @inputReadonlyColor;
+						border-color: @inputReadonlyBorder;
+					}
+				}
+			}
+			.k-multiselect:hover, .k-multiselect:focus {
+				border: 1px solid @inputReadonlyHoverBorder;
+				.k-multiselect-wrap {
+					background: @inputReadonlyHoverBackground;
+					.k-button {
+						color: @inputReadonlyHoverColor;
+						border-color: @inputReadonlyBorder;
+					}
+				}
+			}
+		}
+		//select multiselect
+		select {
+			border: 1px solid @inputReadonlyBorder;
+			background: @inputReadonlyBackground;
+			color: @inputReadonlyColor;
+		}
+		select:hover, select:focus {
+			border: 1px solid @inputReadonlyHoverBorder;
+			background: @inputReadonlyHoverBackground;
+			color: @inputReadonlyHoverColor;
+		}
+	}
+}
+
+.formFieldNumeric {
+	.formElement {
+		.k-numerictextbox {
+			height: @inputHeight;
+			width: 100%;
+			.k-numeric-wrap {
+				border: 1px solid @inputBorder;
+				.k-input {
+					background: @inputBackground;
+					color: @inputColor;
+					height: @inputHeight - 6px;
+					line-height: @inputHeight - 6px;
+					padding-left: 5px;
+				}
+				.k-select {
+					background: @inputBackground;
+					border-color: @inputBorder;
+					.k-link:first-child {
+						margin-top: (@inputHeight - 26px) / 2;
+					}
+				}
+			}
+		}
+		.k-numerictextbox:hover, .k-numerictextbox:focus {
+			.k-numeric-wrap {
+				border: 1px solid @inputHoverBorder;
+				.k-input {
+					background: @inputHoverBackground;
+					color: @inputHoverColor;
+				}
+				.k-select {
+					background: @inputHoverBackground;
+					border-color: @inputHoverBorder;
+				}
+			}
+		}
+	}	
+	&.formFieldError {
+		.formElement {
+			.k-numerictextbox {
+				.k-numeric-wrap {
+					border: 1px solid @inputErrorBorder;
+					.k-input {
+						background: @inputErrorBackground;
+						color: @inputErrorColor;
+					}
+					.k-select {
+						background: @inputErrorBackground;
+						border-color: @inputErrorBorder;
+					}
+				}
+			}
+			.k-numerictextbox:hover, .k-numerictextbox:focus {
+				.k-numeric-wrap {
+					border: 1px solid @inputErrorHoverBorder;
+					.k-input {
+						background: @inputErrorHoverBackground;
+						color: @inputErrorHoverColor;
+					}
+					.k-select {
+						background: @inputErrorHoverBackground;
+						border-color: @inputErrorHoverBorder;
+					}
+				}
+			}
+		}
+	}
+	&.formFieldDisabled {
+		.formElement {
+			.k-numerictextbox {
+				.k-numeric-wrap {
+					border: 1px solid @inputDisabledBorder;
+					.k-input {
+						background: @inputDisabledBackground;
+						color: @inputDisabledColor;
+					}
+					.k-select {
+						background: @inputDisabledBackground;
+						border-color: @inputDisabledBorder;
+					}
+				}
+			}
+			.k-numerictextbox:hover, .k-numerictextbox:focus {
+				.k-numeric-wrap {
+					border: 1px solid @inputDisabledHoverBorder;
+					.k-input {
+						background: @inputDisabledHoverBackground;
+						color: @inputDisabledHoverColor;
+					}
+					.k-select {
+						background: @inputDisabledHoverBackground;
+						border-color: @inputDisabledHoverBorder;
+					}
+				}
+			}
+		}
+	}
+	&.formFieldReadonly {
+		.formElement {
+			.k-numerictextbox {
+				.k-numeric-wrap {
+					border: 1px solid @inputReadonlyBorder;
+					.k-input {
+						background: @inputReadonlyBackground;
+						color: @inputReadonlyColor;
+					}
+					.k-select {
+						background: @inputReadonlyBackground;
+						border-color: @inputReadonlyBorder;
+					}
+				}
+			}
+			.k-numerictextbox:hover, .k-numerictextbox:focus {
+				.k-numeric-wrap {
+					border: 1px solid @inputReadonlyHoverBorder;
+					.k-input {
+						background: @inputReadonlyHoverBackground;
+						color: @inputReadonlyHoverColor;
+					}
+					.k-select {
+						background: @inputReadonlyHoverBackground;
+						border-color: @inputReadonlyHoverBorder;
+					}
+				}
+			}
+		}
+	}
+}
+				
+
+					
+.formFieldDatepicker, .formFieldTimepicker, .formFieldDatetimepicker {
+	.formElement {
+		.k-timepicker, .k-datepicker, .k-datetimepicker {
+			height: @inputHeight;
+			width: 100%;
+			.k-picker-wrap {
+				border: 1px solid @inputBorder;
+				.k-input {
+					background: @inputBackground;
+					color: @inputColor;
+					height: @inputHeight - 6px;
+					line-height: @inputHeight - 6px;
+					padding-left: 5px;
+				}
+				.k-select {
+					background: @inputBackground;
+					border-color: @inputBorder;
+					.k-icon {
+						margin-top: (@inputHeight - 24px) / 2;
+					}
+				}
+			}
+		}
+		.k-timepicker:hover, .k-datepicker:hover, .k-datetimepicker:hover, .k-timepicker:focus, .k-datepicker:focus, .k-datetimepicker:focus {
+			.k-picker-wrap {
+				border: 1px solid @inputHoverBorder;
+				.k-input {
+					background: @inputHoverBackground;
+					color: @inputHoverColor;
+				}
+				.k-select {
+					background: @inputHoverBackground;
+					border-color: @inputHoverBorder;
+				}
+			}
+		}
+
+	}
+	&.formFieldError {
+		.k-timepicker, .k-datepicker, .k-datetimepicker {
+			.k-picker-wrap {
+				border: 1px solid @inputErrorBorder;
+				.k-input {
+					background: @inputErrorBackground;
+					color: @inputErrorColor;
+				}
+				.k-select {
+					background: @inputErrorBackground;
+					border-color: @inputErrorBorder;
+				}
+			}
+		}
+		.k-timepicker:hover, .k-datepicker:hover, .k-datetimepicker:hover, .k-timepicker:focus, .k-datepicker:focus, .k-datetimepicker:focus {
+			.k-picker-wrap {
+				border: 1px solid @inputErrorHoverBorder;
+				.k-input {
+					background: @inputErrorHoverBackground;
+					color: @inputErrorHoverColor;
+				}
+				.k-select {
+					background: @inputErrorHoverBackground;
+					border-color: @inputErrorHoverBorder;
+				}
+			}
+		}
+	}
+	&.formFieldDisabled {
+		.k-timepicker, .k-datepicker, .k-datetimepicker {
+			.k-picker-wrap {
+				border: 1px solid @inputDisabledBorder;
+				.k-input {
+					background: @inputDisabledBackground;
+					color: @inputDisabledColor;
+				}
+				.k-select {
+					background: @inputDisabledBackground;
+					border-color: @inputDisabledBorder;
+				}
+			}
+		}
+		.k-timepicker:hover, .k-datepicker:hover, .k-datetimepicker:hover, .k-timepicker:focus, .k-datepicker:focus, .k-datetimepicker:focus {
+			.k-picker-wrap {
+				border: 1px solid @inputDisabledHoverBorder;
+				.k-input {
+					background: @inputDisabledHoverBackground;
+					color: @inputDisabledHoverColor;
+				}
+				.k-select {
+					background: @inputDisabledHoverBackground;
+					border-color: @inputDisabledHoverBorder;
+				}
+			}
+		}
+	}
+	&.formFieldReadonly {
+		.k-timepicker, .k-datepicker, .k-datetimepicker {
+			.k-picker-wrap {
+				border: 1px solid @inputReadonlyBorder;
+				.k-input {
+					background: @inputReadonlyBackground;
+					color: @inputReadonlyColor;
+				}
+				.k-select {
+					background: @inputReadonlyBackground;
+					border-color: @inputReadonlyBorder;
+				}
+			}
+		}
+		.k-timepicker:hover, .k-datepicker:hover, .k-datetimepicker:hover, .k-timepicker:focus, .k-datepicker:focus, .k-datetimepicker:focus {
+			.k-picker-wrap {
+				border: 1px solid @inputReadonlyHoverBorder;
+				.k-input {
+					background: @inputReadonlyHoverBackground;
+					color: @inputReadonlyHoverColor;
+				}
+				.k-select {
+					background: @inputReadonlyHoverBackground;
+					border-color: @inputReadonlyHoverBorder;
+				}
+			}
+		}
+	}
+}
+
+/* ******************************************
+ *
+ *   FORM BUTTONS
+ *
+ * *************************************** */
+
+.secondaryButton {
+    cursor: pointer;
+    display: inline-block;
+    height: 33px;
+    margin: 0 5px 0 10px;
+
+    > div {
+        background: url('common/buttons/button-secondary.png') no-repeat top right;
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+        float: left;
+
+        > span {
+            color: white;
+            margin: 0 10px 0 -10px;
+            padding: 10px 4px 11px 15px;
+            display: inline-block;
+            background: url('common/buttons/button-secondary.png') no-repeat top left;
+            text-shadow: 0px -1px 1px #666;
+        }
+    }
+
+
+	 &.buttonDisabled {
+		cursor: default;
+		& > div {
+			background-image: url('common/buttons/button-disabled.png');
+			& > span {
+				background-image: url('common/buttons/button-disabled.png');
+			}
+		}
+	 }
+}
+
+
+.primaryButton {
+    cursor: pointer;
+    display: inline-block;
+    height: 33px;
+    margin: 0 5px 0 10px;
+
+    > div {
+        background: url('common/buttons/button-primary.png') no-repeat top right;
+        margin: 0px 0px 0px 0px;
+        padding: 0px 0px 0px 0px;
+        float: left;
+
+        > span {
+            color: white;
+            margin: 0 10px 0 -10px;
+            padding: 10px 4px 11px 15px;
+            display: inline-block;
+            background: url('common/buttons/button-primary.png') no-repeat top left;
+            text-shadow: 0px -1px 1px #666;
+        }
+    }
+
+	 &.buttonDisabled {
+		cursor: default;
+		& > div {
+			background-image: url('common/buttons/button-disabled.png');
+			& > span {
+				background-image: url('common/buttons/button-disabled.png');
+			}
+		}
+	 }
+}
+
+button.primaryButton {
+	margin-right: 5px;
+	margin-left: 0;
+	background: url("common/buttons/button-primary-bg.png") top left repeat-x #787A82;
+	border-top: 0;
+	border-bottom: 1px solid #43657F;
+	border-left: 1px solid #658EAE;
+	border-right: 1px solid #43657F;
+	.rounded(5px);
+	text-shadow: 0px -1px 1px #666;
+	color: #fff;
+	font-size: 12px;
+	padding: 0 13px !important;
+
+	&.buttonDisabled {
+		border-bottom: 1px solid #9EA3AE;
+		border-right: 1px solid #9EA3AE;
+		border-left: 1px solid #B9BABE;
+		background: url("common/buttons/button-disabled-bg.png") top left repeat-x #BBBCC0;
+	}
+}
+
+button.secondaryButton {
+	margin-right: 5px;
+	margin-left: 0;
+	background: url("common/buttons/button-secondary-bg.png") top left repeat-x #787A82;
+	border-top: 0;
+	border-bottom: 1px solid #474B55;
+	border-left: 1px solid #74777E;
+	border-right: 1px solid #474B55;
+	.rounded(5px);
+	text-shadow: 0px -1px 1px #666;
+	color: #fff;
+	font-size: 12px;
+	padding: 0 13px !important;
+
+	&.buttonDisabled {
+		border-bottom: 1px solid #9EA3AE;
+		border-right: 1px solid #9EA3AE;
+		border-left: 1px solid #B9BABE;
+		background: url("common/buttons/button-disabled-bg.png") top left repeat-x #BBBCC0;
+	}
+}
+
+button.plainButton {
+	cursor: pointer;
+   display: inline-block;
+   height: 33px;
+   margin: 0 5px 0 10px;
+	margin-right: 5px;
+	margin-left: 0;
+	background: none;
+	border: 0;
+	color: #000;
+	font-size: 12px;
+	padding: 0 13px !important;
+}
+
+/* ******************************************
+ *
+ *   TOOLTIPS
+ *
+ * *************************************** */
+
+.k-widget.formTooltip {
+	background: @inputTooltipBackgroundColor;
+	border-color: @inputTooltipBackgroundColor;
+	color: @inputTooltipColor;
+	padding: 10px;
+	border-radius: 7px;
+	line-height: normal;
+	font-size: 12px;
+
+	.k-callout-s {
+    	border-top-color: @inputTooltipBackgroundColor;
+    }
+}
+
+.k-widget.formErrorTooltip {
+	background: @inputErrorTooltipBackgroundColor;
+	border-color: @inputErrorTooltipBackgroundColor;
+	color: @inputErrorTooltipColor;
+
+	.k-callout-n {
+    	border-bottom-color: @inputErrorTooltipBackgroundColor;
+    }
+}
+
+/* ******************************************
+ *
+ *   CUSTOM CHECKBOXES
+ *
+ * *************************************** */
+
+input[type='checkbox'], input[type='radio'] {
+    margin: 0px;
+    padding: 0px;
+    width: 0px;
+    display: none;
+    float: left;
+    -moz-appearance: none;
+}
+
+input[type='checkbox'] + label {
+    clear: none;
+    padding: 5px 0 4px 26px; /* make rook for image. */
+    background: url(common/assets/check_off.png) left center no-repeat; 
+}
+label.checkboxActive {
+    background-image: url(common/assets/check_on.png) !important;
+}
+label.checkboxActiveDisabled {
+    background-image: url(common/assets/check_on_disabled.png) !important;
+}
+label.checkboxDisabled {
+    background-image: url(common/assets/check_off_disabled.png) !important;
+	 color: @inputDisabledColor;
+}
+
+input[type='radio'] + label {
+    clear: none;
+    padding: 5px 0 4px 26px; /* make rook for image. */   
+    background: url(common/assets/radio_off.png) left center no-repeat; 
+}
+label.radioActive {
+   background-image: url(common/assets/radio_on.png) !important;
+}
+label.radioActiveDisabled {
+    background-image: url(common/assets/radio_on_disabled.png) !important;
+}
+label.radioDisabled {
+    background-image: url(common/assets/radio_off_disabled.png) !important;
+	 color: @inputDisabledColor;
+}
+ 
+
+input[type='checkbox'].switchbox + label {
+    clear: none;
+    height: 37px;
+    padding-left: 95px;
+	 padding-top: 0;
+	 padding-bottom: 0;
+	 line-height: 37px;
+    background: url(common/assets/switch_off.png) left center no-repeat; 
+    float: left;
+}
+label.switchboxActive {
+    background-image: url(common/assets/switch_on.png) !important;
+}
+label.switchboxActiveDisabled {
+    background-image: url(common/assets/switch_on_disabled.png) !important;
+}
+label.switchboxDisabled {
+    background-image: url(common/assets/switch_off_disabled.png) !important;
+	 color: @inputDisabledColor;
+}
+
+.userPicker {
+    .formElement {
+      width: auto;
+    }
+}
+
+.userPicker h2 {
+    border-bottom: 1px solid white;
+    line-height: 2em;
+}
+
+.userPicker.k-popup {
+  padding-bottom: 26px;
+}
+
+.userPicker .user {
+    overflow-x: hidden;
+}
+
+.userPicker .fullName {
+    font-weight: 700;
+}
+
+.userPicker .emailAddress {
+    font-weight: 400;
+    font-size: smaller;
+    font-style: italic;
+    line-height: 15px;
+}
+
+
+/*
+   THESE ARE THE CSS3 DECLARATIONS THAT MAKE CUSTOM CHECKBOXES, RADIOS, ETC WORK IN ALL BROWSERS BUT IE8
+   IF YOU REMOVE OR COMMENT OUT THESE DECLARATIONS, ALL BROWSERS WILL FALL BACK ON JS AND BEHAVE LIKE IE8
+   SO TO TEST JS ON ComponentPage.js THAT UPDATES CLASS ON LABEL, COMMENT OUT THESE CLASSES
+   ALSO YOU WILL NEED TO INIT THE LABEL TO THE RIGHT CLASS AS WELL, EITHER WITH JS LOGIC, OR TRIGGERING CHANGE EVENT ON INIT
+*/
+input[type='checkbox']:checked + label
+{
+    background-image: url(common/assets/check_on.png);
+}
+input[type='checkbox']:disabled + label
+{
+    background-image: url(common/assets/check_off_disabled.png);
+	 background-position: 2px center;
+	 color: @inputDisabledColor;
+}
+input[type='checkbox']:checked:disabled + label
+{
+    background-image: url(common/assets/check_on_disabled.png);
+	 color: @inputDisabledColor;
+}
+
+input[type='radio']:checked + label
+{
+    background-image: url(common/assets/radio_on.png);
+}
+input[type='radio']:disabled + label
+{
+    background-image: url(common/assets/radio_off_disabled.png);
+	 color: @inputDisabledColor;
+}
+input[type='radio']:checked:disabled + label
+{
+    background-image: url(common/assets/radio_on_disabled.png);
+	 color: @inputDisabledColor;
+}
+
+input[type='checkbox'].switchbox:checked + label
+{
+    background-image: url(common/assets/switch_on.png);
+}
+input[type='checkbox'].switchbox:disabled + label
+{
+    background-image: url(common/assets/switch_off_disabled.png);
+	 color: @inputDisabledColor;
+}
+input[type='checkbox'].switchbox:checked:disabled + label
+{
+    background-image: url(common/assets/switch_on_disabled.png);
+	 color: @inputDisabledColor;
+}
+/* end of CSS3 */
+
+
+
+/* ******************************************
+ *
+ *   ONE OFF FORM ELEMENTS
+ *
+ * *************************************** */
+
+ .formFieldSwitch {
+
+	//since control is dark with light text, a lot of the variables cannot be re-used, but disabled and error colors can
+		//I put a comment to the right of variables of vars that could potentially be re-used, but do not currently match exact values
+
+	//it may make sense to break out positive / negative variables to vars.less for use elsewhere
+
+	//shadow is light blue area around control
+	@shadowColor: #ECF2F8;
+	@shadowSize: 3px;
+
+	//border and background colors
+	@borderColor: #AFAFAF;								//@inputBorder
+	@backgroundColor: #ccc;
+	@selectedBackgroundStart: #f9f9f9;				//@inputBackground
+	@selectedBackgroundEnd: #eaeaea;
+	@selectedHighlight: #fff;
+
+	//text colors
+	@unselectedTextColor: #fff;
+	@selectedTextColor: #000;							//@inputColor
+	@positiveColor: #3A9800;
+	@negativeColor: #B11100;
+
+	//states
+	@borderColorError: #cb1702;						//@inputErrorBorder
+
+	@shadowColorDisabled: #f9f9f9;
+	@borderColorDisabled: #dbdbdb;
+	@backgroundColorDisabled: #e8e8e8;
+	@selectedTextColorDisabled: #bcbcbc;			//@inputDisabledColor
+	@selectedBackgroundStartDisabled: #fcfcfc;	//@inputDisabledBackground
+	@selectedBackgroundEndDisabled: #f5f5f5;
+
+	//hover
+	@shadowColorHover: #fff;
+	@shadowColorErrorHover: @inputErrorBackground;
+	@shadowColorDisabledHover: @shadowColorDisabled;	//no change on disabled
+
+	//no readonly, is there a readonly version of this?
+
+
+	.formElement {
+
+		.switch, .switch ul, .switch li, .switch li span {
+			float: left;
+			.rounded(5px);
+		}
+
+		.switch {
+			background: @shadowColor;
+			padding: @shadowSize;
+			ul {
+				border: 1px solid @borderColor;
+				background: @backgroundColor;
+				white-space: nowrap;
+				li {
+					margin: -1px;
+					border: 1px solid transparent;
+					color: @unselectedTextColor;
+					cursor: pointer;				
+					span {
+						padding: 0 10px;
+						line-height: 28px;
+					}
+					&.active {
+						border-left: 1px solid @borderColor;
+						border-right: 1px solid @borderColor;
+						color: @selectedTextColor;
+						cursor: default;
+						span {
+							.gradient(@selectedBackgroundStart, @selectedBackgroundEnd);
+							box-shadow: inset 0px 1px 0px @selectedHighlight,  inset 0px -1px 0px @selectedHighlight;
+						}
+						.neg {
+							color: @negativeColor;
+						}
+						.pos {
+							color: @positiveColor;
+						}
+					}
+					&:first-child.active {			
+						border-left: 1px solid transparent;
+					}
+					&:last-child.active {
+						border-right: 1px solid transparent;
+					}
+				}
+			}
+		}
+		.switch:hover, .switch:focus {
+			background: @shadowColorHover;
+		}
+	}
+
+	&.formFieldError {
+		.formElement {
+			.switch {
+				ul {
+					border-color: @borderColorError;
+				}
+			}
+			.switch:hover, .switch:focus {
+				background: @shadowColorErrorHover;
+			}
+		}
+	}
+
+	&.formFieldDisabled {
+		.formElement {
+			.switch {
+				background: @shadowColorDisabled;
+				ul {
+					background: @backgroundColorDisabled;
+					border-color: @borderColorDisabled;
+					li {
+						cursor: default;
+						&.active {
+							color: @selectedTextColorDisabled;
+							border-left-color: @borderColorDisabled;
+							border-right-color: @borderColorDisabled;
+							.pos, .neg {
+								color: @selectedTextColorDisabled;
+							}
+							span {
+								.gradient(@selectedBackgroundStartDisabled, @selectedBackgroundEndDisabled);
+							}
+						}
+					}
+				}
+			}
+			.switch:hover, .switch:focus {
+				background: @shadowColorDisabledHover;
+			}
+		}
+	}
+
+ }
+
+
+.formFieldCarousel {
+
+	.formElement {
+
+		@editButtonWidth: 110px;
+		@editButtonSpace: 4px;
+		@arrowButtonWidth: 30px;
+		@rounding: 5px;
+
+		.carousel {
+			float: left;
+			width: 100%;
+			.borderBoxed;
+			@paddingRight: @editButtonWidth + @editButtonSpace + @arrowButtonWidth;
+			@paddingLeft: @arrowButtonWidth;
+			padding: 0 @paddingRight 0 @paddingLeft;
+			position: relative;
+			height: 30px;
+
+			.carouselButton, .carouselInput {
+				height: 100%;
+				.borderBoxed;
+				.gradient(#f9f9f9, #eaeaea);
+				box-shadow: inset 0px 1px 0px #fff,  inset 0px -1px 0px #fff;
+				border-top: 1px solid #dfdfdf;
+				border-right: 1px solid #c8c8c8;
+				border-bottom: 1px solid #9d9d9d;
+				border-left: 1px solid #c8c8c8;
+			}
+
+			.carouselButton {
+				position: absolute;
+				top: 0;
+				color: #333;
+				font-size: 14px;
+				padding: 0 0 0 5px;
+				cursor: pointer;
+				.icon {
+					margin-left: 2px;
+				}
+			}
+
+			.carouselInput {
+				width: 100%;
+				border-left: 0;
+				border-right: 0;
+				padding-left: 10px;
+			}
+
+         .backButton {
+				left: 0;
+				width: @arrowButtonWidth;
+				.roundedComplex(@rounding, 0, @rounding, 0);
+         }
+         .forwardButton {
+				right: @editButtonWidth + @editButtonSpace;
+				width: @arrowButtonWidth;	
+				.roundedComplex(0, @rounding, 0, @rounding);
+         }
+         .editButton {
+				right: 0;
+				width: @editButtonWidth;
+				.rounded(@rounding);
+				.icon {
+					float: right;
+					margin: 7px 5px 0 5px;
+				}
+         }
+
+
+      }
+
+	}
+
+ }
+
+/* ********************
+ * CAROUSEL ICONS
+ * ***************** */
+.carousel {
+  .iconPrev {
+    width: 7px;
+    height: 12px;
+    background-image: url("assets/icons/carousel-left.png");
+  }
+
+  .iconNext {
+    width: 7px;
+    height: 12px;
+    background-image: url("assets/icons/carousel-right.png");
+  }
+
+  .iconCaret {
+    width: 7px;
+    height: 4px;
+    background-image: url("assets/icons/carousel-caret.png");
+  }
+}
+
+
+ /* ******************************************
+ *
+ *   CONTROL WRAPPER DIVS
+ *
+ * *************************************** */
+
+ //USED IN DIALOGS
+.controlsWrapper {
+	background: #DEDEDE;
+	border-top: solid 1px #CCCCCC;
+	position: relative;
+	float: left;
+	width: 100%;
+	padding: 10px 10px 0 10px;
+	box-sizing: border-box;
+	-moz-box-sizing:border-box;
+
+	.verticalCenterButton {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		@buttonHeight: 34px; /* this may want to be moved into vars and applied to button styles below */
+		height: @buttonHeight;
+		margin-top: -@buttonHeight / 2;
+		padding-left: 10px;
+	}
+}
+
+.controlsWrapperTop {
+	.controlsWrapper;
+	border-top: 0;
+}
+
+
+

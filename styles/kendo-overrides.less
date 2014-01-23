@@ -1,0 +1,161 @@
+@import "vars.less";
+
+/* kendo list view overrides */
+
+.k-listview
+{
+    border: none;
+    background: none;
+}
+
+
+/* kendo tooltip overrides */
+.k-widget.k-tooltip {
+   	background: #000;
+   	color: #fff;
+  	border-color: #000;
+}
+
+.k-tooltip .k-callout-s {
+	border-top-color: #000;
+   	bottom: -12px; /* have to offset this as kendo uses part of dropshadow for arrow */
+}	
+.k-tooltip .k-callout-n {
+	border-bottom-color: #000;
+}		
+.k-tooltip .k-callout-w {
+	border-right-color: #000;
+}	
+.k-tooltip .k-callout-e {
+	border-left-color: #000;
+}
+
+
+/* kendo grid overrides */
+.k-grid .k-pager-wrap .k-link {
+   border-radius: 0 !important;
+   background: #f9f9f9 !important;
+   border: 1px solid #c7c7c7 !important;
+   margin: 0 0 0 -1px !important;
+   padding: 0 !important;
+   height: 28px;
+   width: 28px;
+   line-height: 28px;
+   text-align: center;
+}
+
+.k-grid .k-pager-wrap .k-link:hover {
+   background: #e6e6e6 !important;
+}
+
+.k-grid .k-pager-wrap .k-link .k-icon {
+   margin-top: 7px;
+}
+
+.k-grid .k-pager-wrap .k-pager-numbers  {
+   margin: 0 0 0 -1px !important;
+}
+
+.k-grid .k-pager-wrap .k-pager-numbers li {
+	padding-left: 10px;
+}
+
+.k-grid .k-pager-wrap .k-pager-numbers li .k-link {
+   background: none !important;
+   border: 1px solid #fff !important;
+   margin: 0 0 0 -1px !important;
+   padding: 0 !important;
+   height: 28px;
+   width: 28px;
+   line-height: 28px;
+   text-align: center;
+	border-radius: 5px !important;
+}
+.k-grid .k-pager-wrap .k-pager-numbers li .k-link:hover {
+   background: #e6e6e6 !important;
+	border-radius: 5px !important;
+}
+
+.k-grid .k-pager-wrap .k-pager-numbers li .k-state-selected {
+   border-radius: 0 !important;
+   border: 1px solid #c7c7c7 !important;
+   background: #A5B7BF !important;
+   color: #fff !important;
+   text-shadow: 1px 1px #999;
+   margin: 0 0 0 -1px !important;
+   padding: 0 !important;
+   height: 28px;
+   width: 28px;
+   line-height: 28px;
+   text-align: center;
+	border-radius: 5px !important;
+}
+
+.k-grid .k-pager-wrap .k-state-disabled {
+   border: 1px solid #c7c7c7 !important;
+   opacity: 1;
+}
+.k-grid .k-pager-wrap .k-state-disabled .k-icon {
+   opacity: 0.2;
+
+}
+.k-grid .k-pager-wrap .k-state-disabled:hover {
+   background: #f9f9f9 !important;
+}
+
+.k-grid .k-pager-wrap .k-link:first-child {
+   display: none;
+}
+.k-grid .k-pager-wrap .k-link:nth-last-child(2) {
+   display: none;
+}
+
+.k-grid .k-pager-wrap .k-pager-numbers .k-link:first-child, .k-grid .k-pager-wrap .k-pager-numbers .k-link:nth-last-child(2) {
+	display: block;
+}
+.k-grid .k-pager-wrap .k-pager-numbers {
+	padding-right: 10px;
+}
+
+.k-grid .k-pager-wrap .k-link:nth-child(2) {
+   border-radius: 5px !important;
+}
+.k-grid .k-pager-wrap .k-link:nth-last-child(3) {
+   border-radius: 5px !important;
+}
+
+/* kendo states overrides */
+
+.k-state-selected
+{
+    background: none;
+}
+
+td.k-state-hover,
+td.k-state-hover:hover,
+td.k-state-selected,
+td.k-state-focused,
+td.k-state-focused:hover,
+td.k-state-hover.k-state-selected,
+td.k-state-hover.k-state-focused,
+td.k-state-selected.k-state-focused,
+.k-item.k-state-selected,
+.k-item.k-state-hover {
+    background-color: #E9F2F7;
+    border-color: transparent;
+    background-image: none;
+}
+
+span.k-link.k-header.k-state-selected {
+    background-color: #a99f9a;
+}
+
+.k-state-selected>.k-link,
+.k-state-selected.k-state-focused,
+.k-item.k-state-selected {
+    color: #333333;
+}
+
+.k-popup .k-item.k-state-hover {
+    border-color: transparent;
+}
