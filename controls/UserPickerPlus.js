@@ -1,9 +1,9 @@
 /** @jsx React.DOM */
 define([
     'underscore', 'react',
-    'wingspan-forms/util/debug',
-    'wingspan-forms/controls/RadioGroup',
-    'wingspan-forms/controls/UserPicker'
+    '../util/debug',
+    './RadioGroup',
+    './UserPicker'
 ], function (_, React, debug, RadioGroup, UserPicker) {
     'use strict';
 

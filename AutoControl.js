@@ -1,14 +1,15 @@
 define([
-    'underscore', 'react', 'wingspan-forms/util/debug',
-    'wingspan-forms/controls/KendoText',
-    'wingspan-forms/controls/MultilineText',
-    'wingspan-forms/controls/SwitchBox',
-    'wingspan-forms/controls/KendoNumber',
-    'wingspan-forms/controls/KendoDatetime',
-    'wingspan-forms/controls/KendoDate',
-    'wingspan-forms/controls/KendoComboBox',
-    'wingspan-forms/controls/UserPicker',
-    'wingspan-forms/ImmutableOptimizations'
+    'underscore', 'react',
+    './util/debug',
+    './controls/KendoText',
+    './controls/MultilineText',
+    './controls/SwitchBox',
+    './controls/KendoNumber',
+    './controls/KendoDatetime',
+    './controls/KendoDate',
+    './controls/KendoComboBox',
+    './controls/UserPicker',
+    './ImmutableOptimizations'
 ], function (_, React, debug, KendoText, MultilineText, SwitchBox, KendoNumber, KendoDatetime, KendoDate, KendoComboBox,
              UserPicker, ImmutableOptimizations) {
     'use strict';

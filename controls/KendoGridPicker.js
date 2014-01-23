@@ -4,11 +4,9 @@ define([
     'jquery',
     'react',
     'kendo',
-    'wingspan-forms/util/debug',
-    'wingspan-forms/util/util',
-    'platform/kendoutil',
-    'text!textassets/platform/controls/react/KendoGridPickerTemplate.kendo.html'
-], function (_, $, React, kendo, debug, util, kendoutil, KendoGridPickerTemplate) {
+    '../util/debug',
+    '../util/util'
+], function (_, $, React, kendo, debug, util) {
     'use strict';
 
     var KendoGridPicker = React.createClass({
@@ -131,6 +129,15 @@ define([
             this.props.onChange(nextSelections);
         }
     });
+
+
+    var KendoGridPickerTemplate = '\
+        <div class="checkboxWrap">\
+            <input id="#: uid #" type="checkbox" value="#: id #" name="checkboxSelector">\
+                <label for="#: uid #"></label>\
+            </div>';
+
+
 
     return KendoGridPicker;
 

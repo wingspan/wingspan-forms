@@ -1,9 +1,9 @@
 /** @jsx React.DOM */
 define([
     'underscore', 'jquery', 'react', 'kendo',
-    'wingspan-forms/util/debug',
-    'wingspan-forms/ControlCommon',
-    'wingspan-forms/ImmutableOptimizations'
+    '../util/debug',
+    '../ControlCommon',
+    '../ImmutableOptimizations'
 ], function (_, $, React, kendo, debug, ControlCommon, ImmutableOptimizations) {
     'use strict';
 

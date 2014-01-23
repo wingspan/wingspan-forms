@@ -1,7 +1,8 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'jquery', 'react', 'kendo', 'wingspan-forms/util/debug',
-    'wingspan-forms/ReactCommon'
+    'underscore', 'jquery', 'react', 'kendo',
+    '../util/debug',
+    '../ReactCommon'
 ], function (_, $, React, kendo, debug, ReactCommon) {
     'use strict';
 

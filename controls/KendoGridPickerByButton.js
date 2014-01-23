@@ -4,8 +4,8 @@ define([
     'jquery',
     'kendo',
     'react',
-    'wingspan-forms/util/debug',
-    'wingspan-forms/util/util'
+    '../util/debug',
+    '../util/util'
 ], function (_, $, kendo, React, debug, util) {
     'use strict';
 

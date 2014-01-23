@@ -1,7 +1,7 @@
 define([
-    'underscore', 'jquery', 'moment', 'q',
-    'wingspan-forms/util/debug'
-], function (_, $, moment, Q, debug) {
+    'underscore', 'jquery', 'moment',
+    './debug'
+], function (_, $, moment, debug) {
     'use strict';
 
     var exports = {};

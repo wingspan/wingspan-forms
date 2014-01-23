@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'jquery', 'react', 'wingspan-forms/util/debug'
+    'underscore', 'jquery', 'react', '../util/debug'
 ], function (_, $, React, debug) {
     'use strict';
 
