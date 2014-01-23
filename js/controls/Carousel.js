@@ -48,7 +48,7 @@ define([
                 displayVal = '0 of 0';
             }
             else {
-                var i = _.indexOf(this.props.options, this.props.value);
+                var i = _.indexOf(_.pluck(this.props.options, 'id'), this.props.value.id)
                 debug.verify(i !== -1, 'selected value must be in the options list');
                 var N = this.props.options.length;
                 displayVal = _.str.sprintf('%s of %s', i+1, N);
