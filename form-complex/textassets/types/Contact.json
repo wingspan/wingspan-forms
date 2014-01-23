@@ -1,0 +1,77 @@
+{
+    "data": {
+        "name": "ContactModel",
+        "label": "Contact",
+        "properties": {
+            "lastName": {
+                "name": "lastName",
+                "label": "Last name",
+                "dataType": "text",
+                "placeholder": "Last name",
+                "helpText": "Contact's last name",
+                "required": true
+            },
+            "firstName": {
+                "name": "firstName",
+                "label": "First name",
+                "dataType": "text",
+                "placeholder": "First name",
+                "helpText": "Contact's first name",
+                "required": true
+            },
+            "phoneNumber": {
+                "name": "phoneNumber",
+                "label": "Phone number",
+                "dataType": "text",
+                "placeholder": "XXX-XXX-XXXX",
+                "helpText": "Contact's phone number",
+                "required": true
+            },
+            "contactGroup": {
+                "name" : "contactGroup",
+                "label" : "Group",
+                "dataType" : "enum",
+                "placeholder" : "",
+                "helpText" : "Group to which the contact belongs",
+                "required" : false,
+                "options": {
+                    "data" : [ {
+                        "value" : "work",
+                        "name" : "Work"
+                    }, {
+                        "value" : "family",
+                        "name" : "Family"
+                    }, {
+                        "value" : "friend",
+                        "name" : "Friend"
+                    } ],
+                    "metadata": {
+                        "root": "data",
+                        "idProperty": "value",
+                        "nameProperty": "name"
+                    }
+                }
+            },
+            "id": {
+                "name": "id",
+                "label": "ID",
+                "dataType": "text",
+                "placeholder": "",
+                "helpText": "Unique ID of this object instance",
+                "readOnly": true,
+                "required": true,
+                "maxLength": 24
+            },
+            "revision": {
+                "name": "revision",
+                "label": "",
+                "dataType": "number",
+                "placeholder": "",
+                "helpText": "Internal revision number",
+                "readOnly": true,
+                "required": true,
+                "stepValue": 1.0
+            }
+        }
+    }
+}

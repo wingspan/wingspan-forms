@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>React Forms Sandbox | eTMF 2.0</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="bower_components/kendo-ui/src/styles/kendo.common.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/kendo-ui/src/styles/kendo.default.css">
+
+    <link rel="stylesheet" type="text/css" href="../../../dist/wingspan-forms.css">
+    <link rel="stylesheet" type="text/css" href="dist/helloworld.css">
+</head>
+<body class="helloworld">
+<div id="root"></div>
+
+<script type="text/javascript" src="bower_components/requirejs/require.js"></script>
+<script type="text/javascript" src="require-shims.js"></script>
+<script>
+    (function(){
+        'use strict';
+
+        require(['jquery', 'HelloWorldRequire', 'es5-shim'], function($, page) {
+            $(document).ready(page.entrypoint);
+        });
+    })();
+</script>
+</body>
+
+</html>

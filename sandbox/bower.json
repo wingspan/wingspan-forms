@@ -1,0 +1,30 @@
+{
+  "name": "sandbox",
+  "version": "0.0.0",
+  "homepage": "https://github.com/wingspan/wingspan-forms",
+  "authors": [
+    "Wingspan Technology Inc."
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+      "jquery": "~1.9.1",
+      "momentjs": "~2.4.0",
+      "underscore": "~1.4.4",
+      "react": "~0.5.2",
+      "requirejs": "~2.1.9",
+      "requirejs-text": "~2.0.10",
+      "q": "~0.9.7",
+      "stacktrace": "~0.5.3",
+      "underscore.string": "~2.3.3",
+      "kendo-ui": "~2013.3.1119",
+      "es5-shim": "~2.1"
+  }
+}
