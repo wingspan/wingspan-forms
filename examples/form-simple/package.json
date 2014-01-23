@@ -1,0 +1,19 @@
+{
+    "name": "helloworld-requirejs",
+    "version": "0.0.1",
+    "description": "",
+    "main": "helloworld-requirejs.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Wingspan Technology, Inc.",
+    "license": "MIT",
+    "devDependencies": {
+        "grunt": "~0.4.1",
+        "grunt-cli": "~0.1.9",
+        "grunt-contrib-jshint": "~0.7.1",
+        "grunt-contrib-requirejs": "~0.4.1",
+        "grunt-contrib-less": "~0.7.0",
+        "grunt-react": "~0.4.0"
+    }
+}
