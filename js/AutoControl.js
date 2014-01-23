@@ -63,6 +63,9 @@ define([
             var Control = controlForField(fieldInfo);
             var controlProps = _.pick(this.props, CONTROL_PROPS);
 
+            // Add placeholder text
+            controlProps.placeholderText = fieldInfo.placeholder;
+
             // Either fieldInfo or parent component can specify readonly status
             controlProps.readonly = this.props.readonly || fieldInfo.readOnly;
 
