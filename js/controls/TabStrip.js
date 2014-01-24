@@ -11,15 +11,34 @@ define([
      */
     var TabStrip = React.createClass({
 
+        getDefaultProps: function () {
+            return {
+                selectedTab: 0,
+                /**
+                 * This controls whether to render the content of inactive tabs.
+                 * The reason for this is that some usages require state to persist in the hidden tabs.
+                 * E.g. when correcting an Inbox task we need the task panel to persist to record the user's entries even when they switch over to the metadata tab.
+                 */
+                elideInactiveContent: true
+            };
+        },
+
+        getInitialState: function () {
+            return {
+                activeIndex: this.props.selectedTab
+            };
+        },
+
         componentWillMount: function () {
             debug.verify(_.isObject(this.props.tabs) && _.keys(this.props.tabs).length > 0);
             this.stableUniqueId = _.uniqueId('tab-');
         },
 
-        getInitialState: function () {
-            return {
-                activeIndex: 0
-            };
+        /**
+         * This fixes
+         */
+        componentDidUpdate: function () {
+            $(this.getDOMNode()).find('.k-content.k-state-active').resize();
         },
 
         /* jshint ignore:start */
@@ -47,7 +66,7 @@ define([
                 var id = _.str.sprintf('%s-%s', self.stableUniqueId, index);
                 var jsx = (index === self.state.activeIndex
                     ? (<div className="k-content k-state-active" role="tabpanel" aria-expanded="true" style={visibleStyle}>{jsx}</div>)
-                    : (<div className="k-content" aria-hidden="true" role="tabpanel" aria-expanded="false" style={hiddenStyle}></div>));
+                    : (<div className="k-content" aria-hidden="true" role="tabpanel" aria-expanded="false" style={hiddenStyle}>{self.props.elideInactiveContent ? null : jsx}</div>));
                 divs.push(jsx);
             });
 
@@ -63,7 +82,7 @@ define([
         /* jshint ignore:end */
 
         onTabClick: function(index) {
-            this.setState({activeIndex: index});
+            this.setState({activeIndex: index}, _.noop);
         }
     });
 
