@@ -35,7 +35,10 @@ define([
         },
 
         /**
-         * This fixes
+         * This fixes a problem with certain content that switches from hidden to shown.
+         * My theory is that browsers don't flow hidden elements.  The particular case involves picking a Task transition that make metadata editable.
+         * At the time this happens, the metadata are re-rendered but are not shown and the splitter gets confounded.  This is simply to force a reflow of the
+         * content that is newly made visible.
          */
         componentDidUpdate: function () {
             $(this.getDOMNode()).find('.k-content.k-state-active').resize();
