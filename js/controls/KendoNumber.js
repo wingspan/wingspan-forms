@@ -54,7 +54,6 @@ define([
                 format: this.format,
                 min: this.props.min,
                 max: this.props.max,
-                step: this.props.step,
                 // No change event - we get change events from the underlying react <input>,
                 // because react gives us an onChange for each keystroke which is needed for flux
                 spin: this.onSpinChange
