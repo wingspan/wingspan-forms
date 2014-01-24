@@ -7,15 +7,6 @@ define([
 ], function (_, $, React, kendo, debug, ControlCommon, ImmutableOptimizations) {
     'use strict';
 
-    // (AHG) This "turns off" behavior in the kendo.ui.Select widget that selects the first option when refreshing the
-    // combo with new data. When the widget has no value set, this causes a value change without firing an event.
-    // We don't want the combo selection to change unless the user makes the change
-    kendo.ui.ComboBox.fn._options = function (data, optionLabel) {
-        var selectedIndex = this.element[0].selectedIndex;
-
-        kendo.ui.Select.fn._options.call(this, data, optionLabel);
-        this.element[0].selectedIndex = selectedIndex;
-    };
 
     function getDisplayValue(value, displayField) {
         return _.isObject(value) ? value[displayField] : '';
@@ -129,10 +120,6 @@ define([
 
                 if (prevProps.dataSource !== this.props.dataSource) {
                     kendoWidget.setDataSource(this.props.dataSource);
-                    //AHG: Well, this is needed to workaround some odd behavior in the kendo refresh() method,
-                    // specifically the call to _selectItem(). That causes a surprise change in value without firing the change event.
-                    // It's important to refresh() the widget _before_ updating the value, because the _selectItem in refresh() changes the value.
-                    kendoWidget.refresh();
                 }
 
                 setComboValue(kendoWidget, this.props);
