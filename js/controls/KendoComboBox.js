@@ -153,29 +153,6 @@ define([
                 }).done();
             }
         }
-/*
-        readFieldFromSelectedValue: function(field) {
-            if (!_.isEmpty(this.props.value)) {
-                // Not sure where this came from, but you can specify a dataItem function as a value/display
-                // property in Kendo, and we use this, at least we use it on the facet combos on the Document
-                // Type Picker and Related Document Picker.
-                //
-                // This part of the code manages the value state of the kendo control in React, and it was running
-                // afoul of this mechanism because it didn't know how to look up the value property correctly
-                // when using this facility.  We manually implement a compatible lookup procedure to keep everyone
-                // happy without writing any code outside of this class.
-                if (_.str.endsWith(field, '()')) {
-                    var self = this;
-                    var functionName = field.substring(0, field.length - 2);
-                    var item = _.find(this.props.dataSource.data(), function(item){ return _.isEqual(item.value.toJSON(), self.props.value.value)});
-                    return !!item ? item[functionName]() : '';
-                } else {
-                    return this.props.value[field];
-                }
-            } else {
-                return '';
-            }
-        }*/
     });
 
     void getDisplayValue;
