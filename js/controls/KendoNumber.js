@@ -10,6 +10,7 @@ define([
     var KendoNumber = React.createClass({
 
         fieldClass: 'formFieldNumeric',
+        wasRecentlyChanged: false,
 
         getDefaultProps: function () {
             return {
@@ -76,6 +77,15 @@ define([
             ControlCommon.setKendoNumberState(
                 $el.data('kendoNumericTextBox'),
                 this.props.value, this.props.disabled, this.props.readonly);
+
+            if (this.wasRecentlyChanged) {
+                // Holy Crap I hate kendo - the text box and the spinner are two separate inputs that kendo wraps in a
+                // span, and they take turns being visible - if you're typing it's one of the inputs, and if you click
+                // the spinner it's the other . . .  so if the input you type into recently changed, we find the first
+                // visible child input of the root node's parent span, and give focus back to it
+                $el.parent().find('input:first:visible').focus();
+                this.wasRecentlyChanged = false;
+            }
         },
 
         onSpinChange: function (event) {
@@ -89,6 +99,7 @@ define([
             }
             var val = event.target.value;
             this.props.onChange(val);
+            this.wasRecentlyChanged = true;
         }
     });
 
