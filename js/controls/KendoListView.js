@@ -41,7 +41,7 @@ define([
                 : null);
 
             // Verify that we found the child we were looking for, if any
-            if (!selectedChild) {
+            if (!!this.props.selectedId && !selectedChild) {
                 // This happens when a user disposes an item out of a details page.  The Top-level details page controller
                 // hangs onto state.record too long, so it attempts to make this selection after the data store is reloaded
                 // and the item the action was performed on no longer exists.
