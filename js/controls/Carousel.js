@@ -33,30 +33,25 @@ define([
                 id: undefined,
 
                 onEdit: $.noop,
-                options: undefined // value compared to options via === i think
+                options: undefined, // value compared to options via === i think
+                displayTextFn: this.displayTextFn
             };
         },
 
         render: function () {
-
-            var displayVal;
+            var i = this.props.value;
+            var N = this.props.options.length;
 
             if (this.props.options.length === 0) {
                 // If we have zero options (which can make sense sometimes),
                 // a selected value does not make sense.
                 debug.verify(_.contains([undefined, null], this.props.value));
-                displayVal = '0 of 0';
-            }
-            else {
-                var i = this.props.value;
-                var N = this.props.options.length;
-                displayVal = _.str.sprintf('%s of %s', i+1, N);
             }
 
             return (
                 <div className="carousel">
                     <button className="carouselButton backButton" onClick={_.partial(this.onChange, 'left')}><i className="icon iconPrev"/></button>
-                    <input className="carouselInput" placeholder={this.props.placeholder} value={displayVal} readOnly={true} id={this.props.id} />
+                    <input className="carouselInput" placeholder={this.props.placeholder} value={this.props.displayTextFn(i, N)} readOnly={true} id={this.props.id} />
                     <button className="carouselButton forwardButton" onClick={_.partial(this.onChange, 'right')}><i className="icon iconNext"/></button>
                     <button className="carouselButton editButton" disabled={this.props.disabled} onClick={this.props.onEdit}>Edit Indices<i className="icon iconCaret"/></button>
                 </div>
@@ -72,6 +67,12 @@ define([
 
             // don't actually move the carousel, the flux state must allow the change first.
             this.props.onChange(nextIndex);
+        },
+
+        displayTextFn: function (i, N) {
+            return (N === 0
+                ? '0 of 0'
+                : _.str.sprintf('%s of %s', i+1, N));
         }
 
     });
