@@ -23,8 +23,8 @@ define([
 
         getDefaultProps: function () {
             return {
-                value: undefined,
-                onChange: $.noop,
+                value: undefined,    // integer - the selected index (0-based)
+                onChange: $.noop,    // fluxes up the index as an integer
                 placeholder: '',
                 disabled: false,
                 isValid: [true, ''],
@@ -48,8 +48,7 @@ define([
                 displayVal = '0 of 0';
             }
             else {
-                var i = _.indexOf(_.pluck(this.props.options, 'id'), this.props.value.id)
-                debug.verify(i !== -1, 'selected value must be in the options list');
+                var i = this.props.value;
                 var N = this.props.options.length;
                 displayVal = _.str.sprintf('%s of %s', i+1, N);
             }
@@ -65,15 +64,14 @@ define([
         },
 
         onChange: function (direction, event) {
-            var i = _.indexOf(this.props.options, this.props.value);
+            var i = this.props.value;
             var N = this.props.options.length;
 
             debug.verify(_.contains(['left', 'right'], direction))
             var nextIndex = (direction === 'left' ? (i - 1 + N) % N : (i + 1) % N);
 
             // don't actually move the carousel, the flux state must allow the change first.
-            var nextSelectedRecord = this.props.options[nextIndex];
-            this.props.onChange(nextSelectedRecord);
+            this.props.onChange(nextIndex);
         }
 
     });
