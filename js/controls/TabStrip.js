@@ -24,9 +24,21 @@ define([
         },
 
         getInitialState: function () {
+            // Callers can pass null which will leave the selected tab unchanged.
+            var selectedTab = this.props.selectedTab;
             return {
-                activeIndex: this.props.selectedTab
+                activeIndex: _.isNull(selectedTab) ? 0 : selectedTab
             };
+        },
+
+        componentWillReceiveProps: function (newProps) {
+            var newSelectedTab = newProps.selectedTab;
+            if (_.isNumber(newSelectedTab)) {
+                this.setState({
+                    activeIndex: newSelectedTab
+                });
+            }
+
         },
 
         componentWillMount: function () {
@@ -86,6 +98,7 @@ define([
 
         onTabClick: function(index) {
             this.setState({activeIndex: index}, _.noop);
+            this.props.onChange(index);
         }
     });
 
