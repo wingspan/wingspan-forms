@@ -65,7 +65,7 @@ define([
                     {_.flatten(_.map(props.userList, makeRadio))}
                     <input type="radio" name={props.name} id={idPrefix + 'Last'} checked={!!pickerValue} />
                     <label htmlFor={idPrefix + 'Last'}>
-                        <UserPicker onChange={props.onChange} placeholderText={props.placeholderText}
+                        <UserPicker onChange={props.onChange} placeholder={props.placeholder}
                                     value={pickerValue} dataSource={props.dataSource} width={props.width} />
                     </label>
                 </fieldset>

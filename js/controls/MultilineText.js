@@ -16,7 +16,6 @@ define([
                 onChange: function () {},
                 isValid: [true, ''],
                 noControl: false,
-                placeholderText: '',
                 placeholder: '',
                 minLength: undefined,
                 maxLength: undefined,
@@ -36,7 +35,7 @@ define([
                     id={this.props.id}
                     onChange={this.onChange}
                     onBlur={this.props.onBlur}
-                    placeholder={this.props.placeholderText || this.props.placeholder}
+                    placeholder={this.props.placeholder}
                     readOnly={this.props.readonly}
                     disabled={this.props.disabled} />
             );

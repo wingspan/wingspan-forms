@@ -21,7 +21,7 @@ define([
                 value: undefined,
                 onChange: function () {},
                 id: undefined,
-                placeholderText: 'Select User...', // l10n requires thought, no strings down here
+                placeholder: 'Select User...', // l10n requires thought, no strings down here
                 disabled: false,
                 isValid: [true, ''],
                 readonly: false,
@@ -44,7 +44,7 @@ define([
             $el.kendoAutoComplete({
                 dataSource: this.props.dataSource,
                 dataTextField: QUERY_PARAM,
-                placeholder: this.props.placeholderText,
+                placeholder: this.props.placeholder,
                 highlightFirst: true,
                 suggest: false,
                 template: TEMPLATE,

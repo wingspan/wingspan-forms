@@ -46,7 +46,7 @@ define([
                 disabled: false,
                 readonly: false,
                 noControl: false,
-                placeholderText: ''
+                placeholder: ''
             };
         },
 
@@ -85,7 +85,7 @@ define([
                     dataTextField: props.displayField,
                     dataValueField: props.valueField,
                     dataSource: props.dataSource,
-                    placeholder: props.placeholderText,
+                    placeholder: props.placeholder,
                     template: props.template,
                     change: this.onChange
                 });
@@ -104,7 +104,7 @@ define([
         },
 
         componentWillReceiveProps: function (nextProps) {
-            var cantChange = ['template', 'valueField', 'displayField', 'placeholderText', 'filter'];
+            var cantChange = ['template', 'valueField', 'displayField', 'placeholder', 'filter'];
             debug.verify(_.isEqual(_.pick(nextProps, cantChange), _.pick(this.props, cantChange)), 'these props cant change after mount');
         },
 
