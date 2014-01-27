@@ -24,12 +24,6 @@ define([
             };
         },
 
-        getInitialState: function () {
-            return {
-                value: this.props.value
-            };
-        },
-
         /* jshint ignore:start */
         render: function () {
             return (this.props.noControl
@@ -41,21 +35,18 @@ define([
                        onChange={this.onInputChange}
                        className="k-textbox"
                        tabIndex="0"
-                       value={this.state.value} />));
+                       value={this.props.value} />));
         },
         /* jshint ignore:end */
 
         onInputChange: function (event) {
-            if (this.props.readonly) {
+            var value = event.target.value;
+
+            if (this.props.readonly || !numeric.test(value)) {
                 return;
             }
 
-            var value = event.target.value;
-
-            if (numeric.test(value)) {
-                this.setState({ value: value });
-                this.props.onChange(value);
-            }
+            this.props.onChange(value);
         }
     });
 
