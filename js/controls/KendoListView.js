@@ -17,7 +17,11 @@ define([
                 selectedId: null,
                 template: '<div>${id}</div>',
                 paramMapper: _.identity,       // function to map the datastore record into template params
-
+                // tells the list whether it can move to a new selection.
+                canChange: function () {
+                    return true;
+                },
+                // announces that the selection has changed.
                 onChange: function () {}
             };
         },
@@ -98,17 +102,17 @@ define([
         },
 
         onChange: function (e) {
+            e.preventDefault();
+            var listView = $(e.sender.element[0]).data('kendoListView');
             if (!this.suppressEvents) {
-                var listView = $(e.sender.element[0]).data('kendoListView');
-                var nextSelectedId = listView.select().data('modelId');
-
-                if (this.props.selectedId !== nextSelectedId) {
-                    this.props.onChange(nextSelectedId);
+                if (this.props.canChange()) {
+                    var nextSelectedId = listView.select().data('modelId');
+                    if (this.props.selectedId !== nextSelectedId) {
+                        this.props.onChange(nextSelectedId);
+                    }
+                } else {
+                    this.syncSelectionWithKendo($(this.getDOMNode()));
                 }
-            }
-            // todo if we're not going to honor the event we should prevent all of its effects, no?
-            else {
-                e.preventDefault();
             }
         }
     });
