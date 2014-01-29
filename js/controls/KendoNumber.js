@@ -19,6 +19,7 @@ define([
 
                 placeholder: '',
                 decimals: undefined,
+                spinners: false,
 
                 disabled: false,
                 isValid: [true, ''],
@@ -54,6 +55,7 @@ define([
                 format: this.format,
                 min: this.props.min,
                 max: this.props.max,
+                spinners: this.props.spinners,
                 // No change event - we get change events from the underlying react <input>,
                 // because react gives us an onChange for each keystroke which is needed for flux
                 spin: this.onSpinChange
