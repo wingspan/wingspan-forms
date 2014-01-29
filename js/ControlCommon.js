@@ -39,8 +39,12 @@ define([
     }
 
     function setKendoNumberState(kendoWidget, value, disabled, readonly) {
-        kendoWidget.value(value);
+        setKendoNumberValue(kendoWidget, value);
         setKendoDisabledReadonly(kendoWidget, disabled, readonly);
+    }
+
+    function setKendoNumberValue(kendoWidget, value) {
+        kendoWidget.value(value);
     }
 
     function setKendoDisabledReadonly(kendoWidget, disabled, readonly) {
@@ -112,6 +116,7 @@ define([
         hideErrorTooltip: hideErrorTooltip,
         setKendoDateState: setKendoDateState,
         setKendoNumberState: setKendoNumberState,
+        setKendoNumberValue: setKendoNumberValue,
         setKendoDisabledReadonly: setKendoDisabledReadonly
     };
 });
