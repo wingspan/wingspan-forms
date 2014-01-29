@@ -4,20 +4,20 @@ define([
     './controls/KendoText',
     './controls/MultilineText',
     './controls/SwitchBox',
-    './controls/Number',
+    './controls/KendoNumber',
     './controls/KendoDatetime',
     './controls/KendoDate',
     './controls/KendoComboBox',
     './controls/UserPicker',
     './ImmutableOptimizations'
-], function (_, React, debug, KendoText, MultilineText, SwitchBox, Number, KendoDatetime, KendoDate, KendoComboBox,
+], function (_, React, debug, KendoText, MultilineText, SwitchBox, KendoNumber, KendoDatetime, KendoDate, KendoComboBox,
              UserPicker, ImmutableOptimizations) {
     'use strict';
 
     var TYPE_TO_CONTROL = {
         'text' : KendoText,
         'text:multiLine' : MultilineText,
-        'number' : Number,
+        'number' : KendoNumber,
         'date' : KendoDate,
         'datetime' : KendoDatetime,
         'boolean' : SwitchBox
