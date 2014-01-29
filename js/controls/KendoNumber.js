@@ -19,6 +19,7 @@ define([
 
                 placeholder: '',
                 decimals: undefined,
+                format: '',
                 spinners: false,
 
                 disabled: false,
@@ -28,14 +29,10 @@ define([
             };
         },
 
-        componentWillMount: function () {
-            this.format = 'n' + (this.props.decimals || 0);
-        },
-
         /*jshint ignore:start */
         render: function () {
             return (this.props.noControl
-                ? (<span>{kendo.toString(this.props.value, this.format)}</span>)
+                ? (<span>{kendo.toString(this.props.value, this.props.format)}</span>)
                 // KendoNumeric requires multiple onChange handlers, because kendo change event doesn't happen
                 // until blur. We need an event on each keyup on the input, as well as spin events on the widget.
                 : (<input id={this.props.id} type="text" onChange={this.onInputChange} />));
@@ -52,7 +49,7 @@ define([
             }
 
             $el.kendoNumericTextBox({
-                format: this.format,
+                format: this.props.format,
                 min: this.props.min,
                 max: this.props.max,
                 spinners: this.props.spinners,
