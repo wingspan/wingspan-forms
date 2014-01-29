@@ -59,6 +59,32 @@ define([
                 // because react gives us an onChange for each keystroke which is needed for flux
                 spin: this.onSpinChange
             });
+
+            ControlCommon.setKendoNumberState(
+                $el.data('kendoNumericTextBox'),
+                this.props.value, this.props.disabled, this.props.readonly);
+        },
+
+        componentDidUpdate: function (prevProps, prevState, rootNode) {
+            var $el = $(rootNode);
+            debug.verify($el);
+
+            if (this.props.noControl) {
+                // Everything was done in JSX.
+                return;
+            }
+
+            var kendoWidget = $el.data('kendoNumericTextBox');
+
+            if (prevProps.value !== this.props.value) {
+                ControlCommon.setKendoNumberValue(kendoWidget, this.props.value);
+            }
+            if (
+                (prevProps.disabled !== this.props.disabled) ||
+                (prevProps.readonly !== this.props.readonly)
+            ) {
+                ControlCommon.setKendoDisabledReadonly(kendoWidget, this.props.disabled, this.props.readonly);
+            }
         },
 
         onSpinChange: function (event) {
