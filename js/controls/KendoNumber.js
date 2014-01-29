@@ -21,6 +21,7 @@ define([
                 decimals: undefined,
                 format: '',
                 spinners: false,
+                step: 1,
 
                 disabled: false,
                 isValid: [true, ''],
@@ -52,6 +53,7 @@ define([
                 format: this.props.format,
                 min: this.props.min,
                 max: this.props.max,
+                step: this.props.step,
                 spinners: this.props.spinners,
                 // No change event - we get change events from the underlying react <input>,
                 // because react gives us an onChange for each keystroke which is needed for flux
