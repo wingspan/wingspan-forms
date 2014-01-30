@@ -63,6 +63,8 @@ define([
             var Control = controlForField(fieldInfo);
             var controlProps = _.pick(this.props, CONTROL_PROPS);
 
+            controlProps.name = fieldInfo.name; // to help with debugging in the presence of asynchronous rendering
+
             // Add placeholder text
             controlProps.placeholder = fieldInfo.placeholder;
 
