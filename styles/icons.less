@@ -6,15 +6,15 @@
 
 //icon element that sub classes are applied to determine the image
 .icon {
-  float: left;
-  background-position: top left;
-  background-repeat: no-repeat;
+	float: left;
+	background-position: top left;
+	background-repeat: no-repeat;
 }
 
 //icon only buttons, icon usually is inside this div
 .iconButton {
-  float: left;
-  cursor: pointer;
+	float: left;
+	cursor: pointer;
 }
 
 /* ********************
@@ -46,136 +46,144 @@
  * HEADER ICONS
  * ***************** */
 .pageHeader {
-  .navigation {
-    .iconHome {
-      background-image: url("header/assets/icons/header-home.png");
-    }
+	.navigation {
+		.iconHome {
+			background-image: url("header/assets/icons/header-home.png");
+		}
 
-    .iconAdmin {
-      background-image: url("header/assets/icons/header-admin.png");
-    }
+		.iconAdmin {
+			background-image: url("header/assets/icons/header-admin.png");
+		}
 
-    .iconInbox {
-      background-image: url("header/assets/icons/header-inbox.png");
-    }
+		.iconInbox {
+			background-image: url("header/assets/icons/header-inbox.png");
+		}
 
-    .iconMetrics {
-      background-image: url("header/assets/icons/header-metrics.png");
-    }
+		.iconMetrics {
+			background-image: url("header/assets/icons/header-metrics.png");
+		}
 
-    .iconDrafts {
-      background-image: url("header/assets/icons/header-draft.png");
-    }
-  }
-  .controls {
+		.iconDrafts {
+			background-image: url("header/assets/icons/header-draft.png");
+		}
+	}
+	.controls {
 
-    .outOfOffice {
-      background: url("header/assets/icons/outofoffice.png") no-repeat center left;
-      padding: 5px 0 5px 40px;
-    }
-  }
+		.outOfOffice {
+			background: url("header/assets/icons/outofoffice.png") no-repeat center left;
+			padding: 5px 0 5px 40px;
+		}
+	}
 }
 
 .countWrap {
-  .iconImportant {
-    background-image: url("header/assets/icons/header-important.png");
-  }
+	.iconImportant {
+		background-image: url("header/assets/icons/header-important.png");
+	}
 
-  .iconTasks {
-    background-image: url("header/assets/icons/header-tasks.png");
-  }
+	.iconTasks {
+		background-image: url("header/assets/icons/header-tasks.png");
+	}
 
-  .iconItems {
-    background-image: url("header/assets/icons/header-items.png");
-  }
+	.iconItems {
+		background-image: url("header/assets/icons/header-items.png");
+	}
 
-  .iconBookmark {
-    background-image: url("header/assets/icons/header-bookmark.png");
-  }
+	.iconBookmark {
+		background-image: url("header/assets/icons/header-bookmark.png");
+	}
 
-  .iconRecent {
-    background-image: url("header/assets/icons/header-recent.png");
-  }
+	.iconRecent {
+		background-image: url("header/assets/icons/header-recent.png");
+	}
 }
 
 /* ********************
  * CRUMB ICONS
  * ***************** */
 .searchBox {
-  .iconSearch {
-    width: 25px;
-    height: 25px;
-    background: url("common/assets/search.png") no-repeat center center;
-  }
-  .iconSearch:hover {
-    background: url("common/assets/search-over.png") no-repeat center center;
-  }
-  .iconClear {
-    width: 25px;
-    height: 25px;
-    background: url("assets/icons/delete.png") no-repeat center center;
-  }
+	.iconSearch {
+		width: 25px;
+		height: 25px;
+		background: url("common/assets/search.png") no-repeat center center;
+	}
+	.iconSearch:hover {
+		background: url("common/assets/search-over.png") no-repeat center center;
+	}
+	.iconClear {
+		width: 25px;
+		height: 25px;
+		background: url("assets/icons/delete.png") no-repeat center center;
+	}
+	input:disabled ~ .iconSearch:hover {
+		background: url("common/assets/search.png") no-repeat center center;
+		cursor: default;
+	}
 }
 
 .crumb {
-  .iconHome {
-    background-image: url("crumb/assets/icons/home.png");
-  }
+	.iconHome {
+		background-image: url("crumb/assets/icons/home.png");
+	}
 
-  .iconDocument {
-    background-image: url("crumb/assets/icons/document.png");
-  }
+	.iconDocument {
+		background-image: url("crumb/assets/icons/document.png");
+	}
 
-  .iconFolder {
-    background-image: url("crumb/assets/icons/folder.png");
-  }
+	.iconFolder {
+		background-image: url("crumb/assets/icons/folder.png");
+	}
 
-  .iconCountry {
-    background-image: url("crumb/assets/icons/country.png");
-  }
+	.iconCountry {
+		background-image: url("crumb/assets/icons/country.png");
+	}
 
-  .iconSite {
-    background-image: url("crumb/assets/icons/site.png");
-  }
+	.iconSite {
+		background-image: url("crumb/assets/icons/site.png");
+	}
 
-  .iconFile {
-    background-image: url("crumb/assets/icons/file.png");
-  }
+	.iconFile {
+		background-image: url("crumb/assets/icons/file.png");
+	}
 
-  .iconInbox {
-    background-image: url("crumb/assets/icons/inbox.png");
-  }
+	.iconInbox {
+		background-image: url("crumb/assets/icons/inbox.png");
+	}
 
-  .iconDrafts {
-    background-image: url("crumb/assets/icons/drafts.png");
-  }
+    .iconReturn {
+        background-image: url("crumb/assets/icons/return.png");
+    }
+
+	.iconDrafts {
+		background-image: url("crumb/assets/icons/drafts.png");
+	}
 }
 
 .crumbWrap {
-  .buttonHelp {
-    width: 34px;
-    height: 33px;
-    background: url("common/buttons/button-help.png") no-repeat top left;
-  }
+	.buttonHelp {
+		width: 34px;
+		height: 33px;
+		background: url("common/buttons/button-help.png") no-repeat top left;
+	}
 
-  .buttonHelp:hover {
-    background: url("common/buttons/button-help-over.png") no-repeat top left;
-  }
-  .buttonGo {
-    width: 48px;
-    height: 33px;
-    background: url("common/buttons/button-go.png") no-repeat top left;
-  }
+	.buttonHelp:hover {
+		background: url("common/buttons/button-help-over.png") no-repeat top left;
+	}
+	.buttonGo {
+		width: 48px;
+		height: 33px;
+		background: url("common/buttons/button-go.png") no-repeat top left;
+	}
 
-  .buttonGo:hover {
-    background: url("common/buttons/button-go-over.png") no-repeat top left;
-  }
+	.buttonGo:hover {
+		background: url("common/buttons/button-go-over.png") no-repeat top left;
+	}
 
-  .buttonOptions {
-    width: 40px;
-    height: 38px;
-    background: url("common/buttons/button-options.png") no-repeat top left;
-  }
+	.buttonOptions {
+		width: 40px;
+		height: 38px;
+		background: url("common/buttons/button-options.png") no-repeat top left;
+	}
 }
 
 /* ********************
@@ -183,18 +191,18 @@
  * ***************** */
 
 .searchBar {
-  .searchButton {
-    width: 18px;
-    height: 18px;
-    background: url("common/assets/search.png") no-repeat center center;
-  }
+	.searchButton {
+		width: 18px;
+		height: 18px;
+		background: url("common/assets/search.png") no-repeat center center;
+	}
 }
 
 /* login close icon */
 .loginDialog .dialogClose {
-  background: url("sub/login/assets/close.png") no-repeat center center;
-  width: 22px;
-  height: 22px;
+	background: url("sub/login/assets/close.png") no-repeat center center;
+	width: 22px;
+	height: 22px;
 }
 
 /* ********************
@@ -202,9 +210,9 @@
  * ***************** */
 
 .actionMenu .actionList li {
-  &.canDelete:hover .delete {
-    background: url(assets/icons/delete.png) no-repeat center center;
-  }
+	&.canDelete:hover .delete {
+		background: url(assets/icons/delete.png) no-repeat center center;
+	}
 }
 
 /* ********************
@@ -219,118 +227,133 @@
   background: url("common/icons/favorite.png") center center no-repeat;
 }
 
-.iconFavoriteActive {
+.iconFavorite {
   float: left;
   width: 24px;
   height: 24px;
   margin-top: -3px;
-  background: url("common/icons/favorite-active.png") center center no-repeat;
+  background: url("common/icons/favorite.png") center center no-repeat;
+}
+
+.iconFavoriteActive {
+	float: left;
+	width: 24px;
+	height: 24px;
+	margin-top: -3px;
+	background: url("common/icons/favorite-active.png") center center no-repeat;
 }
 
 .homeView {
-  //home icons
-  .iconPlus {
-    background-image: url("sub/home/assets/icons/plus.png");
-    width: 14px;
-    height: 14px;
-  }
+	//home icons
+	.iconPlus {
+		background-image: url("sub/home/assets/icons/plus.png");
+		width: 14px;
+		height: 14px;
+	}
 
-  .iconPlusWhite {
-    background-image: url("sub/home/assets/icons/plus-white.png");
-    width: 16px;
-    height: 16px;
-  }
+	.iconPlusWhite {
+		background-image: url("sub/home/assets/icons/plus-white.png");
+		width: 16px;
+		height: 16px;
+	}
 
-  .iconPlusGrey {
-    background-image: url("sub/home/assets/icons/plus-gray.png");
-    width: 16px;
-    height: 16px;
-  }
+	.iconPlusGrey {
+		background-image: url("sub/home/assets/icons/plus-gray.png");
+		width: 16px;
+		height: 16px;
+	}
 
-  .iconGoTo {
-    background-image: url("sub/home/assets/icons/caret-white.png");
-    width: 7px;
-    height: 12px;
-  }
+	.iconGoTo {
+		background-image: url("sub/home/assets/icons/caret-white.png");
+		width: 7px;
+		height: 12px;
+	}
 
-  .iconFullScreen {
-    background-image: url("sub/home/assets/icons/full-screen.png");
-    width: 16px;
-    height: 16px;
-    &:hover {
-      background-image: url("sub/home/assets/icons/full-screen-over.png");
-    }
-  }
+	.iconFullScreen {
+		background-image: url("sub/home/assets/icons/full-screen.png");
+		width: 16px;
+		height: 16px;
+		&:hover {
+			background-image: url("sub/home/assets/icons/full-screen-over.png");
+		}
+	}
 
-  .iconPrint {
-    background-image: url("sub/home/assets/icons/print.png");
-    width: 16px;
-    height: 16px;
-  }
+	.iconPrint {
+		background-image: url("sub/home/assets/icons/print.png");
+		width: 16px;
+		height: 16px;
+	}
 
-  .iconAnnouncements {
-    background-image: url("sub/home/assets/icons/announcements.png");
+	.iconAnnouncements {
+		background-image: url("sub/home/assets/icons/announcements.png");
+		width: 20px;
+		height: 19px;
+		float: left;
+	}
+
+  .iconStudyHomeLight {
+    background-image: url("sub/home/assets/icons/study-home-light.png");
     width: 20px;
     height: 19px;
     float: left;
   }
 
-  .iconStudyItems {
-    background-image: url("sub/home/assets/icons/items.png");
+  .iconStudyHomeDark {
+    background-image: url("sub/home/assets/icons/study-home-dark.png");
     width: 20px;
     height: 19px;
     float: left;
   }
 
   .iconOptions {
-    background-image: url("sub/home/assets/icons/options.png");
-    width: 16px;
-    height: 16px;
-  }
+		background-image: url("sub/home/assets/icons/options.png");
+		width: 16px;
+		height: 16px;
+	}
 
 }
 
 //IS THIS USED? DOESNT SEEM LIKE IT
 .iconButton.active .iconFavorite {
-  .iconFavoriteActive;
+	.iconFavoriteActive;
 }
 
 /* ********************
  * STUDY HOME ICONS
  * ***************** */
 .studyHomeView {
-  .fullScreenControls {
-    .tabInfo {
-      .icon {
-        background: url("sub/studyHome/assets/icons/attribute-info.png") no-repeat center center;
-      }
-      &.active {
-        .icon {
-          background: url("sub/studyHome/assets/icons/attribute-info-over.png") no-repeat center center #fff;
-        }
-      }
-    }
-    .tabCountry {
-      .icon {
-        background: url("sub/studyHome/assets/icons/attribute-country.png") no-repeat center center;
-      }
-      &.active {
-        .icon {
-          background: url("sub/studyHome/assets/icons/attribute-country-over.png") no-repeat center center #fff;
-        }
-      }
-    }
-    .tabSite {
-      .icon {
-        background: url("sub/studyHome/assets/icons/attribute-site.png") no-repeat center center;
-      }
-      &.active {
-        .icon {
-          background: url("sub/studyHome/assets/icons/attribute-site-over.png") no-repeat center center #fff;
-        }
-      }
-    }
-  }
+	.fullScreenControls {
+		.tabInfo {
+			.icon {
+				background: url("sub/studyHome/assets/icons/attribute-info.png") no-repeat center center;
+			}
+			&.active {
+				.icon {
+					background: url("sub/studyHome/assets/icons/attribute-info-over.png") no-repeat center center #fff;
+				}
+			}
+		}
+		.tabCountry {
+			.icon {
+				background: url("sub/studyHome/assets/icons/attribute-country.png") no-repeat center center;
+			}
+			&.active {
+				.icon {
+					background: url("sub/studyHome/assets/icons/attribute-country-over.png") no-repeat center center #fff;
+				}
+			}
+		}
+		.tabSite {
+			.icon {
+				background: url("sub/studyHome/assets/icons/attribute-site.png") no-repeat center center;
+			}
+			&.active {
+				.icon {
+					background: url("sub/studyHome/assets/icons/attribute-site-over.png") no-repeat center center #fff;
+				}
+			}
+		}
+	}
 }
 
 /* ********************
@@ -338,154 +361,159 @@
  * ***************** */
 
 .documentListView .facetNavigator .header {
-  .filter {
-    background: url("sub/home/assets/icons/options.png") no-repeat;
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-  }
+	.filter {
+		background: url("sub/home/assets/icons/options.png") no-repeat;
+		width: 16px;
+		height: 16px;
+		cursor: pointer;
+	}
 }
 
 .documentView .collapsePanel.list .header {
-  .listGear {
-    float: left;
-    background: url("sub/home/assets/icons/options.png") no-repeat;
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-  }
+	.listGear {
+		float: left;
+		background: url("sub/home/assets/icons/options.png") no-repeat;
+		width: 16px;
+		height: 16px;
+		cursor: pointer;
+	}
 }
 
 .documentView .collapsePanel.list.closed .header {
-  .listGear {
-    display: none;
-  }
+	.listGear {
+		display: none;
+	}
 }
 
 .facet {
-  .controls {
-    .icon {
-      background: url(common/assets/opener-mini.png);
-      width: 9px;
-      height: 9px;
-    }
+	.controls {
+		.icon {
+			background: url(common/assets/opener-mini.png);
+			width: 9px;
+			height: 9px;
+		}
 
-    &:hover .icon {
-      background: url(common/assets/opener-mini-over.png);
-    }
-  }
-  &.open {
-    .controls {
-      .icon {
-        background: url(common/assets/closer-mini.png);
-      }
-      &:hover .icon {
-        background: url(common/assets/closer-mini-over.png);
-      }
-    }
-  }
+		&:hover .icon {
+			background: url(common/assets/opener-mini-over.png);
+		}
+	}
+	&.open {
+		.controls {
+			.icon {
+				background: url(common/assets/closer-mini.png);
+			}
+			&:hover .icon {
+				background: url(common/assets/closer-mini-over.png);
+			}
+		}
+	}
 }
 
 .documentListView .facetNavigator {
-  &.closed .header {
-    .closer {
-      background: url(common/assets/facets-open.png);
-    }
-    .closer:hover {
-      background: url(common/assets/facets-open-over.png);
-    }
-  }
-  .header {
-    .closer {
-      width: 22px;
-      height: 22px;
-      background: url(common/assets/facets-close.png);
-    }
-    .closer:hover {
-      background: url(common/assets/facets-close-over.png);
-    }
-  }
+	&.closed .header {
+		.closer {
+			background: url(common/assets/facets-open.png);
+		}
+		.closer:hover {
+			background: url(common/assets/facets-open-over.png);
+		}
+	}
+	.header {
+		.closer {
+			width: 22px;
+			height: 22px;
+			background: url(common/assets/facets-close.png);
+		}
+		.closer:hover {
+			background: url(common/assets/facets-close-over.png);
+		}
+	}
 }
 
 .documentListView  .documentNavigator .content {
-  .searchController {
-    .iconOptions {
-      width: 16px;
-      height: 16px;
-      background: url("sub/documentList/assets/icons/options.png") no-repeat center center;
+	.searchController {
+		.iconOptions {
+			width: 16px;
+			height: 16px;
+			background: url("sub/documentList/assets/icons/options.png") no-repeat center center;
+		}
+	}
+	.tagsCollection {
+		.tag {
+			.closer {
+				width: 16px;
+				height: 17px;
+				background: url(common/assets/tag-closer.png);
+			}
+			.closer:hover {
+				background: url(common/assets/tag-closer-over.png);
+			}
+		}
+	}
+    .tagFilterIcon {
+        background: url(common/assets/tag-filter.png) no-repeat left center;
     }
-  }
-  .tagsCollection {
-    background: url(common/assets/tag-filter.png) no-repeat left center;
-    .tag {
-      .closer {
-        width: 16px;
-        height: 17px;
-        background: url(common/assets/tag-closer.png);
-      }
-      .closer:hover {
-        background: url(common/assets/tag-closer-over.png);
-      }
+    .tagTrashIcon {
+      background: url(assets/icons/trash.png) no-repeat left center;
     }
-  }
 }
 
 .actionButton {
-  .icon {
+	.icon {
 
-    &.star {
-      margin-top: 8px;
-      width: 24px;
-      height: 25px;
-      background: url(common/actions/star_off.png);
-      &.outline {
-        background: url(common/actions/star_inactive.png);
-      }
-    }
+		&.star {
+			margin-top: 8px;
+			width: 24px;
+			height: 25px;
+			background: url(common/actions/star_off.png);
+			&.outline {
+				background: url(common/actions/star_inactive.png);
+			}
+		}
 
-    &.itemClipboard {
-      width: 26px;
-      height: 31px;
-      background: url(common/actions/item_off.png);
-      &.outline {
-        background: url(common/actions/flag_inactive.png);
-      }
-    }
+		&.itemClipboard {
+			width: 26px;
+			height: 31px;
+			background: url(common/actions/item_off.png);
+			&.outline {
+				background: url(common/actions/flag_inactive.png);
+			}
+		}
 
-    &.taskClipboard {
-      width: 26px;
-      height: 31px;
-      background: url(common/actions/task_off.png);
-      &.outline {
-        background: url(common/actions/flag_inactive.png);
-      }
-    }
-  }
+		&.taskClipboard {
+			width: 26px;
+			height: 31px;
+			background: url(common/actions/task_off.png);
+			&.outline {
+				background: url(common/actions/flag_inactive.png);
+			}
+		}
+	}
 
-  &.selected, &:hover {
-    .icon {
-      &.itemClipboard {
-        background: url(common/actions/item_on.png);
-      }
+	&.selected, &:hover {
+		.icon {
+			&.itemClipboard {
+				background: url(common/actions/item_on.png);
+			}
 
-      &.taskClipboard {
-        background: url(common/actions/task_on.png);
-      }
+			&.taskClipboard {
+				background: url(common/actions/task_on.png);
+			}
 
-      &.star {
-        background: url(common/actions/star_selected.png);
-      }
-    }
-  }
+			&.star {
+				background: url(common/actions/star_selected.png);
+			}
+		}
+	}
 }
 
 //IS THIS USED?
 [data-wspt-id="documentList"] .item .controls .button {
-  &.check {
-    width: 39px;
-    height: 39px;
-    background: url(common/buttons/document_selected.png);
-  }
+	&.check {
+		width: 39px;
+		height: 39px;
+		background: url(common/buttons/document_selected.png);
+	}
 }
 
 /* ********************
@@ -493,88 +521,88 @@
  * ***************** */
 
 .documentView .viewer .content .header .controls {
-  .iconOptions {
-    width: 33px;
-    height: 31px;
-    background: url("sub/document/assets/icons/options.png") no-repeat top left;
-  }
+	.iconOptions {
+		width: 33px;
+		height: 31px;
+		background: url("sub/document/assets/icons/options.png") no-repeat top left;
+	}
 }
 
 .formField {
-  .fieldLock {
-    width: 16px;
-    height: 16px;
-    background: url("sub/document/assets/icons/thumbtack_off.png");
-  }
-  .fieldLockOn {
-    width: 10px;
-    height: 20px;
-    background: url("sub/document/assets/icons/thumbtack_on.png");
-  }
-  /* OLD STYLING
-  label.hasTooltip {
-      .statusIcon {
-          background: url("assets/icons/form-tooltip.png") no-repeat center right;
-      }
-  }*/
-  &.hasTooltip {
-    .statusIcon {
-      background: url("assets/icons/form-tooltip.png") no-repeat center right;
-    }
-  }
-  &.formFieldError {
-    .statusIcon {
-      background: url("assets/icons/form-tooltip-error.png") no-repeat center right;
-    }
-  }
+	.fieldLock {
+		width: 16px;
+		height: 16px;
+		background: url("sub/document/assets/icons/thumbtack_off.png");
+	}
+	.fieldLockOn {
+		width: 10px;
+		height: 20px;
+		background: url("sub/document/assets/icons/thumbtack_on.png");
+	}
+	/* OLD STYLING
+	label.hasTooltip {
+		.statusIcon {
+			background: url("assets/icons/form-tooltip.png") no-repeat center right;
+		}
+	}*/
+	&.hasTooltip {
+		.statusIcon {
+			background: url("assets/icons/form-tooltip.png") no-repeat center right;
+		}
+	}
+	&.formFieldError {
+		.statusIcon {
+			background: url("assets/icons/form-tooltip-error.png") no-repeat center right;
+		}
+	}
 }
 
 .documentView .editor {
-  &.closed .header {
-    .closer {
-      background: url(common/assets/facets-close.png);
-    }
-    .closer:hover {
-      background: url(common/assets/facets-close-over.png);
-    }
-  }
-  .header {
-    .closer {
-      width: 22px;
-      height: 22px;
-      background: url(common/assets/facets-open.png);
-    }
-    .closer:hover {
-      background: url(common/assets/facets-open-over.png);
-    }
-  }
+	&.closed .header {
+		.closer {
+			background: url(common/assets/facets-close.png);
+		}
+		.closer:hover {
+			background: url(common/assets/facets-close-over.png);
+		}
+	}
+	.header {
+		.closer {
+			width: 22px;
+			height: 22px;
+			background: url(common/assets/facets-open.png);
+		}
+		.closer:hover {
+			background: url(common/assets/facets-open-over.png);
+		}
+	}
 }
 
 .documentView .list {
-  &.closed .header {
-    .closer {
-      background: url(common/assets/facets-open.png);
-    }
-    .closer:hover {
-      background: url(common/assets/facets-open-over.png);
-    }
-  }
-  .header {
-    .closer {
-      width: 22px;
-      height: 22px;
-      background: url(common/assets/facets-close.png);
-    }
-    .closer:hover {
-      background: url(common/assets/facets-close-over.png);
-    }
-  }
+	&.closed .header {
+		.closer {
+			background: url(common/assets/facets-open.png);
+		}
+		.closer:hover {
+			background: url(common/assets/facets-open-over.png);
+		}
+	}
+	.header {
+		.closer {
+			width: 22px;
+			height: 22px;
+			background: url(common/assets/facets-close.png);
+		}
+		.closer:hover {
+			background: url(common/assets/facets-close-over.png);
+		}
+	}
 }
 
 .documentView .content .item .errorIcon { //this may be old code, as img is used now
-  height: 28px;
-  width: 28px;
-  background: url(common/documentIcons/docError.png) no-repeat;
+	height: 28px;
+	width: 28px;
+	background: url(common/documentIcons/docError.png) no-repeat;
 }
 
 /* ********************
@@ -582,24 +610,24 @@
  * ***************** */
 
 .uploadPanel {
-  .iconButtonClose {
-    .icon {
-      width: 30px;
-      height: 25px;
-      background-image: url("common/documentIcons/docDelete.png");
-    }
-  }
+	.iconButtonClose {
+		.icon {
+			width: 30px;
+			height: 25px;
+			background-image: url("common/documentIcons/docDelete.png");
+		}
+	}
 
-  &.uploadDone {
-    & > .icon {
-      background-image: url("common/documentIcons/docOK.png");
-    }
-  }
-  &.uploadError {
-    & > .icon {
-      background-image: url("common/documentIcons/docError.png");
-    }
-  }
+	&.uploadDone {
+		& > .icon {
+			background-image: url("common/documentIcons/docOK.png");
+		}
+	}
+	&.uploadError {
+		& > .icon {
+			background-image: url("common/documentIcons/docError.png");
+		}
+	}
 }
 
 /* ******************************************
@@ -609,51 +637,51 @@
  * *************************************** */
 
 .iconOk {
-  float: left;
-  width: 16px;
-  height: 16px;
-  background: url("common/icons/ok.png") center center no-repeat;
+	float: left;
+	width: 16px;
+	height: 16px;
+	background: url("common/icons/ok.png") center center no-repeat;
 }
 
 .iconError {
-  float: left;
-  width: 16px;
-  height: 16px;
-  background: url("common/icons/error.png") center center no-repeat;
+	float: left;
+	width: 16px;
+	height: 16px;
+	background: url("common/icons/error.png") center center no-repeat;
 }
 
 .iconWarning {
-  float: left;
-  width: 16px;
-  height: 16px;
-  background: url("common/icons/warning.png") center center no-repeat;
+	float: left;
+	width: 16px;
+	height: 16px;
+	background: url("common/icons/warning.png") center center no-repeat;
 }
 
 .iconAvailable {
-  float: left;
-  width: 14px;
-  height: 14px;
-  background: url("common/icons/available.png") center center no-repeat;
+	float: left;
+	width: 14px;
+	height: 14px;
+	background: url("common/icons/available.png") center center no-repeat;
 }
 
 .iconAvailableHeader {
-  float: left;
-  width: 14px;
-  height: 14px;
-  background: url("common/icons/available-header.png") center center no-repeat;
+	float: left;
+	width: 14px;
+	height: 14px;
+	background: url("common/icons/available-header.png") center center no-repeat;
 }
 
 .iconPlus {
-  background-image: url("sub/home/assets/icons/plus.png");
-  width: 14px;
-  height: 14px;
+	background-image: url("sub/home/assets/icons/plus.png");
+	width: 14px;
+	height: 14px;
 }
 
 .iconExcel {
-  float: left;
-  width: 28px;
-  height: 28px;
-  background: url("common/icons/excel.png") center center no-repeat;
+	float: left;
+	width: 28px;
+	height: 28px;
+	background: url("common/icons/excel.png") center center no-repeat;
 }
 
 /* ********************
@@ -661,45 +689,45 @@
  * ***************** */
 
 .iconTrash {
-  width: 18px;
-  height: 18px;
-  background-image: url("assets/icons/trash.png");
+	width: 18px;
+	height: 18px;
+	background-image: url("assets/icons/trash.png");
 }
 
 .iconEdit {
-  width: 18px;
-  height: 18px;
-  background-image: url("assets/icons/edit.png");
+	width: 18px;
+	height: 18px;
+	background-image: url("assets/icons/edit.png");
 }
 
 .iconIPG {
-  width: 30px;
-  height: 16px;
-  background-image: url("assets/icons/edit.png");
+	width: 30px;
+	height: 16px;
+	background-image: url("assets/icons/edit.png");
 }
 
 .iconItems {
-  width: 18px;
-  height: 18px;
-  background-image: url("assets/icons/items.png");
+	width: 18px;
+	height: 18px;
+	background-image: url("assets/icons/items.png");
 }
 
 .iconList {
-  width: 24px;
-  height: 24px;
-  background-image: url("assets/icons/list.png");
+	width: 24px;
+	height: 24px;
+	background-image: url("assets/icons/list.png");
 }
 
 .iconTask {
-  width: 24px;
-  height: 24px;
-  background-image: url("assets/icons/task.png");
+	width: 24px;
+	height: 24px;
+	background-image: url("assets/icons/task.png");
 }
 
 .iconDelete {
-  background-image: url("assets/icons/grid-delete.png");
-  width: 16px;
-  height: 16px;
+	background-image: url("assets/icons/grid-delete.png");
+	width: 16px;
+	height: 16px;
 }
 
 /* ********************
@@ -707,9 +735,9 @@
  * ***************** */
 
 .iconForgotPW {
-  width: 37px;
-  height: 30px;
-  background-image: url("sub/login/assets/forgot-pw.png");
+	width: 37px;
+	height: 30px;
+	background-image: url("sub/login/assets/forgot-pw.png");
 }
 
 
@@ -717,25 +745,40 @@
  * CAROUSEL ICONS
  * ***************** */
 .carousel {
-  .iconPrev {
-    width: 7px;
-    height: 12px;
-    background-image: url("assets/icons/carousel-left.png");
-  }
+	.iconPrev {
+		width: 7px;
+		height: 12px;
+		background-image: url("assets/icons/carousel-left.png");
+	}
 
-  .iconNext {
-    width: 7px;
-    height: 12px;
-    background-image: url("assets/icons/carousel-right.png");
-  }
+	.iconNext {
+		width: 7px;
+		height: 12px;
+		background-image: url("assets/icons/carousel-right.png");
+	}
 
-  .iconCaret {
-    width: 7px;
-    height: 4px;
-    background-image: url("assets/icons/carousel-caret.png");
-  }
+	.iconCaret {
+		width: 7px;
+		height: 4px;
+		background-image: url("assets/icons/carousel-caret.png");
+	}
 }
 
+.formFieldError {
+	.carousel {
+		.iconCaret {
+			background-image: url("assets/icons/carousel-caret-error.png");
+		}
+	}
+}
+
+.formFieldDisabled {
+	.carousel {
+		.iconCaret {
+			background-image: url("assets/icons/carousel-caret-disabled.png");
+		}
+	}
+}
 
 
 /* ******************************************
@@ -750,37 +793,37 @@
  * ***************** */
 
 .communicator {
-  .communicatorIcon {
-    width: 36px;
-    height: 40px;
-    background-image: url("assets/icons/warning.png");
-  }
-  .communicatorClose {
-    width: 16px;
-    height: 16px;
-    background: url("assets/icons/close.png");
-  }
+	.communicatorIcon {
+		width: 36px;
+		height: 40px;
+		background-image: url("assets/icons/warning.png");
+	}
+	.communicatorClose {
+		width: 16px;
+		height: 16px;
+        background-image: url("assets/icons/close-white.png");
+	}
 }
 
 .communicatorWarning {
-  .communicatorIcon {
-    background-image: url("assets/icons/warning.png");
-  }
+	.communicatorIcon {
+		background-image: url("assets/icons/warning.png");
+	}
+    .communicatorClose {
+      background-image: url("assets/icons/close.png");
+    }
 }
 
 .communicatorError {
-  .communicatorIcon {
-    background: url("assets/icons/error.png");
-  }
-  .communicatorClose {
-    background-image: url("assets/icons/close-white.png");
-  }
+	.communicatorIcon {
+		background: url("assets/icons/error.png");
+	}
 }
 
 .communicatorConfirm {
-  .communicatorIcon {
-    background-image: url("assets/icons/confirm.png");
-  }
+	.communicatorIcon {
+		background-image: url("assets/icons/confirm.png");
+	}
 }
 
 /* ********************
@@ -789,18 +832,18 @@
  * ***************** */
 
 .employeeStatus {
-  width: 14px;
-  height: 14px;
-  display: inline-block;
-  margin-right: 4px;
-  vertical-align: middle;
-  margin-bottom: 3px;
+	width: 14px;
+	height: 14px;
+	display: inline-block;
+	margin-right: 4px;
+	vertical-align: middle;
+	margin-bottom: 3px;
 
-  &.available {
+	&.available {
 
-  }
+	}
 
-  &.unavailable {
-    background: url(common/icons/errorCircle.png) center center no-repeat;
-  }
+	&.unavailable {
+		background: url(common/icons/errorCircle.png) center center no-repeat;
+	}
 }

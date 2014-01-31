@@ -11,7 +11,7 @@ ul.checkList:not(#supported)
 ul.checkList:not(#supported) li
 {
     clear: both;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 } /* again css should probably be localized to facet area */
 
 .checkboxWrap {

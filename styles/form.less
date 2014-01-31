@@ -6,7 +6,7 @@
  *   GENERAL FORM CLASSES
  *
  * *************************************** */
- 
+
 //larger title
 .formTitle {
 	font-size: 18px;
@@ -90,8 +90,8 @@
 
 			.statusIcon {
 				padding-right: 15px; //icon defined in icons.less
-			}	
-		}				
+			}
+		}
 	}
 
 
@@ -102,7 +102,7 @@
 
 			.statusIcon {
 				padding-right: 15px; //icon defined in icons.less
-			}	
+			}
 		}
 	}
 }
@@ -180,7 +180,7 @@
  *   SPECIFIC FORM ELEMENTS
  *
  * *************************************** */
- 
+
 .formFieldCheckbox, .formFieldRadio, .formFieldSwitchbox {
 	.formElement {
 		label {
@@ -197,13 +197,13 @@
 			padding-right: 0;
 		}
 	}
-	&.formFieldError {
-		.formElement {	
-			label {
-				color: @inputErrorColor;
-			}
-		}
-	}
+//	&.formFieldError {
+//		.formElement {
+//			label {
+//				color: @inputErrorColor;
+//			}
+//		}
+//	}
 	&.formFieldDisabled {
 		.formElement {
 			label {
@@ -222,7 +222,7 @@
 		.formLabel {
 			padding-top: 5px;
 			line-height: 20px;
-		}		
+		}
 	}
 }
 
@@ -230,7 +230,7 @@
 	&.formFieldNoWrap {
 		.formLabel {
 			padding-top: 10px;
-		}		
+		}
 	}
 }
 
@@ -332,7 +332,7 @@
 	.formElement {
 		.k-dropdown, .k-combobox {
 			width: 100%;
-			.k-dropdown-wrap {    
+			.k-dropdown-wrap {
 				height: @inputHeight - 2px;
 				background: @inputBackground;
 				border: 1px solid @inputBorder;
@@ -369,7 +369,7 @@
 	&.formFieldError {
 		.formElement {
 			.k-dropdown, .k-combobox {
-				.k-dropdown-wrap {    
+				.k-dropdown-wrap {
 					background: @inputErrorBackground;
 					border: 1px solid @inputErrorBorder;
 					.k-input {
@@ -383,7 +383,7 @@
 			.k-dropdown:hover, .k-dropdown:focus, .k-combobox:hover, .k-combobox:focus {
 				.k-dropdown-wrap {
 					background: @inputErrorHoverBackground;
-					border: 1px solid @inputErrorHoverBorder;			
+					border: 1px solid @inputErrorHoverBorder;
 					.k-input {
 						color: @inputErrorHoverColor;
 					}
@@ -398,7 +398,7 @@
 	&.formFieldDisabled {
 		.formElement {
 			.k-dropdown, .k-combobox {
-				.k-dropdown-wrap {    
+				.k-dropdown-wrap {
 					background: @inputDisabledBackground;
 					border: 1px solid @inputDisabledBorder;
 					.k-input {
@@ -427,7 +427,7 @@
 	&.formFieldReadonly {
 		.formElement {
 			.k-dropdown, .k-combobox {
-				.k-dropdown-wrap {    
+				.k-dropdown-wrap {
 					background: @inputReadonlyBackground;
 					border: 1px solid @inputReadonlyBorder;
 					.k-input {
@@ -460,9 +460,9 @@
 			width: 100%;
 			border: 1px solid @inputBorder;
 			line-height: 0px;
-			.k-multiselect-wrap {    
+			.k-multiselect-wrap {
 				background: @inputBackground;
-				padding-top: 1px; 
+				padding-top: 1px;
 				padding-bottom: 0px;
 				line-height: 0px;
 				box-sizing: content-box;
@@ -507,49 +507,49 @@
 			color: @inputHoverColor;
 		}
 	}
-	&.formFieldError {
-		.formElement {
-			.k-multiselect {
-				border: 1px solid @inputErrorBorder;
-				.k-multiselect-wrap {    
-					background: @inputErrorBackground;
-					
-					.k-button {
-						color: @inputErrorColor;
-						border-color: @inputErrorBorder;
-					}
-				}
-			}
-			.k-multiselect:hover, .k-multiselect:focus {
-				border: 1px solid @inputErrorHoverBorder;
-				.k-multiselect-wrap {
-					background: @inputErrorHoverBackground;
-					.k-button {
-						color: @inputErrorHoverColor;
-						border-color: @inputErrorBorder;
-					}
-				}
-			}
-		}
-		//select multiselect
-		select {
-			border: 1px solid @inputErrorBorder;
-			background: @inputErrorBackground;
-			color: @inputErrorColor;
-		}
-		select:hover, select:focus {
-			border: 1px solid @inputErrorHoverBorder;
-			background: @inputErrorHoverBackground;
-			color: @inputErrorHoverColor;
-		}
-	}
+//	&.formFieldError {
+//		.formElement {
+//			.k-multiselect {
+//				border: 1px solid @inputErrorBorder;
+//				.k-multiselect-wrap {
+//					background: @inputErrorBackground;
+//
+//					.k-button {
+//						color: @inputErrorColor;
+//						border-color: @inputErrorBorder;
+//					}
+//				}
+//			}
+//			.k-multiselect:hover, .k-multiselect:focus {
+//				border: 1px solid @inputErrorHoverBorder;
+//				.k-multiselect-wrap {
+//					background: @inputErrorHoverBackground;
+//					.k-button {
+//						color: @inputErrorHoverColor;
+//						border-color: @inputErrorBorder;
+//					}
+//				}
+//			}
+//		}
+//		//select multiselect
+//		select {
+//			border: 1px solid @inputErrorBorder;
+//			background: @inputErrorBackground;
+//			color: @inputErrorColor;
+//		}
+//		select:hover, select:focus {
+//			border: 1px solid @inputErrorHoverBorder;
+//			background: @inputErrorHoverBackground;
+//			color: @inputErrorHoverColor;
+//		}
+//	}
 	&.formFieldDisabled {
 		.formElement {
 			.k-multiselect {
 				border: 1px solid @inputDisabledBorder;
-				.k-multiselect-wrap {    
+				.k-multiselect-wrap {
 					background: @inputDisabledBackground;
-					
+
 					.k-button {
 						color: @inputDisabledColor;
 						border-color: @inputDisabledBorder;
@@ -584,9 +584,9 @@
 		.formElement {
 			.k-multiselect {
 				border: 1px solid @inputReadonlyBorder;
-				.k-multiselect-wrap {    
+				.k-multiselect-wrap {
 					background: @inputReadonlyBackground;
-					
+
 					.k-button {
 						color: @inputReadonlyColor;
 						border-color: @inputReadonlyBorder;
@@ -630,7 +630,6 @@
 					color: @inputColor;
 					height: @inputHeight - 6px;
 					line-height: @inputHeight - 6px;
-					padding-left: 5px;
 				}
 				.k-select {
 					background: @inputBackground;
@@ -654,7 +653,7 @@
 				}
 			}
 		}
-	}	
+	}
 	&.formFieldError {
 		.formElement {
 			.k-numerictextbox {
@@ -746,9 +745,9 @@
 		}
 	}
 }
-				
 
-					
+
+
 .formFieldDatepicker, .formFieldTimepicker, .formFieldDatetimepicker {
 	.formElement {
 		.k-timepicker, .k-datepicker, .k-datetimepicker {
@@ -913,7 +912,6 @@
 	 }
 }
 
-
 .primaryButton {
     cursor: pointer;
     display: inline-block;
@@ -961,7 +959,7 @@ button.primaryButton {
 	font-size: 12px;
 	padding: 0 13px !important;
 
-	&.buttonDisabled {
+	&[disabled] {
 		border-bottom: 1px solid #9EA3AE;
 		border-right: 1px solid #9EA3AE;
 		border-left: 1px solid #B9BABE;
@@ -983,7 +981,7 @@ button.secondaryButton {
 	font-size: 12px;
 	padding: 0 13px !important;
 
-	&.buttonDisabled {
+	&[disabled] {
 		border-bottom: 1px solid #9EA3AE;
 		border-right: 1px solid #9EA3AE;
 		border-left: 1px solid #B9BABE;
@@ -993,9 +991,9 @@ button.secondaryButton {
 
 button.plainButton {
 	cursor: pointer;
-   display: inline-block;
-   height: 33px;
-   margin: 0 5px 0 10px;
+    display: inline-block;
+    height: 33px;
+    margin: 0 5px 0 10px;
 	margin-right: 5px;
 	margin-left: 0;
 	background: none;
@@ -1003,6 +1001,13 @@ button.plainButton {
 	color: #000;
 	font-size: 12px;
 	padding: 0 13px !important;
+}
+
+button i.k-loading {
+	height: 16px;
+	width: 16px;
+	vertical-align: middle;
+	padding-left: 5px;
 }
 
 /* ******************************************
@@ -1037,7 +1042,7 @@ button.plainButton {
 
 /* ******************************************
  *
- *   CUSTOM CHECKBOXES
+ *   CUSTOM CHECKBOXES/RADIOS
  *
  * *************************************** */
 
@@ -1053,56 +1058,80 @@ input[type='checkbox'], input[type='radio'] {
 input[type='checkbox'] + label {
     clear: none;
     padding: 5px 0 4px 26px; /* make rook for image. */
-    background: url(common/assets/check_off.png) left center no-repeat; 
+    background: url(common/assets/check_off.png) left center no-repeat;
 }
-label.checkboxActive {
-    background-image: url(common/assets/check_on.png) !important;
+
+input[type='checkbox']:checked + label {
+    background-image: url(common/assets/check_on.png);
 }
-label.checkboxActiveDisabled {
+
+input[type='checkbox']:disabled + label {
+    background-image: url(common/assets/check_off_disabled.png);
+    background-position: 2px center;
+    color: @inputDisabledColor;
+}
+
+input[type='checkbox']:checked:disabled + label {
     background-image: url(common/assets/check_on_disabled.png) !important;
-}
-label.checkboxDisabled {
-    background-image: url(common/assets/check_off_disabled.png) !important;
-	 color: @inputDisabledColor;
+	color: @inputDisabledColor;
 }
 
 input[type='radio'] + label {
     clear: none;
-    padding: 5px 0 4px 26px; /* make rook for image. */   
-    background: url(common/assets/radio_off.png) left center no-repeat; 
+    padding: 5px 0 4px 26px; /* make rook for image. */
+    background: url(common/assets/radio_off.png) left center no-repeat;
 }
-label.radioActive {
-   background-image: url(common/assets/radio_on.png) !important;
+
+input[type='radio']:checked + label {
+    background-image: url(common/assets/radio_on.png);
 }
-label.radioActiveDisabled {
-    background-image: url(common/assets/radio_on_disabled.png) !important;
+
+input[type='radio']:disabled + label {
+    background-image: url(common/assets/radio_off_disabled.png);
+    color: @inputDisabledColor;
 }
-label.radioDisabled {
-    background-image: url(common/assets/radio_off_disabled.png) !important;
-	 color: @inputDisabledColor;
+
+input[type='radio']:checked:disabled + label {
+    background-image: url(common/assets/radio_on_disabled.png);
+	color: @inputDisabledColor;
 }
- 
+
+/* ******************************************
+ *
+ *   SWITCH-BOX
+ *
+ * *************************************** */
 
 input[type='checkbox'].switchbox + label {
     clear: none;
     height: 37px;
     padding-left: 95px;
-	 padding-top: 0;
-	 padding-bottom: 0;
-	 line-height: 37px;
-    background: url(common/assets/switch_off.png) left center no-repeat; 
+	padding-top: 0;
+	padding-bottom: 0;
+	line-height: 37px;
+    background: url(common/assets/switch_off.png) left center no-repeat;
     float: left;
 }
-label.switchboxActive {
-    background-image: url(common/assets/switch_on.png) !important;
+
+input[type='checkbox'].switchbox:checked + label {
+    background-image: url(common/assets/switch_on.png);
 }
-label.switchboxActiveDisabled {
-    background-image: url(common/assets/switch_on_disabled.png) !important;
+
+input[type='checkbox'].switchbox:disabled + label {
+    background-image: url(common/assets/switch_off_disabled.png);
+    color: @inputDisabledColor;
 }
-label.switchboxDisabled {
-    background-image: url(common/assets/switch_off_disabled.png) !important;
-	 color: @inputDisabledColor;
+
+input[type='checkbox'].switchbox:checked:disabled + label {
+    background-image: url(common/assets/switch_on_disabled.png);
+	color: @inputDisabledColor;
 }
+
+/* ******************************************
+ *
+ *   USER PICKER
+ *
+ * *************************************** */
 
 .userPicker {
     .formElement {
@@ -1135,68 +1164,13 @@ label.switchboxDisabled {
 }
 
 
-/*
-   THESE ARE THE CSS3 DECLARATIONS THAT MAKE CUSTOM CHECKBOXES, RADIOS, ETC WORK IN ALL BROWSERS BUT IE8
-   IF YOU REMOVE OR COMMENT OUT THESE DECLARATIONS, ALL BROWSERS WILL FALL BACK ON JS AND BEHAVE LIKE IE8
-   SO TO TEST JS ON ComponentPage.js THAT UPDATES CLASS ON LABEL, COMMENT OUT THESE CLASSES
-   ALSO YOU WILL NEED TO INIT THE LABEL TO THE RIGHT CLASS AS WELL, EITHER WITH JS LOGIC, OR TRIGGERING CHANGE EVENT ON INIT
-*/
-input[type='checkbox']:checked + label
-{
-    background-image: url(common/assets/check_on.png);
-}
-input[type='checkbox']:disabled + label
-{
-    background-image: url(common/assets/check_off_disabled.png);
-	 background-position: 2px center;
-	 color: @inputDisabledColor;
-}
-input[type='checkbox']:checked:disabled + label
-{
-    background-image: url(common/assets/check_on_disabled.png);
-	 color: @inputDisabledColor;
-}
-
-input[type='radio']:checked + label
-{
-    background-image: url(common/assets/radio_on.png);
-}
-input[type='radio']:disabled + label
-{
-    background-image: url(common/assets/radio_off_disabled.png);
-	 color: @inputDisabledColor;
-}
-input[type='radio']:checked:disabled + label
-{
-    background-image: url(common/assets/radio_on_disabled.png);
-	 color: @inputDisabledColor;
-}
-
-input[type='checkbox'].switchbox:checked + label
-{
-    background-image: url(common/assets/switch_on.png);
-}
-input[type='checkbox'].switchbox:disabled + label
-{
-    background-image: url(common/assets/switch_off_disabled.png);
-	 color: @inputDisabledColor;
-}
-input[type='checkbox'].switchbox:checked:disabled + label
-{
-    background-image: url(common/assets/switch_on_disabled.png);
-	 color: @inputDisabledColor;
-}
-/* end of CSS3 */
-
-
-
 /* ******************************************
  *
  *   ONE OFF FORM ELEMENTS
  *
  * *************************************** */
 
- .formFieldSwitch {
+.formFieldSwitch {
 
 	//since control is dark with light text, a lot of the variables cannot be re-used, but disabled and error colors can
 		//I put a comment to the right of variables of vars that could potentially be re-used, but do not currently match exact values
@@ -1256,7 +1230,7 @@ input[type='checkbox'].switchbox:checked:disabled + label
 					margin: -1px;
 					border: 1px solid transparent;
 					color: @unselectedTextColor;
-					cursor: pointer;				
+					cursor: pointer;
 					span {
 						padding: 0 10px;
 						line-height: 28px;
@@ -1277,7 +1251,7 @@ input[type='checkbox'].switchbox:checked:disabled + label
 							color: @positiveColor;
 						}
 					}
-					&:first-child.active {			
+					&:first-child.active {
 						border-left: 1px solid transparent;
 					}
 					&:last-child.active {
@@ -1333,7 +1307,29 @@ input[type='checkbox'].switchbox:checked:disabled + label
 		}
 	}
 
- }
+    &.formFieldReadonly {
+        .formElement {
+            .switch {
+                background: @shadowColor;
+                    ul {
+                        background: @backgroundColorDisabled;
+                        border-color: @borderColorDisabled;
+                        li {
+                            cursor: default;
+                            &.active {
+                                color: @selectedTextColorDisabled;
+                                border-left-color: @borderColorDisabled;
+                                border-right-color: @borderColorDisabled;
+                            }
+                        }
+                    }
+            }
+            .switch:hover, .switch:focus {
+              background: @shadowColor;
+            }
+        }
+    }
+}
 
 
 .formFieldCarousel {
@@ -1385,17 +1381,17 @@ input[type='checkbox'].switchbox:checked:disabled + label
 				padding-left: 10px;
 			}
 
-         .backButton {
+			.backButton {
 				left: 0;
 				width: @arrowButtonWidth;
 				.roundedComplex(@rounding, 0, @rounding, 0);
-         }
-         .forwardButton {
+			}
+			.forwardButton {
 				right: @editButtonWidth + @editButtonSpace;
-				width: @arrowButtonWidth;	
+				width: @arrowButtonWidth;
 				.roundedComplex(0, @rounding, 0, @rounding);
-         }
-         .editButton {
+			}
+			.editButton {
 				right: 0;
 				width: @editButtonWidth;
 				.rounded(@rounding);
@@ -1403,37 +1399,56 @@ input[type='checkbox'].switchbox:checked:disabled + label
 					float: right;
 					margin: 7px 5px 0 5px;
 				}
-         }
+			}
 
 
       }
 
 	}
 
+	&.formFieldError {
+		.formElement {
+			.carousel {
+				.editButton {
+					.gradient(#f9f9f9, pink);
+					color: red;
+					box-shadow: none;
+					border-color: red;
+				}
+
+				//if you want to wrap entire carousel with red border
+				.backButton {
+					border-left-color: red;
+					border-top-color: red;
+					border-bottom-color: red;
+				}
+				.forwardButton {
+					border-right-color: red;
+					border-top-color: red;
+					border-bottom-color: red;
+				}
+				.carouselInput {
+					border-top-color: red;
+					border-bottom-color: red;
+				}
+
+			}
+		}
+	}
+
+	&.formFieldDisabled {
+		.formElement {
+			.carousel {
+				.editButton {
+					.gradient(#eaeaea, #eaeaea);
+					color: #bbb;
+					box-shadow: none;
+				}
+			}
+		}
+	}
+
  }
-
-/* ********************
- * CAROUSEL ICONS
- * ***************** */
-.carousel {
-  .iconPrev {
-    width: 7px;
-    height: 12px;
-    background-image: url("assets/icons/carousel-left.png");
-  }
-
-  .iconNext {
-    width: 7px;
-    height: 12px;
-    background-image: url("assets/icons/carousel-right.png");
-  }
-
-  .iconCaret {
-    width: 7px;
-    height: 4px;
-    background-image: url("assets/icons/carousel-caret.png");
-  }
-}
 
 
  /* ******************************************

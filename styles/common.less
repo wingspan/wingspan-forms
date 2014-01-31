@@ -1,289 +1,348 @@
 @import "vars.less";
 
 html, body {
-  height: 100%;
+	height: 100%;
 }
 
 body {
-  font-size: .75em;
-  font-family: sans-serif;
-  overflow: hidden;
+	font-size: .75em;
+	font-family: sans-serif;
+	overflow: hidden;
 }
 
 .clear {
-  clear: both;
+    clear: both;
 }
 
 .clickable {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 
 div[data-wspt="root"] > div > .content {
-  position: absolute;
-  top: @headerHeight;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #5E605F;
-  box-shadow: inset 0 0 5px 5px #444;
-  //footer height
-  bottom: @footerHeight;
+	position: absolute; 
+	top: @headerHeight; 
+	left: 0; 
+	right: 0; 
+	bottom: 0; 
+	background: #5E605F;
+	box-shadow: inset 0 0 5px 5px #444;
+	//footer height
+	bottom: @footerHeight;
 
 
-  .views {
-    position: absolute;
-    top: 55px;
-    bottom: 0;
-    left: 0;
-    right: 0;
+	.views {
+		position: absolute; 
+		top: 55px; 
+		bottom: 0; 
+		left: 0; 
+		right: 0;
+		
+		.view {
+			position: absolute; 
+			top: 5px;
+			left: 15px; 
+			right: 15px; 
+			bottom: 15px; 
+			background: url("common/assets/content-box-bg.png");
+			.rounded(10px);
+			overflow: hidden;
+		}
+	}
+}
 
-    .view {
-      position: absolute;
-      top: 5px;
-      left: 15px;
-      right: 15px;
-      bottom: 15px;
-      background: url("common/assets/content-box-bg.png");
-      .rounded(10px);
-      overflow: hidden;
+/* BEGIN scrollable table */
+
+@header_background_color: #333;
+@header_text_color: #FDFDFD;
+@alternate_row_background_color: #DDD;
+
+// this has to be tuned manually to fit in the dialog.
+@table_body_height: 300px;
+@column_width_delete:   20px;
+@column_width_select:   20px;
+@column_width_filename: 200px;
+@column_width_study:    100px;
+@column_width_country:  150px;
+@column_width_site:     200px;
+@column_width_clear:    120px;
+//@table_width: 640px;
+@table_width: (@column_width_delete + @column_width_select + @column_width_filename + @column_width_study + @column_width_country + @column_width_site + @column_width_clear);
+
+.fixed_headers {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+
+  th, td {
+    padding: 5px;
+    text-align: left;
+  }
+
+  td:nth-child(1), th:nth-child(1) { width: @column_width_delete; }
+  td:nth-child(2), th:nth-child(2) { width: @column_width_select; }
+  td:nth-child(3), th:nth-child(3) { min-width: @column_width_filename; }
+  td:nth-child(4), th:nth-child(4) { width: @column_width_study; }
+  td:nth-child(5), th:nth-child(5) { width: @column_width_country; }
+  td:nth-child(6), th:nth-child(6) { width: @column_width_site; }
+  td:nth-child(7), th:nth-child(7) { width: @column_width_clear; }
+
+  thead {
+    background-color: @header_background_color;
+    color: @header_text_color;
+    tr {
+      display: block;
+      position: relative;
+    }
+  }
+  tbody {
+    display: block;
+    overflow: auto;
+    width: 100%;
+    height: @table_body_height;
+    tr:nth-child(even) {
+      background-color: @alternate_row_background_color;
     }
   }
 }
 
-.actionButton {
-  display: inline-block;
-  width: 39px;
-  height: 37px;
-  cursor: pointer;
-  background: url(common/buttons/document_toggle.png);
-  .unselectable;
-  text-align: center;
-
-  .icon {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 3px;
-    float: none;
-  }
-
-  img {
-    display: block;
-    width: 20px;
-    height: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 8px;
-  }
-
-  &.selected, &:hover {
-    background: url(common/buttons/document_toggle_on.png);
-  }
-
-  &.nobg {
-    background: none;
+.upload-list {
+  height: 200px;
+  overflow: auto;
+  .upload-item {
+    padding: 5px;
   }
 }
 
+/* END scrollable table */
+
+.actionButton {
+	display: inline-block;
+	width: 39px;
+	height: 37px;
+	cursor: pointer;
+	background: url(common/buttons/document_toggle.png);
+	.unselectable;
+	text-align: center;
+
+	.icon {
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 3px;
+		float: none;
+	}
+
+	img {
+		display: block;
+		width: 20px;
+		height: 20px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 8px;
+	}
+
+	&.selected, &:hover {
+		background: url(common/buttons/document_toggle_on.png);
+	}
+
+	&.nobg {
+		background: none;
+	}
+}
+
 .actionButtonAlt {
-  background: url(common/buttons/document_actions.png);
-  &:hover {
-    background: url(common/buttons/document_actions_over.png);
-  }
+	background: url(common/buttons/document_actions.png);
+	&:hover {
+		background: url(common/buttons/document_actions_over.png);
+	}
 }
 
 .flatButton
 {
-  display: inline-block;
-  padding: 0px 8px;
-  height: 28px;
-  line-height: 29px;
-  border: solid 1px transparent;
-  .rounded(4px);
-  cursor: pointer;
-  color: @linkColor;
+	display: inline-block;
+	padding: 0px 8px;
+	height: 28px;
+	line-height: 29px;
+	border: solid 1px transparent;
+	.rounded(4px);
+	cursor: pointer;
+	color: @linkColor;
 
-  &.selected
-  {
-    background: #efefee;
-    border: solid 1px #ebebeb;
-    color: @altTextColor;
-  }
+	&.selected
+	{
+		background: #efefee;
+		border: solid 1px #ebebeb;
+		color: @altTextColor;
+	}
 
-  &:hover
-  {
-    border: solid 1px #ebebeb;
-  }
+	&:hover
+	{
+		border: solid 1px #ebebeb;
+	}
 }
 
 .switchButton
 {
-  float: left;
-  position: relative;
-  z-index: 50;
-
-  li {
-    display: inline-block;
-    float: left;
-    padding: 0px 8px;
-    height: 28px;
-    line-height: 29px;
-    border: solid 1px #A0A0A0;
-    .rounded(4px);
-    cursor: pointer;
-    margin-left: -4px;
-    background: #fff;
-    background: #ccc;
-    color: @altTextColor;
-    position: relative;
-    z-index: 51;
-
-    &.selected
-    {
-      background: #fff;
-      color: @linkColor;
-      z-index: 52;
-    }
-  }
+	float: left;
+	position: relative;
+	z-index: 50;
+	
+	li {
+		display: inline-block;
+		float: left;
+		padding: 0px 8px;
+		height: 28px;
+		line-height: 29px;
+		border: solid 1px #A0A0A0;
+		.rounded(4px);
+		cursor: pointer;
+		margin-left: -4px;
+		background: #fff;
+		background: #ccc;
+		color: @altTextColor;
+		position: relative;
+		z-index: 51;
+		
+		&.selected
+		{
+			background: #fff;
+			color: @linkColor;
+			z-index: 52;
+		}
+	}
 
 }
 
 .buttonCarrot {
-  background: url('common/buttons/button-carrot.png') no-repeat center right;
-  padding-right: 8px;
+	background: url('common/buttons/button-carrot.png') no-repeat center right;
+	padding-right: 8px;
 }
 
 //controls default layout
 .controls
-{
+{ 
 
-  //borders will be applied to li element
-  //so classes of buttons should be applied to div within li, not to the li
-  li {
-
-    float: left;
-    position: relative;
-    white-space: nowrap; //dont let controls / text within one element wrap
-
-  }
-
+	//borders will be applied to li element
+	//so classes of buttons should be applied to div within li, not to the li
+	li { 
+	
+		float: left; 
+		position: relative; 
+		white-space: nowrap; //dont let controls / text within one element wrap
+		
+	}
+	
 }
 
 .communicator {
-  position: relative;
-  padding: 10px 15px;
-  margin: 0 15px;
-  background: #333;
-  color: white;
-  font-size: 13px;
-  background: url("assets/layout/communicator-default.png") repeat-x top left #64B1DE;
-  text-shadow: #417CA0 1px 1px 1px;
-  .rounded(5px);
+	position: relative;
+	padding: 10px 15px;
+	margin: 0 15px;
+	background: #333;
+	color: white;
+    text-shadow: #000 1px 1px 3px;
+    font-size: 15px;
+    background: url("assets/layout/communicator-default.png") repeat-x top left #3071b5;
+	.rounded(5px);
+	
+	.communicatorIcon {
+		float: left;
+		margin: -10px 0 -10px -5px;	
+		backround-repeat: no-repeat;
+		background-position: center center;	
+	}
 
-  .communicatorIcon {
-    float: left;
-    margin: -10px 0 -10px -5px;
-    backround-repeat: no-repeat;
-    background-position: center center;
-  }
-  .communicatorMessage {
-    padding-top: 5px;
-  }
-
-  .communicatorClose {
-    float: right;
-    margin-left: 10px;
-    cursor: pointer;
-  }
+	.communicatorClose {
+		float: right;
+		margin-left: 10px;
+		cursor: pointer;
+	}	
 }
 
 .communicatorWarning{
-  background: url("assets/layout/communicator-warning.png") repeat-x top left #EEB413;
-  color: #996600;
-  text-shadow: #F8DE9C 1px 1px 1px;
+	background: url("assets/layout/communicator-warning.png") repeat-x top left #EEB413;
+    color: #333;
+    text-shadow: #9B7C00 1px 1px 3px;
 }
 
 .communicatorError {
-  background: url("assets/layout/communicator-error.png") repeat-x top left #AF1616;
-  color: white;
+	background: url("assets/layout/communicator-error.png") repeat-x top left #AF1616;
 }
 
 .communicatorConfirm {
-  background: url("assets/layout/communicator-confirm.png") repeat-x top left #55BA3E;
-  color: white;
-  text-shadow: #5CA54E 1px 1px 1px;
+	background: url("assets/layout/communicator-confirm.png") repeat-x top left #55BA3E;
 }
 
 .loader {
-  background: url(common/assets/loader.gif) no-repeat;
-  width: 220px;
-  height: 19px;
+    background: url(common/assets/loader.gif) no-repeat;
+    width: 220px;
+    height: 19px;
 }
 
 
 //instruction list
 .instructionList {
-  padding-top: 10px;
-  li {
-    padding: 5px 20px 5px 50px;
-    position: relative;
-    font-size: 16px;
-    line-height: 20px;
-    .num {
-      font-size: 18px;
-      color: #6194C7;
-      .absolute(5px, auto, auto, 20px);
-    }
-  }
+	padding-top: 10px;
+	li {
+		padding: 5px 20px 5px 50px;
+		position: relative;
+		font-size: 16px;
+		line-height: 20px;
+		.num {
+			font-size: 18px;
+			color: #6194C7;
+			.absolute(5px, auto, auto, 20px);
+		}
+	}
 }
 
 
 //todo checkbox list
 .todoList {
-  li {
-    clear: left;
-    float: left;
-    width: 100%;
-    border-top: 1px solid #aaa;
-    position: relative;
-    padding: 15px 0 10px;
+	li {
+		clear: left;
+		float: left;
+		width: 100%;
+		border-top: 1px solid #aaa;
+		position: relative;
+		padding: 15px 0 10px;
 
-    .checkboxWrap {
-      label {
-        margin-left: 0;
-        width: 90%;
-      }
-    }
+		.checkboxWrap {
+			label {
+				margin-left: 0;
+				width: 90%;
+			}
+		}
 
-    button {
-      float: right;
-      margin-top: -5px;
-    }
-  }
-  li:first-child {
-    border-top: 0;
-  }
+		button {
+			float: right;
+			margin-top: -5px;
+		}
+	}
+	li:first-child {
+		border-top: 0;
+	}
 }
 
 // For when an <a> tag in a menu has an href.
 a.menuLink {
-  color: inherit;
-  text-decoration: none;
+	color: inherit;
+	text-decoration: none;
 }
 
 //editable grid cell
 .editableIndicator {
-  background: @listSelectedColor;
-  padding: 7px 5px 10px;
-  margin: -7px 0 -10px;
-  -moz-box-shadow: inset 0 0 5px #86BCDD;
-  -webkit-box-shadow: inset 0 0 5px #86BCDD;
-  box-shadow: inset 0 0 5px #86BCDD;
+	background: @listSelectedColor;
+	padding: 7px 5px 10px;
+	margin: -7px 0 -10px;
+	-moz-box-shadow: inset 0 0 5px #86BCDD;
+	-webkit-box-shadow: inset 0 0 5px #86BCDD;
+	box-shadow: inset 0 0 5px #86BCDD;
 }
 
 // drag and drop: this style is applied when dragging files over a valid drop target
 .dropHighlight {
-  outline: ridge 3px green;
+	outline: ridge 3px green;
 }
 
 .searchBox {

@@ -103,7 +103,7 @@
 }
 
 .pie {
-	behavior: url(css/behaviors/PIE.htc);
+	//behavior: url(/css/behaviors/PIE.htc);
 }
 
 .shadow(@radius: 10px)
@@ -157,7 +157,7 @@
 
 	// reminder that IE<10 doesn't support through straight css,
 	// we have to either use javascript , a behavior, or invalid strict html markup.
-	behavior: url(css/behaviors/unselectable.htc);
+	//behavior: url(/css/behaviors/unselectable.htc);
 }
 
 .translucent(@val: .10)
@@ -194,5 +194,5 @@
 	background: -o-linear-gradient(top, @start 0%,@end 100%); /* Opera 11.10+ */
 	background: -ms-linear-gradient(top, @start 0%,@end 100%); /* IE10+ */
 	background: linear-gradient(to bottom, @start 0%,@end 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@start', endColorstr='@end',GradientType=0 ); /* IE6-9 */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=@start, endColorstr=@end, GradientType=0); /* IE6-9 */
 }
