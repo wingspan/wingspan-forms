@@ -5,7 +5,7 @@
 
 `wingspan-forms` is used heavily at Wingspan in a large project scheduled to go to production in April. As such, `wingspan-forms` should be considered stable, but not mature. There are a few known minor bugs, and as there is no documentation you will need to read the source code to figure out how to use it.
 
-The widgets in `wingspan-forms` are powered by KendoUI. KendoUI is not bundled, as it is GPL/commercial dual licensed, so your application will need to provide a suitable version of KendoUI. However, `wingspan-forms` provides a strict interface which KendoUI does not escape; as such, it is mechanical for future work to switch out the underlying Kendo dependency with another widget library, like Sencha or JQuery UI.
+The widgets in `wingspan-forms` are powered by [Telerik's KendoUI](http://www.telerik.com/kendo-ui). KendoUI is not bundled, as it is GPL/commercial dual licensed, so your application will need to provide a suitable version of KendoUI. However, `wingspan-forms` provides a strict interface which KendoUI does not escape; as such, it is mechanical for future work to switch out the underlying Kendo dependency with another widget library, like Sencha or JQuery UI.
 
 
 ## Description
