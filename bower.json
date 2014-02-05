@@ -16,9 +16,9 @@
   ],
   "dependencies": {
     "jquery": "~1.9.1",
-    "momentjs": "~2.4.0",
+    "momentjs": "~2.0",
     "underscore": "~1.4.4",
-    "react": "~0.5.2",
+    "react": "~0.8",
     "requirejs": "~2.1.9",
     "requirejs-text": "~2.0.10",
     "underscore.string": "~2.3.3",
