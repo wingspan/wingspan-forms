@@ -118,6 +118,14 @@ module.exports = function (grunt) {
             }
         },
 
+        copy: {
+            main: {
+                files: [
+                    {expand: true, src: ['styles/assets/**'], dest: 'dist/assets/', flatten: true, filter: 'isFile'}
+                ]
+            }
+        },
+
         qunit: {
             files: ['test/**/*.html']
         }
@@ -129,6 +137,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-react');
     grunt.loadNpmTasks('grunt-bower-task');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
-    grunt.registerTask('default', ['bower:install', 'react', 'less', 'requirejs']);
+    grunt.registerTask('default', ['bower:install', 'react', 'less', 'copy', 'requirejs']);
 };

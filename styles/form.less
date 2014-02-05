@@ -885,7 +885,7 @@
     margin: 0 5px 0 10px;
 
     > div {
-        background: url('common/buttons/button-secondary.png') no-repeat top right;
+        background: url('assets/button-secondary.png') no-repeat top right;
         margin: 0px 0px 0px 0px;
         padding: 0px 0px 0px 0px;
         float: left;
@@ -895,7 +895,7 @@
             margin: 0 10px 0 -10px;
             padding: 10px 4px 11px 15px;
             display: inline-block;
-            background: url('common/buttons/button-secondary.png') no-repeat top left;
+            background: url('assets/button-secondary.png') no-repeat top left;
             text-shadow: 0px -1px 1px #666;
         }
     }
@@ -904,9 +904,9 @@
 	 &.buttonDisabled {
 		cursor: default;
 		& > div {
-			background-image: url('common/buttons/button-disabled.png');
+			background-image: url('assets/button-disabled.png');
 			& > span {
-				background-image: url('common/buttons/button-disabled.png');
+				background-image: url('assets/button-disabled.png');
 			}
 		}
 	 }
@@ -919,7 +919,7 @@
     margin: 0 5px 0 10px;
 
     > div {
-        background: url('common/buttons/button-primary.png') no-repeat top right;
+        background: url('assets/button-primary.png') no-repeat top right;
         margin: 0px 0px 0px 0px;
         padding: 0px 0px 0px 0px;
         float: left;
@@ -929,7 +929,7 @@
             margin: 0 10px 0 -10px;
             padding: 10px 4px 11px 15px;
             display: inline-block;
-            background: url('common/buttons/button-primary.png') no-repeat top left;
+            background: url('assets/button-primary.png') no-repeat top left;
             text-shadow: 0px -1px 1px #666;
         }
     }
@@ -937,9 +937,9 @@
 	 &.buttonDisabled {
 		cursor: default;
 		& > div {
-			background-image: url('common/buttons/button-disabled.png');
+			background-image: url('assets/button-disabled.png');
 			& > span {
-				background-image: url('common/buttons/button-disabled.png');
+				background-image: url('assets/button-disabled.png');
 			}
 		}
 	 }
@@ -948,7 +948,7 @@
 button.primaryButton {
 	margin-right: 5px;
 	margin-left: 0;
-	background: url("common/buttons/button-primary-bg.png") top left repeat-x #787A82;
+	background: url("assets/button-primary-bg.png") top left repeat-x #787A82;
 	border-top: 0;
 	border-bottom: 1px solid #43657F;
 	border-left: 1px solid #658EAE;
@@ -963,14 +963,14 @@ button.primaryButton {
 		border-bottom: 1px solid #9EA3AE;
 		border-right: 1px solid #9EA3AE;
 		border-left: 1px solid #B9BABE;
-		background: url("common/buttons/button-disabled-bg.png") top left repeat-x #BBBCC0;
+		background: url("assets/button-disabled-bg.png") top left repeat-x #BBBCC0;
 	}
 }
 
 button.secondaryButton {
 	margin-right: 5px;
 	margin-left: 0;
-	background: url("common/buttons/button-secondary-bg.png") top left repeat-x #787A82;
+	background: url("assets/button-secondary-bg.png") top left repeat-x #787A82;
 	border-top: 0;
 	border-bottom: 1px solid #474B55;
 	border-left: 1px solid #74777E;
@@ -985,7 +985,7 @@ button.secondaryButton {
 		border-bottom: 1px solid #9EA3AE;
 		border-right: 1px solid #9EA3AE;
 		border-left: 1px solid #B9BABE;
-		background: url("common/buttons/button-disabled-bg.png") top left repeat-x #BBBCC0;
+		background: url("assets/button-disabled-bg.png") top left repeat-x #BBBCC0;
 	}
 }
 
@@ -1058,74 +1058,44 @@ input[type='checkbox'], input[type='radio'] {
 input[type='checkbox'] + label {
     clear: none;
     padding: 5px 0 4px 26px; /* make rook for image. */
-    background: url(common/assets/check_off.png) left center no-repeat;
+    background: url(assets/check_off.png) left center no-repeat;
 }
 
 input[type='checkbox']:checked + label {
-    background-image: url(common/assets/check_on.png);
+    background-image: url(assets/check_on.png);
 }
 
 input[type='checkbox']:disabled + label {
-    background-image: url(common/assets/check_off_disabled.png);
+    background-image: url(assets/check_off_disabled.png);
     background-position: 2px center;
     color: @inputDisabledColor;
 }
 
 input[type='checkbox']:checked:disabled + label {
-    background-image: url(common/assets/check_on_disabled.png) !important;
+    background-image: url(assets/check_on_disabled.png) !important;
 	color: @inputDisabledColor;
 }
 
 input[type='radio'] + label {
     clear: none;
     padding: 5px 0 4px 26px; /* make rook for image. */
-    background: url(common/assets/radio_off.png) left center no-repeat;
+    background: url(assets/radio_off.png) left center no-repeat;
 }
 
 input[type='radio']:checked + label {
-    background-image: url(common/assets/radio_on.png);
+    background-image: url(assets/radio_on.png);
 }
 
 input[type='radio']:disabled + label {
-    background-image: url(common/assets/radio_off_disabled.png);
+    background-image: url(assets/radio_off_disabled.png);
     color: @inputDisabledColor;
 }
 
 input[type='radio']:checked:disabled + label {
-    background-image: url(common/assets/radio_on_disabled.png);
+    background-image: url(assets/radio_on_disabled.png);
 	color: @inputDisabledColor;
 }
 
-/* ******************************************
- *
- *   SWITCH-BOX
- *
- * *************************************** */
-
-input[type='checkbox'].switchbox + label {
-    clear: none;
-    height: 37px;
-    padding-left: 95px;
-	padding-top: 0;
-	padding-bottom: 0;
-	line-height: 37px;
-    background: url(common/assets/switch_off.png) left center no-repeat;
-    float: left;
-}
-
-input[type='checkbox'].switchbox:checked + label {
-    background-image: url(common/assets/switch_on.png);
-}
-
-input[type='checkbox'].switchbox:disabled + label {
-    background-image: url(common/assets/switch_off_disabled.png);
-    color: @inputDisabledColor;
-}
-
-input[type='checkbox'].switchbox:checked:disabled + label {
-    background-image: url(common/assets/switch_on_disabled.png);
-	color: @inputDisabledColor;
-}
 
 /* ******************************************
  *
