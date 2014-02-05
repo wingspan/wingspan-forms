@@ -140,4 +140,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.registerTask('default', ['bower:install', 'react', 'less', 'copy', 'requirejs']);
+    grunt.registerTask('devel', ['bower:install', 'react', 'less', 'copy']);
 };
