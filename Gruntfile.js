@@ -22,6 +22,19 @@ module.exports = function (grunt) {
 //            }
 //        },
 
+        bower: {
+            install: {
+                options: {
+                    copy: false,
+                    install: true,
+                    verbose: false,
+                    cleanTargetDir: false,
+                    cleanBowerDir: false,
+                    bowerOptions: {}
+                }
+            }
+        },
+
         react: {
             options: {
                 extension: 'js'
@@ -115,6 +128,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-react');
+    grunt.loadNpmTasks('grunt-bower-task');
 
     // Default task.
     grunt.registerTask('default', []);
