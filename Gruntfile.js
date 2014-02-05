@@ -130,6 +130,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-react');
     grunt.loadNpmTasks('grunt-bower-task');
 
-    // Default task.
-    grunt.registerTask('default', []);
+    grunt.registerTask('default', ['bower:install', 'react', 'less', 'requirejs']);
 };
