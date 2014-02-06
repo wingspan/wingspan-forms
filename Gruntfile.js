@@ -106,7 +106,7 @@ module.exports = function (grunt) {
                 options: {
                     out: 'dist/wingspan-forms-quickstart.js',
                     include: ['almond', 'wingspan-forms'],
-                    exclude: ['react', 'kendo']
+                    exclude: ['react', 'kendo', 'jquery']
                 }
             }
         },
