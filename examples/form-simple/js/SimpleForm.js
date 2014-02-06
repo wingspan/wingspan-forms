@@ -23,15 +23,15 @@ define([
                 <div className="MyForm">
                     <div>
                         <div>
-                            <FormField fieldInfo={SimpleFormMetadata.firstName}>
+                            <FormField fieldInfo={SimpleFormMetadata.firstName} isValid={this.isFieldValid('firstName')}>
                                 <KendoText value={this.state.firstName} onChange={_.partial(this.onFieldChange, 'firstName')} />
                             </FormField>
 
-                            <FormField fieldInfo={SimpleFormMetadata.lastName}>
+                            <FormField fieldInfo={SimpleFormMetadata.lastName} isValid={this.isFieldValid('lastName')}>
                                 <KendoText value={this.state.lastName} onChange={_.partial(this.onFieldChange, 'lastName')} />
                             </FormField>
 
-                            <FormField fieldInfo={SimpleFormMetadata.gender}>
+                            <FormField fieldInfo={SimpleFormMetadata.gender} isValid={this.isFieldValid('gender')}>
                                 <KendoComboBox
                                     dataSource={this.genderOptions}
                                     displayField="label"
@@ -48,6 +48,12 @@ define([
 
         onFieldChange: function (fieldName, value) {
             this.setState(_.object([[fieldName, value]]));
+        },
+
+        isFieldValid: function (fieldName) {
+            return _.isEmpty(this.state[fieldName])
+                ? [false, 'This field is required.']
+                : [true, ''];
         }
     });
 
