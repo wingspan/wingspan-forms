@@ -20,26 +20,28 @@ define([
 
         render: function () {
             return (
-                <div className="simpleForm">
-                    <div className="columnLeft">
-                        <FormField fieldInfo={SimpleFormMetadata.firstName} layout="formFieldInline">
-                            <KendoText value={this.state.firstName} onChange={_.partial(this.onFieldChange, 'firstName')} />
-                        </FormField>
+                <div className="MyForm">
+                    <div>
+                        <div>
+                            <FormField fieldInfo={SimpleFormMetadata.firstName}>
+                                <KendoText value={this.state.firstName} onChange={_.partial(this.onFieldChange, 'firstName')} />
+                            </FormField>
 
-                        <FormField fieldInfo={SimpleFormMetadata.lastName} layout="formFieldInline">
-                            <KendoText value={this.state.lastName} onChange={_.partial(this.onFieldChange, 'lastName')} />
-                        </FormField>
+                            <FormField fieldInfo={SimpleFormMetadata.lastName}>
+                                <KendoText value={this.state.lastName} onChange={_.partial(this.onFieldChange, 'lastName')} />
+                            </FormField>
 
-                        <FormField fieldInfo={SimpleFormMetadata.gender} layout="formFieldInline">
-                            <KendoComboBox
-                                dataSource={this.genderOptions}
-                                displayField="label"
-                                valueField="value"
-                                value={this.state.gender}
-                                onChange={_.partial(this.onFieldChange, 'gender')} />
-                        </FormField>
+                            <FormField fieldInfo={SimpleFormMetadata.gender}>
+                                <KendoComboBox
+                                    dataSource={this.genderOptions}
+                                    displayField="label"
+                                    valueField="value"
+                                    value={this.state.gender}
+                                    onChange={_.partial(this.onFieldChange, 'gender')} />
+                            </FormField>
+                        </div>
+                        <pre>{JSON.stringify(this.state, undefined, 2)}</pre>
                     </div>
-                    <pre className="columnRight">{JSON.stringify(this.state, undefined, 2)}</pre>
                 </div>
             );
         },

@@ -1,14 +1,19 @@
-.simpleForm {
-  @leftColumnWidth: 50%;
-  width: 800px;
+.MyForm {
+  display: table;
+  padding: 10px;
 
-  .columnLeft {
-    float: left;
-    width: @leftColumnWidth;
-    padding: 10px;
-  }
-  .columnRight {
-    margin-left: @leftColumnWidth;
-    padding: 10px;
+  > div {
+    display: table-row;
+
+    > div {
+      display: table-cell;
+      width: 50%;
+      padding: 10px;
+    }
+    > pre {
+      display: table-cell;
+      vertical-align: top;
+      padding: 10px;
+    }
   }
 }
