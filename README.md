@@ -1,5 +1,7 @@
 # wingspan-forms
-> a widget library for Facebook React, providing abstractions for building dynamic forms & form validation, and default markup and styles.
+> a dynamic form library for Facebook React, providing abstractions for building dynamic forms with validation. Widgets provided by [Telerik's KendoUI](http://www.telerik.com/kendo-ui).
+
+![simple form screenshot](docs/_assets/simple-form.png?raw=true)
 
 ## Disclaimer
 
