@@ -14,7 +14,9 @@ define([
             return {
                 firstName: '',
                 lastName: '',
-                gender: ''
+                gender: '',
+                age: null,
+                birthday: null
             };
         },
 
@@ -39,6 +41,15 @@ define([
                                     value={this.state.gender}
                                     onChange={_.partial(this.onFieldChange, 'gender')} />
                             </FormField>
+
+                            <FormField fieldInfo={SimpleFormMetadata.age} isValid={this.isFieldValid('age')}>
+                                <KendoNumber spinners={true} value={this.state.age} onChange={_.partial(this.onFieldChange, 'age')} />
+                            </FormField>
+
+                            <FormField fieldInfo={SimpleFormMetadata.birthday} isValid={this.isFieldValid('birthday')}>
+                                <KendoDate value={this.state.birthday} onChange={_.partial(this.onFieldChange, 'birthday')} />
+                            </FormField>
+
                         </div>
                         <pre>{JSON.stringify(this.state, undefined, 2)}</pre>
                     </div>
@@ -51,9 +62,11 @@ define([
         },
 
         isFieldValid: function (fieldName) {
-            return _.isEmpty(this.state[fieldName])
-                ? [false, 'This field is required.']
-                : [true, ''];
+            var val = this.state[fieldName];
+
+            return val !== null && val !== ''
+                ? [true, '']
+                : [false, 'This field is required.'];
         }
     });
 
@@ -66,6 +79,8 @@ define([
     var FormField = Forms.FormField;
     var KendoText = Forms.KendoText;
     var KendoComboBox = Forms.KendoComboBox;
+    var KendoNumber = Forms.KendoNumber;
+    var KendoDate = Forms.KendoDate;
 
     return {
         entrypoint: entrypoint
