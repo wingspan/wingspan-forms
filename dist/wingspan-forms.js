@@ -1167,8 +1167,7 @@ define('ControlCommon',[
         }
     }
 
-    function attachFormTooltips() {
-        var $body = $('body');
+    function attachFormTooltips($body) {
 
         // The tooltip for the [i] button and the label
         $body.kendoTooltip({
@@ -1967,8 +1966,6 @@ define('FormField',[
 
         return children && children.fieldClass;
     }
-
-    ControlCommon.attachFormTooltips();
 
     var FormField = React.createClass({displayName: 'FormField',
 
@@ -4060,11 +4057,12 @@ define('wingspan-forms',[
     './controls/RadioGroup',
     './controls/SwitchBox',
     './controls/UserPicker',
-    './controls/UserPickerPlus'
+    './controls/UserPickerPlus',
+    './ControlCommon'
 ], function (AutoControl, FormField, Carousel, CheckBox, KendoComboBox, KendoDate, KendoDatetime,
              KendoGrid, KendoGridPicker, KendoGridPickerByButton, KendoGridRadioSelectable,
              KendoListView, KendoMultiSelect, KendoNumber, KendoTabStrip, KendoText, MultiSelect,
-             MultilineText, Radio, RadioGroup, SwitchBox, UserPicker, UserPickerPlus) {
+             MultilineText, Radio, RadioGroup, SwitchBox, UserPicker, UserPickerPlus, ControlCommon) {
     'use strict';
 
 
@@ -4099,7 +4097,8 @@ define('wingspan-forms',[
         RadioGroup: RadioGroup,
         SwitchBox: SwitchBox,
         UserPicker: UserPicker,
-        UserPickerPlus: UserPickerPlus
+        UserPickerPlus: UserPickerPlus,
+        ControlCommon: ControlCommon
     };
 });
     // Fake out the almond loader - shim these dependencies to their globals.
