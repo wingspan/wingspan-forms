@@ -58,8 +58,7 @@ define([
         }
     }
 
-    function attachFormTooltips() {
-        var $body = $('body');
+    function attachFormTooltips($body) {
 
         // The tooltip for the [i] button and the label
         $body.kendoTooltip({

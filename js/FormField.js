@@ -25,8 +25,6 @@ define([
         return children && children.fieldClass;
     }
 
-    ControlCommon.attachFormTooltips();
-
     var FormField = React.createClass({
 
         getDefaultProps: function () {
