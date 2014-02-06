@@ -1,10 +1,17 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'react', 'jquery', 'wingspan-forms',
-    'SimpleFormMetadata'
-], function (_, React, $, Forms, SimpleFormMetadata) {
+    'underscore', 'react', 'jquery', 'wingspan-forms'
+], function (_, React, $, Forms) {
     'use strict';
 
+
+    var SimpleFormMetadata = {
+        firstName: { label: 'First Name' },
+        lastName: { label: 'Last Name' },
+        gender: { label: 'Gender' },
+        age: { label: 'Age' },
+        birthday: { label: 'Birthday'}
+    };
 
     var MyForm = React.createClass({
 
