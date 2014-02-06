@@ -80,6 +80,7 @@ define([
 
     function entrypoint(rootEl) {
         React.renderComponent(<MyForm/>, rootEl);
+        Forms.ControlCommon.attachFormTooltips($(document.body));
     }
 
 
