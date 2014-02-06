@@ -31,35 +31,33 @@ define([
             return (
                 <div className="MyForm">
                     <div>
-                        <div>
-                            <FormField fieldInfo={SimpleFormMetadata.firstName} isValid={this.isFieldValid('firstName')}>
-                                <KendoText value={this.state.firstName} onChange={_.partial(this.onFieldChange, 'firstName')} />
-                            </FormField>
+                        <FormField fieldInfo={SimpleFormMetadata.firstName} isValid={this.isFieldValid('firstName')}>
+                            <KendoText value={this.state.firstName} onChange={_.partial(this.onFieldChange, 'firstName')} />
+                        </FormField>
 
-                            <FormField fieldInfo={SimpleFormMetadata.lastName} isValid={this.isFieldValid('lastName')}>
-                                <KendoText value={this.state.lastName} onChange={_.partial(this.onFieldChange, 'lastName')} />
-                            </FormField>
+                        <FormField fieldInfo={SimpleFormMetadata.lastName} isValid={this.isFieldValid('lastName')}>
+                            <KendoText value={this.state.lastName} onChange={_.partial(this.onFieldChange, 'lastName')} />
+                        </FormField>
 
-                            <FormField fieldInfo={SimpleFormMetadata.gender} isValid={this.isFieldValid('gender')}>
-                                <KendoComboBox
-                                    dataSource={this.genderOptions}
-                                    displayField="label"
-                                    valueField="value"
-                                    value={this.state.gender}
-                                    onChange={_.partial(this.onFieldChange, 'gender')} />
-                            </FormField>
+                        <FormField fieldInfo={SimpleFormMetadata.gender} isValid={this.isFieldValid('gender')}>
+                            <KendoComboBox
+                                dataSource={this.genderOptions}
+                                displayField="label"
+                                valueField="value"
+                                value={this.state.gender}
+                                onChange={_.partial(this.onFieldChange, 'gender')} />
+                        </FormField>
 
-                            <FormField fieldInfo={SimpleFormMetadata.age} isValid={this.isFieldValid('age')}>
-                                <KendoNumber spinners={true} value={this.state.age} onChange={_.partial(this.onFieldChange, 'age')} />
-                            </FormField>
+                        <FormField fieldInfo={SimpleFormMetadata.age} isValid={this.isFieldValid('age')}>
+                            <KendoNumber spinners={true} value={this.state.age} onChange={_.partial(this.onFieldChange, 'age')} />
+                        </FormField>
 
-                            <FormField fieldInfo={SimpleFormMetadata.birthday} isValid={this.isFieldValid('birthday')}>
-                                <KendoDate value={this.state.birthday} onChange={_.partial(this.onFieldChange, 'birthday')} />
-                            </FormField>
+                        <FormField fieldInfo={SimpleFormMetadata.birthday} isValid={this.isFieldValid('birthday')}>
+                            <KendoDate value={this.state.birthday} onChange={_.partial(this.onFieldChange, 'birthday')} />
+                        </FormField>
 
-                        </div>
-                        <pre>{JSON.stringify(this.state, undefined, 2)}</pre>
                     </div>
+                    <pre>{JSON.stringify(this.state, undefined, 2)}</pre>
                 </div>
             );
         },
