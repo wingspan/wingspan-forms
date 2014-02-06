@@ -54,3 +54,8 @@ table th
 {
     text-align: inherit;
 }
+
+pre {
+    font-family: monospace;
+    font-size: 1.2em;
+}
