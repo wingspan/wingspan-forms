@@ -7350,6 +7350,69 @@ define('controls/UserPickerPlus',[
     });
 });
 
+/** @jsx React.DOM */
+define('AutoField',[
+    'underscore', 'react', './FormField', './AutoControl'
+], function (_, React, FormField, AutoControl) {
+    'use strict';
+
+
+    var AutoField = React.createClass({displayName: 'AutoField',
+        getDefaultProps: function () {
+            return {
+                fieldInfo: undefined,
+                value: undefined,
+                onChange: undefined
+            };
+        },
+
+        render: function () {
+            return (
+                FormField( {fieldInfo:this.props.fieldInfo, key:this.props.fieldInfo.name}, 
+                    AutoControl(
+                        {fieldInfo:this.props.fieldInfo,
+                        value:this.props.value,
+                        onChange:this.props.onChange} )
+                )
+            );
+        }
+    });
+
+
+    return AutoField;
+});
+define('TopStateMixin',[
+    'underscore', './util/util'
+], function (_, util) {
+    'use strict';
+
+    /**
+     * Use this mixin when you want to have only a single onChange handler to aggregate all
+     * the state at the top of your app.
+     */
+    var TopStateMixin = {
+        onChange: function (path, /* more paths,*/ value) {
+            path = _.flatten(_.initial(arguments));
+            value = _.last(arguments);
+
+            var nextState = util.deepClone(this.state);
+            var scoped = getRefAtPath(nextState, _.initial(path));
+            scoped[_.last(path)] = value;
+            this.setState(nextState);
+        }
+    };
+
+    /**
+     * Must return a reference into the scoped value (that we can mutate on purpose).
+     */
+    function getRefAtPath (tree, paths) {
+        return _.reduce(paths, deref, tree);
+    }
+
+    function deref (obj, key) { return obj[key]; }
+
+    return TopStateMixin;
+});
 define('wingspan-forms',[
     './AutoControl',
     './FormField',
@@ -7374,11 +7437,14 @@ define('wingspan-forms',[
     './controls/SwitchBox',
     './controls/UserPicker',
     './controls/UserPickerPlus',
-    './ControlCommon'
+    './ControlCommon',
+    './AutoField',
+    './TopStateMixin'
 ], function (AutoControl, FormField, Carousel, CheckBox, KendoComboBox, KendoDate, KendoDatetime,
              KendoGrid, KendoGridPicker, KendoGridPickerByButton, KendoGridRadioSelectable,
              KendoListView, KendoMultiSelect, KendoNumber, KendoTabStrip, KendoText, MultiSelect,
-             MultilineText, Radio, RadioGroup, SwitchBox, UserPicker, UserPickerPlus, ControlCommon) {
+             MultilineText, Radio, RadioGroup, SwitchBox, UserPicker, UserPickerPlus, ControlCommon,
+             AutoField, TopStateMixin) {
     'use strict';
 
 
@@ -7414,7 +7480,9 @@ define('wingspan-forms',[
         SwitchBox: SwitchBox,
         UserPicker: UserPicker,
         UserPickerPlus: UserPickerPlus,
-        ControlCommon: ControlCommon
+        ControlCommon: ControlCommon,
+        AutoField: AutoField,
+        TopStateMixin: TopStateMixin
     };
 });
     // Fake out the almond loader - shim these dependencies to their globals.
