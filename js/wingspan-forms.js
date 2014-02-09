@@ -22,11 +22,14 @@ define([
     './controls/SwitchBox',
     './controls/UserPicker',
     './controls/UserPickerPlus',
-    './ControlCommon'
+    './ControlCommon',
+    './AutoField',
+    './TopStateMixin'
 ], function (AutoControl, FormField, Carousel, CheckBox, KendoComboBox, KendoDate, KendoDatetime,
              KendoGrid, KendoGridPicker, KendoGridPickerByButton, KendoGridRadioSelectable,
              KendoListView, KendoMultiSelect, KendoNumber, KendoTabStrip, KendoText, MultiSelect,
-             MultilineText, Radio, RadioGroup, SwitchBox, UserPicker, UserPickerPlus, ControlCommon) {
+             MultilineText, Radio, RadioGroup, SwitchBox, UserPicker, UserPickerPlus, ControlCommon,
+             AutoField, TopStateMixin) {
     'use strict';
 
 
@@ -62,6 +65,8 @@ define([
         SwitchBox: SwitchBox,
         UserPicker: UserPicker,
         UserPickerPlus: UserPickerPlus,
-        ControlCommon: ControlCommon
+        ControlCommon: ControlCommon,
+        AutoField: AutoField,
+        TopStateMixin: TopStateMixin
     };
 });
