@@ -3,6 +3,11 @@
 
 [![example form screenshot & jsfiddle](docs/_assets/simple-form.png?raw=true)](http://jsfiddle.net/dustingetz/84JuE/12/)
 
+## Examples
+
+ * [basic form with validation](http://jsfiddle.net/dustingetz/84JuE/12/)
+ * [dynamic form generated from JSON metadata](http://jsfiddle.net/dustingetz/gg4w5/2/)
+
 ## Disclaimer
 
 `wingspan-forms` is used heavily at Wingspan in a large project scheduled to go to production in April. As such, `wingspan-forms` should be considered stable, but not mature. There are a few known minor bugs, and as there is no documentation you will need to read the source code to figure out how to use it.
