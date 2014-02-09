@@ -1,0 +1,27 @@
+{
+    "data": [{
+        "firstName": "Dustin",
+        "lastName": "Getz",
+        "phoneNumber": "415-555-1212",
+        "email": "dustin.getz@gmail.com",
+        "contactGroup": "friend",
+        "id": "90ce52a4-7e69-11e3-b4b1-bec9a24410d2",
+        "revision": 1
+    }, {
+        "firstName": "Alice",
+        "lastName": "Armstrong",
+        "phoneNumber": "415-555-9887",
+        "email": "alice.armstrong@example.com",
+        "contactGroup": "friend",
+        "id": "2a2ecc6c-7e6a-11e3-942f-c28cc531c7ca",
+        "revision": 1
+    }, {
+        "firstName": "Bill",
+        "lastName": "Buckley",
+        "phoneNumber": "415-555-3317",
+        "email": "bill.buckley@example.com",
+        "contactGroup": "friend",
+        "id": "2b52b0b8-7e6a-11e3-a426-c28cc531c7ca",
+        "revision": 1
+    }]
+}
