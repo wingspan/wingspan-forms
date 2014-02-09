@@ -19,7 +19,7 @@
     (function(){
         'use strict';
 
-        require(['SimpleForm'], function(page) {
+        require(['jquery', 'SimpleForm'], function($, page) {
             $(document).ready(_.partial(page.entrypoint, document.getElementById('root')));
         });
     })();
