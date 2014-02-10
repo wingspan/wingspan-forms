@@ -23,6 +23,13 @@ module.exports = function (grunt) {
             }
         },
 
+        subgrunt: {
+            options: {},
+            'wingspan-forms': {
+                'bower_components/wingspan-forms': ['default']
+            }
+        },
+
         react: {
             options: {
                 extension: 'js'
@@ -70,7 +77,7 @@ module.exports = function (grunt) {
                     'react': '../lib/react',
                     'es5-shim': '../lib/es5-shim',
                     'text': '../lib/text',
-                    'wingspan-forms': '../lib/wingspan-forms',
+                    'wingspan-forms': '../lib/wingspan-forms/wingspan-forms',
                     'textassets': '../textassets' // all assets loaded via `text!` must be rooted here (to avoid JSX compilation)
                 },
 
@@ -102,7 +109,7 @@ module.exports = function (grunt) {
         },
 
         copy: {
-            lib: {
+            'libs': {
                 files: [
                     {
                         expand: true,
@@ -115,18 +122,31 @@ module.exports = function (grunt) {
                             'bower_components/momentjs/moment.js',
                             'bower_components/react/react.js',
                             'bower_components/es5-shim/es5-shim.js',
-                            'bower_components/requirejs-text/text.js',
-                            'bower_components/wingspan-forms/dist/wingspan-forms.js'
+                            'bower_components/requirejs-text/text.js'
                         ],
                         dest: 'webapp/lib',
                         flatten: true,
                         filter: 'isFile'
                     }
                 ]
+            },
+
+            'wingspan-forms': {
+                // separate configuration for wingspan-forms copy step because it includes
+                // assets (css and images)
+                files: [
+                    {
+                        expand: true,
+                        cwd: 'bower_components/wingspan-forms/dist/',
+                        src: ['**'],
+                        dest: 'webapp/lib/wingspan-forms/',
+                        flatten: false
+                    }
+                ]
             }
         },
 
-        clean: ['bower_components', 'webapp/js-built', 'webapp/lib', 'webapp/styles/App.css', 'webapp/Page.js']
+        clean: ['bower_components', 'webapp/js-built', 'webapp/libs', 'webapp/styles/App.css', 'webapp/Page.js']
 
     });
 
@@ -139,6 +159,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
 
-    grunt.registerTask('default', ['bower:install', 'copy:lib', 'react', 'less', 'requirejs']);
-    grunt.registerTask('devel', ['bower:install', 'copy:lib', 'react', 'less']);
+    grunt.registerTask('default', ['bower:install', 'subgrunt', 'copy', 'react', 'less', 'requirejs']);
+    grunt.registerTask('devel', ['bower:install', 'subgrunt', 'copy', 'react', 'less']);
 };
