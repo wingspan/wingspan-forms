@@ -47,7 +47,8 @@ module.exports = function (grunt) {
                     paths: ['styles'],
                     ieCompat: true,
                     yuicompress: true,
-                    report: 'min'
+                    report: 'min',
+                    relativeUrls: true
                 },
                 files: {
                     'webapp/styles/App.css': 'webapp/styles/App.less'
@@ -118,12 +119,19 @@ module.exports = function (grunt) {
                             'bower_components/react/react-with-addons.js',
                             'bower_components/underscore.string/lib/underscore.string.js',
                             'bower_components/es5-shim/es5-shim.js',
-                            'bower_components/kendo-ui/src/js/kendo.web.js',
+                            //'bower_components/kendo-ui/src/js/kendo.web.js',
                             'bower_components/requirejs/require.js'
                         ],
                         dest: 'webapp/lib',
                         flatten: true,
                         filter: 'isFile'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'bower_components/kendo-ui/src/',
+                        src: ['styles/kendo.common.css', 'styles/kendo.default.css', 'styles/Default/**', 'styles/textures/**'],
+                        dest: 'webapp/lib/kendo-ui/',
+                        flatten: false
                     },
                     {
                         expand: true,
