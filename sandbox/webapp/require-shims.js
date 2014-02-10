@@ -8,7 +8,7 @@
             'underscore': '../lib/underscore',
             'underscore-string': '../lib/underscore.string',
             'jquery': '../lib/jquery',
-            'kendo': '../lib/kendo.web',
+            'kendo': '../lib/kendo-ui/js/kendo.web',
             'moment': '../lib/moment',
             'react': '../lib/react',
             'es5-shim': '../lib/es5-shim',

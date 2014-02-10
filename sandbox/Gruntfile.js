@@ -71,7 +71,7 @@ module.exports = function (grunt) {
                     'underscore': '../lib/underscore',
                     'underscore-string': '../lib/underscore.string',
                     'jquery': '../lib/jquery',
-                    'kendo': '../lib/kendo.web',
+                    'kendo': '../lib/kendo-ui/js/kendo.web',
                     'moment': '../lib/moment',
                     'react': '../lib/react',
                     'es5-shim': '../lib/es5-shim',
@@ -129,7 +129,8 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: 'bower_components/kendo-ui/src/',
-                        src: ['styles/kendo.common.css', 'styles/kendo.default.css', 'styles/Default/**', 'styles/textures/**'],
+                        // examples/sandbox/bower_components/kendo-ui/src/
+                        src: ['js/kendo.web.js', 'styles/kendo.common.css', 'styles/kendo.default.css', 'styles/Default/**', 'styles/textures/**'],
                         dest: 'webapp/lib/kendo-ui/',
                         flatten: false
                     },
