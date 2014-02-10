@@ -8,6 +8,7 @@
  * [basic form with validation](http://jsfiddle.net/dustingetz/84JuE/12/)
  * [dynamic form generated from JSON metadata](http://jsfiddle.net/dustingetz/gg4w5/2/)
  * [dynamic Master/Detail CRUD editor](http://wingspan.github.io/wingspan-forms/examples/form-master-detail/) ([source](https://github.com/wingspan/wingspan-forms/tree/master/examples/form-master-detail))
+ * [How to encapsulate state in nested components while keeping a single state value "at the top"](http://jsfiddle.net/danielmiladinov/rrgg8/2/)
 
 ## Disclaimer
 
