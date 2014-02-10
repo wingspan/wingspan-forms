@@ -119,8 +119,8 @@ module.exports = function (grunt) {
                             'bower_components/react/react-with-addons.js',
                             'bower_components/underscore.string/lib/underscore.string.js',
                             'bower_components/es5-shim/es5-shim.js',
-                            //'bower_components/kendo-ui/src/js/kendo.web.js',
-                            'bower_components/requirejs/require.js'
+                            'bower_components/requirejs/require.js',
+                            'bower_components/requirejs-text/text.js'
                         ],
                         dest: 'webapp/lib',
                         flatten: true,
