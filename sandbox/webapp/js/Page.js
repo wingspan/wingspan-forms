@@ -28,15 +28,6 @@ define([
 
         var content = (
             <div>
-                <div class="formTitle">Dialog Launch</div>
-
-                <div class="formButtons">
-                    <button class="primaryButton" onClick={$.noop}>Simple Dialog</button>
-                    <button class="primaryButton" onClick={$.noop}>Default Grid Dialog</button>
-                    <button class="primaryButton" onClick={$.noop}>Template Grid Dialog</button>
-                    <button class="primaryButton" onClick={$.noop}>Textarea Dialog</button>
-                </div>
-
 
                 <div class="formTitle">Default Text Input (all styling variation and tooltips are mocked here)</div>
 
