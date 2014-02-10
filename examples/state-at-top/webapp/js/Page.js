@@ -1,0 +1,62 @@
+/** @jsx React.DOM */
+define([
+    'underscore', 'react', 'jquery', 'wingspan-forms', 'Timer',
+    'underscore-string'
+], function (_, React, $, Forms, Timer) {
+    'use strict';
+
+
+    var FormField = Forms.FormField;
+    var KendoText = Forms.KendoText;
+    var MultilineText = Forms.MultilineText;
+    var MultiSelect = Forms.MultiSelect;
+    var KendoComboBox = Forms.KendoComboBox;
+    var KendoNumber = Forms.KendoNumber;
+    var KendoDate = Forms.KendoDate;
+    var KendoDatetime = Forms.KendoDatetime;
+    var CheckBox = Forms.CheckBox;
+    var Radio = Forms.Radio;
+    var RadioGroup = Forms.RadioGroup;
+    var SwitchBox = Forms.SwitchBox;
+    var Carousel = Forms.Carousel;
+    var KendoGrid = Forms.KendoGrid;
+
+
+    function entrypoint(rootElement) {
+
+        var TimerStateAtTopExample = React.createClass({
+            mixins: [Forms.TopStateMixin],
+
+            getInitialState: function () {
+                return {
+                    timer1: 13,
+                    timer2: 2,
+                    timer3: 145,
+                    timer4: 989,
+                    timer5: 3452
+                };
+            },
+
+            render: function () {
+                return (
+                    <div className="TimerStateAtTopExample">
+                        <Timer value={this.state.timer1} onChange={_.partial(this.onChange, 'timer1')} />
+                        <Timer value={this.state.timer2} onChange={_.partial(this.onChange, 'timer2')} />
+                        <Timer value={this.state.timer3} onChange={_.partial(this.onChange, 'timer3')} />
+                        <Timer value={this.state.timer4} onChange={_.partial(this.onChange, 'timer4')} />
+                        <Timer value={this.state.timer5} onChange={_.partial(this.onChange, 'timer5')} />
+                        <hr />
+                        <pre>{JSON.stringify(this.state, undefined, 2)}</pre>
+                    </div>
+
+                );
+            }
+        });
+
+        React.renderComponent(<TimerStateAtTopExample />, rootElement);
+    }
+
+    return {
+        entrypoint: entrypoint
+    };
+});
