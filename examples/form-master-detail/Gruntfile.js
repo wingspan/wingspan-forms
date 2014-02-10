@@ -108,31 +108,25 @@ module.exports = function (grunt) {
 
         copy: {
             'libs': {
+
                 files: [
                     {
                         expand: true,
                         src: [
-                            'bower_components/requirejs/require.js',
-                            'bower_components/underscore/underscore.js',
-                            'bower_components/underscore.string/lib/underscore.string.js',
                             'bower_components/jquery/jquery.js',
-                            'bower_components/kendo-ui/src/js/kendo.web.js',
                             'bower_components/momentjs/moment.js',
-                            'bower_components/react/react.js',
+                            'bower_components/underscore/underscore.js',
+                            'bower_components/react/react-with-addons.js',
+                            'bower_components/q/q.js',
+                            'bower_components/underscore.string/lib/underscore.string.js',
                             'bower_components/es5-shim/es5-shim.js',
-                            'bower_components/requirejs-text/text.js'
+                            'bower_components/backbone/backbone.js',
+                            'bower_components/requirejs/require.js'
                         ],
                         dest: 'webapp/lib',
                         flatten: true,
                         filter: 'isFile'
-                    }
-                ]
-            },
-
-            'wingspan-forms': {
-                // separate configuration for wingspan-forms copy step because it includes
-                // assets (css and images)
-                files: [
+                    },
                     {
                         expand: true,
                         cwd: 'bower_components/wingspan-forms/dist/',
