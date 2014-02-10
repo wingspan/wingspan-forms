@@ -44,9 +44,7 @@ module.exports = function (grunt) {
         less: {
             development: {
                 options: {
-                    paths: [
-                        'styles'
-                    ],
+                    paths: ['styles'],
                     ieCompat: true,
                     yuicompress: true,
                     report: 'min'

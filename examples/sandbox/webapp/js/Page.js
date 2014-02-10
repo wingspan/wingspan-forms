@@ -22,7 +22,7 @@ define([
     var KendoGrid = Forms.KendoGrid;
 
 
-    function entrypoint(componentRoot, sitemapData, idUri, locale) {
+    function entrypoint(rootEl) {
 
         var dataSource = [{ id: 10, name: 'Dustin'}, { id: 11, name: 'Jon'}, { id: 12, name: 'Paul'}];
 
@@ -675,9 +675,9 @@ define([
                 </FormField>
 
             </div>
-            );
+        );
 
-        React.renderComponent(content, $('[data-wspt="root"]')[0]);
+        React.renderComponent(content, rootEl);
     }
 
     return {
