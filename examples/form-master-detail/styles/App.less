@@ -1,0 +1,44 @@
+@import (less) "../../bower_components/kendo-ui/src/styles/kendo.common.css";
+@import (less) "../../bower_components/kendo-ui/src/styles/kendo.default.css";
+@import (less) "../../../../dist/wingspan-forms.css";
+
+body {
+  overflow: scroll
+}
+
+.App {
+  display:table;
+  padding: 10px;
+
+  > .MasterDetail {
+    display:table-cell;
+    width: 50%;
+    padding: 10px;
+  }
+  > pre {
+    display: table-cell;
+    vertical-align: top;
+    padding: 10px;
+  }
+
+  > button {
+    float: left;
+  }
+}
+
+.MasterDetail {
+  display: table;
+  padding: 10px;
+
+  > ol {
+    display: table-cell;
+    width: 20%;
+    padding: 10px;
+    vertical-align: top;
+  }
+
+  > .AutoForm {
+    display: table-cell;
+    padding: 10px;
+  }
+}
