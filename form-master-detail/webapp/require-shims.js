@@ -13,7 +13,7 @@
             'react': '../lib/react',
             'es5-shim': '../lib/es5-shim',
             'text': '../lib/text',
-            'wingspan-forms': '../lib/wingspan-forms',
+            'wingspan-forms': '../lib/wingspan-forms/wingspan-forms',
             'textassets': '../textassets' // all assets loaded via `text!` must be rooted here (to avoid JSX compilation)
         },
         shim: {
