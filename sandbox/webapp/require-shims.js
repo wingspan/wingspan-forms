@@ -10,7 +10,7 @@
             'jquery': '../lib/jquery',
             'kendo': '../lib/kendo-ui/js/kendo.web',
             'moment': '../lib/moment',
-            'react': '../lib/react',
+            'react': '../lib/react-with-addons',
             'es5-shim': '../lib/es5-shim',
             'text': '../lib/text',
             'wingspan-forms': '../lib/wingspan-forms/wingspan-forms'
