@@ -23,7 +23,6 @@
     "requirejs-text": "~2.0.10",
     "underscore.string": "~2.3.3",
     "kendo-ui": "~2013.3.1119",
-    "es5-shim": "~2.1",
-    "wingspan-forms": "e16e231841160ed2efdf8b512a4a78a98b7d04e3"
+    "es5-shim": "~2.1"
   }
 }
