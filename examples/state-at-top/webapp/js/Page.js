@@ -6,22 +6,6 @@ define([
     'use strict';
 
 
-    var FormField = Forms.FormField;
-    var KendoText = Forms.KendoText;
-    var MultilineText = Forms.MultilineText;
-    var MultiSelect = Forms.MultiSelect;
-    var KendoComboBox = Forms.KendoComboBox;
-    var KendoNumber = Forms.KendoNumber;
-    var KendoDate = Forms.KendoDate;
-    var KendoDatetime = Forms.KendoDatetime;
-    var CheckBox = Forms.CheckBox;
-    var Radio = Forms.Radio;
-    var RadioGroup = Forms.RadioGroup;
-    var SwitchBox = Forms.SwitchBox;
-    var Carousel = Forms.Carousel;
-    var KendoGrid = Forms.KendoGrid;
-
-
     function entrypoint(rootElement) {
 
         var TimerStateAtTopExample = React.createClass({
