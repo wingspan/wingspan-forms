@@ -26,7 +26,7 @@ define([
         },
 
         render: function() {
-            return (<div>{'Seconds Elapsed: ' + this.props.value}</div>);
+            return (<div>{this.props.value}</div>);
         }
     });
 

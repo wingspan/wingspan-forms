@@ -8,32 +8,30 @@ define([
 
     function entrypoint(rootElement) {
 
-        var TimerStateAtTopExample = React.createClass({
+        var App = React.createClass({
             mixins: [Forms.TopStateMixin],
 
             getInitialState: function () {
                 return {
-                    timer1: 13,
-                    timer2: 2,
-                    timer3: 145,
-                    timer4: 989,
-                    timer5: 3452,
-                    fooForm: {
-                        timer: 0
+                    foo: {
+                        timer: 0,
+                        bar: {
+                            timer: 1,
+                            baz: {
+                                timer: 2
+                            }
+                        }
                     }
                 };
             },
 
             render: function () {
                 return (
-                    <div className="TimerStateAtTopExample">
-                        <Timer value={this.state.timer1} onChange={_.partial(this.onChange, 'timer1')} />
-                        <Timer value={this.state.timer2} onChange={_.partial(this.onChange, 'timer2')} />
-                        <Timer value={this.state.timer3} onChange={_.partial(this.onChange, 'timer3')} />
-                        <Timer value={this.state.timer4} onChange={_.partial(this.onChange, 'timer4')} />
-                        <Timer value={this.state.timer5} onChange={_.partial(this.onChange, 'timer5')} />
-                        <FooForm value={this.state.fooForm} onChange={_.partial(this.onChange, 'fooForm')} />
-                        <hr />
+                    <div className="App">
+                        <div>
+                            <Foo value={this.state.foo} onChange={_.partial(this.onChange, 'foo')} />
+                            <p>Sum of timers: {this.state.foo.timer + this.state.foo.bar.timer + this.state.foo.bar.baz.timer}</p>
+                        </div>
                         <pre>{JSON.stringify(this.state, undefined, 2)}</pre>
                     </div>
 
@@ -42,24 +40,39 @@ define([
         });
 
 
-        var FooForm = React.createClass({
-            getDefaultProps: function () {
-                return {
-                    value: undefined,
-                    onChange: undefined
-                };
-            },
-
+        var Foo = React.createClass({
             render: function () {
                 return (
-                    <div className="FooForm">
+                    <div className="Foo">
+                        <Timer value={this.props.value.timer} onChange={_.partial(this.props.onChange, 'timer')}/>
+                        <Bar value={this.props.value.bar} onChange={_.partial(this.props.onChange, 'bar')} />
+                    </div>
+                );
+            }
+        });
+
+        var Bar = React.createClass({
+            render: function () {
+                return (
+                    <div className="Bar">
+                        <Timer value={this.props.value.timer} onChange={_.partial(this.props.onChange, 'timer')}/>
+                        <Baz value={this.props.value.baz} onChange={_.partial(this.props.onChange, 'baz')} />
+                    </div>
+                );
+            }
+        });
+
+        var Baz = React.createClass({
+            render: function () {
+                return (
+                    <div className="Baz">
                         <Timer value={this.props.value.timer} onChange={_.partial(this.props.onChange, 'timer')}/>
                     </div>
                 );
             }
         });
 
-        React.renderComponent(<TimerStateAtTopExample />, rootElement);
+        React.renderComponent(<App />, rootElement);
     }
 
     return {
