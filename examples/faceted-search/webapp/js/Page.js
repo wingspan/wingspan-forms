@@ -18,7 +18,7 @@ define([
 
             getInitialState: function () {
                 return {
-                    filters: [] // { display: 'Name', value: 'name' }
+                    filters: [] // { filterField: 'name', filterValue: 'Dustin' }
                 };
             },
 
@@ -34,11 +34,35 @@ define([
             },
 
             render: function () {
+
+                var facets = _.chain(ContactModel.properties)
+                    .map(function (fieldInfo, fieldName) {
+                        return [fieldName, _.groupBy(contacts, fieldName)]
+                    }).object().value();
+
+                var facetControls = _.map(facets, function (facetVals, filterField) {
+                    var checkboxes = _.map(facetVals, function (facetVal, facetName) {
+                        return (
+                            <span key={facetName}>
+                                <CheckBox label={facetName} id={facetName} value={false}
+                                    onChange={_.partial(this.onFacetToggle)}/>
+                                <span className="count">{facetVal.length}</span>
+                            </span>
+                        );
+                    });
+                    return (
+                        <div>
+                            <span>{filterField}</span>
+                            {checkboxes}
+                        </div>
+                    );
+                });
+
                 return (
                     <div className="App">
                         <KendoGrid dataSource={this.dataSource} columns={this.columns} />
                         <div className="facets">
-
+                            {facetControls}
                         </div>
                     </div>
                 );
