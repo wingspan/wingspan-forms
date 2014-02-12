@@ -8,7 +8,9 @@ define([
         getDefaultProps: function () {
             return {
                 className: '',
-                height: 150
+                height: 150, // TODO remove this
+                dataSource: undefined,
+                columns: undefined
             };
         },
 
