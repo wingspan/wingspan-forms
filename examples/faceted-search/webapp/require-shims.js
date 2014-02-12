@@ -13,7 +13,8 @@
             'react': '../lib/react-with-addons',
             'es5-shim': '../lib/es5-shim',
             'text': '../lib/text',
-            'wingspan-forms': '../lib/wingspan-forms/wingspan-forms'
+            'wingspan-forms': '../lib/wingspan-forms/wingspan-forms',
+            'textassets': '../textassets/'
         },
         shim: {
             'underscore': { deps: [], exports: '_' },
