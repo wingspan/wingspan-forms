@@ -29,44 +29,25 @@ define([
 
             getInitialState: function () {
                 return {
-                    dataSource: [{name: 'Danny', value: 'danny', visible: true}, {name: 'Mark', value: 'mark', visible: false},{name: 'Bob', value: 'bob', visible: true},{name: 'JY', value: 'jy', visible: true},    {name: 'Jason', value: 'jason', visible: true} ],
-                    selection: ''
+                    data: [{name: 'Danny', value: 'danny'}, {name: 'Mark', value: 'mark'},{name: 'Bob', value: 'bob'},{name: 'JY', value: 'jy'}, {name: 'Jason', value: 'jason'} ]
                 };
             },
 
             componentWillMount: function () {
-                this.dataSource = new kendo.data.DataSource({ data: this.filteredDataSource() });
+                this.columns = [{ title: 'name', template: '#: name #' }];
+                //var data = _.filter(this.state.data, function (record) { return record.visible; });
+                this.dataSource = new kendo.data.DataSource({ data: [] });
             },
 
             componentDidUpdate: function () {
-                this.dataSource.data(this.filteredDataSource());
-            },
-
-            filteredDataSource: function () {
-                return _.filter(this.state.dataSource, function (record) { return record.visible; });
+                //var data = _.filter(this.state.data, function (record) { return record.visible; });
+                this.dataSource.data([]);
             },
 
             render: function () {
-                var self = this;
-
-                var checkboxes = _.map(this.state.dataSource, function (record, index) {
-                    return (<CheckBox key={record.value} id={record.value} label={record.name} value={record.visible} onChange={_.partial(self.onChange, 'dataSource', index, 'visible')} />);
-                });
-
-
                 return (
                     <div className="App">
-                        <FormField>
-                            <KendoComboBox
-                                value={this.state.selection}
-                                dataSource={this.dataSource}
-                                onChange={_.partial(this.onChange, 'selection')}
-                                displayField="name"
-                                valueField="value" />
-                        </FormField>
-                        <FormField fieldInfo={_.object([['label', 'People']])} isValid={[true, '']} layout="formField">
-                            {checkboxes}
-                        </FormField>
+                        <KendoGrid dataSource={this.dataSource} columns={this.columns} />
                     </div>
                 );
             }
