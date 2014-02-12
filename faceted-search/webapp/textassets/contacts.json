@@ -7,6 +7,15 @@
         "contactGroup": "friend",
         "id": "90ce52a4-7e69-11e3-b4b1-bec9a24410d2",
         "revision": 1
+    },
+    {
+        "firstName": "Dustin",
+        "lastName": "Whatever",
+        "phoneNumber": "415-555-1212",
+        "email": "dustin.getz@gmail.com",
+        "contactGroup": "friend",
+        "id": "90ce52a4-7e69-11e3-b4b1-bec9a24410d3",
+        "revision": 1
     }, {
         "firstName": "Alice",
         "lastName": "Armstrong",
