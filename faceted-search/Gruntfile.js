@@ -157,6 +157,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
 
-    grunt.registerTask('default', ['bower:install', 'subgrunt', 'copy', 'react', 'less', 'requirejs']);
-    grunt.registerTask('devel', ['bower:install', 'subgrunt', 'copy', 'react', 'less']);
+    grunt.registerTask('default', ['bower:install', 'subgrunt', 'copy', 'react', 'less']);
 };
