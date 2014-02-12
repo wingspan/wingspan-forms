@@ -31,7 +31,7 @@ define([
             }
 
             return (
-                <span tabIndex="0">
+                <span className="CheckBox" tabIndex="0">
                     <input type="checkbox" id={elemId}
                         checked={this.props.value} data-checked={this.props.value ? '' : null}
                         onChange={this.onChange}
