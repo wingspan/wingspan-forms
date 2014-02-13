@@ -71,15 +71,30 @@ define([
                 );
             }.bind(this));
 
+            var filterControls = _.map(this.state.filters, function (filters, facet) {
+                return _.map(filters, function (filter) {
+                    var key = _.str.sprintf('%s-%s', facet, filter);
+                    return (<span>{filter}</span>);
+                });
+            });
+
+            filterControls = _.flatten(filterControls);
+            filterControls = (filterControls.length > 0
+                ? (<span className="filters">{_.flatten(filterControls)}</span>)
+                : (<span className="hint">Use filters on the left to narrow results.</span>));
+
             return (
                 <div className="App">
                     <div className="table">
-                        <div className="facets">
+                        <div className="left">
                             <div>{facetControls}</div>
                         </div>
-                        <div className="grid">
-                            <KendoGrid className="KendoGrid" dataSource={this.dataSource}
-                                columns={this.columns} height="400" />
+                        <div className="right">
+                            <div>
+                                <div className="filterControls">{filterControls}</div>
+                                <KendoGrid className="KendoGrid" dataSource={this.dataSource}
+                                    columns={this.columns} height="400" />
+                            </div>
                         </div>
                     </div>
                     <pre>{JSON.stringify(this.state, undefined, 2)}</pre>
