@@ -25,7 +25,8 @@
                 "dataType": "text",
                 "placeholder": "XXX-XXX-XXXX",
                 "helpText": "Contact's phone number",
-                "required": true
+                "required": true,
+                "hidden": true
             },
             "email": {
                 "name": "email",
@@ -33,7 +34,8 @@
                 "dataType": "text",
                 "placeholder": "your.name@example.com",
                 "helpText": "Contact's email address",
-                "required": true
+                "required": true,
+                "hidden": true
             },
             "contactGroup": {
                 "name" : "contactGroup",

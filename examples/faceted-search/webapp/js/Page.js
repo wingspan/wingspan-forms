@@ -25,7 +25,13 @@ define([
         },
 
         componentWillMount: function () {
-            this.columns = [{ template: '#: lastName #' }, { template: '#: firstName #' }, { template: '#: phoneNumber #' }, { template: '#: contactGroup #' }, { template: '#: email #' }];
+            this.columns = [
+                { template: '#: firstName #' },
+                { template: '#: lastName #' },
+                { template: '#: contactGroup #' },
+                //{ template: '#: phoneNumber #' },
+                { template: '#: email #' }
+            ];
             this.dataSource = new FacetDataStore({ transport: new MockDatabaseTransport() });
             this.dataSource.read().then(this.updateFacets).done();
         },
