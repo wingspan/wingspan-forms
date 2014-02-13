@@ -86,14 +86,23 @@ define([
             return (
                 <div className="App">
                     <div className="table">
-                        <div className="left">
-                            <div>{facetControls}</div>
+                        <div className="row">
+                            <div className="left"></div>
+                            <div className="right">
+                                <div>
+                                    <div className="filterControls">{filterControls}</div>
+                                </div>
+                            </div>
                         </div>
-                        <div className="right">
-                            <div>
-                                <div className="filterControls">{filterControls}</div>
-                                <KendoGrid className="KendoGrid" dataSource={this.dataSource}
+                        <div className="row">
+                            <div className="left">
+                                <div>{facetControls}</div>
+                            </div>
+                            <div className="right">
+                                <div>
+                                    <KendoGrid className="KendoGrid" dataSource={this.dataSource}
                                     columns={this.columns} height="400" />
+                                </div>
                             </div>
                         </div>
                     </div>
