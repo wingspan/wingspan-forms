@@ -64,13 +64,11 @@ define([
                     <div className="App">
                         <div>
                             <div className="facets">
-                                {facetControls}
+                                <div>{facetControls}</div>
                             </div>
-                            <KendoGrid className="KendoGrid" dataSource={this.dataSource} columns={this.columns} />
+                            <KendoGrid className="KendoGrid" dataSource={this.dataSource} columns={this.columns} height="600"/>
                         </div>
-                        <div>
-                            <pre>{JSON.stringify(this.state, undefined, 2)}</pre>
-                        </div>
+                        <pre>{JSON.stringify(this.state, undefined, 2)}</pre>
                     </div>
                 );
             }
