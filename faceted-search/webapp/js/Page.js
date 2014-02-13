@@ -77,7 +77,10 @@ define([
                         <div className="facets">
                             <div>{facetControls}</div>
                         </div>
-                        <KendoGrid className="KendoGrid" dataSource={this.dataSource} columns={this.columns} height="600"/>
+                        <div>
+                            <KendoGrid className="KendoGrid" dataSource={this.dataSource}
+                                columns={this.columns} height="400" />
+                        </div>
                     </div>
                     <pre>{JSON.stringify(this.state, undefined, 2)}</pre>
                 </div>
