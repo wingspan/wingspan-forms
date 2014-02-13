@@ -2,27 +2,61 @@
 @import (less) "../lib/kendo-ui/styles/kendo.default.css";
 @import (less) "../lib/wingspan-forms/wingspan-forms.css";
 
-body.sandbox {
-  background: #fff;
-  padding: 0 10px;
+body {
   overflow: auto;
 }
 
 .App {
   display: table;
   padding: 10px;
-  > .facets {
-    display: table-cell;
-    width: 30%;
-    padding: 10px;
+
+  > div:nth-child(1) {
+    display: table-row;
+
+    > .facets {
+      display: table-cell;
+      width: 30%;
+      padding: 10px;
+    }
+
+    > .KendoGrid {
+      display: table-cell;
+      width: 70%;
+      padding: 10px;
+    }
   }
-  > .KendoGrid {
-    display: table-cell;
-    width: 30%;
-    padding: 10px;
+
+  > div:nth-child(2) {
+    display: table-row;
+
+    > pre {
+      display: table-cell;
+      padding: 10px;
+    }
   }
-  > pre {
-    display: table-cell;
-    padding: 10px;
+
+  .facets {
+    font-size: 14px;
+
+    .formLabel {
+      font-weight: bold;
+    }
+
+    .formElement label {
+      line-height: 25px;
+    }
+
+    .facetFilterControl {
+      //padding: 0 0 0 22px;
+    }
+
+    .CheckBox {
+      padding-right: 5px;
+    }
+
+    .count {
+      color: #999;
+    }
   }
 }
+

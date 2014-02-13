@@ -46,28 +46,31 @@ define([
                 var facetControls = _.map(facets, function (facetVals, filterField) {
                     var checkboxes = _.map(facetVals, function (facetVal, facetName) {
                         return (
-                            <span key={facetName}>
+                            <div className="facetFilterControl" key={facetName}>
                                 <CheckBox label={facetName} id={facetName} value={this.state.filters[filterField][facetName]}
-                                    onChange={_.partial(this.onChange, 'filters', filterField, facetName)}/>
+                                        onChange={_.partial(this.onChange, 'filters', filterField, facetName)}/>
                                 <span className="count">{facetVal.length}</span>
-                            </span>
+                            </div>
                         );
                     }.bind(this));
                     return (
-                        <div>
-                            <span>{filterField}</span>
+                        <FormField fieldInfo={_.object([['label', ContactModel.properties[filterField].label]])}>
                             {checkboxes}
-                        </div>
+                        </FormField>
                     );
                 }.bind(this));
 
                 return (
                     <div className="App">
-                        <div className="facets">
-                            {facetControls}
+                        <div>
+                            <div className="facets">
+                                {facetControls}
+                            </div>
+                            <KendoGrid className="KendoGrid" dataSource={this.dataSource} columns={this.columns} />
                         </div>
-                        <KendoGrid className="KendoGrid" dataSource={this.dataSource} columns={this.columns} />
-                        <pre>{JSON.stringify(this.state, undefined, 2)}</pre>
+                        <div>
+                            <pre>{JSON.stringify(this.state, undefined, 2)}</pre>
+                        </div>
                     </div>
                 );
             }
