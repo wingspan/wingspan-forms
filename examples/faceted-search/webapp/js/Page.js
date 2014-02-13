@@ -27,13 +27,17 @@ define([
 
             componentWillMount: function () {
                 this.columns = [{ template: '#: lastName #' }, { template: '#: firstName #' }, { template: '#: phoneNumber #' }, { template: '#: contactGroup #' }, { template: '#: email #' }];
-                //var data = _.filter(this.state.data, function (record) { return record.visible; });
                 this.dataSource = new kendo.data.DataSource({ data: contacts });
             },
 
             componentDidUpdate: function () {
-                //var data = _.filter(this.state.data, function (record) { return record.visible; });
-                //this.dataSource.data(this.state.data);
+                var filters = _.map(this.state.filters, function (fieldValues, fieldName) {
+                    var activeFieldValues = filterMap(fieldValues, function (pair) { return !!pair[1]; });
+                    return _.map(_.keys(activeFieldValues), function (fieldValue) {
+                        return { field: fieldName, operator: "eq", value: fieldValue };
+                    });
+                });
+                this.dataSource.filter({ logic: 'or', filters: _.flatten(filters) });
             },
 
             render: function () {
