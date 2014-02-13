@@ -1,6 +1,7 @@
 define([
-    'underscore', 'kendo', 'q'
-], function (_, kendo, Q) {
+    'underscore', 'kendo', 'q',
+    'Database'
+], function (_, kendo, Q, Database) {
     'use strict';
 
     var SuperClass = kendo.data.DataSource.fn;
@@ -20,11 +21,18 @@ define([
                     return response.results;
                 }.bind(this)
             };
+
+            options.transport = {
+                read: function (request) {
+                    Database.queryFacets(this.filters).then(request.success).done();
+                }.bind(this)
+            };
             SuperClass.init.call(this, options);
         },
 
-        read: function (params) {
-            SuperClass.read.call(this, params);
+        read: function (filters) {
+            this.filters = filters;
+            SuperClass.read.call(this, undefined);
             return promiseForRead(this);
         }
     });

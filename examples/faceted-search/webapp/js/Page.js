@@ -16,10 +16,7 @@ define([
 
         getInitialState: function () {
             return {
-                filters: _(ContactModel.properties).chain()
-                    .map(function (fieldInfo, fieldName) { return [fieldName, {}]; })
-                    .object()
-                    .value(),
+                filters: _.object(_.map(_.keys(ContactModel.properties), function (field) { return [field, []]; })),
                 facets: {}
             };
         },
@@ -33,18 +30,24 @@ define([
                 { title: ContactModel.properties['email'].label, template: '#: email #' }
             ];
             this.dataSource = new FacetDataStore({ transport: new MockDatabaseTransport() });
-            this.dataSource.read().then(this.updateFacets).done();
+            this.dataSource.read(this.state.filters).then(this.updateFacets).done();
         },
 
         componentWillUpdate: function (nextProps, nextState) {
             // if our filter state changed, we need to query for the facets
             if (!_.isEqual(this.state.filters, nextState.filters)) {
-                this.dataSource.read().then(this.updateFacets).done();
+                this.dataSource.read(this.state.filters).then(this.updateFacets).done();
             }
         },
 
         updateFacets: function () {
             this.setState({ facets: this.dataSource.facets });
+        },
+
+        onFilterToggle: function (facet/*contactGroup*/, value/*work*/, isActive/*true*/) {
+            var currentFiltersForField = this.state.filters[facet];
+            var nextFiltersForField = (isActive ? _.union :_.difference)(currentFiltersForField, [value]);
+            this.onChange('filters', facet, nextFiltersForField);
         },
 
         render: function () {
@@ -54,7 +57,7 @@ define([
                     return (
                         <div className="facetFilterControl" key={val}>
                             <CheckBox label={val} id={val} value={this.state.filters[filterField][val]}
-                                onChange={_.partial(this.onChange, 'filters', filterField, val)}/>
+                                onChange={_.partial(this.onFilterToggle, filterField, val)}/>
                             <span className="count">{count}</span>
                         </div>
                     );
