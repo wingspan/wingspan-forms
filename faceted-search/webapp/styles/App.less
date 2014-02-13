@@ -7,16 +7,19 @@ body {
 }
 
 .App {
-  display: table;
   padding: 10px;
 
   > div:nth-child(1) {
-    display: table-row;
+    display: table;
 
     > .facets {
       display: table-cell;
       width: 30%;
       padding: 10px;
+      > div {
+        height: 600px;
+        overflow-y: auto;
+      }
     }
 
     > .KendoGrid {
@@ -28,8 +31,6 @@ body {
   }
 
   > div:nth-child(2) {
-    display: table-row;
-
     > pre {
       display: table-cell;
       padding: 10px;
@@ -38,6 +39,7 @@ body {
 
   .facets {
     font-size: 14px;
+
 
     .formLabel {
       font-weight: bold;
