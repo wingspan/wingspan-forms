@@ -8,13 +8,14 @@
             'underscore': '../lib/underscore',
             'underscore-string': '../lib/underscore.string',
             'jquery': '../lib/jquery',
-            'kendo': '../lib/kendo.web',
+            'kendo': '../lib/kendo-ui/js/kendo.web',
             'moment': '../lib/moment',
-            'react': '../lib/react',
+            'react': '../lib/react-with-addons',
             'es5-shim': '../lib/es5-shim',
             'text': '../lib/text',
+            'q': '../lib/q',
             'wingspan-forms': '../lib/wingspan-forms/wingspan-forms',
-            'textassets': '../textassets' // all assets loaded via `text!` must be rooted here (to avoid JSX compilation)
+            'textassets': '../textassets/'
         },
         shim: {
             'underscore': { deps: [], exports: '_' },
