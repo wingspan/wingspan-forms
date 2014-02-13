@@ -89,7 +89,7 @@ define([
 
             filterControls = _.flatten(filterControls);
             filterControls = (filterControls.length > 0
-                ? (<span className="filters">{_.flatten(filterControls)}</span>)
+                ? (<span className="filters"><span className="trash" onClick={this.onClearFilters}/>{_.flatten(filterControls)}</span>)
                 : (<span className="hint">Use filters on the left to narrow results.</span>));
 
             return (
@@ -100,7 +100,6 @@ define([
                             <div className="right">
                                 <div>
                                     <div className="filterControls">
-                                        <span className="trash" onClick={this.onClearFilters}/>
                                         {filterControls}
                                     </div>
                                 </div>
