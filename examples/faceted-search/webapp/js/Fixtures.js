@@ -5,9 +5,9 @@ define([
 
 
     function generateDatabase() {
-        var N = 50;
-        var firstNameChoices = ['Alice', 'Bob', 'Charlie', 'Danny', 'Ernie', 'Frank', 'Graham', 'Holly', 'Indigo', 'James']
-        var lastNameChoices = ['Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel', 'India', 'Juliet', 'Kilo', 'Lima', 'Mike', 'Novemeber', 'Oscar', 'Papa', 'Quebec', 'Romeo', 'Sierra', 'Tango', 'Uniform', 'Victor', 'Whiskey', 'X-Ray', 'Yankee', 'Zulu']
+        var N = 25;
+        var firstNameChoices = ['Alice', 'Bob', 'Charlie', 'Danny', 'Ernie'];//, 'Frank', 'Graham', 'Holly', 'Indigo', 'James']
+        var lastNameChoices = ['Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf'];//, 'Hotel', 'India', 'Juliet', 'Kilo', 'Lima', 'Mike', 'Novemeber', 'Oscar', 'Papa', 'Quebec', 'Romeo', 'Sierra', 'Tango', 'Uniform', 'Victor', 'Whiskey', 'X-Ray', 'Yankee', 'Zulu']
         var database = _.chain(_.range(1, N)).map(function () {
             var firstName = firstNameChoices[_.random(0, firstNameChoices.length-1)];
             var lastName = lastNameChoices[_.random(0, lastNameChoices.length-1)];
