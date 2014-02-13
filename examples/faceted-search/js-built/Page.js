@@ -2,10 +2,9 @@
 define([
     'underscore', 'react', 'jquery', 'kendo', 'wingspan-forms',
     'FacetDataStore',
-    'MockDatabaseTransport',
     'text!textassets/types/Contact.json',
     'underscore-string'
-], function (_, React, $, kendo, Forms, FacetDataStore, MockDatabaseTransport, ContactModel) {
+], function (_, React, $, kendo, Forms, FacetDataStore, ContactModel) {
     'use strict';
 
     var ContactModel = JSON.parse(ContactModel).data;
@@ -30,7 +29,7 @@ define([
                 //{ template: '#: phoneNumber #' },
                 { title: ContactModel.properties['email'].label, template: '#: email #' }
             ];
-            this.dataSource = new FacetDataStore({ transport: new MockDatabaseTransport() });
+            this.dataSource = new FacetDataStore();
             this.dataSource._facetFilters = this.state.filters;
             this.dataSource.read().then(this.updateFacets).done();
         },
@@ -65,9 +64,10 @@ define([
 
             var facetControls = _.map(this.state.facets, function (countsByVal/*work:6*/, facet/*contactGroup*/) {
                 var checkboxes = _.map(countsByVal, function (count, val) {
+                    var controlId = _.str.sprintf('%s-%s', facet, val);
                     return (
-                        React.DOM.div( {className:"facetFilterControl", key:_.str.sprintf('%s-%s', facet, val)}, 
-                            CheckBox( {label:val, id:val, value:_.contains(this.state.filters[facet], val),
+                        React.DOM.div( {className:"facetFilterControl", key:controlId}, 
+                            CheckBox( {label:val, id:controlId, value:_.contains(this.state.filters[facet], val),
                                 onChange:_.partial(this.onFilterToggle, facet, val)}),
                             React.DOM.span( {className:"count"}, count)
                         )

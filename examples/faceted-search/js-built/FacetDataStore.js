@@ -15,6 +15,8 @@ define([
         },
 
         init: function(options) {
+            options = options || {};
+
             options.schema = {
                 data: function (response) {
                     this.facets = response.facets;
