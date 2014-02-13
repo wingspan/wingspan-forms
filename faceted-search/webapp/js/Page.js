@@ -15,8 +15,9 @@ define([
         mixins: [Forms.TopStateMixin],
 
         getInitialState: function () {
+            this.emptyFilters = _.object(_.map(_.keys(ContactModel.properties), function (field) { return [field, []]; }));
             return {
-                filters: _.object(_.map(_.keys(ContactModel.properties), function (field) { return [field, []]; })),
+                filters: this.emptyFilters,
                 facets: {}
             };
         },
@@ -52,6 +53,10 @@ define([
             this.onChange('filters', facet, nextFiltersForField);
         },
 
+        onClearFilters: function () {
+            this.onChange('filters', this.emptyFilters);
+        },
+
         render: function () {
 
             var facetControls = _.map(this.state.facets, function (countsByVal/*work:6*/, facet/*contactGroup*/) {
@@ -74,7 +79,7 @@ define([
             var filterControls = _.map(this.state.filters, function (filters, facet) {
                 return _.map(filters, function (filter) {
                     var key = _.str.sprintf('%s-%s', facet, filter);
-                    return (<span>{filter}</span>);
+                    return (<span className="filter">{filter}<i className="closer"/></span>);
                 });
             });
 
@@ -90,7 +95,10 @@ define([
                             <div className="left"></div>
                             <div className="right">
                                 <div>
-                                    <div className="filterControls">{filterControls}</div>
+                                    <div className="filterControls">
+                                        <span className="trash" onClick={this.onClearFilters}/>
+                                        {filterControls}
+                                    </div>
                                 </div>
                             </div>
                         </div>
