@@ -57,6 +57,10 @@ define([
             this.onChange('filters', this.emptyFilters);
         },
 
+        onClearFilter: function (facet, filter) {
+            this.onChange('filters', facet, _.difference(this.state.filters[facet], [filter]));
+        },
+
         render: function () {
 
             var facetControls = _.map(this.state.facets, function (countsByVal/*work:6*/, facet/*contactGroup*/) {
@@ -79,9 +83,9 @@ define([
             var filterControls = _.map(this.state.filters, function (filters, facet) {
                 return _.map(filters, function (filter) {
                     var key = _.str.sprintf('%s-%s', facet, filter);
-                    return (<span className="filter">{filter}<i className="closer"/></span>);
-                });
-            });
+                    return (<span className="filter">{filter}<i className="closer" onClick={_.partial(this.onClearFilter, facet, filter)} /></span>);
+                }.bind(this));
+            }.bind(this));
 
             filterControls = _.flatten(filterControls);
             filterControls = (filterControls.length > 0
