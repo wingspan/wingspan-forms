@@ -38,7 +38,7 @@ define([
 
             render: function () {
 
-                var facets = _.chain(ContactModel.properties)
+                var facets = _.chain(filterMap(ContactModel.properties, function (pair) { return !pair[1].hidden; }))
                     .map(function (fieldInfo, fieldName) {
                         return [fieldName, _.groupBy(contacts, fieldName)]
                     }).object().value();
@@ -78,6 +78,10 @@ define([
 
         React.renderComponent(<App />, rootElement);
     }
+
+    function filterMap (record, predicate) {
+        return _.object(_.filter(_.pairs(record), predicate));
+    };
 
 
     var FormField = Forms.FormField;

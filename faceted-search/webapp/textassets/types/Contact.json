@@ -68,7 +68,8 @@
                 "helpText": "Unique ID of this object instance",
                 "readOnly": true,
                 "required": true,
-                "maxLength": 24
+                "maxLength": 24,
+                "hidden": true
             },
             "revision": {
                 "name": "revision",
@@ -78,7 +79,8 @@
                 "helpText": "Internal revision number",
                 "readOnly": true,
                 "required": true,
-                "stepValue": 1.0
+                "stepValue": 1.0,
+                "hidden": true
             }
         }
     }
