@@ -38,14 +38,31 @@ body {
     background: #f8f8f8;
     padding: 9px 10px;
     margin-top: 15px;
-    position: relative;
     border-radius: 6px;
+
+    .trash {
+      display: inline-block;
+      width: 24px;
+      height: 16px;
+      background: url(assets/trash.png) no-repeat left center;
+      cursor: pointer;
+    }
 
     .filters {
       color: #2c5985;
       text-transform: uppercase;
-      > span {
-        padding-right: 5px;
+      .filter {
+        margin-right: 5px;
+      }
+      i.closer {
+        display: inline-block;
+        width: 16px;
+        height: 17px;
+        background: url(assets/tag-closer.png);
+        cursor: pointer;
+      }
+      i.closer:hover {
+        background: url(assets/tag-closer-over.png);
       }
     }
 
