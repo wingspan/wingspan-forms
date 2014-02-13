@@ -43,6 +43,4 @@ The build uses NPM and grunt which must already installed.
     bower install
     grunt react less
 
-## License
 
-MIT.
