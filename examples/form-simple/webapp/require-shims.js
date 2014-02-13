@@ -5,15 +5,17 @@
     require.config({
         baseUrl: 'js-built',
         paths: {
-            underscore: '../bower_components/underscore/underscore',
-            'underscore-string': '../bower_components/underscore.string/lib/underscore.string',
-            jquery: '../bower_components/jquery/jquery',
-            kendo: '../bower_components/kendo-ui/src/js/kendo.web',
-            moment: '../bower_components/momentjs/moment',
-            react: '../bower_components/react/react',
-            'es5-shim': '../bower_components/es5-shim/es5-shim',
-            'text': '../bower_components/requirejs-text/text',
-            'wingspan-forms': '../../../dist/wingspan-forms'
+            'underscore': '../lib/underscore',
+            'underscore-string': '../lib/underscore.string',
+            'jquery': '../lib/jquery',
+            'kendo': '../lib/kendo-ui/js/kendo.web',
+            'moment': '../lib/moment',
+            'react': '../lib/react-with-addons',
+            'es5-shim': '../lib/es5-shim',
+            'text': '../lib/text',
+            'q': '../lib/q',
+            'wingspan-forms': '../lib/wingspan-forms/wingspan-forms',
+            'textassets': '../textassets/'
         },
         shim: {
             'underscore': { deps: [], exports: '_' },
