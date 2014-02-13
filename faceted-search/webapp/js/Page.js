@@ -52,18 +52,18 @@ define([
 
         render: function () {
 
-            var facetControls = _.map(this.state.facets, function (countsByVal, filterField) {
+            var facetControls = _.map(this.state.facets, function (countsByVal/*work:6*/, facet/*contactGroup*/) {
                 var checkboxes = _.map(countsByVal, function (count, val) {
                     return (
-                        <div className="facetFilterControl" key={val}>
-                            <CheckBox label={val} id={val} value={this.state.filters[filterField][val]}
-                                onChange={_.partial(this.onFilterToggle, filterField, val)}/>
+                        <div className="facetFilterControl" key={_.str.sprintf('%s-%s', facet, val)}>
+                            <CheckBox label={val} id={val} value={_.contains(this.state.filters[facet], val)}
+                                onChange={_.partial(this.onFilterToggle, facet, val)}/>
                             <span className="count">{count}</span>
                         </div>
                     );
                 }.bind(this));
                 return (
-                    <FormField key={filterField} fieldInfo={_.object([['label', ContactModel.properties[filterField].label]])}>
+                    <FormField key={facet} fieldInfo={_.object([['label', ContactModel.properties[facet].label]])}>
                         {checkboxes}
                     </FormField>
                 );
