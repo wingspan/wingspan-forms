@@ -26,11 +26,11 @@ define([
 
         componentWillMount: function () {
             this.columns = [
-                { template: '#: firstName #' },
-                { template: '#: lastName #' },
-                { template: '#: contactGroup #' },
+                { title: ContactModel.properties['firstName'].label, width: '20%', template: '#: firstName #' },
+                { title: ContactModel.properties['lastName'].label, width: '20%', template: '#: lastName #' },
+                { title: ContactModel.properties['contactGroup'].label, width: '15%', template: '#: contactGroup #' },
                 //{ template: '#: phoneNumber #' },
-                { template: '#: email #' }
+                { title: ContactModel.properties['email'].label, template: '#: email #' }
             ];
             this.dataSource = new FacetDataStore({ transport: new MockDatabaseTransport() });
             this.dataSource.read().then(this.updateFacets).done();
