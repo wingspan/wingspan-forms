@@ -49,13 +49,13 @@ define([
 
         render: function () {
 
-            var facetControls = _.map(this.state.facets, function (facetVals, filterField) {
-                var checkboxes = _.map(facetVals, function (facetVal, facetName) {
+            var facetControls = _.map(this.state.facets, function (countsByVal, filterField) {
+                var checkboxes = _.map(countsByVal, function (count, val) {
                     return (
-                        <div className="facetFilterControl" key={facetName}>
-                            <CheckBox label={facetName} id={facetName} value={this.state.filters[filterField][facetName]}
-                                onChange={_.partial(this.onChange, 'filters', filterField, facetName)}/>
-                            <span className="count">{facetVal.length}</span>
+                        <div className="facetFilterControl" key={val}>
+                            <CheckBox label={val} id={val} value={this.state.filters[filterField][val]}
+                                onChange={_.partial(this.onChange, 'filters', filterField, val)}/>
+                            <span className="count">{count}</span>
                         </div>
                     );
                 }.bind(this));
