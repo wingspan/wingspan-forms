@@ -72,7 +72,7 @@ module.exports = function (grunt) {
                     'jquery': '../lib/jquery',
                     'kendo': '../lib/kendo.web',
                     'moment': '../lib/moment',
-                    'react': '../lib/react',
+                    'react': '../lib/react-with-addons',
                     'es5-shim': '../lib/es5-shim',
                     'text': '../lib/text',
                     'wingspan-forms': '../lib/wingspan-forms/wingspan-forms',
@@ -108,7 +108,6 @@ module.exports = function (grunt) {
 
         copy: {
             'libs': {
-
                 files: [
                     {
                         expand: true,
@@ -117,15 +116,21 @@ module.exports = function (grunt) {
                             'bower_components/momentjs/moment.js',
                             'bower_components/underscore/underscore.js',
                             'bower_components/react/react-with-addons.js',
-                            'bower_components/q/q.js',
                             'bower_components/underscore.string/lib/underscore.string.js',
                             'bower_components/es5-shim/es5-shim.js',
-                            'bower_components/backbone/backbone.js',
-                            'bower_components/requirejs/require.js'
+                            'bower_components/requirejs/require.js',
+                            'bower_components/requirejs-text/text.js'
                         ],
                         dest: 'webapp/lib',
                         flatten: true,
                         filter: 'isFile'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'bower_components/kendo-ui/src/',
+                        src: ['js/kendo.web.js', 'styles/kendo.common.css', 'styles/kendo.default.css', 'styles/Default/**', 'styles/textures/**'],
+                        dest: 'webapp/lib/kendo-ui/',
+                        flatten: false
                     },
                     {
                         expand: true,
