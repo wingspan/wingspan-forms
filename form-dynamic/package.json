@@ -1,13 +1,11 @@
 {
-    "name": "helloworld-requirejs",
-    "version": "0.0.1",
+    "name": "form-dynamic",
     "description": "",
-    "main": "helloworld-requirejs.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Wingspan Technology, Inc.",
-    "license": "MIT",
+    "license": "GPL-3.0",
     "devDependencies": {
         "grunt": "~0.4.1",
         "grunt-cli": "~0.1.9",
