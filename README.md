@@ -3,7 +3,7 @@
 
 [![example form screenshot & jsfiddle](docs/_assets/simple-form.png?raw=true)](http://jsfiddle.net/dustingetz/84JuE/12/)
 
-## Examples
+## Quick Interactive Examples
 
  * [basic form with validation](http://jsfiddle.net/dustingetz/84JuE/12/)
  * [dynamic form generated from JSON metadata](http://jsfiddle.net/dustingetz/gg4w5/2/)
@@ -23,7 +23,7 @@ The widgets in `wingspan-forms` are powered by [Telerik's KendoUI](http://www.te
 
 Facebook React is a javascript DOM management library, built around applying functional programming to managing the DOM. You could think of React as the `View` in MVC. Views are pure, in the functional programming sense. No mutable state need be stored in the DOM.
 
-Tradiitonal javascript widget libraries (JQueryUI, KendoUI, Sencha) tend to model each wdiget as a standalone MVC entity. For example, a ComboBox widget has code for managing the state of the combobox, for updating the DOM when the state changes, and for logic like querying for the list of options and for applying filters. The React philosophy is that this approach results in poor separation of concerns and makes large codebases difficult to reason about.
+Traditional javascript widget libraries (JQueryUI, KendoUI, Sencha) tend to model each wdiget as a standalone MVC entity. For example, a ComboBox widget has code for managing the state of the combobox, for updating the DOM when the state changes, and for logic like querying for the list of options and for applying filters. The React philosophy is that this approach results in poor separation of concerns and makes large codebases difficult to reason about.
 
 In React, widgets are pure (in the functional programming sense). All state is stored in a central javascript controller layer (not in the DOM). Views are pure and are seperated from models (unlike MVVM which couples model and view). This means, for example, that the invalid-ness or disabled-ness is not decided by logic the widget itself; rather, logic outside the widget determines the widget state and then the "dumb widget" will render to match this state. This means complex validation rules and other business logic can be handled in a central location, decoupled from the widgets.
 
