@@ -73,11 +73,11 @@ define([
 
             return (
                 <div className="App">
-                    <div>
+                    <div className="table">
                         <div className="facets">
                             <div>{facetControls}</div>
                         </div>
-                        <div>
+                        <div className="grid">
                             <KendoGrid className="KendoGrid" dataSource={this.dataSource}
                                 columns={this.columns} height="400" />
                         </div>
