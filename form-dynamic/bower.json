@@ -16,13 +16,14 @@
     ],
     "dependencies": {
         "jquery": "~1.9.1",
-        "momentjs": "~2.4.0",
+        "momentjs": "~2.0.0",
         "underscore": "~1.4.4",
-        "react": "~0.5.2",
+        "react": "~0.8.0",
         "requirejs": "~2.1.9",
         "requirejs-text": "~2.0.10",
         "underscore.string": "~2.3.3",
         "kendo-ui": "~2013.3.1119",
-        "es5-shim": "~2.1"
+        "es5-shim": "~2.1",
+        "wingspan-forms": "f5814c3e687f8b5a882722329a5ee3e0f5dedc78"
     }
 }
