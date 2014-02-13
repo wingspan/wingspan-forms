@@ -1,14 +1,14 @@
 /** @jsx React.DOM */
 define([
     'underscore', 'react', 'jquery', 'kendo', 'wingspan-forms',
+    'FacetDataStore',
+    'MockDatabaseTransport',
     'text!textassets/types/Contact.json',
-    'text!textassets/contacts.json',
     'underscore-string'
-], function (_, React, $, kendo, Forms, ContactModel, contacts) {
+], function (_, React, $, kendo, Forms, FacetDataStore, MockDatabaseTransport, ContactModel) {
     'use strict';
 
     var ContactModel = JSON.parse(ContactModel).data;
-    var contacts = JSON.parse(contacts).data;
 
 
     var App = React.createClass({
@@ -19,34 +19,31 @@ define([
                 filters: _(ContactModel.properties).chain()
                     .map(function (fieldInfo, fieldName) { return [fieldName, {}]; })
                     .object()
-                    .value()
+                    .value(),
+                facets: {}
             };
         },
 
         componentWillMount: function () {
             this.columns = [{ template: '#: lastName #' }, { template: '#: firstName #' }, { template: '#: phoneNumber #' }, { template: '#: contactGroup #' }, { template: '#: email #' }];
-            this.dataSource = new kendo.data.DataSource({ data: contacts });
+            this.dataSource = new FacetDataStore({ transport: new MockDatabaseTransport() });
+            this.dataSource.read().then(this.updateFacets).done();
         },
 
-        componentWillUpdate: function () {
-            var filters = _.map(this.state.filters, function (fieldValues, fieldName) {
-                var activeFieldValues = filterMap(fieldValues, function (pair) { return !!pair[1]; });
-                return _.map(_.keys(activeFieldValues), function (fieldValue) {
-                    return { field: fieldName, operator: "eq", value: fieldValue };
-                });
-            });
-            this.dataSource.filter({ logic: 'or', filters: _.flatten(filters) });
+        componentWillUpdate: function (nextProps, nextState) {
+            // if our filter state changed, we need to query for the facets
+            if (!_.isEqual(this.state.filters, nextState.filters)) {
+                this.dataSource.read().then(this.updateFacets).done();
+            }
+        },
+
+        updateFacets: function () {
+            this.setState({ facets: this.dataSource.facets });
         },
 
         render: function () {
 
-            var facetableFieldInfos = filterMap(ContactModel.properties, function (pair) { return !pair[1].hidden; });
-            var facets = _.chain(facetableFieldInfos)
-                .map(function (fieldInfo, fieldName) {
-                    return [fieldName, _.groupBy(contacts, fieldName)]; // groupBy has to happen in the database
-                }).object().value();
-
-            var facetControls = _.map(facets, function (facetVals, filterField) {
+            var facetControls = _.map(this.state.facets, function (facetVals, filterField) {
                 var checkboxes = _.map(facetVals, function (facetVal, facetName) {
                     return (
                         <div className="facetFilterControl" key={facetName}>
@@ -81,10 +78,6 @@ define([
     function entrypoint(rootElement) {
         React.renderComponent(<App />, rootElement);
     }
-
-    function filterMap (record, predicate) {
-        return _.object(_.filter(_.pairs(record), predicate));
-    };
 
 
     var FormField = Forms.FormField;
