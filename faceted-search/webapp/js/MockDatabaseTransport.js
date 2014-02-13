@@ -1,12 +1,12 @@
 define([
     'underscore', 'kendo', 'q',
-    'text!textassets/contacts.json',
+    'Fixtures',
     'text!textassets/types/Contact.json'
-], function (_, kendo, Q, contacts, ContactModel) {
+], function (_, kendo, Q, Fixtures, ContactModel) {
     'use strict';
 
     var ContactModel = JSON.parse(ContactModel).data;
-    var database = JSON.parse(contacts).data;
+    var database = Fixtures.generateDatabase();
 
 
     var MockDatabaseTransport = kendo.Class.extend({
@@ -26,8 +26,13 @@ define([
                 var facetableFieldInfos = filterMap(ContactModel.properties, function (pair) { return !pair[1].hidden; });
                 var facets = _.chain(facetableFieldInfos)
                     .map(function (fieldInfo, fieldName) {
-                        return [fieldName, _.groupBy(database, fieldName)]; // groupBy has to happen in the database
+                        var grouped = _.groupBy(database, fieldName);
+                        var countsByVal = _.object(_.map(grouped, function (v, k) { return [k, v.length] }));
+                        return [fieldName, countsByVal];
                     }).object().value();
+
+                //return [fieldName, _.groupBy(database, fieldName)]; // groupBy has to happen in the database
+                //return [fieldName, _.union(_.pluck(database, fieldName))]; // groupBy has to happen in the database
 
                 request.success({ results: database, facets: facets });
             }.bind(this)).done();
