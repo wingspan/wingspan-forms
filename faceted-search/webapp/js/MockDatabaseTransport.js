@@ -31,9 +31,6 @@ define([
                         return [fieldName, countsByVal];
                     }).object().value();
 
-                //return [fieldName, _.groupBy(database, fieldName)]; // groupBy has to happen in the database
-                //return [fieldName, _.union(_.pluck(database, fieldName))]; // groupBy has to happen in the database
-
                 request.success({ results: database, facets: facets });
             }.bind(this)).done();
         }
