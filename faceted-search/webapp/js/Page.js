@@ -30,13 +30,15 @@ define([
                 { title: ContactModel.properties['email'].label, template: '#: email #' }
             ];
             this.dataSource = new FacetDataStore({ transport: new MockDatabaseTransport() });
-            this.dataSource.read(this.state.filters).then(this.updateFacets).done();
+            this.dataSource._facetFilters = this.state.filters;
+            this.dataSource.read().then(this.updateFacets).done();
         },
 
         componentWillUpdate: function (nextProps, nextState) {
             // if our filter state changed, we need to query for the facets
             if (!_.isEqual(this.state.filters, nextState.filters)) {
-                this.dataSource.read(this.state.filters).then(this.updateFacets).done();
+                this.dataSource._facetFilters = nextState.filters; // how to plumb this nicely?
+                this.dataSource.read().then(this.updateFacets).done();
             }
         },
 
