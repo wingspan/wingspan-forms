@@ -2,10 +2,9 @@
 define([
     'underscore', 'react', 'jquery', 'kendo', 'wingspan-forms',
     'FacetDataStore',
-    'MockDatabaseTransport',
     'text!textassets/types/Contact.json',
     'underscore-string'
-], function (_, React, $, kendo, Forms, FacetDataStore, MockDatabaseTransport, ContactModel) {
+], function (_, React, $, kendo, Forms, FacetDataStore, ContactModel) {
     'use strict';
 
     var ContactModel = JSON.parse(ContactModel).data;
@@ -30,7 +29,7 @@ define([
                 //{ template: '#: phoneNumber #' },
                 { title: ContactModel.properties['email'].label, template: '#: email #' }
             ];
-            this.dataSource = new FacetDataStore({ transport: new MockDatabaseTransport() });
+            this.dataSource = new FacetDataStore();
             this.dataSource._facetFilters = this.state.filters;
             this.dataSource.read().then(this.updateFacets).done();
         },
