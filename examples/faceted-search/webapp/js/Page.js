@@ -28,7 +28,7 @@ define([
             this.dataSource = new kendo.data.DataSource({ data: contacts });
         },
 
-        componentDidUpdate: function () {
+        componentWillUpdate: function () {
             var filters = _.map(this.state.filters, function (fieldValues, fieldName) {
                 var activeFieldValues = filterMap(fieldValues, function (pair) { return !!pair[1]; });
                 return _.map(_.keys(activeFieldValues), function (fieldValue) {
@@ -40,9 +40,10 @@ define([
 
         render: function () {
 
-            var facets = _.chain(filterMap(ContactModel.properties, function (pair) { return !pair[1].hidden; }))
+            var facetableFieldInfos = filterMap(ContactModel.properties, function (pair) { return !pair[1].hidden; });
+            var facets = _.chain(facetableFieldInfos)
                 .map(function (fieldInfo, fieldName) {
-                    return [fieldName, _.groupBy(contacts, fieldName)]
+                    return [fieldName, _.groupBy(contacts, fieldName)]; // groupBy has to happen in the database
                 }).object().value();
 
             var facetControls = _.map(facets, function (facetVals, filterField) {
