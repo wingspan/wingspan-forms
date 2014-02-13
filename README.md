@@ -36,11 +36,8 @@ The build uses NPM and grunt which must already installed.
     npm install                 # install grunt plugins
     grunt                       # Build artifacts to dist/
 
-## Build the sandbox example
+## Build any of the examples
 
-    cd examples/sandbox
+    cd examples/{dir}
     npm install
-    bower install
-    grunt react less
-
-
+    grunt
