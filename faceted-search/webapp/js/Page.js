@@ -60,7 +60,7 @@ define([
                     );
                 }.bind(this));
                 return (
-                    <FormField fieldInfo={_.object([['label', ContactModel.properties[filterField].label]])}>
+                    <FormField key={filterField} fieldInfo={_.object([['label', ContactModel.properties[filterField].label]])}>
                         {checkboxes}
                     </FormField>
                 );
