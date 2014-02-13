@@ -8,28 +8,24 @@ define([
     var ContactModel = JSON.parse(ContactModel).data;
     var database = Fixtures.generateDatabase();
 
-
+    /*
+    "filters": {
+        "lastName": [],
+        "firstName": ["Ernie", "Alice"],
+        "contactGroup": ["family","friend"]
+    }*/
     function queryFacets (filters) {
         return Q.delay(100).then(function () {
-
-            _.filter(database, function (record) {
-                // for each facet, any of the values (lastname: Getz + Smith)
-                // all of the facets: (lastName: Getz + Smith) and (contactGroup: work)
-            });
-
-            function predicate (record) {
-
-            }
-
             // Backend's job is to apply the filters and compute the facets
 
-//                var filters = _.map(this.state.filters, function (fieldValues, fieldName) {
-//                    var activeFieldValues = filterMap(fieldValues, function (pair) { return !!pair[1]; });
-//                    return _.map(_.keys(activeFieldValues), function (fieldValue) {
-//                        return { field: fieldName, operator: "eq", value: fieldValue };
-//                    });
-//                });
-//                this.dataSource.filter({ logic: 'or', filters: _.flatten(filters) });
+            function whereClause (record) {
+                // for each facet, any of the values (lastname: Getz + Smith)
+                // all of the facets: (lastName: Getz + Smith) and (contactGroup: work)
+                return _.every(_.map(filters, function (filter, facet) {
+                    if (filter.length === 0) return true; // no selection means all selections
+                    else return _.contains(filter, record[facet]);
+                }), _.identity);
+            }
 
             var facetableFieldInfos = filterMap(ContactModel.properties, function (pair) { return !pair[1].hidden; });
             var facets = _.chain(facetableFieldInfos)
@@ -39,7 +35,7 @@ define([
                     return [fieldName, countsByVal];
                 }).object().value();
 
-            return { results: database, facets: facets };
+            return { results: _.filter(database, whereClause), facets: facets };
         });
     }
 

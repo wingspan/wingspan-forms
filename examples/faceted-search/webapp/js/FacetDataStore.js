@@ -24,15 +24,14 @@ define([
 
             options.transport = {
                 read: function (request) {
-                    Database.queryFacets(this.filters).then(request.success).done();
+                    Database.queryFacets(this._facetFilters).then(request.success).done();
                 }.bind(this)
             };
             SuperClass.init.call(this, options);
         },
 
-        read: function (filters) {
-            this.filters = filters;
-            SuperClass.read.call(this, undefined);
+        read: function (params) {
+            SuperClass.read.call(this, params);
             return promiseForRead(this);
         }
     });
