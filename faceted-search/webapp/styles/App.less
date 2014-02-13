@@ -12,7 +12,7 @@ body {
   > .table {
     display: table;
 
-    > .facets {
+    > .left {
       display: table-cell;
       width: 20%;
       padding: 10px;
@@ -22,21 +22,36 @@ body {
       }
     }
 
-    > .grid {
+    > .right {
       display: table-cell;
       padding: 10px;
       vertical-align: top;
     }
   }
 
-  > div:nth-child(2) {
-    > pre {
-      display: table-cell;
-      padding: 10px;
+  .filterControls {
+    border: solid 1px #eee;
+    background: #f8f8f8;
+    padding: 9px 10px;
+    margin-top: 15px;
+    position: relative;
+    border-radius: 6px;
+
+    .filters {
+      color: #2c5985;
+      text-transform: uppercase;
+      > span {
+        padding-right: 5px;
+      }
+    }
+
+    .hint {
+      color: #999;
+      font-style: italic;
     }
   }
 
-  .facets {
+  .left {
     font-size: 14px;
 
 
@@ -46,10 +61,6 @@ body {
 
     .formElement label {
       line-height: 25px;
-    }
-
-    .facetFilterControl {
-      //padding: 0 0 0 22px;
     }
 
     .CheckBox {
