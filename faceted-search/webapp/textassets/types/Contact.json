@@ -27,6 +27,14 @@
                 "helpText": "Contact's phone number",
                 "required": true
             },
+            "email": {
+                "name": "email",
+                "label": "Email",
+                "dataType": "text",
+                "placeholder": "your.name@example.com",
+                "helpText": "Contact's email address",
+                "required": true
+            },
             "contactGroup": {
                 "name" : "contactGroup",
                 "label" : "Group",
