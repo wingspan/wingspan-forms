@@ -76,6 +76,7 @@ module.exports = function (grunt) {
                     'react': '../lib/react-with-addons',
                     'es5-shim': '../lib/es5-shim',
                     'text': '../lib/text',
+                    'q': '../lib/q',
                     'wingspan-forms': '../lib/wingspan-forms/wingspan-forms',
                     'textassets': '../textassets' // all assets loaded via `text!` must be rooted here (to avoid JSX compilation)
                 },
@@ -87,6 +88,7 @@ module.exports = function (grunt) {
                     'kendo': { deps: [], exports: 'kendo' },
                     'moment': { deps: [], exports: 'moment' },
                     'react': { deps: [], exports: 'React'},
+                    'q': { deps: [], exports: 'Q'},
                     'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo', 'moment', 'underscore-string'], exports: 'Wingspan'}
                 },
 
@@ -120,7 +122,8 @@ module.exports = function (grunt) {
                             'bower_components/underscore.string/lib/underscore.string.js',
                             'bower_components/es5-shim/es5-shim.js',
                             'bower_components/requirejs/require.js',
-                            'bower_components/requirejs-text/text.js'
+                            'bower_components/requirejs-text/text.js',
+                            'bower_components/q/q.js'
                         ],
                         dest: 'webapp/lib',
                         flatten: true,

@@ -13,6 +13,7 @@
             'react': '../lib/react-with-addons',
             'es5-shim': '../lib/es5-shim',
             'text': '../lib/text',
+            'q': '../lib/q',
             'wingspan-forms': '../lib/wingspan-forms/wingspan-forms',
             'textassets': '../textassets/'
         },
