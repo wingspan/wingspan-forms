@@ -1,0 +1,5 @@
+Thumbs.db
+.DS_STORE
+.idea/
+node_modules/
+bower_components/
