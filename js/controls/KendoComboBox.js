@@ -140,6 +140,12 @@ define([
         },
 
         setNoControlValue: function ($el) {
+
+            if (_.contains(['', null, undefined], this.props.value)) {
+                $el.text('');
+                return;
+            }
+
             // If the value is just an ID, we need to fetch data from the server to get the display value.
             if (!_.isObject(this.props.value)) {
                 // However, if the ID is the display value, we can use it as is.
@@ -151,6 +157,10 @@ define([
                 this.props.dataSource.fetch().then(function () {
                     $el.text(getDisplayValue(self.props.dataSource.get(self.props.value), self.props.displayField));
                 }).done();
+            }
+            else {
+                // valueAsOption, so can skip the query.
+                $el.text(getDisplayValue(self.props.value, self.props.displayField));
             }
         }
     });
