@@ -160,7 +160,7 @@ define([
             }
             else {
                 // valueAsOption, so can skip the query.
-                $el.text(getDisplayValue(self.props.value, self.props.displayField));
+                $el.text(getDisplayValue(this.props.value, this.props.displayField));
             }
         }
     });
