@@ -47,7 +47,8 @@ module.exports = function (grunt) {
                     paths: ['styles'],
                     ieCompat: true,
                     yuicompress: true,
-                    report: 'min'
+                    report: 'min',
+                    relativeUrls: true
                 },
                 files: {
                     'webapp/styles/App.css': 'webapp/styles/App.less'

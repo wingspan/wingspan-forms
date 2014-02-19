@@ -47,7 +47,8 @@ module.exports = function (grunt) {
                     paths: ['styles'],
                     ieCompat: true,
                     yuicompress: true,
-                    report: 'min'
+                    report: 'min',
+                    relativeUrls: true
                 },
                 files: {
                     'webapp/styles/App.css': 'webapp/styles/App.less'
@@ -128,7 +129,6 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: 'bower_components/kendo-ui/src/',
-                        // examples/sandbox/bower_components/kendo-ui/src/
                         src: ['js/kendo.web.js', 'styles/kendo.common.css', 'styles/kendo.default.css', 'styles/Default/**', 'styles/textures/**'],
                         dest: 'webapp/lib/kendo-ui/',
                         flatten: false
