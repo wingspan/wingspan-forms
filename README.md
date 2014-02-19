@@ -5,7 +5,8 @@
 
 ## Quick Interactive Examples
 
- * [basic form with validation](http://jsfiddle.net/dustingetz/84JuE/12/)
+ * [basic form with validation](http://jsfiddle.net/dustingetz/5B9Qb/2/)
+ * [basic form with validation, no fancy abstractions](http://jsfiddle.net/dustingetz/84JuE/12/)
  * [dynamic form generated from JSON metadata](http://jsfiddle.net/dustingetz/gg4w5/2/)
  * [dynamic Master/Detail CRUD editor](http://wingspan.github.io/wingspan-forms/examples/form-master-detail/) ([source](https://github.com/wingspan/wingspan-forms-examples/tree/master/form-master-detail))
  * [faceted search demo](http://wingspan.github.io/wingspan-forms/examples/faceted-search/) ([source](https://github.com/wingspan/wingspan-forms-examples/tree/master/faceted-search))
