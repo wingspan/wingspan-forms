@@ -128,7 +128,6 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: 'bower_components/kendo-ui/src/',
-                        // examples/sandbox/bower_components/kendo-ui/src/
                         src: ['js/kendo.web.js', 'styles/kendo.common.css', 'styles/kendo.default.css', 'styles/Default/**', 'styles/textures/**'],
                         dest: 'webapp/lib/kendo-ui/',
                         flatten: false
