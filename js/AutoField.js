@@ -10,13 +10,14 @@ define([
             return {
                 fieldInfo: undefined,
                 value: undefined,
-                onChange: undefined
+                onChange: undefined,
+                isValid: [true, '']
             };
         },
 
         render: function () {
             return (
-                <FormField fieldInfo={this.props.fieldInfo} key={this.props.fieldInfo.name}>
+                <FormField fieldInfo={this.props.fieldInfo} isValid={this.props.isValid} key={this.props.fieldInfo.name}>
                     <AutoControl
                         fieldInfo={this.props.fieldInfo}
                         value={this.props.value}
