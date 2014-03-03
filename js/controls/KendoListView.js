@@ -12,6 +12,8 @@ define([
         getDefaultProps: function () {
             return {
                 className: 'content',
+                scrollToSelectedItem: false,
+                scrollDuration: 150,
                 dataSource: undefined,
                 selectable: true,
                 selectedId: null,
@@ -39,10 +41,21 @@ define([
         syncSelectionWithKendo: function (rootEl) {
             var self = this;
             var listView = rootEl.data('kendoListView');
+            var selectedChildIndex = 0; // default to first index if no selection is found
+            var selectedChild = null;
 
-            var selectedChild = (self.props.selectedId
-                ? _.find(listView.element.children(), function (child) { return self.props.selectedId === $(child).data('modelId'); })
-                : null);
+            if (this.props.selectedId) {
+                selectedChild = _.find(
+                    listView.element.children(),
+                    function (child, childIndex) {
+                        var found = self.props.selectedId === $(child).data('modelId');
+                        if (found) {
+                            selectedChildIndex = childIndex;
+                        }
+                        return found;
+                    }
+                );
+            }
 
             // Verify that we found the child we were looking for, if any
             if (!!this.props.selectedId && !selectedChild) {
@@ -59,8 +72,12 @@ define([
             }
 
             this.suppressEvents = true;
-            if (selectedChild) {
-                listView.select($(selectedChild));
+            if (selectedChild && this.props.scrollToSelectedItem) {
+                var $selectedChild = $(selectedChild);
+                var scrollTop = selectedChildIndex * $selectedChild.height();
+                listView.select($selectedChild);
+
+                $(rootEl).animate({ scrollTop: scrollTop }, this.props.scrollDuration);
             } else {
                 listView.clearSelection();
             }
