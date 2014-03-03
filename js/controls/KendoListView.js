@@ -63,7 +63,6 @@ define([
                 listView.select($(selectedChild));
             } else {
                 listView.clearSelection();
-//                listView.select(listView.element.children().first());
             }
             this.suppressEvents = false;
         },
