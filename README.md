@@ -13,6 +13,11 @@
  * [sandbox showing all included controls in various configurations](http://wingspan.github.io/wingspan-forms/examples/sandbox/) ([source](https://github.com/wingspan/wingspan-forms-examples/tree/master/sandbox))
  * [Simple example of how to keep all the state "at the top"](http://jsfiddle.net/dustingetz/YUCBT/2/)
 
+## Documentation
+
+* [basic form with validation - code walkthrough](http://www.dustingetz.com/2014/02/18/react-dynamic-forms.html)
+
+
 ## Disclaimer
 
 `wingspan-forms` is used heavily at Wingspan in a large project scheduled to go to production in April. As such, `wingspan-forms` should be considered stable, but not mature. There are some known issues, and as there is no documentation yet you will need to read the source code to figure out how to use it.
