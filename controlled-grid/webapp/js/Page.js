@@ -28,11 +28,11 @@ define([
             getInitialState: function () {
                 return {
                     dataSource: [
-                        { name: 'Danny', value: 'danny', visible: false },
-                        { name: 'Mark',  value: 'mark',  visible: false },
-                        { name: 'Bob',   value: 'bob',   visible: false },
-                        { name: 'JY',    value: 'jy',    visible: false },
-                        { name: 'Jason', value: 'jason', visible: false }
+                        { name: 'Danny', id: 'danny', visible: false },
+                        { name: 'Mark',  id: 'mark',  visible: false },
+                        { name: 'Bob',   id: 'bob',   visible: false },
+                        { name: 'JY',    id: 'jy',    visible: false },
+                        { name: 'Jason', id: 'jason', visible: false }
                     ],
                     selection: ''
                 };
@@ -56,8 +56,8 @@ define([
                 var checkboxes = _.map(this.state.dataSource, function (record, index) {
                     return (
                         <CheckBox
-                            key={record.value}
-                            id={record.value}
+                            key={record.id}
+                            id={record.id}
                             label={record.name}
                             value={record.visible}
                             onChange={_.partial(self.onChange, 'dataSource', index, 'visible')} />
@@ -72,7 +72,7 @@ define([
                                 dataSource={this.dataSource}
                                 onChange={_.partial(this.onChange, 'selection')}
                                 displayField="name"
-                                valueField="value" />
+                                valueField="id" />
                         </FormField>
                         <FormField fieldInfo={_.object([['label', 'People']])} isValid={[true, '']} layout="formField">
                             {checkboxes}
