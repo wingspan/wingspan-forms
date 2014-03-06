@@ -79,6 +79,10 @@ define([
             var divs = [];
             _.each(_.values(this.props.tabs), function (jsx, index) {
                 var id = _.str.sprintf('%s-%s', self.stableUniqueId, index);
+
+                var activeTab = index === self.state.activeIndex;
+                jsx.props.__WsptTabStripActiveHax = activeTab; // hax specific to the TMF - never use this
+
                 var jsx = (index === self.state.activeIndex
                     ? (<div key={index} className="k-content k-state-active" role="tabpanel" aria-expanded="true" style={visibleStyle}>{jsx}</div>)
                     : (<div key={index} className="k-content" aria-hidden="true" role="tabpanel" aria-expanded="false" style={hiddenStyle}>{self.props.elideInactiveContent ? null : jsx}</div>));
