@@ -44,6 +44,10 @@ define([
 
             componentDidUpdate: function () {
                 this.dataSource.data(this.visibleValues());
+
+                if (this.state.selection && !_.contains(_.pluck(this.visibleValues(), 'id'), this.state.selection)) {
+                    this.onChange('selection', '');
+                }
             },
 
             visibleValues: function () {
