@@ -18,7 +18,7 @@ define([
     var RadioGroup = Forms.RadioGroup;
     var SwitchBox = Forms.SwitchBox;
     var Carousel = Forms.Carousel;
-    var KendoGrid = Forms.KendoGrid;
+    var KendoGridPicker = Forms.KendoGridPicker;
 
     function entrypoint(rootElement) {
 
@@ -41,6 +41,7 @@ define([
 
             componentWillMount: function () {
                 this.visibleDataSource = new kendo.data.DataSource({ data: this.visibleValues() });
+                this.pristineDataSource = new kendo.data.DataSource({ data: this.state.dataSource });
             },
 
             componentDidUpdate: function () {
@@ -74,6 +75,11 @@ define([
                     );
                 });
 
+                var gridColumns = [
+                    { title: 'Name', template: '#: name #', sortable: false },
+                    { title: 'Id', template: '#: id #', sortable: false }
+                ];
+
                 return (
                     <div className="App">
                         <FormField fieldInfo={_.object([['label', 'Pick a Person']])}>
@@ -86,6 +92,13 @@ define([
                         </FormField>
                         <FormField fieldInfo={_.object([['label', 'People']])} isValid={[true, '']} layout="formField">
                             {checkboxes}
+                        </FormField>
+                        <FormField fieldInfo={_.object([['label', 'Grid']])}>
+                            <KendoGridPicker
+                                dataSource={this.pristineDataSource}
+                                value={this.state.visible}
+                                columns={gridColumns}
+                                onChange={_.partial(this.onChange, 'visible')} />
                         </FormField>
                     </div>
                 );
