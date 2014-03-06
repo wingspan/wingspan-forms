@@ -39,14 +39,14 @@ define([
             },
 
             componentWillMount: function () {
-                this.dataSource = new kendo.data.DataSource({ data: this.filteredDataSource() });
+                this.dataSource = new kendo.data.DataSource({ data: this.visibleValues() });
             },
 
             componentDidUpdate: function () {
-                this.dataSource.data(this.filteredDataSource());
+                this.dataSource.data(this.visibleValues());
             },
 
-            filteredDataSource: function () {
+            visibleValues: function () {
                 return _.filter(this.state.dataSource, function (record) { return record.visible; });
             },
 
