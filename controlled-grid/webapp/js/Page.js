@@ -66,7 +66,7 @@ define([
 
                 return (
                     <div className="App">
-                        <FormField>
+                        <FormField fieldInfo={_.object([['label', 'Pick a Person']])}>
                             <KendoComboBox
                                 value={this.state.selection}
                                 dataSource={this.dataSource}
