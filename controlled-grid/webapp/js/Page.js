@@ -39,11 +39,11 @@ define([
             },
 
             componentWillMount: function () {
-                this.dataSource = new kendo.data.DataSource({ data: this.visibleValues() });
+                this.visibleDataSource = new kendo.data.DataSource({ data: this.visibleValues() });
             },
 
             componentDidUpdate: function () {
-                this.dataSource.data(this.visibleValues());
+                this.visibleDataSource.data(this.visibleValues());
 
                 if (this.state.selection && !_.contains(_.pluck(this.visibleValues(), 'id'), this.state.selection)) {
                     this.onChange('selection', '');
@@ -73,7 +73,7 @@ define([
                         <FormField fieldInfo={_.object([['label', 'Pick a Person']])}>
                             <KendoComboBox
                                 value={this.state.selection}
-                                dataSource={this.dataSource}
+                                dataSource={this.visibleDataSource}
                                 onChange={_.partial(this.onChange, 'selection')}
                                 displayField="name"
                                 valueField="id" />
