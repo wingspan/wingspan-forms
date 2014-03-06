@@ -92,10 +92,10 @@ define([
                                 displayField="name"
                                 valueField="id" />
                         </FormField>
-                        <FormField fieldInfo={_.object([['label', 'People']])} isValid={[true, '']} layout="formField">
+                        <FormField fieldInfo={_.object([['label', 'People as Checkboxes']])} isValid={[true, '']} layout="formField">
                             {checkboxes}
                         </FormField>
-                        <FormField fieldInfo={_.object([['label', 'Grid']])}>
+                        <FormField fieldInfo={_.object([['label', 'People as Grid']])}>
                             <KendoGridPicker
                                 dataSource={this.pristineDataSource}
                                 value={this.state.visible}
