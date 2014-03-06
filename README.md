@@ -12,6 +12,7 @@
  * [faceted search demo](http://wingspan.github.io/wingspan-forms/examples/faceted-search/) ([source](https://github.com/wingspan/wingspan-forms-examples/tree/master/faceted-search))
  * [sandbox showing all included controls in various configurations](http://wingspan.github.io/wingspan-forms/examples/sandbox/) ([source](https://github.com/wingspan/wingspan-forms-examples/tree/master/sandbox))
  * [Simple example of how to keep all the state "at the top"](http://jsfiddle.net/dustingetz/YUCBT/2/)
+ * [controlled grid](http://wingspan.github.io/wingspan-forms/examples/controlled-grid/) ([source](https://github.com/wingspan/wingspan-forms-examples/tree/master/controlled-grid))
 
 ## Documentation
 
