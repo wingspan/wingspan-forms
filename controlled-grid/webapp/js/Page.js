@@ -5,7 +5,6 @@ define([
 ], function (_, React, $, kendo, Forms) {
     'use strict';
 
-
     var FormField = Forms.FormField;
     var KendoText = Forms.KendoText;
     var MultilineText = Forms.MultilineText;
@@ -21,7 +20,6 @@ define([
     var Carousel = Forms.Carousel;
     var KendoGrid = Forms.KendoGrid;
 
-
     function entrypoint(rootElement) {
 
         var App = React.createClass({
@@ -29,7 +27,13 @@ define([
 
             getInitialState: function () {
                 return {
-                    dataSource: [{name: 'Danny', value: 'danny', visible: true}, {name: 'Mark', value: 'mark', visible: false},{name: 'Bob', value: 'bob', visible: true},{name: 'JY', value: 'jy', visible: true},    {name: 'Jason', value: 'jason', visible: true} ],
+                    dataSource: [
+                        { name: 'Danny', value: 'danny', visible: true  },
+                        { name: 'Mark',  value: 'mark',  visible: false },
+                        { name: 'Bob',   value: 'bob',   visible: true  },
+                        { name: 'JY',    value: 'jy',    visible: true  },
+                        { name: 'Jason', value: 'jason', visible: true  }
+                    ],
                     selection: ''
                 };
             },
@@ -50,9 +54,15 @@ define([
                 var self = this;
 
                 var checkboxes = _.map(this.state.dataSource, function (record, index) {
-                    return (<CheckBox key={record.value} id={record.value} label={record.name} value={record.visible} onChange={_.partial(self.onChange, 'dataSource', index, 'visible')} />);
+                    return (
+                        <CheckBox
+                            key={record.value}
+                            id={record.value}
+                            label={record.name}
+                            value={record.visible}
+                            onChange={_.partial(self.onChange, 'dataSource', index, 'visible')} />
+                    );
                 });
-
 
                 return (
                     <div className="App">
