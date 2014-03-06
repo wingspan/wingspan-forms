@@ -28,11 +28,11 @@ define([
             getInitialState: function () {
                 return {
                     dataSource: [
-                        { name: 'Danny', value: 'danny', visible: true  },
+                        { name: 'Danny', value: 'danny', visible: false },
                         { name: 'Mark',  value: 'mark',  visible: false },
-                        { name: 'Bob',   value: 'bob',   visible: true  },
-                        { name: 'JY',    value: 'jy',    visible: true  },
-                        { name: 'Jason', value: 'jason', visible: true  }
+                        { name: 'Bob',   value: 'bob',   visible: false },
+                        { name: 'JY',    value: 'jy',    visible: false },
+                        { name: 'Jason', value: 'jason', visible: false }
                     ],
                     selection: ''
                 };
