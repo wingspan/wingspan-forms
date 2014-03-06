@@ -80,6 +80,8 @@ define([
                     { title: 'Id', template: '#: id #', sortable: false }
                 ];
 
+                var selectedPerson = (this.state.selection && _.findWhere(this.state.dataSource, _.object([['id', this.state.selection]]))).name || 'Nobody!';
+
                 return (
                     <div className="App">
                         <FormField fieldInfo={_.object([['label', 'Pick a Person']])}>
@@ -99,6 +101,9 @@ define([
                                 value={this.state.visible}
                                 columns={gridColumns}
                                 onChange={_.partial(this.onChange, 'visible')} />
+                        </FormField>
+                        <FormField fieldInfo={_.object([['label', 'Selected Person']])}>
+                            <KendoText value={selectedPerson} />
                         </FormField>
                     </div>
                 );
