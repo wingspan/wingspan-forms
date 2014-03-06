@@ -28,13 +28,14 @@ define([
             getInitialState: function () {
                 return {
                     dataSource: [
-                        { name: 'Danny', id: 'danny', visible: false },
-                        { name: 'Mark',  id: 'mark',  visible: false },
-                        { name: 'Bob',   id: 'bob',   visible: false },
-                        { name: 'JY',    id: 'jy',    visible: false },
-                        { name: 'Jason', id: 'jason', visible: false }
+                        { name: 'Danny', id: 'danny' },
+                        { name: 'Mark',  id: 'mark' },
+                        { name: 'Bob',   id: 'bob' },
+                        { name: 'JY',    id: 'jy' },
+                        { name: 'Jason', id: 'jason' }
                     ],
-                    selection: ''
+                    selection: '',
+                    visible: []
                 };
             },
 
@@ -51,20 +52,25 @@ define([
             },
 
             visibleValues: function () {
-                return _.filter(this.state.dataSource, function (record) { return record.visible; });
+                var visibleIds = this.visibleIds();
+                return _.filter(this.state.dataSource, function (record) { return _.contains(visibleIds, record.id); });
+            },
+
+            visibleIds: function () {
+                return _.pluck(this.state.visible, 'id');
             },
 
             render: function () {
-                var self = this;
+                var self = this, visibleIds = _.pluck(this.state.visible, 'id');
 
-                var checkboxes = _.map(this.state.dataSource, function (record, index) {
+                var checkboxes = _.map(this.state.dataSource, function (record) {
                     return (
                         <CheckBox
                             key={record.id}
                             id={record.id}
                             label={record.name}
-                            value={record.visible}
-                            onChange={_.partial(self.onChange, 'dataSource', index, 'visible')} />
+                            value={_.contains(visibleIds, record.id)}
+                            onChange={_.partial(self.onCheckboxChecked, record)} />
                     );
                 });
 
@@ -83,6 +89,23 @@ define([
                         </FormField>
                     </div>
                 );
+            },
+
+            onCheckboxChecked: function (record, checked) {
+                var newVisible;
+
+                // I want to write this, but reference equality foils me again!
+                // newVisible = (checked ? _.union : _.difference)(this.state.visible, record);
+
+                // So I have to write this instead:
+                if (checked) {
+                    newVisible = _.union(this.state.visible, record);
+                } else {
+                    newVisible = _.compact(_.map(this.state.visible, function (previousRecord) {
+                        return previousRecord.id === record.id ? null : previousRecord;
+                    }));
+                }
+                this.onChange('visible', newVisible);
             }
         });
 
