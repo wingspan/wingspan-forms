@@ -50,9 +50,9 @@ define([
 
             return (
                 <div className="carousel">
-                    <button className="carouselButton backButton" onClick={_.partial(this.onChange, 'left')}><i className="icon iconPrev"/></button>
+                    <button disabled: {N < 2} className="carouselButton backButton" onClick={_.partial(this.onChange, 'left')}><i className="icon iconPrev"/></button>
                     <input className="carouselInput" placeholder={this.props.placeholder} value={this.displayTextFn(i, N)} readOnly={true} id={this.props.id} />
-                    <button className="carouselButton forwardButton" onClick={_.partial(this.onChange, 'right')}><i className="icon iconNext"/></button>
+                    <button disabled: {N < 2} className="carouselButton forwardButton" onClick={_.partial(this.onChange, 'right')}><i className="icon iconNext"/></button>
                     <button className="carouselButton editButton" disabled={this.props.disabled} onClick={this.props.onEdit}>Edit Indices<i className="icon iconCaret"/></button>
                 </div>
                 );
