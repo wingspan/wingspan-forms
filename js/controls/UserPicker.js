@@ -8,7 +8,6 @@ define([
 
     void controlCommon;
 
-    var QUERY_PARAM = 'nameOrEmail';
     var LIST_CLASS = 'userPicker';
 
     var UserPicker = React.createClass({
@@ -22,6 +21,7 @@ define([
                 id: undefined,
                 placeholder: 'Select User...', // l10n requires thought, no strings down here
                 template: '<div class="user"><p class="fullName">#: fullName #</p><p class="emailAddress">#: emailAddress #</p></div>',
+                dataTextField: 'nameOrEmail',
                 disabled: false,
                 isValid: [true, ''],
                 readonly: false,
@@ -43,7 +43,7 @@ define([
 
             $el.kendoAutoComplete({
                 dataSource: this.props.dataSource,
-                dataTextField: QUERY_PARAM,
+                dataTextField: this.props.dataTextField,
                 placeholder: this.props.placeholder,
                 highlightFirst: true,
                 suggest: false,
