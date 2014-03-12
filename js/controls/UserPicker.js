@@ -8,8 +8,6 @@ define([
 
     void controlCommon;
 
-    var LIST_CLASS = 'userPicker';
-
     var UserPicker = React.createClass({
 
         fieldClass: 'formFieldAutocomplete',
@@ -22,6 +20,7 @@ define([
                 placeholder: 'Select User...', // l10n requires thought, no strings down here
                 template: '<div class="user"><p class="fullName">#: fullName #</p><p class="emailAddress">#: emailAddress #</p></div>',
                 dataTextField: 'nameOrEmail',
+                listClass: 'userPicker',
                 disabled: false,
                 isValid: [true, ''],
                 readonly: false,
@@ -84,8 +83,11 @@ define([
             }).on('blur', this.onBlur);
 
             autoComplete = $el.data('kendoAutoComplete');
-            // Add a special class to the popup element so we can style the list items
-            autoComplete.list.addClass(LIST_CLASS);
+
+            if (this.props.listClass) {
+                // Add a special class to the popup element so we can style the list items
+                autoComplete.list.addClass(this.props.listClass);
+            }
 
             if (this.props.value) {
                 autoComplete.value(this.props.value.fullName);
