@@ -112,6 +112,10 @@ define([
             var $el = $(rootNode),
                 autoComplete = $el.data('kendoAutoComplete');
 
+            if (prevProps.dataSource !== this.props.dataSource) {
+                autoComplete.setDataSource(this.props.dataSource);
+            }
+
             autoComplete.value(this.props.value ? this.props.value.fullName : null);
 
             if (this.props.disabled) {
