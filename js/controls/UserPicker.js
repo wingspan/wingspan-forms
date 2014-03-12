@@ -123,8 +123,10 @@ define([
         onBlur: function (e) {
             var autoComplete = $(e.target).data('kendoAutoComplete');
 
-            // Always reset the text back to the current value, in case they typed stuff that didn't match anything
-            autoComplete.value(this.props.value ? this.props.value.fullName : null);
+            if (autoComplete) {
+                // Always reset the text back to the current value, in case they typed stuff that didn't match anything
+                autoComplete.value(this.props.value ? this.props.value.fullName : null);
+            }
         },
 
         /*jshint ignore:start */
