@@ -19,7 +19,8 @@ define([
                 disabled: false,
                 isValid: [true, ''],
                 readonly: false,
-                noControl: false
+                noControl: false,
+                format: 'MM/dd/yyyy h:mm tt'
             };
         },
 
@@ -43,7 +44,8 @@ define([
             debug.verify($el);
 
             $el.kendoDateTimePicker({
-                change: this.onChange
+                change: this.onChange,
+                format: this.props.format
             });
 
             ControlCommon.setKendoDateState(
