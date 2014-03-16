@@ -24,6 +24,14 @@ define([
         }
         else if (value !== undefined) {
             comboWidget.value(value);
+
+            // We are papering over a bug in kendo ComboBox wherein it doesn't refresh its html representation of the
+            // old dataSource models when it gets a new dataSource but no value was previously set.
+            // When a truthy value is passed into the comboWidget.value(), the comboWidget will fetch() the dataSource,
+            // refresh()-ing itself as well.
+            if (!value) {
+                comboWidget.refresh();
+            }
         }
     }
 
