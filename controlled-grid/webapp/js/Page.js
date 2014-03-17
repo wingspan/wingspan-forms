@@ -117,25 +117,43 @@ define([
             },
 
             onCheckboxChecked: function (record, checked) {
-                var newVisible;
-
-                // I want to write this, but reference equality foils me again!
-                // newVisible = (checked ? _.union : _.difference)(this.state.visible, record);
-
-                // So I have to write this instead:
-                if (checked) {
-                    newVisible = _.union(this.state.visible, record);
-                } else {
-                    newVisible = _.compact(_.map(this.state.visible, function (previousRecord) {
-                        return previousRecord.id === record.id ? null : previousRecord;
-                    }));
-                }
+                var newVisible = (checked ? unionDeep : differenceDeep)(this.state.visible, record);
                 this.onChange('visible', newVisible);
             }
         });
 
         React.renderComponent(<App />, rootElement);
     }
+
+    function containsDeep(haystack, needle) {
+        return !!_.find(haystack, function (h) {
+            return _.isEqual(h, needle);
+        });
+    }
+
+    function uniqueDeep(xs) {
+        return _.reduce(xs, function (acc, x) {
+            return (!containsDeep(acc, x)
+                ? acc.concat(x)
+                : acc);
+        }, []);
+    }
+
+    function unionDeep (/* set1, set2, ... */) {
+        return uniqueDeep(_.flatten(arguments));
+    };
+
+    function differenceDeep (/* set1, set2, ... */) {
+        var removeTheseItems = _.flatten(_.tail(arguments));
+        var fromTheseItems = _.head(arguments);
+        return _.filter(fromTheseItems, function (x) {
+            // if the current item in the first set exists in any of the other sets,
+            // it should not be in the difference.
+            var shouldRemove = containsDeep(removeTheseItems, x);
+            return !shouldRemove;
+        });
+    };
+
 
     return {
         entrypoint: entrypoint
