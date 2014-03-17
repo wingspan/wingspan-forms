@@ -81,6 +81,9 @@ define([
                 ];
 
                 var selectedPerson = (this.state.selection && _.findWhere(this.state.dataSource, _.object([['id', this.state.selection]]))).name || 'Nobody!';
+                var css = {
+                    clear: 'both'
+                };
 
                 return (
                     <div className="App">
@@ -105,6 +108,10 @@ define([
                                 columns={gridColumns}
                                 onChange={_.partial(this.onChange, 'visible')} />
                         </FormField>
+                        <div style={css} />
+                        <pre>
+                            {JSON.stringify(this.state, undefined, 2)}
+                        </pre>
                     </div>
                 );
             },
