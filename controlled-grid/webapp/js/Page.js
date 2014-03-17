@@ -92,6 +92,9 @@ define([
                                 displayField="name"
                                 valueField="id" />
                         </FormField>
+                        <FormField fieldInfo={_.object([['label', 'Selected Person']])}>
+                            <KendoText value={selectedPerson} />
+                        </FormField>
                         <FormField fieldInfo={_.object([['label', 'People as Checkboxes']])} isValid={[true, '']} layout="formField">
                             {checkboxes}
                         </FormField>
@@ -101,9 +104,6 @@ define([
                                 value={this.state.visible}
                                 columns={gridColumns}
                                 onChange={_.partial(this.onChange, 'visible')} />
-                        </FormField>
-                        <FormField fieldInfo={_.object([['label', 'Selected Person']])}>
-                            <KendoText value={selectedPerson} />
                         </FormField>
                     </div>
                 );
