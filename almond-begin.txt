@@ -1,9 +1,9 @@
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         define([
-            'underscore', 'react', 'jquery', 'moment', 'underscore-string', 'kendo', 'text'
+            'underscore', 'react', 'jquery', 'underscore-string', 'kendo', 'text'
         ], factory);
     } else {
-        root.WingspanForms = factory(root._, root.React, root.$, root.moment, root._s, root.kendo);
+        root.WingspanForms = factory(root._, root.React, root.$, root._s, root.kendo);
     }
-}(this, function (_, React, $, moment, _s, kendo) {
+}(this, function (_, React, $, _s, kendo) {

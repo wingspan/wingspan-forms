@@ -1,7 +1,7 @@
 define([
-    'underscore', 'jquery', 'moment',
+    'underscore', 'jquery', 'kendo',
     './debug'
-], function (_, $, moment, debug) {
+], function (_, $, kendo, debug) {
     'use strict';
 
     var exports = {};
@@ -109,11 +109,11 @@ define([
 
         // TODO DATE NEEDS TO COME FROM SERVER CONFIGURATION
         if ('datetime' === dataType && _.isString(value)) {
-            return moment(value).format('DD-MMM-YYYY h:mm:ss A');
+            return kendo.toString(value, 'dd-MMM-yyyy h:mm tt');
         }
         // todo need to be able to handle date only fields here
         if ('date' === dataType && _.isString(value)) {
-            return moment(value).format('DD-MMM-YYYY');
+            return kendo.toString(value, 'dd-MMM-yyyy');
         }
 
         // so it's a complex object, and we'll just try to sort it out at the moment
