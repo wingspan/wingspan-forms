@@ -1,9 +1,9 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'jquery', 'react', 'kendo', 'moment',
+    'underscore', 'jquery', 'react', 'kendo',
     '../util/debug',
     '../ControlCommon'
-], function (_, $, React, kendo, moment, debug, ControlCommon) {
+], function (_, $, React, kendo, debug, ControlCommon) {
     'use strict';
 
 
@@ -27,7 +27,7 @@ define([
         /*jshint ignore:start */
         render: function () {
             return (this.props.noControl
-                ? (<span>{this.props.value ? moment(this.props.value).format('MMMM Do YYYY, h:mm:ss a') : ''}</span>)
+                ? (<span>{this.props.value ? kendo.toString(this.props.value, this.props.format) : ''}</span>)
                 : (<input id={this.props.id} type="text" />));
         },
         /*jshint ignore:end */

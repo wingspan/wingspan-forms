@@ -81,7 +81,6 @@ module.exports = function (grunt) {
                     'underscore-string': { exports: ['_s'] },
                     'jquery': { deps: [], exports: '$' },
                     'kendo': { deps: [], exports: 'kendo' },
-                    'moment': { deps: [], exports: 'moment' },
                     'react': { deps: [], exports: 'React'}
                 },
 
@@ -98,8 +97,7 @@ module.exports = function (grunt) {
                 options: {
                     out: 'dist/wingspan-forms.js',
                     include: ['almond', 'wingspan-forms'],
-                    exclude: ['jquery', 'underscore', 'react', 'moment', 'require',
-                        'text', 'underscore-string', 'kendo']
+                    exclude: ['jquery', 'underscore', 'react', 'require', 'text', 'underscore-string', 'kendo']
                 }
             },
             compileQuickStart: {
