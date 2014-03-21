@@ -139,12 +139,20 @@ define([
             var model = event.sender.dataItem();
 
             // pass up the same structure as was originally passed down to us.
+            var nextValue;
             if (_.isString(this.props.value) || _.isNumber(this.props.value)) {
-                this.props.onChange((model ? model.get(this.props.valueField) : model));
+                nextValue = (model ? model.get(this.props.valueField) : model);
             } else {
                 // Do not return the internal kendo model objects, since they're an implementation detail of the combo/store.
-                this.props.onChange((model instanceof kendo.data.Model) ? model.toJSON() : model);
+                nextValue = (model instanceof kendo.data.Model) ? model.toJSON() : model;
             }
+
+            // the KendoCombo maintains its own value state, which has just been set by a user interaction,
+            // and in fact we just extracted the value from the model. Rewind the state to the prior value,
+            // to support the Flux loop, it will be set if the controller accepts the change.
+            setComboValue($(this.getDOMNode()).data('kendoComboBox'), this.props);
+
+            this.props.onChange(nextValue);
         },
 
         setNoControlValue: function ($el) {
