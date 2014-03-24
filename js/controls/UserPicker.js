@@ -58,15 +58,10 @@ define([
                     var widget = e.sender,
                         dataSource = widget.dataSource;
 
+                    header.text(dataSource.message);
+
                     if (dataSource.total() === 0) {
-                        header.text('No matches');
                         widget.popup.open();
-                    }
-                    else if (dataSource.total() < 0) {
-                        header.text('All Users (100+ matches)');
-                    }
-                    else {
-                        header.text(kendo.format('All Users ({0:n0} matches)', dataSource.total()));
                     }
                 },
                 change: function (e) {
