@@ -6,19 +6,25 @@ body {
   overflow: auto;
 }
 
+@appPadding:10px;
+
 div.App {
   background: #fff;
-  padding: 10px;
+  padding:@appPadding;
   display:table;
 
   .k-state-selected {
-    color: inherit;
+    color:inherit;
   }
 
   > div {
     display:table-cell;
+    width:50%;
+    padding-right:@appPadding;
   }
   > pre {
     display:table-cell;
+    position:absolute;
+    top:@appPadding;
   }
 }
