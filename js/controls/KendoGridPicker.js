@@ -109,24 +109,29 @@ define([
             var $target = $(e.target);
             var $row = $target.closest('tr');
 
-            var model = this.$el.data('kendoGrid').dataItem($row);
-            var record = _.extend(model.toJSON(), { id: model.id });
+            // Ignore clicks on the row containing header cells
+            // clicking on the header should not cause a change in selections
+            if (!_.some($row.find('.k-header'))) {
+                var model = this.$el.data('kendoGrid').dataItem($row);
+                var record = _.extend(model.toJSON(), { id: model.id });
 
-            // Determine the current selection state of this record
-            var wasSelected = util.containsDeep(this.props.value, record);
+                // Determine the current selection state of this record
+                var wasSelected = util.containsDeep(this.props.value, record);
 
-            //if this event was on the checkbox, revert that dom state change until it goes through the flux loop
-            if ('INPUT' === e.target.nodeName) {
-                e.target.checked = wasSelected;
+                //if this event was on the checkbox, revert that dom state change until it goes through the flux loop
+                if ('INPUT' === e.target.nodeName) {
+                    e.target.checked = wasSelected;
+                }
+
+                // Toggle the state
+                var isSelected = !wasSelected;
+
+                // Invoke our event handler with the new selection state for our control.  This will circle back
+                // and re-render us with the new selections
+                var nextSelections = (isSelected ? util.unionDeep : util.differenceDeep)(this.props.value, [record]);
+                this.props.onChange(nextSelections);
             }
 
-            // Toggle the state
-            var isSelected = !wasSelected;
-
-            // Invoke our event handler with the new selection state for our control.  This will circle back
-            // and re-render us with the new selections
-            var nextSelections = (isSelected ? util.unionDeep : util.differenceDeep)(this.props.value, [record]);
-            this.props.onChange(nextSelections);
         }
     });
 
