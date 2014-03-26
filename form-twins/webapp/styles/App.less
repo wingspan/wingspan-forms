@@ -1,0 +1,24 @@
+@import (less) "../lib/kendo-ui/styles/kendo.common.css";
+@import (less) "../lib/kendo-ui/styles/kendo.default.css";
+@import (less) "../lib/wingspan-forms/wingspan-forms.css";
+
+body {
+  overflow: auto;
+}
+
+div.App {
+  background: #fff;
+  padding: 10px;
+  display:table;
+
+  .k-state-selected {
+    color: inherit;
+  }
+
+  > div {
+    display:table-cell;
+  }
+  > pre {
+    display:table-cell;
+  }
+}
