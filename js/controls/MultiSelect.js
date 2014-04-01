@@ -26,7 +26,7 @@ define([
                 selectors: [],
                 selections: [], // this is the value prop that pairs with onChange.
                 size: 3,
-                onChange: function (selections) { console.log(selections); }
+                onChange: function () {}
             };
         },
 
