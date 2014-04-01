@@ -1,8 +1,9 @@
 /** @jsx React.DOM */
 define([
     'underscore', 'jquery', 'react', 'kendo', 'wingspan-forms/util/debug',
-    'wingspan-forms/ReactCommon'
-], function (_, $, React, kendo, debug, ReactCommon) {
+    'wingspan-forms/ReactCommon',
+    '../ImmutableOptimizations'
+], function (_, $, React, kendo, debug, ReactCommon, ImmutableOptimizations) {
     'use strict';
 
     /**
@@ -10,6 +11,7 @@ define([
      * This component is not presently stateful so we don't get to control what is selected.
      */
     var TabStrip = React.createClass({
+        mixins: [ImmutableOptimizations],
 
         getDefaultProps: function () {
             return {

@@ -2,8 +2,9 @@
 define([
     'underscore', 'react', 'jquery',
     '../util/debug',
+    '../ImmutableOptimizations',
     'underscore-string'
-], function (_, React, $, debug) {
+], function (_, React, $, debug, ImmutableOptimizations) {
     'use strict';
 
 
@@ -18,6 +19,7 @@ define([
      * all the possible corner cases.
      */
     var Carousel = React.createClass({
+        mixins: [ImmutableOptimizations],
 
         fieldClass: 'formFieldCarousel',
 

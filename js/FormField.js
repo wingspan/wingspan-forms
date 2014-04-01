@@ -3,8 +3,9 @@ define([
     'underscore', 'react',
     './util/debug',
     './AutoControl',
-    './ControlCommon'
-], function (_, React, debug, AutoControl, ControlCommon) {
+    './ControlCommon',
+    './ImmutableOptimizations'
+], function (_, React, debug, AutoControl, ControlCommon, ImmutableOptimizations) {
     'use strict';
 
     function determineFieldClass(children) {
@@ -26,6 +27,7 @@ define([
     }
 
     var FormField = React.createClass({
+        mixins: [ImmutableOptimizations],
 
         getDefaultProps: function () {
             return {

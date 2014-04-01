@@ -1,10 +1,13 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'jquery', 'react', '../util/debug', 'kendo'
-], function (_, $, React, debug, kendo) {
+    'underscore', 'jquery', 'react', '../util/debug', 'kendo',
+    '../ImmutableOptimizations'
+], function (_, $, React, debug, kendo, ImmutableOptimizations) {
     'use strict';
 
     var KendoGrid = React.createClass({
+        mixins: [ImmutableOptimizations],
+
         getDefaultProps: function () {
             return {
                 className: '',

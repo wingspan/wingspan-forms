@@ -2,12 +2,14 @@
 define([
     'underscore', 'jquery', 'react', 'kendo',
     '../util/debug',
-    '../ControlCommon'
-], function (_, $, React, kendo, debug, ControlCommon) {
+    '../ControlCommon',
+    '../ImmutableOptimizations'
+], function (_, $, React, kendo, debug, ControlCommon, ImmutableOptimizations) {
     'use strict';
 
 
     var KendoDate = React.createClass({
+        mixins: [ImmutableOptimizations],
 
         fieldClass: 'formFieldDatepicker',
 

@@ -2,12 +2,14 @@
 define([
     'underscore', 'jquery', 'react', 'kendo',
     '../util/kendoutil',
-    '../util/debug'
-], function (_, $, React, kendo, kendoutil, debug) {
+    '../util/debug',
+    '../ImmutableOptimizations'
+], function (_, $, React, kendo, kendoutil, debug, ImmutableOptimizations) {
     'use strict';
 
     return React.createClass({
         displayName: 'KendoListView',
+        mixins: [ImmutableOptimizations],
 
         getDefaultProps: function () {
             return {

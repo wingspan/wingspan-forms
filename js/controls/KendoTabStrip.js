@@ -2,8 +2,9 @@
 define([
     'underscore', 'jquery', 'react', 'kendo',
     '../util/debug',
-    '../ReactCommon'
-], function (_, $, React, kendo, debug, ReactCommon) {
+    '../ReactCommon',
+    '../ImmutableOptimizations'
+], function (_, $, React, kendo, debug, ReactCommon, ImmutableOptimizations) {
     'use strict';
 
     void ReactCommon;
@@ -12,6 +13,7 @@ define([
      * This component is not presently stateful so we don't get to control what is selected.
      */
     var KendoTabStrip = React.createClass({
+        mixins: [ImmutableOptimizations],
 
         componentWillMount: function () {
             debug.verify(_.isObject(this.props.tabs) && _.keys(this.props.tabs).length > 0);

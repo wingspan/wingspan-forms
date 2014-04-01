@@ -1,7 +1,8 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'react', 'jquery', '../util/debug'
-], function (_, React, $, debug) {
+    'underscore', 'react', 'jquery', '../util/debug',
+    '../ImmutableOptimizations'
+], function (_, React, $, debug, ImmutableOptimizations) {
     'use strict';
 
     /**
@@ -9,6 +10,7 @@ define([
      *       This must be contained by a RadioGroup or it won't style right.
      */
     var Radio = React.createClass({
+        mixins: [ImmutableOptimizations],
 
         getDefaultProps: function () {
             return {

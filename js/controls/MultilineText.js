@@ -1,11 +1,13 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'react'
-], function (_, React) {
+    'underscore', 'react',
+    '../ImmutableOptimizations'
+], function (_, React, ImmutableOptimizations) {
     'use strict';
 
 
     var MultilineText = React.createClass({
+        mixins: [ImmutableOptimizations],
 
         fieldClass: 'formFieldTextarea',
 

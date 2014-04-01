@@ -5,11 +5,14 @@ define([
     'react',
     'kendo',
     '../util/debug',
-    '../util/util'
-], function (_, $, React, kendo, debug, util) {
+    '../util/util',
+    '../ImmutableOptimizations'
+], function (_, $, React, kendo, debug, util, ImmutableOptimizations) {
     'use strict';
 
     var KendoGridPicker = React.createClass({
+        mixins: [ImmutableOptimizations],
+
         $el: null,
 
         getDefaultProps: function () {

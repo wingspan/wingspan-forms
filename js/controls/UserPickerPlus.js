@@ -3,8 +3,9 @@ define([
     'underscore', 'react',
     '../util/debug',
     './RadioGroup',
-    './UserPicker'
-], function (_, React, debug, RadioGroup, UserPicker) {
+    './UserPicker',
+    '../ImmutableOptimizations'
+], function (_, React, debug, RadioGroup, UserPicker, ImmutableOptimizations) {
     'use strict';
 
     void UserPicker;
@@ -17,6 +18,7 @@ define([
     return React.createClass({
 
         displayName: 'UserPickerPlus',
+        mixins: [ImmutableOptimizations],
         fieldClass: 'formFieldRadio',
 
         getDefaultProps: function () {

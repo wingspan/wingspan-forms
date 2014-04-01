@@ -1,12 +1,14 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'jquery', 'react'
-], function (_, $, React) {
+    'underscore', 'jquery', 'react',
+    '../ImmutableOptimizations'
+], function (_, $, React, ImmutableOptimizations) {
     'use strict';
 
     var SPACE_KEY = 32;
 
     return React.createClass({
+        mixins: [ImmutableOptimizations],
 
         fieldClass: 'formFieldCheckbox',
 

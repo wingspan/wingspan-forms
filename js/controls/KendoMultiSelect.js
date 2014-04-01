@@ -2,12 +2,14 @@
 define([
     'underscore', 'jquery', 'react',
     '../util/debug',
-    '../ControlCommon'
-], function (_, $, React, debug, controlCommon) {
+    '../ControlCommon',
+    '../ImmutableOptimizations'
+], function (_, $, React, debug, controlCommon, ImmutableOptimizations) {
     'use strict';
 
 
     return React.createClass({
+        mixins: [ImmutableOptimizations],
 
         getDefaultProps: function() {
             return {

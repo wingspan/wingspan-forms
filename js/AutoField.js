@@ -1,11 +1,13 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'react', './FormField', './AutoControl'
-], function (_, React, FormField, AutoControl) {
+    'underscore', 'react', './FormField', './AutoControl', './ImmutableOptimizations'
+], function (_, React, FormField, AutoControl, ImmutableOptimizations) {
     'use strict';
 
 
     var AutoField = React.createClass({
+        mixins: [ImmutableOptimizations],
+
         getDefaultProps: function () {
             return {
                 fieldInfo: undefined,

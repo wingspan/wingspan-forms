@@ -2,13 +2,15 @@
 define([
     'underscore', 'jquery', 'react', 'kendo',
     '../util/debug',
-    '../ControlCommon'
-], function (_, $, React, kendo, debug, controlCommon) {
+    '../ControlCommon',
+    '../ImmutableOptimizations'
+], function (_, $, React, kendo, debug, controlCommon, ImmutableOptimizations) {
     'use strict';
 
     void controlCommon;
 
     var UserPicker = React.createClass({
+        mixins: [ImmutableOptimizations],
 
         fieldClass: 'formFieldAutocomplete',
 

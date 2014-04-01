@@ -1,11 +1,13 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'react', 'wingspan-forms/util/debug'
-], function (_, React, debug) {
+    'underscore', 'react', 'wingspan-forms/util/debug',
+    '../ImmutableOptimizations'
+], function (_, React, debug, ImmutableOptimizations) {
     'use strict';
 
 
     var Button = React.createClass({
+        mixins: [ImmutableOptimizations],
 
         getDefaultProps: function () {
             return {

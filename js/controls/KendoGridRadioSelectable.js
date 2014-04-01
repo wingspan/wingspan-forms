@@ -1,10 +1,12 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'jquery', 'react', '../util/debug'
-], function (_, $, React, debug) {
+    'underscore', 'jquery', 'react', '../util/debug',
+    '../ImmutableOptimizations'
+], function (_, $, React, debug, ImmutableOptimizations) {
     'use strict';
 
     var KendoGridRadioSelectable = React.createClass({
+        mixins: [ImmutableOptimizations],
 
         $el:{},
 

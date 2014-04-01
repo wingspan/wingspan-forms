@@ -1,7 +1,8 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'jquery', 'react', '../util/util', '../ControlCommon'
-], function (_, $, React, u, controlCommon) {
+    'underscore', 'jquery', 'react', '../util/util', '../ControlCommon',
+    '../ImmutableOptimizations'
+], function (_, $, React, u, controlCommon, ImmutableOptimizations) {
     'use strict';
 
 
@@ -14,6 +15,7 @@ define([
      * Empty optgroups will be elided.
      */
     return React.createClass({
+        mixins: [ImmutableOptimizations],
 
         fieldClass: 'formFieldMultiselect',
 
