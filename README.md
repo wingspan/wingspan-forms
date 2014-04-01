@@ -8,11 +8,11 @@
  * [basic form with validation](http://jsfiddle.net/dustingetz/5B9Qb/2/)
  * [basic form with validation, no fancy abstractions](http://jsfiddle.net/dustingetz/84JuE/12/)
  * [dynamic form generated from JSON metadata](http://jsfiddle.net/dustingetz/gg4w5/2/)
- * [dynamic Master/Detail CRUD editor](http://wingspan.github.io/wingspan-forms/examples/form-master-detail/) ([source](https://github.com/wingspan/wingspan-forms-examples/tree/master/form-master-detail))
- * [faceted search demo](http://wingspan.github.io/wingspan-forms/examples/faceted-search/) ([source](https://github.com/wingspan/wingspan-forms-examples/tree/master/faceted-search))
- * [sandbox showing all included controls in various configurations](http://wingspan.github.io/wingspan-forms/examples/sandbox/) ([source](https://github.com/wingspan/wingspan-forms-examples/tree/master/sandbox))
+ * [dynamic Master/Detail CRUD editor](http://wingspan.github.io/wingspan-forms/examples/form-master-detail/) ([source](https://github.com/wingspan/wingspan-forms/tree/master/examples/form-master-detail))
+ * [faceted search demo](http://wingspan.github.io/wingspan-forms/examples/faceted-search/) ([source](https://github.com/wingspan/wingspan-forms/tree/master/examples/faceted-search))
+ * [sandbox showing all included controls in various configurations](http://wingspan.github.io/wingspan-forms/examples/sandbox/) ([source](https://github.com/wingspan/wingspan-forms/tree/master/examples/sandbox))
  * [Simple example of how to keep all the state "at the top"](http://jsfiddle.net/dustingetz/YUCBT/2/)
- * [controlled grid](http://wingspan.github.io/wingspan-forms/examples/controlled-grid/) ([source](https://github.com/wingspan/wingspan-forms-examples/tree/master/controlled-grid))
+ * [controlled grid](http://wingspan.github.io/wingspan-forms/examples/controlled-grid/) ([source](https://github.com/wingspan/wingspan-forms/tree/master/examples/controlled-grid))
 
 ## Documentation
 
