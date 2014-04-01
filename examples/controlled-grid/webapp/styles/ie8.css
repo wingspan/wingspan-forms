@@ -1,0 +1,53 @@
+/* checkbox / radio button fixes */
+input[type='checkbox'], input[type='radio'] {
+    display: block;
+}
+
+/* action menu image fixes */
+.actionMenu {
+    behavior: url(css/behaviors/PIE.htc);
+}
+
+.actionMenu .title {
+    margin-left: 5px;
+    margin-right: 5px;
+    position: relative;
+}
+
+.actionMenu .title .left {
+    position: absolute;
+    top: 0;
+    left: -5px;
+    bottom: 0;
+    width: 5px;
+    background: url("positionalPopup/assets/actionMenuHeaderLeft.png") top left no-repeat;
+}
+
+.actionMenu .title .right {
+    position: absolute;
+    top: 0;
+    right: -5px;
+    bottom: 0;
+    width: 5px;
+    background: url("positionalPopup/assets/actionMenuHeaderRight.png") top left no-repeat;
+}
+
+/* study list fixes */
+.documentListView .documentNavigator .content .tagController .tagsCollection .tags {
+    margin-right: 0 !important;
+}
+
+.documentListView .facetNavigator .facets .controls {
+    height: 24px !important;
+}
+
+.documentListView .facetNavigator .facets .facet {
+    padding-top: 0 !important;
+    padding-bottom: 15px !important;
+}
+
+/* attribute fixes */
+.studyHomeView dt {
+    padding-top: 9px;
+    padding-bottom: 0;
+}

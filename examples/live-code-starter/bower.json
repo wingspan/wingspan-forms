@@ -1,0 +1,32 @@
+{
+    "name": "Live Code Starter",
+    "version": "0.0.0",
+    "homepage": "https://github.com/wingspan/wingspan-forms",
+    "authors": [
+        "Wingspan Technology Inc."
+    ],
+    "license": "MIT",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "jquery": "~1.9.1",
+        "momentjs": "~2.0.0",
+        "underscore": "~1.4.4",
+        "react": "~0.8.0",
+        "requirejs": "~2.1.9",
+        "requirejs-text": "~2.0.10",
+        "require-jsx": "e6315ab6864480943302f01b9cd7eba315e045db",
+        "q": "~0.9.7",
+        "stacktrace": "~0.5.3",
+        "underscore.string": "~2.3.3",
+        "kendo-ui": "~2013.3.1119",
+        "es5-shim": "~2.1",
+        "wingspan-forms": "50f83918230b053c3a3de2e7c44e0b5c26c4c9dd"
+    }
+}
