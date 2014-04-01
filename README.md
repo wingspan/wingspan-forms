@@ -42,3 +42,20 @@ The build uses NPM and grunt which must already installed.
 
     npm install                 # install grunt plugins
     grunt                       # Build artifacts to dist/
+
+## Build the examples
+
+All of the demos have the same build steps.
+
+    cd examples
+    $ for file in $(find . -maxdepth 1 -type d -not -name ".*")
+    > do
+    > pushd $file
+    > npm install; grunt
+    > popd
+    > done
+
+or in a oneliner
+
+    for file in $(find . -maxdepth 1 -type d -not -name ".*"); do pushd $file; npm install; grunt; popd; done
+
