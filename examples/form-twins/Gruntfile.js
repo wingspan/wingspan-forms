@@ -56,57 +56,6 @@ module.exports = function (grunt) {
             }
         },
 
-        requirejs: {
-            options: {
-
-                optimize: 'none',
-                inlineText: true,
-                useStrict: true,
-                skipPragmas: true,
-                preserveLicenseComments: true,
-
-                baseUrl: 'webapp/js-built',
-
-                paths: {
-                    'underscore': '../lib/underscore',
-                    'underscore-string': '../lib/underscore.string',
-                    'jquery': '../lib/jquery',
-                    'kendo': '../lib/kendo-ui/js/kendo.web',
-                    'moment': '../lib/moment',
-                    'react': '../lib/react-with-addons',
-                    'es5-shim': '../lib/es5-shim',
-                    'text': '../lib/text',
-                    'wingspan-forms': '../lib/wingspan-forms/wingspan-forms',
-                    'textassets': '../textassets' // all assets loaded via `text!` must be rooted here (to avoid JSX compilation)
-                },
-
-                shim: {
-                    'underscore': { deps: [], exports: '_' },
-                    'underscore-string': { exports: '_s' },
-                    'jquery': { deps: [], exports: '$' },
-                    'kendo': { deps: [], exports: 'kendo' },
-                    'moment': { deps: [], exports: 'moment' },
-                    'react': { deps: [], exports: 'React'},
-                    'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo', 'moment', 'underscore-string'], exports: 'Wingspan'}
-                },
-
-                uglify: {
-                    toplevel: true,
-                    ascii_only: true,
-                    beautify: true,
-                    max_line_length: 1000,
-                    defines: { DEBUG: ['name', 'false'] },
-                    no_mangle: true
-                }
-            },
-            compile: {
-                options: {
-                    out: 'webapp/Page.js',
-                    include: ['Page']
-                }
-            }
-        },
-
         copy: {
             'libs': {
                 files: [
@@ -158,6 +107,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
 
-    grunt.registerTask('default', ['bower:install', 'subgrunt', 'copy', 'react', 'less', 'requirejs']);
-    grunt.registerTask('devel', ['bower:install', 'subgrunt', 'copy', 'react', 'less']);
+    grunt.registerTask('default', ['bower:install', 'subgrunt', 'copy', 'react', 'less']);
 };
