@@ -14,7 +14,7 @@
     (function(){
         'use strict';
 
-        require(['jquery', 'underscore', 'jsx!Page'], function($, _, page) {
+        require(['jquery', 'underscore', 'Page'], function($, _, page) {
             $(document).ready(_.partial(page.entrypoint, document.getElementById('root')));
         });
 

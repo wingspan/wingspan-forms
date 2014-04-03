@@ -3,7 +3,7 @@
     'use strict';
 
     require.config({
-        baseUrl: 'js',
+        baseUrl: 'js-built',
         paths: {
             'underscore': '../lib/underscore',
             'underscore-string': '../lib/underscore.string',
