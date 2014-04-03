@@ -8,6 +8,7 @@ define([
     'use strict';
 
     void controlCommon;
+    var userPickerTemplate = '<div class="user"># if ((typeof currentlyOutOfOffice !== "undefined" && currentlyOutOfOffice) || (typeof status !== "undefined" && status) === "UNAVAILABLE") { #<div class="outOfOffice"></div># } #<p class="fullName">#: fullName #</p><p class="emailAddress">#: emailAddress #</p></div>';
 
     var UserPicker = React.createClass({
         mixins: [ImmutableOptimizations],
@@ -20,7 +21,7 @@ define([
                 onChange: function () {},
                 id: undefined,
                 placeholder: 'Select User...', // l10n requires thought, no strings down here
-                template: '<div class="user"><p class="fullName">#: fullName #</p><p class="emailAddress">#: emailAddress #</p></div>',
+                template: userPickerTemplate,
                 dataTextField: 'nameOrEmail',
                 listClass: 'userPicker',
                 disabled: false,
