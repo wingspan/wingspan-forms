@@ -81,6 +81,10 @@ define([
                 return (MyForm( {value:form, onChange:_.partial(this.onChange, 'forms', i)} ));
             }.bind(this));
 
+            var forms2 = _.map(this.state.forms, function (form, i) {
+                return (MyForm( {value:form, onChange:_.partial(this.onChange, 'forms', i)} ));
+            }.bind(this));
+
             var text = "function deepCopy (tree) { return JSON.parse(JSON.stringify(tree)); }\n\
 var nextState = deepCopy(app.state);\n\
 nextState.forms.push({});\n\
@@ -89,10 +93,13 @@ app.setState(nextState);";
             return (
                 React.DOM.div( {className:"App"} , 
                     React.DOM.div(null, forms),
+                    React.DOM.div(null, forms2),
                     React.DOM.div(null, 
                         PrettyJson( {value:this.state} ),
                         React.DOM.p(null, "Try this in the javascript console:"),
-                        React.DOM.pre(null, text)
+                        React.DOM.pre(null, text),
+                        React.DOM.p(null, React.DOM.a( {href:"https://github.com/wingspan/wingspan-forms/blob/master/examples/form-twins/webapp/js/Page.js"}, 
+" The source to this example is available here."))
                     )
                 )
             );

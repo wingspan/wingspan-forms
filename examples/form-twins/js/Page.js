@@ -81,6 +81,10 @@ define([
                 return (<MyForm value={form} onChange={_.partial(this.onChange, 'forms', i)} />);
             }.bind(this));
 
+            var forms2 = _.map(this.state.forms, function (form, i) {
+                return (<MyForm value={form} onChange={_.partial(this.onChange, 'forms', i)} />);
+            }.bind(this));
+
             var text = "function deepCopy (tree) { return JSON.parse(JSON.stringify(tree)); }\n\
 var nextState = deepCopy(app.state);\n\
 nextState.forms.push({});\n\
@@ -89,10 +93,13 @@ app.setState(nextState);";
             return (
                 <div className="App" >
                     <div>{forms}</div>
+                    <div>{forms2}</div>
                     <div>
                         <PrettyJson value={this.state} />
                         <p>Try this in the javascript console:</p>
                         <pre>{text}</pre>
+                        <p><a href="https://github.com/wingspan/wingspan-forms/blob/master/examples/form-twins/webapp/js/Page.js">
+                        The source to this example is available here.</a></p>
                     </div>
                 </div>
             );
