@@ -93,6 +93,8 @@ app.setState(nextState);";
                         <PrettyJson value={this.state} />
                         <p>Try this in the javascript console:</p>
                         <pre>{text}</pre>
+                        <p><a href="https://github.com/wingspan/wingspan-forms/blob/master/examples/form-twins/webapp/js/Page.js">
+                        The source to this example is available here.</a></p>
                     </div>
                 </div>
             );
