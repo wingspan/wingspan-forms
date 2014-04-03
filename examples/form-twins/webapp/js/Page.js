@@ -24,7 +24,8 @@ define([
         render: function () {
             var fieldInfoFirstName= {label: 'First Name'};
             return (
-                <div>
+                <div className="MyForm">
+                    <div className="formTitle">Form</div>
                     <FormField fieldInfo={fieldInfoFirstName}>
                         <KendoText value={this.props.value.firstName}
                             onChange={_.partial(this.props.onChange, 'firstName')} />
@@ -49,18 +50,27 @@ define([
     var App = React.createClass({
         mixins: [Forms.TopStateMixin],
 
+        componentWillMount: function () {
+            window.app = this; // save ref for dev console
+        },
+
         getInitialState: function () {
             return {
                 forms: [
                     {
-                        firstName: 'Dustin',
-                        lastName: 'Getz',
-                        gender: ''
+                        firstName: 'Alice',
+                        lastName: 'Armstrong',
+                        gender: 'female'
                     },
                     {
-                        firstName: 'Dustin',
-                        lastName: 'Getz',
-                        gender: ''
+                        firstName: 'Bob',
+                        lastName: 'Barnaby',
+                        gender: 'male'
+                    },
+                    {
+                        firstName: 'Cindy',
+                        lastName: 'Crawford',
+                        gender: 'female'
                     }
                 ]
             };
@@ -71,12 +81,21 @@ define([
                 return (<MyForm value={form} onChange={_.partial(this.onChange, 'forms', i)} />);
             }.bind(this));
 
+            var text = "function deepCopy (tree) { return JSON.parse(JSON.stringify(tree)); }\n\
+var nextState = deepCopy(app.state);\n\
+nextState.forms.push({});\n\
+app.setState(nextState);";
+
             return (
                 <div className="App" >
-                    {forms}
-                    <PrettyJson value={this.state} />
+                    <div>{forms}</div>
+                    <div>
+                        <PrettyJson value={this.state} />
+                        <p>Try this in the javascript console:</p>
+                        <pre>{text}</pre>
+                    </div>
                 </div>
-                );
+            );
         }
 
     });
