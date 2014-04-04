@@ -21,7 +21,6 @@
     "requirejs": "~2.1.9",
     "requirejs-text": "~2.0.10",
     "underscore.string": "~2.3.3",
-    "stacktrace": "~0.5.3",
     "kendo-ui": "~2013.3.1119",
     "almond": "~0.2.7"
   }
