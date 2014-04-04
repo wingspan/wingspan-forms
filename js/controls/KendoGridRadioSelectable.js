@@ -1,8 +1,8 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'jquery', 'react', '../util/debug',
+    'underscore', 'jquery', 'react',
     '../ImmutableOptimizations'
-], function (_, $, React, debug, ImmutableOptimizations) {
+], function (_, $, React, ImmutableOptimizations) {
     'use strict';
 
     var KendoGridRadioSelectable = React.createClass({
@@ -28,9 +28,9 @@ define([
         },
 
         render: function () {
-            debug.verify(this.props.dataSource);
-            debug.verify(this.props.columns);
-            debug.verify(this.props.valueField);
+            console.assert(this.props.dataSource);
+            console.assert(this.props.columns);
+            console.assert(this.props.valueField);
 
             return ( <div /> );
         },
@@ -76,7 +76,7 @@ define([
 
         componentWillReceiveProps: function (nextProps) {
             var cantChange = ['dataSource', 'editable', 'pageable'];
-            debug.verify(_.isEqual(_.pick(nextProps, cantChange), _.pick(this.props, cantChange)), 'these props cant change after mount');
+            console.assert(_.isEqual(_.pick(nextProps, cantChange), _.pick(this.props, cantChange)), 'these props cant change after mount');
         },
 
         gridSelection: function (e) {

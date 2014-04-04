@@ -1,6 +1,5 @@
 define([
     'underscore', 'react',
-    './util/debug',
     './controls/KendoText',
     './controls/MultilineText',
     './controls/SwitchBox',
@@ -10,7 +9,7 @@ define([
     './controls/KendoComboBox',
     './controls/UserPicker',
     './ImmutableOptimizations'
-], function (_, React, debug, KendoText, MultilineText, SwitchBox, KendoNumber, KendoDatetime, KendoDate, KendoComboBox,
+], function (_, React, KendoText, MultilineText, SwitchBox, KendoNumber, KendoDatetime, KendoDate, KendoComboBox,
              UserPicker, ImmutableOptimizations) {
     'use strict';
 

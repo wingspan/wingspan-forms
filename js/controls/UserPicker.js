@@ -1,10 +1,9 @@
 /** @jsx React.DOM */
 define([
     'underscore', 'jquery', 'react', 'kendo',
-    '../util/debug',
     '../ControlCommon',
     '../ImmutableOptimizations'
-], function (_, $, React, kendo, debug, controlCommon, ImmutableOptimizations) {
+], function (_, $, React, kendo, controlCommon, ImmutableOptimizations) {
     'use strict';
 
     void controlCommon;
@@ -32,12 +31,11 @@ define([
         },
 
         componentWillMount: function () {
-            debug.verify(this.props.dataSource);
+            console.assert(this.props.dataSource);
         },
 
         componentDidMount: function () {
             var $el = $(this.getDOMNode());
-            debug.verify($el);
 
             var onChange = this.props.onChange,
                 header = $('<h2></h2>'),
@@ -135,7 +133,7 @@ define([
 
         /*jshint ignore:start */
         render: function () {
-            debug.verify(!this.props.noControl);
+            console.assert(!this.props.noControl);
             return (<input type="text" id={this.props.id} className="k-textbox"/>);
         }
         /*jshint ignore:end */

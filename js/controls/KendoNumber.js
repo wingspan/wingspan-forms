@@ -1,10 +1,9 @@
 /** @jsx React.DOM */
 define([
     'underscore', 'jquery', 'react', 'kendo',
-    '../util/debug',
     '../ControlCommon',
     '../ImmutableOptimizations'
-], function (_, $, React, kendo, debug, ControlCommon, ImmutableOptimizations) {
+], function (_, $, React, kendo, ControlCommon, ImmutableOptimizations) {
     'use strict';
 
 
@@ -44,7 +43,7 @@ define([
 
         componentDidMount: function (rootNode) {
             var $el = $(rootNode);
-            debug.verify($el);
+            console.assert($el);
 
             if (this.props.noControl) {
                 // Everything was done in JSX.
@@ -69,7 +68,7 @@ define([
 
         componentDidUpdate: function (prevProps, prevState, rootNode) {
             var $el = $(rootNode);
-            debug.verify($el);
+            console.assert($el);
 
             if (this.props.noControl) {
                 // Everything was done in JSX.

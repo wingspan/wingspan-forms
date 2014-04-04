@@ -1,10 +1,9 @@
 /** @jsx React.DOM */
 define([
     'underscore', 'jquery', 'react', 'kendo',
-    '../util/debug',
     '../ControlCommon',
     '../ImmutableOptimizations'
-], function (_, $, React, kendo, debug, ControlCommon, ImmutableOptimizations) {
+], function (_, $, React, kendo, ControlCommon, ImmutableOptimizations) {
     'use strict';
 
 
@@ -59,11 +58,11 @@ define([
         },
 
         componentWillMount: function () {
-            debug.verify(this.props.displayField);
-            debug.verify(this.props.valueField);
+            console.assert(this.props.displayField);
+            console.assert(this.props.valueField);
 
             if (!this.props.noControl) {
-                debug.verify(this.props.dataSource);
+                console.assert(this.props.dataSource);
             }
         },
 
@@ -113,7 +112,7 @@ define([
 
         componentWillReceiveProps: function (nextProps) {
             var cantChange = ['template', 'valueField', 'displayField', 'placeholder', 'filter'];
-            debug.verify(_.isEqual(_.pick(nextProps, cantChange), _.pick(this.props, cantChange)), 'these props cant change after mount');
+            console.assert(_.isEqual(_.pick(nextProps, cantChange), _.pick(this.props, cantChange)), 'these props cant change after mount');
         },
 
         componentDidUpdate: function (prevProps, prevState) {

@@ -1,10 +1,9 @@
 /** @jsx React.DOM */
 define([
     'underscore', 'react', 'jquery',
-    '../util/debug',
     '../ImmutableOptimizations',
     'underscore-string'
-], function (_, React, $, debug, ImmutableOptimizations) {
+], function (_, React, $, ImmutableOptimizations) {
     'use strict';
 
 
@@ -47,7 +46,7 @@ define([
             if (this.props.options.length === 0) {
                 // If we have zero options (which can make sense sometimes),
                 // a selected value does not make sense.
-                debug.verify(_.contains([undefined, null], this.props.value));
+                console.assert(_.contains([undefined, null], this.props.value));
             }
 
             return (
@@ -64,7 +63,7 @@ define([
             var i = this.props.value;
             var N = this.props.options.length;
 
-            debug.verify(_.contains(['left', 'right'], direction))
+            console.assert(_.contains(['left', 'right'], direction))
             var nextIndex = (direction === 'left' ? (i - 1 + N) % N : (i + 1) % N);
 
             // don't actually move the carousel, the flux state must allow the change first.

@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'react', './util/debug'
-], function (_, React, debug) {
+    'underscore', 'react'
+], function (_, React) {
     'use strict';
 
     /* jshint ignore:start */

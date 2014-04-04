@@ -4,10 +4,9 @@ define([
     'jquery',
     'kendo',
     'react',
-    '../util/debug',
     '../util/util',
     '../ImmutableOptimizations'
-], function (_, $, kendo, React, debug, util, ImmutableOptimizations) {
+], function (_, $, kendo, React, util, ImmutableOptimizations) {
     'use strict';
 
     var $el = null;
@@ -27,15 +26,15 @@ define([
         },
 
         componentWillMount: function () {
-            debug.verify(this.props.dataSource);
-            debug.verify(this.props.columns);
-            debug.verify(this.props.valueField);
-            debug.verify(_.isArray(this.props.value));
+            console.assert(this.props.dataSource);
+            console.assert(this.props.columns);
+            console.assert(this.props.valueField);
+            console.assert(_.isArray(this.props.value));
         },
 
         componentWillReceiveProps: function (nextProps) {
             var cantChange = ['dataSource', 'editable', 'pageable'];
-            debug.verify(_.isEqual(_.pick(nextProps, cantChange), _.pick(this.props, cantChange)), 'these props cant change after mount');
+            console.assert(_.isEqual(_.pick(nextProps, cantChange), _.pick(this.props, cantChange)), 'these props cant change after mount');
         },
 
         render: function () {

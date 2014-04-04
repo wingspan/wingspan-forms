@@ -1,11 +1,10 @@
 /** @jsx React.DOM */
 define([
     'underscore', 'react',
-    '../util/debug',
     './RadioGroup',
     './UserPicker',
     '../ImmutableOptimizations'
-], function (_, React, debug, RadioGroup, UserPicker, ImmutableOptimizations) {
+], function (_, React, RadioGroup, UserPicker, ImmutableOptimizations) {
     'use strict';
 
     void UserPicker;
@@ -30,7 +29,7 @@ define([
         },
 
         componentWillMount: function () {
-            debug.verify(this.props.dataSource);
+            console.assert(this.props.dataSource);
 
             this.elemIDPrefix = _.uniqueId('userPickerRadio');
         },

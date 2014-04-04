@@ -1,7 +1,6 @@
 define([
     'underscore', 'jquery', 'kendo',
-    './debug'
-], function (_, $, kendo, debug) {
+], function (_, $, kendo) {
     'use strict';
 
     var exports = {};
@@ -66,7 +65,7 @@ define([
 
             fieldInfo = _.isArray(fieldInfo) ? fieldInfo[0] : fieldInfo;
         }
-        debug.verify(_.isObject(fieldInfo), 'Unable to find fieldInfo for: ' + fieldName);
+        console.assert(_.isObject(fieldInfo), 'Unable to find fieldInfo for: ' + fieldName);
         return fieldInfo;
     };
 
@@ -90,7 +89,7 @@ define([
         if (null === value || undefined === value) {
             return '';
         }
-        debug.verify(_.isObject(fieldInfo), 'Unable to find fieldInfo for: ' + fieldName);
+        console.assert(_.isObject(fieldInfo), 'Unable to find fieldInfo for: ' + fieldName);
         // not sure why _.isArray not working - JY
         if (_.isArray(value) || (value.length !== undefined && value.push !== undefined && value.pop !== undefined)) {
             return _.map(value, function (v) { return exports.typedObjectValueToDisplayValue2(v, fieldName, fieldInfo, localeManager); }).join(', ');
@@ -223,7 +222,7 @@ define([
         var arr = Array.prototype.slice.call(arguments, 0);
         arr.unshift(false);
         debugger;
-        debug.verify.apply(null, arr);
+        console.assert.apply(null, arr);
     }
 
     exports.barf = barf;

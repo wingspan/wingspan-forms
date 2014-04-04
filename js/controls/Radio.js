@@ -1,8 +1,8 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'react', 'jquery', '../util/debug',
+    'underscore', 'react', 'jquery',
     '../ImmutableOptimizations'
-], function (_, React, $, debug, ImmutableOptimizations) {
+], function (_, React, $, ImmutableOptimizations) {
     'use strict';
 
     /**
@@ -23,8 +23,8 @@ define([
         },
 
         componentWillMount: function () {
-            debug.verify(this.props.name, 'Radio \'name\' prop is required');
-            //debug.verify(this.props.value !== undefined, 'Radio needs a value to distinguish choices');
+            console.assert(this.props.name, 'Radio \'name\' prop is required');
+            //console.assert(this.props.value !== undefined, 'Radio needs a value to distinguish choices');
             // Also, value can't be null, i think, or the <input> will not be controlled.
 
             this.stableUniqueId = _.uniqueId();

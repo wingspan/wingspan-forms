@@ -1,8 +1,8 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'jquery', 'react', '../util/debug', 'kendo',
+    'underscore', 'jquery', 'react', 'kendo',
     '../ImmutableOptimizations'
-], function (_, $, React, debug, kendo, ImmutableOptimizations) {
+], function (_, $, React, kendo, ImmutableOptimizations) {
     'use strict';
 
     var KendoGrid = React.createClass({
@@ -18,8 +18,8 @@ define([
         },
 
         render: function () {
-            debug.verify(this.props.dataSource);
-            debug.verify(this.props.columns);
+            console.assert(this.props.dataSource);
+            console.assert(this.props.columns);
             return (<div className={this.props.className} />);
         },
 
@@ -34,7 +34,7 @@ define([
         },
 
         componentDidUpdate: function (prevProps, prevState, rootNode) {
-            debug.verify(!!rootNode);
+            console.assert(!!rootNode);
             var $el = $(rootNode);
             var kendoWidget = $el.data('kendoGrid');
 

@@ -1,11 +1,10 @@
 /** @jsx React.DOM */
 define([
     'underscore', 'react',
-    './util/debug',
     './AutoControl',
     './ControlCommon',
     './ImmutableOptimizations'
-], function (_, React, debug, AutoControl, ControlCommon, ImmutableOptimizations) {
+], function (_, React, AutoControl, ControlCommon, ImmutableOptimizations) {
     'use strict';
 
     function determineFieldClass(children) {

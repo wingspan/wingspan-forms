@@ -1,8 +1,8 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'jquery', 'react', '../util/debug',
+    'underscore', 'jquery', 'react',
     '../ImmutableOptimizations'
-], function (_, $, React, debug, ImmutableOptimizations) {
+], function (_, $, React, ImmutableOptimizations) {
     'use strict';
 
 

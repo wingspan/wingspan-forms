@@ -1,10 +1,9 @@
 /** @jsx React.DOM */
 define([
     'underscore', 'jquery', 'react', 'kendo',
-    '../util/debug',
     '../ControlCommon',
     '../ImmutableOptimizations'
-], function (_, $, React, kendo, debug, ControlCommon, ImmutableOptimizations) {
+], function (_, $, React, kendo, ControlCommon, ImmutableOptimizations) {
     'use strict';
 
 
@@ -42,7 +41,6 @@ define([
             }
 
             var $el = $(this.getDOMNode());
-            debug.verify($el);
 
             $el.kendoDateTimePicker({
                 change: this.onChange,
@@ -63,7 +61,6 @@ define([
             }
 
             var $el = $(this.getDOMNode());
-            debug.verify($el);
 
             ControlCommon.setKendoDateState(
                 $el.data('kendoDateTimePicker'),

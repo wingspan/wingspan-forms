@@ -1,10 +1,9 @@
 /** @jsx React.DOM */
 define([
     'underscore', 'jquery', 'react',
-    '../util/debug',
     '../ControlCommon',
     '../ImmutableOptimizations'
-], function (_, $, React, debug, controlCommon, ImmutableOptimizations) {
+], function (_, $, React, controlCommon, ImmutableOptimizations) {
     'use strict';
 
 
@@ -27,9 +26,9 @@ define([
         },
 
         componentWillMount: function () {
-            debug.verify(this.props.displayField);
-            debug.verify(this.props.valueField);
-            debug.verify(this.props.dataSource);
+            console.assert(this.props.displayField);
+            console.assert(this.props.valueField);
+            console.assert(this.props.dataSource);
 
             this.stableUniqueId = _.uniqueId();
         },
@@ -76,7 +75,6 @@ define([
             }
 
             var $el = $(this.getDOMNode()).find('#' + this.stableUniqueId);
-            debug.verify($el);
 
             if (this.props.width) {
                 $el.width(340);
@@ -110,7 +108,7 @@ define([
 
         componentWillReceiveProps: function (nextProps) {
             var cantChange = ['template', 'dataSource', 'valueField', 'displayField', 'placeholder'];
-            debug.verify(_.isEqual(_.pick(nextProps, cantChange), _.pick(this.props, cantChange)), 'these props cant change after mount');
+            console.assert(_.isEqual(_.pick(nextProps, cantChange), _.pick(this.props, cantChange)), 'these props cant change after mount');
         },
 
         componentDidUpdate: function (prevProps, prevState) {
