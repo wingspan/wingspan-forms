@@ -1,6 +1,7 @@
 define([
     './AutoControl',
     './FormField',
+    './controls/Button',
     './controls/Carousel',
     './controls/CheckBox',
     './controls/KendoComboBox',
@@ -25,7 +26,7 @@ define([
     './ControlCommon',
     './AutoField',
     './TopStateMixin'
-], function (AutoControl, FormField, Carousel, CheckBox, KendoComboBox, KendoDate, KendoDatetime,
+], function (AutoControl, FormField, Button, Carousel, CheckBox, KendoComboBox, KendoDate, KendoDatetime,
              KendoGrid, KendoGridPicker, KendoGridPickerByButton, KendoGridRadioSelectable,
              KendoListView, KendoMultiSelect, KendoNumber, KendoTabStrip, KendoText, MultiSelect,
              MultilineText, Radio, RadioGroup, SwitchBox, UserPicker, UserPickerPlus, ControlCommon,
@@ -44,6 +45,7 @@ define([
     return {
         AutoControl: AutoControl,
         FormField: FormField,
+        Button: Button,
         Carousel: Carousel,
         CheckBox: CheckBox,
         KendoComboBox: KendoComboBox,
