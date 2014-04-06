@@ -23,8 +23,8 @@ define([
             return (<div className={this.props.className} />);
         },
 
-        componentDidMount: function (rootNode) {
-            var $rootNode = $(rootNode);
+        componentDidMount: function () {
+            var $rootNode = $(this.getDOMNode());
             void kendo;
             $rootNode.kendoGrid({
                 dataSource: this.props.dataSource,
@@ -33,9 +33,8 @@ define([
             });
         },
 
-        componentDidUpdate: function (prevProps, prevState, rootNode) {
-            console.assert(!!rootNode);
-            var $el = $(rootNode);
+        componentDidUpdate: function (prevProps, prevState) {
+            var $el = $(this.getDOMNode());
             var kendoWidget = $el.data('kendoGrid');
 
             if (this.props.dataSource instanceof Array) {

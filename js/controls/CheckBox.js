@@ -44,10 +44,11 @@ define([
         },
         /*jshint ignore:end */
 
-        componentDidMount: function (rootNode) {
-            var self = this;
+        componentDidMount: function () {
+            var self = this,
+                $el = $(this.getDOMNode());
 
-            $(rootNode).on('keypress', function (e) {
+            $el.on('keypress', function (e) {
                 if (e.keyCode === SPACE_KEY) {
                     self.props.onChange(!self.props.value);
                 }

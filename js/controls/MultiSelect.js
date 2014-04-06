@@ -91,9 +91,10 @@ define([
         },
         /* jshint ignore:end */
 
-        componentDidMount: function (rootNode) {
-            var self = this;
-            $(rootNode).on('change', function (event) {
+        componentDidMount: function () {
+            var self = this,
+                $el = $(this.getDOMNode());
+            $el.on('change', function (event) {
                 void event;
                 var selections = _.map(_.filter(self.refs['multiselector'].getDOMNode().options, function (opt) {
                     return opt.selected;
