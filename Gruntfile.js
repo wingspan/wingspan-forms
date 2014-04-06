@@ -86,9 +86,13 @@ module.exports = function (grunt) {
             options: {
                 extension: 'js'
             },
-            app: {
+            lib: {
                 files: {
-                    'js-built': 'js',
+                    'js-built': 'js'
+                }
+            },
+            spec: {
+                files: {
                     'spec-built': 'spec'
                 }
             }
@@ -152,6 +156,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('default', ['bower:install', 'react', 'less', 'copy', 'requirejs:compile']);
-    grunt.registerTask('devel', ['bower:install', 'react', 'less', 'copy']);
+    grunt.registerTask('default', ['bower:install', 'react:lib', 'less', 'copy', 'requirejs:compile']);
+    grunt.registerTask('devel', ['bower:install', 'react:lib', 'less', 'copy']);
+    grunt.registerTask('test', ['default', 'react:spec', 'karma']);
 };
