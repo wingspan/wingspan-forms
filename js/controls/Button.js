@@ -1,8 +1,8 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'react', 'wingspan-forms/util/debug',
+    'underscore', 'react',
     '../ImmutableOptimizations'
-], function (_, React, debug, ImmutableOptimizations) {
+], function (_, React, ImmutableOptimizations) {
     'use strict';
 
 
