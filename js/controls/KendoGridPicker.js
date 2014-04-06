@@ -45,9 +45,8 @@ define([
         },
         /*jshint ignore:end */
 
-        componentDidMount: function (rootNode) {
-            debug.verify(!!rootNode);
-            this.$el = $(rootNode);
+        componentDidMount: function () {
+            this.$el = $(this.getDOMNode());
 
             var columns = [{ title: '', template: kendo.template(KendoGridPickerTemplate), width: 34 }];
             columns = columns.concat(this.props.columns);
@@ -76,9 +75,8 @@ define([
             this.$el = null;
         },
 
-        componentDidUpdate: function (prevProps, prevState, rootNode) {
-            debug.verify(rootNode);
-            this.$el = $(rootNode);
+        componentDidUpdate: function (prevProps, prevState) {
+            this.$el = $(this.getDOMNode());
 
             this.applySelectionStateToDom();
         },

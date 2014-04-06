@@ -3,20 +3,18 @@
 
 var ReactTestUtils = React.addons.TestUtils;
 
-describe('KendoGridPickerByButton', function() {
+describe('KendoGridPicker', function() {
 
     it('renders', function () {
         ReactTestUtils.renderIntoDocument(
-            <KendoGridPickerByButton
+            <KendoGridPicker
                 dataSource={[]}
                 columns={[]}
-                valueField="id"
-                value={[]}
-            />
+                value={[]} />
         );
 
     });
 });
 
 
-var KendoGridPickerByButton = WingspanForms.KendoGridPickerByButton;
+var KendoGridPicker = WingspanForms.KendoGridPicker;

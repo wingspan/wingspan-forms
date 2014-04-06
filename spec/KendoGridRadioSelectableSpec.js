@@ -3,20 +3,18 @@
 
 var ReactTestUtils = React.addons.TestUtils;
 
-describe('KendoGridPickerByButton', function() {
+describe('KendoGridRadioSelectable', function() {
 
     it('renders', function () {
         ReactTestUtils.renderIntoDocument(
-            <KendoGridPickerByButton
+            <KendoGridRadioSelectable
                 dataSource={[]}
                 columns={[]}
-                valueField="id"
-                value={[]}
-            />
+                valueField="id" />
         );
 
     });
 });
 
 
-var KendoGridPickerByButton = WingspanForms.KendoGridPickerByButton;
+var KendoGridRadioSelectable = WingspanForms.KendoGridRadioSelectable;

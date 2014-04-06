@@ -3,7 +3,7 @@
 
 var ReactTestUtils = React.addons.TestUtils;
 
-describe('KendoDateTime', function() {
+describe('KendoDatetime', function() {
 
     it('renders', function () {
         ReactTestUtils.renderIntoDocument(
