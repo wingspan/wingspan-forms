@@ -1,21 +1,23 @@
 {
-    "name": "wingspan-forms",
-    "version": "0.1.0",
-    "description": "",
-    "main": "wingspan-forms.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "Wingspan Technology, Inc.",
-    "license": "MIT",
-    "devDependencies": {
-        "grunt": "~0.4.1",
-        "grunt-cli": "~0.1.9",
-        "grunt-contrib-jshint": "~0.7.1",
-        "grunt-contrib-requirejs": "~0.4.1",
-        "grunt-contrib-less": "~0.7.0",
-        "grunt-react": "~0.4.0",
-        "grunt-bower-task": "~0.3.4",
-        "grunt-contrib-copy": "~0.5.0"
-    }
+  "name": "wingspan-forms",
+  "version": "0.1.0",
+  "description": "",
+  "main": "wingspan-forms.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Wingspan Technology, Inc.",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.9",
+    "grunt-contrib-jshint": "~0.7.1",
+    "grunt-contrib-requirejs": "~0.4.1",
+    "grunt-contrib-less": "~0.7.0",
+    "grunt-react": "~0.4.0",
+    "grunt-bower-task": "~0.3.4",
+    "grunt-contrib-copy": "~0.5.0",
+    "karma": "~0.10.8",
+    "grunt-karma": "~0.6.2"
+  }
 }
