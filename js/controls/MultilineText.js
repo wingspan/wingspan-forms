@@ -21,7 +21,8 @@ define([
                 placeholder: '',
                 minLength: undefined,
                 maxLength: undefined,
-                id: undefined
+                id: undefined,
+                value: undefined
             };
         },
 

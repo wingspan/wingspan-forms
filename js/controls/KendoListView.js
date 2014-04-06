@@ -86,15 +86,14 @@ define([
             this.suppressEvents = false;
         },
 
-        componentDidUpdate: function (prevProps, prevState, rootNode) {
+        componentDidUpdate: function (prevProps, prevState) {
             if (this.props.selectable) {
-                this.syncSelectionWithKendo($(rootNode));
+                this.syncSelectionWithKendo($(this.getDOMNode()));
             }
         },
 
-        componentDidMount: function (rootNode) {
-            debug.verify(rootNode);
-            var $el = $(rootNode);
+        componentDidMount: function () {
+            var $el = $(this.getDOMNode());
 
             var listView = $el.kendoListView({
                 autoBind: false,

@@ -68,15 +68,14 @@ define([
             return _.str.join(displayVals, ', '); // l10n?
         },
 
-        componentDidMount: function (rootNode) {
-            debug.verify(!!rootNode);
+        componentDidMount: function () {
 
             if (this.props.noControl) {
                 // Nothing to do - all done in JSX.
                 return;
             }
 
-            var $el = $(rootNode).find('#' + this.stableUniqueId);
+            var $el = $(this.getDOMNode()).find('#' + this.stableUniqueId);
             debug.verify($el);
 
             if (this.props.width) {
@@ -114,15 +113,14 @@ define([
             debug.verify(_.isEqual(_.pick(nextProps, cantChange), _.pick(this.props, cantChange)), 'these props cant change after mount');
         },
 
-        componentDidUpdate: function (prevProps, prevState, rootNode) {
-            debug.verify(!!rootNode);
+        componentDidUpdate: function (prevProps, prevState) {
 
             if (this.props.noControl) {
                 // Nothing to do - all done in JSX.
                 return;
             }
 
-            var $el = $(rootNode).find('#' + this.stableUniqueId);
+            var $el = $(this.getDOMNode()).find('#' + this.stableUniqueId);
             var kendoWidget = $el.data('kendoMultiSelect');
 
             if (prevProps.dataSource !== this.props.dataSource) {
