@@ -35,8 +35,8 @@ define([
             debug.verify(this.props.dataSource);
         },
 
-        componentDidMount: function (rootNode) {
-            var $el = $(rootNode);
+        componentDidMount: function () {
+            var $el = $(this.getDOMNode());
             debug.verify($el);
 
             var onChange = this.props.onChange,
@@ -106,8 +106,8 @@ define([
             $el.data('kendoAutoComplete').destroy();
         },
 
-        componentDidUpdate: function (prevProps, prevState, rootNode) {
-            var $el = $(rootNode),
+        componentDidUpdate: function (prevProps, prevState) {
+            var $el = $(this.getDOMNode()),
                 autoComplete = $el.data('kendoAutoComplete');
 
             if (prevProps.dataSource !== this.props.dataSource) {
