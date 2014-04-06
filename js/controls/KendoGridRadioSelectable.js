@@ -35,9 +35,8 @@ define([
             return ( <div /> );
         },
 
-        componentDidMount: function (rootNode) {
-            debug.verify(!!rootNode);
-            this.$el = $(rootNode);
+        componentDidMount: function () {
+            this.$el = $(this.getDOMNode());
 
             var checkboxColumnTemplate = '<div class="checkboxWrap"><input id="#: ' + this.props.valueField + ' #" type="%s" name="checkboxSelector"/><label for="#: ' + this.props.valueField + ' #"></div>';
             checkboxColumnTemplate = this.getInputTypeString(checkboxColumnTemplate);

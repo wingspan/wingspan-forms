@@ -42,9 +42,8 @@ define([
             return (<div className={this.props.className} />);
         },
 
-        componentDidMount: function (rootNode) {
-            debug.verify(!!rootNode);
-            $el = $(rootNode);
+        componentDidMount: function () {
+            $el = $(this.getDOMNode());
 
             this.kendoGrid = $el.kendoGrid({
                 dataSource: this.props.dataSource,

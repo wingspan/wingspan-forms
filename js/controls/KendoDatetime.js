@@ -34,15 +34,14 @@ define([
         },
         /*jshint ignore:end */
 
-        componentDidMount: function (rootNode) {
-            debug.verify(!!rootNode);
+        componentDidMount: function () {
 
             if (this.props.noControl) {
                 // Everything was done in JSX.
                 return;
             }
 
-            var $el = $(rootNode);
+            var $el = $(this.getDOMNode());
             debug.verify($el);
 
             $el.kendoDateTimePicker({
@@ -56,15 +55,14 @@ define([
                 this.props.max, this.props.min);
         },
 
-        componentDidUpdate: function (prevProps, prevState, rootNode) {
-            debug.verify(!!rootNode);
+        componentDidUpdate: function (prevProps, prevState) {
 
             if (this.props.noControl) {
                 // Everything was done in JSX.
                 return;
             }
 
-            var $el = $(rootNode);
+            var $el = $(this.getDOMNode());
             debug.verify($el);
 
             ControlCommon.setKendoDateState(

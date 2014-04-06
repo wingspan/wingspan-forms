@@ -23,9 +23,8 @@ define([
             this.tabStrip.unbind('select', this.onSelect);
         },
 
-        componentDidMount: function (rootNode) {
-            debug.verify(rootNode);
-            var $el = $(rootNode);
+        componentDidMount: function () {
+            var $el = $(this.getDOMNode());
             $el.kendoTabStrip({
                 select: this.onSelect
             });

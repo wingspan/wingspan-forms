@@ -75,8 +75,8 @@ define([
         },
         /*jshint ignore:end */
 
-        componentDidMount: function (rootNode) {
-            var $el = $(rootNode),
+        componentDidMount: function () {
+            var $el = $(this.getDOMNode()),
                 props = this.props;
 
             if (props.noControl) {
@@ -116,9 +116,8 @@ define([
             debug.verify(_.isEqual(_.pick(nextProps, cantChange), _.pick(this.props, cantChange)), 'these props cant change after mount');
         },
 
-        componentDidUpdate: function (prevProps, prevState, rootNode) {
-            debug.verify(!!rootNode);
-            var $el = $(rootNode)
+        componentDidUpdate: function (prevProps, prevState) {
+            var $el = $(this.getDOMNode())
 
             if (this.props.noControl) {
                 this.setNoControlValue($el);

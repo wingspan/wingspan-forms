@@ -8,6 +8,8 @@ build
 .DS_STORE
 node_modules
 bower_components/
-js-built/
+/js-built
+/spec-built
 app.css
 /dist/
+/.grunt

@@ -2,6 +2,53 @@
 module.exports = function (grunt) {
     'use strict';
 
+    var requireConfig = {
+
+        optimize: 'none',
+        inlineText: true,
+        useStrict: true,
+        skipPragmas: true,
+        preserveLicenseComments: true,
+
+        wrap: {
+            "startFile": "almond-begin.txt",
+            "endFile": "almond-end.txt"
+        },
+
+
+        baseUrl: 'js-built',
+
+        paths: {
+            textassets: '../textassets', // all assets loaded via `text!` must be rooted here so the JSX compiler works.
+            text: '../bower_components/requirejs-text/text',
+            underscore: '../bower_components/underscore/underscore',
+            'underscore-string': '../bower_components/underscore.string/lib/underscore.string',
+            jquery: '../bower_components/jquery/jquery',
+            kendo: '../bower_components/kendo-ui/src/js/kendo.web',
+            moment: '../bower_components/momentjs/moment',
+            react: '../bower_components/react/react-with-addons',
+            stacktrace: '../bower_components/stacktrace/stacktrace',
+            almond: '../bower_components/almond/almond'
+        },
+
+        shim: {
+            'underscore': { deps: [], exports: '_' },
+            'underscore-string': { exports: ['_s'] },
+            'jquery': { deps: [], exports: '$' },
+            'kendo': { deps: [], exports: 'kendo' },
+            'react': { deps: [], exports: 'React'}
+        },
+
+        uglify: {
+            toplevel: true,
+            ascii_only: true,
+            beautify: true,
+            max_line_length: 1000,
+            defines: { DEBUG: ['name', 'false'] },
+            no_mangle: true
+        }
+    };
+
     // Project configuration.
     grunt.initConfig({
         // Metadata.
@@ -39,60 +86,20 @@ module.exports = function (grunt) {
             options: {
                 extension: 'js'
             },
-            app: {
+            lib: {
                 files: {
                     'js-built': 'js'
+                }
+            },
+            spec: {
+                files: {
+                    'spec-built': 'spec'
                 }
             }
         },
 
         requirejs: {
-            options: {
-
-                optimize: 'none',
-                inlineText: true,
-                useStrict: true,
-                skipPragmas: true,
-                preserveLicenseComments: true,
-
-                wrap: {
-                    "startFile": "almond-begin.txt",
-                    "endFile": "almond-end.txt"
-                },
-
-
-                baseUrl: 'js-built',
-
-                paths: {
-                    textassets: '../textassets', // all assets loaded via `text!` must be rooted here so the JSX compiler works.
-                    text: '../bower_components/requirejs-text/text',
-                    underscore: '../bower_components/underscore/underscore',
-                    'underscore-string': '../bower_components/underscore.string/lib/underscore.string',
-                    jquery: '../bower_components/jquery/jquery',
-                    kendo: '../bower_components/kendo-ui/src/js/kendo.web',
-                    moment: '../bower_components/momentjs/moment',
-                    react: '../bower_components/react/react',
-                    stacktrace: '../bower_components/stacktrace/stacktrace',
-                    almond: '../bower_components/almond/almond'
-                },
-
-                shim: {
-                    'underscore': { deps: [], exports: '_' },
-                    'underscore-string': { exports: ['_s'] },
-                    'jquery': { deps: [], exports: '$' },
-                    'kendo': { deps: [], exports: 'kendo' },
-                    'react': { deps: [], exports: 'React'}
-                },
-
-                uglify: {
-                    toplevel: true,
-                    ascii_only: true,
-                    beautify: true,
-                    max_line_length: 1000,
-                    defines: { DEBUG: ['name', 'false'] },
-                    no_mangle: true
-                }
-            },
+            options: requireConfig,
             compile: {
                 options: {
                     out: 'dist/wingspan-forms.js',
@@ -133,8 +140,10 @@ module.exports = function (grunt) {
             }
         },
 
-        qunit: {
-            files: ['test/**/*.html']
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js'
+            }
         }
     });
 
@@ -145,7 +154,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-react');
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('default', ['bower:install', 'react', 'less', 'copy', 'requirejs:compile']);
-    grunt.registerTask('devel', ['bower:install', 'react', 'less', 'copy']);
+    grunt.registerTask('default', ['bower:install', 'react:lib', 'less', 'copy', 'requirejs:compile']);
+    grunt.registerTask('devel', ['bower:install', 'react:lib', 'less', 'copy']);
+    grunt.registerTask('test', ['default', 'react:spec', 'karma']);
 };
