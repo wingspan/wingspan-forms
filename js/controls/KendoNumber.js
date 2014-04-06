@@ -41,8 +41,8 @@ define([
         },
         /*jshint ignore:end */
 
-        componentDidMount: function (rootNode) {
-            var $el = $(rootNode);
+        componentDidMount: function () {
+            var $el = $(this.getDOMNode());
             console.assert($el);
 
             if (this.props.noControl) {
@@ -66,8 +66,8 @@ define([
                 this.props.value, this.props.disabled, this.props.readonly);
         },
 
-        componentDidUpdate: function (prevProps, prevState, rootNode) {
-            var $el = $(rootNode);
+        componentDidUpdate: function (prevProps, prevState) {
+            var $el = $(this.getDOMNode());
             console.assert($el);
 
             if (this.props.noControl) {
