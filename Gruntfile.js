@@ -144,7 +144,9 @@ module.exports = function (grunt) {
             unit: {
                 configFile: 'karma.conf.js'
             }
-        }
+        },
+
+        clean: ['bower_components', 'js-built', 'spec-built', 'dist']
     });
 
     // These plugins provide necessary tasks.
@@ -154,6 +156,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-react');
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-karma');
 
     grunt.registerTask('default', ['bower:install', 'react:lib', 'less', 'copy', 'requirejs:compile']);
