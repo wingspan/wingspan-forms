@@ -37,7 +37,7 @@ define([
     var KendoComboBox = React.createClass({
         mixins: [ImmutableOptimizations],
 
-        fieldClass: 'formFieldCombobox',
+        statics: { fieldClass: function () { return 'formFieldCombobox'; } },
 
         getDefaultProps: function () {
             return {

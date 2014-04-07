@@ -10,7 +10,7 @@ define([
     var KendoNumber = React.createClass({
         mixins: [ImmutableOptimizations],
 
-        fieldClass: 'formFieldNumeric',
+        statics: { fieldClass: function () { return 'formFieldNumeric'; } },
 
         getDefaultProps: function () {
             return {

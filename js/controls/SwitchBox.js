@@ -16,7 +16,7 @@ define([
     var SwitchBox = React.createClass({
         mixins: [ImmutableOptimizations],
 
-        fieldClass: 'formFieldSwitch',
+        statics: { fieldClass: function () { return 'formFieldSwitch'; } },
 
         getDefaultProps: function () {
             return {

@@ -12,7 +12,7 @@ define([
     var UserPicker = React.createClass({
         mixins: [ImmutableOptimizations],
 
-        fieldClass: 'formFieldAutocomplete',
+        statics: { fieldClass: function () { return 'formFieldAutocomplete'; } },
 
         getDefaultProps: function () {
             return {

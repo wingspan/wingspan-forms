@@ -20,7 +20,7 @@ define([
     var Carousel = React.createClass({
         mixins: [ImmutableOptimizations],
 
-        fieldClass: 'formFieldCarousel',
+        statics: { fieldClass: function () { return 'formFieldCarousel'; } },
 
         getDefaultProps: function () {
             return {

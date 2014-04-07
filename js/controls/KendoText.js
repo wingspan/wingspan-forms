@@ -9,7 +9,7 @@ define([
     return React.createClass({
         mixins: [ImmutableOptimizations],
 
-        fieldClass: 'formFieldInput',
+        statics: { fieldClass: function () { return 'formFieldInput'; } },
 
         getDefaultProps: function () {
             return {

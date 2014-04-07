@@ -10,7 +10,7 @@ define([
     var KendoDate = React.createClass({
         mixins: [ImmutableOptimizations],
 
-        fieldClass: 'formFieldDatepicker',
+        statics: { fieldClass: function () { return 'formFieldDatepicker'; } },
 
         getDefaultProps: function () {
             return {

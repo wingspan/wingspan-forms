@@ -17,7 +17,7 @@ define([
     return React.createClass({
         mixins: [ImmutableOptimizations],
 
-        fieldClass: 'formFieldMultiselect',
+        statics: { fieldClass: function () { return 'formFieldMultiselect'; } },
 
         getDefaultProps: function () {
             return {

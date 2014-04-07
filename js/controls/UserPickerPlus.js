@@ -18,7 +18,7 @@ define([
 
         displayName: 'UserPickerPlus',
         mixins: [ImmutableOptimizations],
-        fieldClass: 'formFieldRadio',
+        statics: { fieldClass: function () { return 'formFieldRadio'; } },
 
         getDefaultProps: function () {
             return {

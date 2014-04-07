@@ -10,7 +10,7 @@ define([
     return React.createClass({
         mixins: [ImmutableOptimizations],
 
-        fieldClass: 'formFieldCheckbox',
+        statics: { fieldClass: function () { return 'formFieldCheckbox'; } },
 
         getDefaultProps: function () {
             return {

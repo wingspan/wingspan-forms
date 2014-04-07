@@ -9,7 +9,7 @@ define([
     var MultilineText = React.createClass({
         mixins: [ImmutableOptimizations],
 
-        fieldClass: 'formFieldTextarea',
+        statics: { fieldClass: function () { return 'formFieldTextarea'; } },
 
         getDefaultProps: function () {
             return {

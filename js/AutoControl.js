@@ -44,6 +44,18 @@ define([
     var AutoControl = React.createClass({
         mixins: [ImmutableOptimizations],
 
+        statics: {
+            /**
+             * Static method needed by FormField to determine the underlying field class for the generated control.
+             *
+             * @param fieldInfo
+             * @returns {*}
+             */
+            fieldClassForField: function (fieldInfo) {
+                return controlForField(fieldInfo).fieldClass();
+            }
+        },
+
         getDefaultProps: function () {
             return {
                 value: undefined,
@@ -86,16 +98,6 @@ define([
             return Control(controlProps);
         }
     });
-
-    /**
-     * Static method needed by FormField to determine the underlying field class for the generated control.
-     *
-     * @param fieldInfo
-     * @returns {*}
-     */
-    AutoControl.fieldClassForField = function (fieldInfo) {
-        return ((controlForField(fieldInfo) || {}).originalSpec || {}).fieldClass;
-    };
 
     return AutoControl;
 });

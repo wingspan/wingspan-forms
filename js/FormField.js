@@ -12,7 +12,7 @@ define([
             children = children[0];
         }
 
-        if (children && _.isUndefined(children.fieldClass)) {
+        if (children && _.isUndefined(children.type.fieldClass)) {
             // Support a textnode child, which won't have a fieldinfo
             if (children.props && children.props.fieldInfo) {
                 return AutoControl.fieldClassForField(children.props.fieldInfo);
@@ -22,7 +22,7 @@ define([
             return 'formFieldInput';
         }
 
-        return children && children.fieldClass;
+        return children && children.type.fieldClass();
     }
 
     var FormField = React.createClass({
