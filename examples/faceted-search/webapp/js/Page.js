@@ -1,10 +1,11 @@
 /** @jsx React.DOM */
 define([
     'underscore', 'react', 'jquery', 'kendo', 'wingspan-forms',
+    'util',
     'FacetDataStore',
     'text!textassets/types/Contact.json',
     'underscore-string'
-], function (_, React, $, kendo, Forms, FacetDataStore, ContactModel) {
+], function (_, React, $, kendo, Forms, util, FacetDataStore, ContactModel) {
     'use strict';
 
     var ContactModel = JSON.parse(ContactModel).data;
@@ -63,7 +64,10 @@ define([
         render: function () {
 
             var facetControls = _.map(this.state.facets, function (countsByVal/*work:6*/, facet/*contactGroup*/) {
-                var checkboxes = _.map(countsByVal, function (count, val) {
+                var nonZeroCountsByVal = util.filterMap(countsByVal, function (pair) {
+                    return pair[1] !== 0;
+                });
+                var checkboxes = _.map(nonZeroCountsByVal, function (count, val) {
                     var controlId = _.str.sprintf('%s-%s', facet, val);
                     return (
                         <div className="facetFilterControl" key={controlId}>
