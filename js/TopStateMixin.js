@@ -9,12 +9,20 @@ define([
      */
     var TopStateMixin = {
         onChange: function (path, /* more paths,*/ value) {
-            path = _.flatten(_.initial(arguments));
-            value = _.last(arguments);
+            console.assert(arguments.length >= 1, 'TopStateMixin.onChange received no arguments');
 
-            var nextState = util.deepClone(this.state);
-            var scoped = getRefAtPath(nextState, _.initial(path));
-            scoped[_.last(path)] = value;
+            var nextState;
+            if (arguments.length > 1) {
+                path = _.flatten(_.initial(arguments));
+                value = _.last(arguments);
+
+                nextState = util.deepClone(this.state);
+                var scoped = getRefAtPath(nextState, _.initial(path));
+                scoped[_.last(path)] = value;
+            } else if (arguments.length === 1) {
+                nextState = arguments[0];
+            }
+
             this.setState(nextState);
         }
     };
