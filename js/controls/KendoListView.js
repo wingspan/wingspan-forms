@@ -18,7 +18,7 @@ define([
                 dataSource: undefined,
                 selectable: true,
                 selectedId: null,
-                template: '<div>${id}</div>',
+                template: '<div data-model-id="${id}">${id}</div>',
                 paramMapper: _.identity,       // function to map the datastore record into template params
                 // tells the list whether it can move to a new selection.
                 canChange: function () {
