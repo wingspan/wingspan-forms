@@ -24,6 +24,8 @@
       "underscore.string": "~2.3.3",
       "kendo-ui": "~2013.3.1119",
       "es5-shim": "~2.1",
-      "wingspan-forms": "8e59e4b5c958681e986968d0fa63af3e0e592d71"
+      "wingspan-forms": "8e59e4b5c958681e986968d0fa63af3e0e592d71",
+      "wingspan-data": "acabf70e93ed18de722be2d18b1586b6b536ebab",
+      "q": "~0.9.6"
   }
 }

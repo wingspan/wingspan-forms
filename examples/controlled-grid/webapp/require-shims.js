@@ -13,7 +13,8 @@
             'react': '../lib/react-with-addons',
             'es5-shim': '../lib/es5-shim',
             'text': '../lib/text',
-            'wingspan-forms': '../lib/wingspan-forms/wingspan-forms'
+            'wingspan-forms': '../lib/wingspan-forms/wingspan-forms',
+            'wingspan-data': '../lib/wingspan-data'
         },
         shim: {
             'underscore': { deps: [], exports: '_' },
@@ -22,7 +23,8 @@
             'kendo': { deps: [], exports: 'kendo' },
             'moment': { deps: [], exports: 'moment' },
             'react': { deps: [], exports: 'React'},
-            'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo', 'moment', 'underscore-string'], exports: 'Wingspan'}
+            'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo', 'moment', 'underscore-string'] },
+            'wingspan-data': { deps:['jquery', 'underscore', 'kendo', 'q', 'underscore-string'] }
         }
     });
 })();

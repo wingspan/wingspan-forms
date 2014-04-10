@@ -27,6 +27,9 @@ module.exports = function (grunt) {
             options: {},
             'wingspan-forms': {
                 'bower_components/wingspan-forms': ['default']
+            },
+            'wingspan-data': {
+                'bower_components/wingspan-data': ['default']
             }
         },
 
@@ -77,6 +80,7 @@ module.exports = function (grunt) {
                     'es5-shim': '../lib/es5-shim',
                     'text': '../lib/text',
                     'wingspan-forms': '../lib/wingspan-forms/wingspan-forms',
+                    'wingspan-data': '../lib/wingspan-data',
                     'textassets': '../textassets' // all assets loaded via `text!` must be rooted here (to avoid JSX compilation)
                 },
 
@@ -87,7 +91,8 @@ module.exports = function (grunt) {
                     'kendo': { deps: [], exports: 'kendo' },
                     'moment': { deps: [], exports: 'moment' },
                     'react': { deps: [], exports: 'React'},
-                    'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo', 'moment', 'underscore-string'], exports: 'Wingspan'}
+                    'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo', 'moment', 'underscore-string'], exports: 'Wingspan'},
+                    'wingspan-data': { exports: 'WingspanData' }
                 },
 
                 uglify: {
@@ -120,7 +125,8 @@ module.exports = function (grunt) {
                             'bower_components/underscore.string/lib/underscore.string.js',
                             'bower_components/es5-shim/es5-shim.js',
                             'bower_components/requirejs/require.js',
-                            'bower_components/requirejs-text/text.js'
+                            'bower_components/requirejs-text/text.js',
+                            'bower_components/wingspan-data/dist/wingspan-data.js'
                         ],
                         dest: 'webapp/lib',
                         flatten: true,
