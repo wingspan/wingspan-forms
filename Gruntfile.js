@@ -35,7 +35,7 @@ module.exports = function (grunt) {
         },
 
         shim: {
-            'lodash': { exports: '_' },
+            'lodash': { deps: ['underscore'], exports: '_' }, // lodash loads second so we can use lodash.noConflict to disambiguate. App require config needs to mirror this! TODO
             'underscore': { deps: [], exports: '_' },
             'underscore-string': { deps: ['underscore'], exports: ['_s'] },
             'jquery': { deps: [], exports: '$' },
