@@ -5,6 +5,7 @@
             'wingspan-contrib', 'wingspan-data'
         ], factory);
     } else {
-        root.WingspanForms = factory(root._, root._.noConflict(), root.React, root.$, root._s, root.kendo, root.Q, root.WingspanContrib, root.WingspanData);
+        root.lodash = root._.noConflict();
+        root.WingspanForms = factory(root._, root.lodash, root.React, root.$, root._s, root.kendo, root.Q, root.WingspanContrib, root.WingspanData);
     }
 }(this, function (_, lodash, React, $, _s, kendo, Q, WingspanContrib, WingspanData) {
