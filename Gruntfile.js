@@ -27,7 +27,9 @@ module.exports = function (grunt) {
             kendo: '../bower_components/kendo-ui/src/js/kendo.web',
             moment: '../bower_components/momentjs/moment',
             react: '../bower_components/react/react-with-addons',
-            stacktrace: '../bower_components/stacktrace/stacktrace',
+            q: '../bower_components/q/q',
+            'wingspan-data': '../bower_components/wingspan-data/dist/wingspan-data',
+            'wingspan-contrib': '../bower_components/wingspan-contrib/dist/wingspan-contrib',
             almond: '../bower_components/almond/almond'
         },
 
@@ -82,6 +84,16 @@ module.exports = function (grunt) {
             }
         },
 
+        subgrunt: {
+            options: {},
+            'wingspan-data': {
+                'bower_components/wingspan-data': ['default']
+            },
+            'wingspan-contrib': {
+                'bower_components/wingspan-contrib': ['default']
+            }
+        },
+
         react: {
             options: {
                 extension: 'js'
@@ -104,7 +116,8 @@ module.exports = function (grunt) {
                 options: {
                     out: 'dist/wingspan-forms.js',
                     include: ['almond', 'wingspan-forms'],
-                    exclude: ['jquery', 'underscore', 'react', 'require', 'text', 'underscore-string', 'kendo']
+                    exclude: ['jquery', 'underscore', 'react', 'require', 'text', 'underscore-string', 'kendo', 'q',
+                        'wingspan-contrib', 'wingspan-data']
                 }
             },
             compileQuickStart: {
@@ -155,11 +168,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-react');
     grunt.loadNpmTasks('grunt-bower-task');
+    grunt.loadNpmTasks('grunt-subgrunt');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('default', ['bower:install', 'react:lib', 'less', 'copy', 'requirejs:compile']);
-    grunt.registerTask('devel', ['bower:install', 'react:lib', 'less', 'copy']);
+    grunt.registerTask('default', ['bower:install', 'subgrunt', 'react:lib', 'less', 'copy', 'requirejs:compile']);
+    grunt.registerTask('devel', ['bower:install', 'subgrunt', 'react:lib', 'less', 'copy']);
     grunt.registerTask('test', ['default', 'react:spec', 'karma']);
 };

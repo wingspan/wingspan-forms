@@ -23,14 +23,21 @@ define([
     './controls/SwitchBox',
     './controls/UserPicker',
     './controls/UserPickerPlus',
+    './controls/KendoPager',
+    './controls/PromiseButton',
+    './controls/SearchBox',
+    './controls/SelectionListDismissible',
     './ControlCommon',
     './AutoField',
-    './TopStateMixin'
+    './TopStateMixin',
+    './FluxFormMixin',
+    './FluxFormMixinTyped'
 ], function (AutoControl, FormField, Button, Carousel, CheckBox, KendoComboBox, KendoDate, KendoDatetime,
              KendoGrid, KendoGridPicker, KendoGridPickerByButton, KendoGridRadioSelectable,
              KendoListView, KendoMultiSelect, KendoNumber, KendoTabStrip, KendoText, MultiSelect,
-             MultilineText, Radio, RadioGroup, SwitchBox, UserPicker, UserPickerPlus, ControlCommon,
-             AutoField, TopStateMixin) {
+             MultilineText, Radio, RadioGroup, SwitchBox, UserPicker, UserPickerPlus,
+             KendoPager, PromiseButton, SearchBox, SelectionListDismissible, ControlCommon,
+             AutoField, TopStateMixin, FluxFormMixin, FluxFormMixinTyped) {
     'use strict';
 
 
@@ -67,8 +74,14 @@ define([
         SwitchBox: SwitchBox,
         UserPicker: UserPicker,
         UserPickerPlus: UserPickerPlus,
+        KendoPager: KendoPager,
+        PromiseButton: PromiseButton,
+        SearchBox: SearchBox,
+        SelectionListDismissible: SelectionListDismissible,
         ControlCommon: ControlCommon,
         AutoField: AutoField,
-        TopStateMixin: TopStateMixin
+        TopStateMixin: TopStateMixin,
+        FluxFormMixin: FluxFormMixin,
+        FluxFormMixinTyped: FluxFormMixinTyped
     };
 });

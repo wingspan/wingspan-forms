@@ -22,6 +22,9 @@
     "requirejs-text": "~2.0.10",
     "underscore.string": "~2.3.3",
     "kendo-ui": "~2013.3.1119",
+    "wingspan-data": "9ba9827d37d5f35b3ccbe51ee9a40714d237cb78",
+    "wingspan-contrib": "2be63e33354cd360c6e0f838d785ce5c1e7cf601",
+    "q": "~0.9.6",
     "almond": "~0.2.7"
   }
 }
