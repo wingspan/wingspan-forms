@@ -1,6 +1,6 @@
 define([
-    'underscore', './util/util'
-], function (_, util) {
+    'lodash'
+], function (_) {
     'use strict';
 
     /**
@@ -16,7 +16,7 @@ define([
                 path = _.flatten(_.initial(arguments));
                 value = _.last(arguments);
 
-                nextState = util.deepClone(this.state);
+                nextState = _.cloneDeep(this.state);
                 var scoped = getRefAtPath(nextState, _.initial(path));
                 scoped[_.last(path)] = value;
             } else if (arguments.length === 1) {

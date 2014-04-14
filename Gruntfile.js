@@ -22,6 +22,7 @@ module.exports = function (grunt) {
             textassets: '../textassets', // all assets loaded via `text!` must be rooted here so the JSX compiler works.
             text: '../bower_components/requirejs-text/text',
             underscore: '../bower_components/underscore/underscore',
+            lodash: '../bower_components/lodash/dist/lodash.compat',
             'underscore-string': '../bower_components/underscore.string/lib/underscore.string',
             jquery: '../bower_components/jquery/jquery',
             kendo: '../bower_components/kendo-ui/src/js/kendo.web',
@@ -34,8 +35,9 @@ module.exports = function (grunt) {
         },
 
         shim: {
+            'lodash': { exports: '_' },
             'underscore': { deps: [], exports: '_' },
-            'underscore-string': { exports: ['_s'] },
+            'underscore-string': { deps: ['underscore'], exports: ['_s'] },
             'jquery': { deps: [], exports: '$' },
             'kendo': { deps: [], exports: 'kendo' },
             'react': { deps: [], exports: 'React'}
@@ -117,7 +119,7 @@ module.exports = function (grunt) {
                     out: 'dist/wingspan-forms.js',
                     include: ['almond', 'wingspan-forms'],
                     exclude: ['jquery', 'underscore', 'react', 'require', 'text', 'underscore-string', 'kendo', 'q',
-                        'wingspan-contrib', 'wingspan-data']
+                        'wingspan-contrib', 'wingspan-data', 'lodash']
                 }
             },
             compileQuickStart: {
