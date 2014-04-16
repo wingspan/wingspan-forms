@@ -60,6 +60,7 @@ define([
             return {
                 value: undefined,
                 onChange: undefined,
+                dataSource: undefined, // optional, usually comes as fieldInfo.options.dataSource. Only use here if the fieldInfo is stored in react state and you don't want to put a DataSource in react state.
                 id: undefined,
                 fieldInfo: undefined,
                 isValid: [true, ''],
@@ -90,7 +91,7 @@ define([
             controlProps.maxLength = fieldInfo.maxLength;
 
             if (fieldInfo.options) {
-                controlProps.dataSource = fieldInfo.options.dataSource;
+                controlProps.dataSource = this.props.dataSource || fieldInfo.options.dataSource;
                 controlProps.valueField = fieldInfo.options.metadata.idProperty;
                 controlProps.displayField = fieldInfo.options.metadata.nameProperty;
             }
