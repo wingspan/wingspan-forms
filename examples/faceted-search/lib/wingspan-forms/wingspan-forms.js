@@ -7,7 +7,6 @@
         root.WingspanForms = factory(root._, root.React, root.$, root.moment, root._s, root.kendo);
     }
 }(this, function (_, React, $, moment, _s, kendo) {
-
 /**
  * @license almond 0.2.9 Copyright (c) 2011-2014, The Dojo Foundation All Rights Reserved.
  * Available via the MIT or new BSD license.
@@ -4174,6 +4173,7 @@ define('wingspan-forms',[
         TopStateMixin: TopStateMixin
     };
 });
+
     // Fake out the almond loader - shim these dependencies to their globals.
     // Make sure these globals are already on the page - e.g. by require-shims in the app
     define('underscore', function () { return _; });
