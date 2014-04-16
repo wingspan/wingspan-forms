@@ -13,6 +13,14 @@
  * [sandbox showing all included controls in various configurations](http://wingspan.github.io/wingspan-forms/examples/sandbox/) ([source](https://github.com/wingspan/wingspan-forms/tree/master/examples/sandbox))
 
 
+## Screenshots from large real world project
+
+The state management abstractions in `wingspan-forms` are the foundation of a large app written at Wingspan. Here are some screenshots showing the complexity of app `wingspan-forms` is designed to manage:
+ * [mega CRUD editor](http://curator-lilita-10664.bitballoon.com/work-area-metadata.png), [another view of same editor](http://carpenter-receptacles-54046.bitballoon.com/work-area-metadata-tall.png)
+ * [complicated thingy picker](http://curator-lilita-10664.bitballoon.com/related-study-item-picker.png)
+ * [validated form](http://curator-lilita-10664.bitballoon.com/proposed-study-item.png)
+ * [faceted search](http://curator-lilita-10664.bitballoon.com/faceted-study-item-list.png)
+
 
 ## Documentation
 
