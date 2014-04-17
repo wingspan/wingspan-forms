@@ -74,14 +74,14 @@ define([
         },
 
         paramMapper: function (record) {
-            return _.extend(record, this.props.schema, { recordHash: Contrib.util.hashRecord(record) });
+            return _.extend(record, this.props.schema, { recordHash: Contrib.hashRecord(record) });
         },
 
         onButtonClick: function (e) {
             var recordHashToBeRemoved = parseInt(e.target.getAttribute('id'), 10);
 
             var newValue = _.filter(this.props.value, function (record) {
-                return Contrib.util.hashRecord(record) !== recordHashToBeRemoved;
+                return Contrib.hashRecord(record) !== recordHashToBeRemoved;
             });
 
             this.props.onChange(newValue);
