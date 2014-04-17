@@ -1,7 +1,8 @@
 define([
     'underscore', 'q',
-    'wingspan-data'
-], function (_, Q, Data) {
+    'wingspan-data',
+    'wingspan-contrib'
+], function (_, Q, Data, Contrib) {
     'use strict';
 
     var storeCache = {};
@@ -48,48 +49,58 @@ define([
         componentWillMount: function () {
             console.assert(this.formFields, 'Required to define the form; see SetOfficeStatusComponent for a working usage');
             console.assert(_.isFunction(this.isFieldValid), 'Need a field validation function');
+
+            console.assert(this.props.formCursor);
+            console.assert(this.props.dataSourcesCursor);
+
+            var properties = this.props.formCursor.value['recordTypeInfo']['properties'];
+
+            this.resetStores(this.props.formCursor, this.props.dataSourcesCursor);
+        },
+
+
+        componentWillUpdate: function (nextProps, nextState) {
+            this.resetStores(nextProps.formCursor, nextProps.dataSourcesCursor);
+        },
+
+        resetStores: function (formCursor, dataSourcesCursor) {
+            // Create DataStores for any properties with options
+            var properties = formCursor.value['recordTypeInfo']['properties'];
+            _.each(_.filter(properties, hasOptions), function (fieldInfo) {
+                dataSourcesCursor.refine(fieldInfo.name).onChange(getCachedStore(fieldInfo.options));
+            }.bind(this));
         },
 
         isFormValid: function () {
-            return (this.state.record
+            return (this.props.recordCursor.value
                 ? _(this.formFields).chain().map(this.isFieldValid).map(_.first).reduce(and).value()
                 : false);
 
         },
 
-        getInitialState: function () {
-            // Flux forms have a record and a typeinfo.
-            // They know how to validate from the typeinfo, and the typeinfo is changed over time
-            // to keep the validation info up to date. This is designed to work nicely with the AutoControl tag.
-            return {
-                record: null, // must not be empty object - for use with guard operator to render empty form
-                recordTypeInfo: null
-            };
-        },
-
         onFieldChange: function (fieldName, newValue) {
             var self = this;
 
-            var baseTypeInfo = this.state.recordTypeInfo; // hack - should be using the baseTypeInfo here.
+            var baseTypeInfo = this.props.formCursor.value['recordTypeInfo']; // hack - should be using the baseTypeInfo here.
 
             // When you setState, top level attributes are merged. Merge is not recursive.
             // So we have to merge the prev record with the new one manually.
-            var nextRecord = _.extend({}, self.state.record, _.object([[fieldName, newValue]]));
+            var nextRecord = _.extend({}, self.props.formCursor.value['record'], _.object([[fieldName, newValue]]));
 
             // Short circuit the instanceTypeInfo query if no dependencies changed, so we don't query every keypress
             var dependentFieldChanged = _.contains(baseTypeInfo.valueDependents, fieldName);
 
             var promise = (dependentFieldChanged
                 ? this.instanceTypeInfo(nextRecord, baseTypeInfo)
-                : Q(this.state.recordTypeInfo));
+                : Q(baseTypeInfo));
 
             promise
                 .then(function (newTypeInfo) {
                     clearValuesNotInOptions(nextRecord, newTypeInfo);
 
-                    var newSticky = self.state.sticky;
+                    var newSticky = Contrib.deepClone(self.props.formCursor.value['sticky']);
                     // if this field is stickied, update the sticky value
-                    var stickiedFieldNames = _.keys(self.state.sticky || {});
+                    var stickiedFieldNames = _.keys(newSticky || {});
                     if (_.contains(stickiedFieldNames, fieldName)) {
                         newSticky[fieldName] = newValue;
                     }
@@ -101,7 +112,7 @@ define([
                     };
                 })
                 .then(this.postFieldChange || _.identity) // Give clients a chance to alter record or type info before new state is set
-                .then(function (nextState) { self.setState(nextState); })
+                .then(function (nextState) { self.props.formCursor.onChange(nextState); })
                 .done();
         },
 
@@ -124,11 +135,6 @@ define([
 
             function updateTypeInfo(newTypeInfo) {
                 newTypeInfo.links = baseTypeInfo.links;
-
-                // Create DataStores for any properties with options
-                _.each(_.filter(newTypeInfo.properties, hasOptions), function (fieldInfo) {
-                    fieldInfo.options.dataSource = getCachedStore(fieldInfo.options);
-                });
 
                 return newTypeInfo;
             }
