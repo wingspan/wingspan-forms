@@ -1,9 +1,8 @@
 define([
-    'underscore', 'q', 'react',
+    'lodash', 'q', 'react',
     'wingspan-data',
-    'wingspan-contrib',
     'wingspan-forms/Cursor'
-], function (_, Q, React, Data, Contrib, Cursor) {
+], function (_, Q, React, Data, Cursor) {
     'use strict';
 
     var storeCache = {};
@@ -100,7 +99,7 @@ define([
                 .then(function (newTypeInfo) {
                     clearValuesNotInOptions(nextRecord, newTypeInfo);
 
-                    var newSticky = Contrib.deepClone(self.props.formCursor.value['sticky']);
+                    var newSticky = _.cloneDeep(self.props.formCursor.value['sticky']);
                     // if this field is stickied, update the sticky value
                     var stickiedFieldNames = _.keys(newSticky || {});
                     if (_.contains(stickiedFieldNames, fieldName)) {
