@@ -1,8 +1,7 @@
 define([
     'lodash', 'q', 'react',
-    'wingspan-data',
-    'wingspan-forms/Cursor'
-], function (_, Q, React, Data, Cursor) {
+    'wingspan-data'
+], function (_, Q, React, Data) {
     'use strict';
 
     var storeCache = {};
