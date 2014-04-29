@@ -37,8 +37,7 @@ define([
         componentDidMount: function () {
             var $el = $(this.getDOMNode());
 
-            var onChange = this.props.onChange,
-                header = $('<h2></h2>'),
+            var header = $('<h2></h2>'),
                 autoComplete;
 
             $el.kendoAutoComplete({
@@ -65,17 +64,8 @@ define([
                         widget.popup.open();
                     }
                 },
-                change: function (e) {
-                    var widget = e.sender;
-
-                    if (widget.dataSource.total() === 1) {
-                        // Exact match - so raise the change event
-                        onChange(widget.dataItem(0));
-                    }
-                },
-                select: function (e) {
-                    onChange(this.dataItem(e.item.index()));
-                }
+                change: this.onChange,
+                select: this.onSelect
             }).on('blur', this.onBlur);
 
             autoComplete = $el.data('kendoAutoComplete');
@@ -135,8 +125,21 @@ define([
         render: function () {
             console.assert(!this.props.noControl);
             return (<input type="text" id={this.props.id} className="k-textbox"/>);
-        }
+        },
         /*jshint ignore:end */
+
+        onChange: function (e) {
+            var widget = e.sender;
+
+            if (widget.dataSource.total() === 1) {
+                // Exact match - so raise the change event
+                this.props.onChange(widget.dataItem(0));
+            }
+        },
+        onSelect: function(e) {
+            var widget = e.sender;
+            this.props.onChange(widget.dataItem(e.item.index()));
+        }
     });
 
     return UserPicker;
