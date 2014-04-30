@@ -490,5 +490,20 @@ define([
         return copy;
     };
 
+
+    var ISO_DATE_ONLY = 'yyyy-MM-dd';
+    exports.formatISODate = function (date) {
+        return kendo.toString(date, ISO_DATE_ONLY);
+    };
+    exports.formatISODateTime = function (date) {
+        return date.toISOString();
+    };
+    exports.parseISODate = function (dateStr) {
+        return kendo.parseDate(dateStr, ISO_DATE_ONLY);
+    };
+    exports.parseISODateTime = function (dateStr) {
+        return new Date(Date.parse(dateStr));
+    };
+
     return exports;
 });

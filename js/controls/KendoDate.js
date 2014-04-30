@@ -1,9 +1,10 @@
 /** @jsx React.DOM */
 define([
     'underscore', 'jquery', 'react', 'kendo',
+    '../util/util',
     '../ControlCommon',
     '../ImmutableOptimizations'
-], function (_, $, React, kendo, ControlCommon, ImmutableOptimizations) {
+], function (_, $, React, kendo, util, ControlCommon, ImmutableOptimizations) {
     'use strict';
 
 
@@ -28,7 +29,7 @@ define([
         /*jshint ignore:start */
         render: function () {
             return (this.props.noControl
-                ? (<span>{this.props.value ? kendo.toString(this.props.value, this.props.format) : ''}</span>)
+                ? (<span>{this.props.value ? kendo.toString(util.parseISODate(this.props.value), this.props.format) : ''}</span>)
                 : (<input id={this.props.id} type="text" />));
         },
         /*jshint ignore:end */
@@ -50,7 +51,7 @@ define([
 
             ControlCommon.setKendoDateState(
                 $el.data('kendoDatePicker'),
-                this.props.value, this.props.disabled, this.props.readonly,
+                util.parseISODate(this.props.value), this.props.disabled, this.props.readonly,
                 this.props.max, this.props.min);
         },
 
@@ -65,13 +66,13 @@ define([
 
             ControlCommon.setKendoDateState(
                 $el.data('kendoDatePicker'),
-                this.props.value, this.props.disabled, this.props.readonly,
+                util.parseISODate(this.props.value), this.props.disabled, this.props.readonly,
                 this.props.max, this.props.min);
         },
 
         onChange: function (event) {
             var kendoWidget = event.sender;
-            var val = kendoWidget.value();
+            var val = util.formatISODate(kendoWidget.value());
             this.props.onChange(val);
         }
     });

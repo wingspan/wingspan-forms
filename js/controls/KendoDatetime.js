@@ -1,9 +1,10 @@
 /** @jsx React.DOM */
 define([
     'underscore', 'jquery', 'react', 'kendo',
+    '../util/util',
     '../ControlCommon',
     '../ImmutableOptimizations'
-], function (_, $, React, kendo, ControlCommon, ImmutableOptimizations) {
+], function (_, $, React, kendo, util, ControlCommon, ImmutableOptimizations) {
     'use strict';
 
 
@@ -14,7 +15,7 @@ define([
 
         getDefaultProps: function () {
             return {
-                value: undefined,
+                value: undefined, // ISO 8601 string, NOT a js date instance
                 onChange: function () {},
                 id: undefined,
                 disabled: false,
@@ -28,7 +29,7 @@ define([
         /*jshint ignore:start */
         render: function () {
             return (this.props.noControl
-                ? (<span>{this.props.value ? kendo.toString(this.props.value, this.props.format) : ''}</span>)
+                ? (<span>{this.props.value ? kendo.toString(util.parseISODateTime(this.props.value), this.props.format) : ''}</span>)
                 : (<input id={this.props.id} type="text" />));
         },
         /*jshint ignore:end */
@@ -49,7 +50,7 @@ define([
 
             ControlCommon.setKendoDateState(
                 $el.data('kendoDateTimePicker'),
-                this.props.value, this.props.disabled, this.props.readonly,
+                util.parseISODateTime(this.props.value), this.props.disabled, this.props.readonly,
                 this.props.max, this.props.min);
         },
 
@@ -64,13 +65,13 @@ define([
 
             ControlCommon.setKendoDateState(
                 $el.data('kendoDateTimePicker'),
-                this.props.value, this.props.disabled, this.props.readonly,
+                util.parseISODateTime(this.props.value), this.props.disabled, this.props.readonly,
                 this.props.max, this.props.min);
         },
 
         onChange: function (event) {
             var kendoWidget = event.sender;
-            var val = kendoWidget.value();
+            var val = util.formatISODateTime(kendoWidget.value());
             this.props.onChange(val);
         }
     });

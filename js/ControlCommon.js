@@ -31,8 +31,8 @@ define([
     }
 
 
-    function setKendoDateState(kendoWidget, value, disabled, readonly, max, min) {
-        kendoWidget.value(value);
+    function setKendoDateState(kendoWidget, valueAsDate, disabled, readonly, max, min) {
+        kendoWidget.value(valueAsDate);
         kendoWidget.min(parseDate(min || DEFAULTS.min));
         kendoWidget.max(parseDate(max || DEFAULTS.max));
         setKendoDisabledReadonly(kendoWidget, disabled, readonly);
