@@ -25,24 +25,6 @@ define([
             };
         },
 
-        getInitialState: function () {
-            // Callers can pass null which will leave the selected tab unchanged.
-            var selectedTab = this.props.selectedTab;
-            return {
-                activeIndex: _.isNull(selectedTab) ? 0 : selectedTab
-            };
-        },
-
-        componentWillReceiveProps: function (newProps) {
-            var newSelectedTab = newProps.selectedTab;
-            if (_.isNumber(newSelectedTab)) {
-                this.setState({
-                    activeIndex: newSelectedTab
-                });
-            }
-
-        },
-
         componentWillMount: function () {
             console.assert(_.isObject(this.props.tabs) && _.keys(this.props.tabs).length > 0);
             this.stableUniqueId = _.uniqueId('tab-');
@@ -72,7 +54,7 @@ define([
                     index === len - 1 ? 'k-last' : null,
                     'k-state-default',
                     'k-item',
-                    index === self.state.activeIndex ? 'k-tab-on-top k-state-active' : null
+                    index === self.props.selectedTab ? 'k-tab-on-top k-state-active' : null
                 ];
 
                 lis.push((<li key={index} className={_.compact(classes).join(' ')} role="tab" aria-controls={id}><a className="k-link" onClick={_.partial(self.onTabClick, index)}>{title}</a></li>));
@@ -82,10 +64,10 @@ define([
             _.each(_.values(this.props.tabs), function (jsx, index) {
                 var id = _.str.sprintf('%s-%s', self.stableUniqueId, index);
 
-                var activeTab = index === self.state.activeIndex;
+                var activeTab = index === self.props.selectedTab;
                 jsx.props.__WsptTabStripActiveHax = activeTab; // hax specific to the TMF - never use this
 
-                var jsx = (index === self.state.activeIndex
+                var jsx = (index === self.props.selectedTab
                     ? (<div key={index} className="k-content k-state-active" role="tabpanel" aria-expanded="true" style={visibleStyle}>{jsx}</div>)
                     : (<div key={index} className="k-content" aria-hidden="true" role="tabpanel" aria-expanded="false" style={hiddenStyle}>{self.props.elideInactiveContent ? null : jsx}</div>));
                 divs.push(jsx);
@@ -103,7 +85,6 @@ define([
         /* jshint ignore:end */
 
         onTabClick: function(index) {
-            this.setState({activeIndex: index}, _.noop);
             this.props.onChange(index);
         }
     });
