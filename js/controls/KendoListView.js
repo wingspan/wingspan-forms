@@ -20,16 +20,12 @@ define([
                 selectedId: null,
                 template: '<div data-model-id="${id}">${id}</div>',
                 paramMapper: _.identity,       // function to map the datastore record into template params
-                // tells the list whether it can move to a new selection.
-                canChange: function () {
-                    return true;
-                },
-                // announces that the selection has changed.
                 onChange: function () {}
             };
         },
 
         componentWillMount: function () {
+            this.preventReentry = false;
             console.assert(this.props.dataSource);
         },
 
@@ -40,7 +36,6 @@ define([
         /* jshint ignore:end */
 
         syncSelectionWithKendo: function (rootEl) {
-            var self = this;
             var listView = rootEl.data('kendoListView');
             var selectedChildIndex = 0; // default to first index if no selection is found
             var selectedChild = null;
@@ -49,30 +44,16 @@ define([
                 selectedChild = _.find(
                     listView.element.children(),
                     function (child, childIndex) {
-                        var found = self.props.selectedId === $(child).data('modelId');
+                        var found = this.props.selectedId === $(child).data('modelId');
                         if (found) {
                             selectedChildIndex = childIndex;
                         }
                         return found;
-                    }
+                    }.bind(this)
                 );
             }
 
-            // Verify that we found the child we were looking for, if any
-            if (!!this.props.selectedId && !selectedChild) {
-                // This happens when a user disposes an item out of a details page.  The Top-level details page controller
-                // hangs onto state.record too long, so it attempts to make this selection after the data store is reloaded
-                // and the item the action was performed on no longer exists.
-                //
-                // One way to fix this (I think) is to remove the data store event listener in DetailComponentCommon must be removed in favor
-                // of attaching functions to the promise chains in the action handlers themselves.
-                //
-                // Another thought would be to set state.record to null when the actions are taken, though by itself this may cause other
-                // problems
-                console.warn('Could not find props.selectedId in KendoList view.  Check warning block for details.');
-            }
-
-            this.suppressEvents = true;
+            this.preventReentry = true;
             if (selectedChild && this.props.scrollToSelectedItem) {
                 var $selectedChild = $(selectedChild);
                 var scrollTop = selectedChildIndex * $selectedChild.height();
@@ -82,11 +63,11 @@ define([
             } else {
                 listView.clearSelection();
             }
-            this.suppressEvents = false;
+            this.preventReentry = false;
         },
 
         componentDidUpdate: function (prevProps, prevState) {
-            if (this.props.selectable) {
+            if (this.props.selectable && !_.isEqual(this.props.selectedId, prevProps.selectedId)) {
                 this.syncSelectionWithKendo($(this.getDOMNode()));
             }
         },
@@ -94,42 +75,34 @@ define([
         componentDidMount: function () {
             var $el = $(this.getDOMNode());
 
-            var listView = $el.kendoListView({
+            $el.kendoListView({
                 autoBind: false,
                 dataSource: this.props.dataSource,
                 template: kendoutil.templateWith(kendo.template(this.props.template), this.props.paramMapper),
                 selectable: this.props.selectable,
-                change: this.onChange
+                change: this.onValueChange
             }).data('kendoListView');
 
-            // We need to force the ListView to generate it's DOM children immediately in order
-            // to support the scenario where a user clicks on an item in the List View and the
-            // system wants to generate the details view AND select the item the user clicked on
-            // at the same time
-            listView.refresh();
-
             if (this.props.selectable) {
-                // Initialize this member variable so it is always set.  We use it to prevent
-                // our control from firing events as a result of us changing the Kendo state ourselves
-                this.suppressEvents = false;
-
                 this.syncSelectionWithKendo($el);
             }
+
+            this.props.dataSource.bind('change', this.onDataStoreChange);
         },
 
-        onChange: function (e) {
-            e.preventDefault();
+        componentWillUnmount: function () {
+            this.props.dataSource.unbind('change', this.onDataStoreChange);
+        },
+
+        onValueChange: function (e) {
+            if (this.preventReentry) return;
             var listView = $(e.sender.element[0]).data('kendoListView');
-            if (!this.suppressEvents) {
-                if (this.props.canChange()) {
-                    var nextSelectedId = listView.select().data('modelId');
-                    if (this.props.selectedId !== nextSelectedId) {
-                        this.props.onChange(nextSelectedId);
-                    }
-                } else {
-                    this.syncSelectionWithKendo($(this.getDOMNode()));
-                }
-            }
+            var val = listView.select().data('modelId');
+            this.props.onChange(val);
+        },
+
+        onDataStoreChange: function () {
+            this.syncSelectionWithKendo($(this.getDOMNode()));
         }
     });
 });
