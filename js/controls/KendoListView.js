@@ -35,11 +35,16 @@ define([
         },
         /* jshint ignore:end */
 
-        syncSelectionWithKendo: function (rootEl) {
-            var listView = rootEl.data('kendoListView');
 
+        /**
+         * This method compensates for weird stuff in kendoListView, which has an immature API. Specifically,
+         * there is no way to set the value without causing change events to fire, which makes it difficult for React to
+         * control the widget.
+         */
+        effectListSelectionById: function (selectedId) {
+            var listView = $(this.getDOMNode()).data('kendoListView');
             var maybeSelectedChild = _.find(listView.element.children(), function (child) {
-                return this.props.selectedId === $(child).data('modelId');
+                return selectedId === $(child).data('modelId');
             }.bind(this));
 
             var syncSelection = (maybeSelectedChild
@@ -50,25 +55,34 @@ define([
             // this line causes a widget value change event, so we need to prevent reentry to the value change callback
             syncSelection();
             this.preventReentry = false;
+        },
 
-            if (maybeSelectedChild && this.props.scrollToSelectedItem) {
+        syncSelectionWithKendo: function () {
+            this.effectListSelectionById(this.props.selectedId);
+
+            if (this.props.selectedId && this.props.scrollToSelectedItem) {
+                var rootEl = $(this.getDOMNode());
+                var listView = rootEl.data('kendoListView');
+                var maybeSelectedChild = _.find(listView.element.children(), function (child) {
+                    return this.props.selectedId === $(child).data('modelId');
+                }.bind(this));
+
                 var selectedChildIndex = _.indexOf(listView.element.children(), maybeSelectedChild);
-                console.assert(selectedChildIndex >= 0, 'Found a KendoListView selected child but could not determine its index');
-                var scrollTop = selectedChildIndex * $(maybeSelectedChild).height();
-                $(rootEl).animate({ scrollTop: scrollTop }, this.props.scrollDuration);
+                if (selectedChildIndex >= 0) {
+                    var scrollTop = selectedChildIndex * $(maybeSelectedChild).height();
+                    rootEl.animate({ scrollTop: scrollTop }, this.props.scrollDuration);
+                }
             }
         },
 
         componentDidUpdate: function (prevProps, prevState) {
             if (this.props.selectable && !_.isEqual(this.props.selectedId, prevProps.selectedId)) {
-                this.syncSelectionWithKendo($(this.getDOMNode()));
+                this.syncSelectionWithKendo();
             }
         },
 
         componentDidMount: function () {
-            var $el = $(this.getDOMNode());
-
-            $el.kendoListView({
+            $(this.getDOMNode()).kendoListView({
                 autoBind: false,
                 dataSource: this.props.dataSource,
                 template: kendoutil.templateWith(kendo.template(this.props.template), this.props.paramMapper),
@@ -77,7 +91,7 @@ define([
             }).data('kendoListView');
 
             if (this.props.selectable) {
-                this.syncSelectionWithKendo($el);
+                this.syncSelectionWithKendo();
             }
 
             this.props.dataSource.bind('change', this.onDataStoreChange);
@@ -91,11 +105,12 @@ define([
             if (this.preventReentry) return;
             var listView = $(e.sender.element[0]).data('kendoListView');
             var val = listView.select().data('modelId');
+            this.effectListSelectionById(this.props.selectedId); // unwind the kendo state change to respect flux lifecycle
             this.props.onChange(val);
         },
 
         onDataStoreChange: function () {
-            this.syncSelectionWithKendo($(this.getDOMNode()));
+            this.syncSelectionWithKendo();
         }
     });
 });
