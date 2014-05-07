@@ -37,21 +37,10 @@ define([
 
         syncSelectionWithKendo: function (rootEl) {
             var listView = rootEl.data('kendoListView');
-            var selectedChildIndex = 0; // default to first index if no selection is found
-            var maybeSelectedChild = null; // if our selection is not on the current page of results, this is null.
 
-            if (this.props.selectedId) {
-                maybeSelectedChild = _.find(
-                    listView.element.children(),
-                    function (child, childIndex) {
-                        var found = this.props.selectedId === $(child).data('modelId');
-                        if (found) {
-                            selectedChildIndex = childIndex;
-                        }
-                        return found;
-                    }.bind(this)
-                );
-            }
+            var maybeSelectedChild = _.find(listView.element.children(), function (child) {
+                return this.props.selectedId === $(child).data('modelId');
+            }.bind(this));
 
             var syncSelection = (maybeSelectedChild
                 ? function () { listView.select($(maybeSelectedChild)); }
@@ -62,10 +51,10 @@ define([
             syncSelection();
             this.preventReentry = false;
 
-
             if (maybeSelectedChild && this.props.scrollToSelectedItem) {
-                var $selectedChild = $(maybeSelectedChild);
-                var scrollTop = selectedChildIndex * $selectedChild.height();
+                var selectedChildIndex = _.indexOf(listView.element.children(), maybeSelectedChild);
+                console.assert(selectedChildIndex >= 0, 'Found a KendoListView selected child but could not determine its index');
+                var scrollTop = selectedChildIndex * $(maybeSelectedChild).height();
                 $(rootEl).animate({ scrollTop: scrollTop }, this.props.scrollDuration);
             }
         },
