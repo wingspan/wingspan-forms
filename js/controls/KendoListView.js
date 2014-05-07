@@ -38,10 +38,10 @@ define([
         syncSelectionWithKendo: function (rootEl) {
             var listView = rootEl.data('kendoListView');
             var selectedChildIndex = 0; // default to first index if no selection is found
-            var selectedChild = null;
+            var maybeSelectedChild = null; // if our selection is not on the current page of results, this is null.
 
             if (this.props.selectedId) {
-                selectedChild = _.find(
+                maybeSelectedChild = _.find(
                     listView.element.children(),
                     function (child, childIndex) {
                         var found = this.props.selectedId === $(child).data('modelId');
@@ -53,17 +53,21 @@ define([
                 );
             }
 
-            this.preventReentry = true;
-            if (selectedChild && this.props.scrollToSelectedItem) {
-                var $selectedChild = $(selectedChild);
-                var scrollTop = selectedChildIndex * $selectedChild.height();
-                listView.select($selectedChild);
+            var syncSelection = (maybeSelectedChild
+                ? function () { listView.select($(maybeSelectedChild)); }
+                : function () { listView.clearSelection(); });
 
-                $(rootEl).animate({ scrollTop: scrollTop }, this.props.scrollDuration);
-            } else {
-                listView.clearSelection();
-            }
+            this.preventReentry = true;
+            // this line causes a widget value change event, so we need to prevent reentry to the value change callback
+            syncSelection();
             this.preventReentry = false;
+
+
+            if (maybeSelectedChild && this.props.scrollToSelectedItem) {
+                var $selectedChild = $(maybeSelectedChild);
+                var scrollTop = selectedChildIndex * $selectedChild.height();
+                $(rootEl).animate({ scrollTop: scrollTop }, this.props.scrollDuration);
+            }
         },
 
         componentDidUpdate: function (prevProps, prevState) {
