@@ -47,7 +47,7 @@ define([
 
             function makeRadio(user, index) {
                 var elemID = idPrefix + index;
-                var checked = user.isEqual(props.value);
+                var checked = _.isEqual(user, props.value);
 
                 return [
                     (<input type="radio" name={props.name} id={elemID} value={index} checked={checked} onChange={onChangeRadio}/>),
@@ -57,7 +57,7 @@ define([
             }
 
             // If the "value" is one of the users in the userList, we don't want to pass it to the picker.
-            if (_.some(props.userList, function (user) { return user.isEqual(pickerValue); } )) {
+            if (_.some(props.userList, function (user) { return _.isEqual(user, pickerValue) } )) {
                 pickerValue = null;
             }
 
