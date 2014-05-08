@@ -2,7 +2,7 @@
 define([
     'underscore', 'react', 'jquery',
     '../ImmutableOptimizations',
-    'underscore-string'
+    'underscore.string'
 ], function (_, React, $, ImmutableOptimizations) {
     'use strict';
 

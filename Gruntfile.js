@@ -22,8 +22,7 @@ module.exports = function (grunt) {
             textassets: '../textassets', // all assets loaded via `text!` must be rooted here so the JSX compiler works.
             text: '../bower_components/requirejs-text/text',
             underscore: '../bower_components/underscore/underscore',
-            lodash: '../bower_components/lodash/dist/lodash.compat',
-            'underscore-string': '../bower_components/underscore.string/lib/underscore.string',
+            'underscore.string': '../bower_components/underscore.string/lib/underscore.string',
             jquery: '../bower_components/jquery/jquery',
             kendo: '../bower_components/kendo-ui/src/js/kendo.web',
             moment: '../bower_components/momentjs/moment',
@@ -35,9 +34,8 @@ module.exports = function (grunt) {
         },
 
         shim: {
-            'lodash': { deps: ['underscore'], exports: '_' }, // lodash loads second so we can use lodash.noConflict to disambiguate. App require config needs to mirror this! TODO
             'underscore': { deps: [], exports: '_' },
-            'underscore-string': { deps: ['underscore'], exports: ['_s'] },
+            'underscore.string': { deps: ['underscore'], exports: ['_s'] },
             'jquery': { deps: [], exports: '$' },
             'kendo': { deps: [], exports: 'kendo' },
             'react': { deps: [], exports: 'React'}
@@ -118,7 +116,7 @@ module.exports = function (grunt) {
                 options: {
                     out: 'dist/wingspan-forms.js',
                     include: ['almond', 'wingspan-forms'],
-                    exclude: ['jquery', 'underscore', 'react', 'require', 'text', 'underscore-string', 'kendo', 'q',
+                    exclude: ['jquery', 'underscore', 'react', 'require', 'text', 'underscore.string', 'kendo', 'q',
                         'wingspan-contrib', 'wingspan-data', 'lodash']
                 }
             },

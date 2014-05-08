@@ -1,11 +1,10 @@
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         define([
-            'underscore', 'lodash', 'react', 'jquery', 'underscore-string', 'kendo', 'q',
+            'underscore', 'react', 'jquery', 'underscore.string', 'kendo', 'q',
             'wingspan-contrib', 'wingspan-data'
         ], factory);
     } else {
-        root.lodash = root._.noConflict();
-        root.WingspanForms = factory(root._, root.lodash, root.React, root.$, root._s, root.kendo, root.Q, root.WingspanContrib, root.WingspanData);
+        root.WingspanForms = factory(root._, root.React, root.$, root._s, root.kendo, root.Q, root.WingspanContrib, root.WingspanData);
     }
-}(this, function (_, lodash, React, $, _s, kendo, Q, WingspanContrib, WingspanData) {
+}(this, function (_, React, $, _s, kendo, Q, WingspanContrib, WingspanData) {
