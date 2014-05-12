@@ -98,6 +98,11 @@ define([
         $body.data('kendoErrorTooltip').hide();
     }
 
+    function refreshErrorTooltip() {
+        var $body = $('body');
+        $body.data('kendoErrorTooltip').refresh();
+    }
+
     kendo.ui.Tooltip.fn.hide = function () {
         if (this.popup) {
             this.popup.close();
@@ -113,6 +118,7 @@ define([
         parseDate: parseDate,
         attachFormTooltips: attachFormTooltips,
         hideErrorTooltip: hideErrorTooltip,
+        refreshErrorTooltip: refreshErrorTooltip,
         setKendoDateState: setKendoDateState,
         setKendoNumberState: setKendoNumberState,
         setKendoNumberValue: setKendoNumberValue,
