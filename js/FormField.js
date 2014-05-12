@@ -106,6 +106,16 @@ define([
             }
         },
 
+        componentDidUpdate: function (prevProps) {
+            var wasInvalid = prevProps.isValid[0] === false,
+                isStillInvalid = this.props.isValid[0] === false,
+                validationMessageChanged = prevProps.isValid[1] !== this.props.isValid[1];
+
+            if (wasInvalid && isStillInvalid && validationMessageChanged) {
+                ControlCommon.refreshErrorTooltip();
+            }
+        },
+
         toggleLock: function () {
             var isLocked = !this.state.locked;
             this.props.onStickyChange(isLocked);
