@@ -35,9 +35,13 @@ module.exports = function (grunt) {
                 extension: 'js'
             },
             app: {
-                files: {
-                    'webapp/js-built': 'webapp/js'
-                }
+                files: [{
+                    expand: true,
+                    cwd: 'js',
+                    src: ['**/*.js'],
+                    dest: 'js-built',
+                    ext: '.js'
+                }]
             }
         },
 

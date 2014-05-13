@@ -97,14 +97,10 @@ module.exports = function (grunt) {
                 extension: 'js'
             },
             lib: {
-                files: {
-                    'js-built': 'js'
-                }
+                files: [{ expand: true, cwd: 'js', src: ['**/*.js'], dest: 'js-built', ext: '.js' }]
             },
             spec: {
-                files: {
-                    'spec-built': 'spec'
-                }
+                files: [{ expand: true, cwd: 'spec', src: ['**/*.js'], dest: 'spec-built', ext: '.js' }]
             }
         },
 
