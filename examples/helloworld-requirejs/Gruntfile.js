@@ -26,7 +26,9 @@ module.exports = function (grunt) {
         subgrunt: {
             options: {},
             'wingspan-forms': {
-                '../../': ['default']
+                '../../': ['default'],
+                '../../vendor/wingspan-contrib': ['default'],
+                '../../vendor/wingspan-data': ['default']
             }
         },
 
@@ -35,13 +37,7 @@ module.exports = function (grunt) {
                 extension: 'js'
             },
             app: {
-                files: [{
-                    expand: true,
-                    cwd: 'js',
-                    src: ['**/*.js'],
-                    dest: 'js-built',
-                    ext: '.js'
-                }]
+                files: [{ expand: true, cwd: 'webapp/js', src: ['**/*.js'], dest: 'webapp/js-built', ext: '.js' }]
             }
         },
 
@@ -94,7 +90,7 @@ module.exports = function (grunt) {
                     'kendo': { deps: [], exports: 'kendo' },
                     'moment': { deps: [], exports: 'moment' },
                     'react': { deps: [], exports: 'React'},
-                    'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo', 'moment', 'underscore.string'], exports: 'WingspanForms' },
+                    'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo', 'moment', 'underscore.string', 'wingspan-contrib', 'wingspan-data'], exports: 'WingspanForms' },
                     'wingspan-contrib': { deps: ['underscore', 'jquery', 'underscore.string', 'moment', 'q'], exports: 'WingspanContrib' },
                     'wingspan-data': { deps: ['underscore', 'jquery', 'kendo', 'q'], exports: 'WingspanData' }
                 },

@@ -25,11 +25,10 @@ module.exports = function (grunt) {
 
         subgrunt: {
             options: {},
-            'wingspan-forms': {
-                'bower_components/wingspan-forms': ['default']
-            },
-            'wingspan-data': {
-                'bower_components/wingspan-data': ['default']
+            'app': {
+                '../../': ['default'],
+                '../../vendor/wingspan-contrib': ['default'],
+                '../../vendor/wingspan-data': ['default']
             }
         },
 
@@ -38,9 +37,7 @@ module.exports = function (grunt) {
                 extension: 'js'
             },
             app: {
-                files: {
-                    'webapp/js-built': 'webapp/js'
-                }
+                files: [{ expand: true, cwd: 'webapp/js', src: ['**/*.js'], dest: 'webapp/js-built', ext: '.js' }]
             }
         },
 
@@ -72,27 +69,31 @@ module.exports = function (grunt) {
 
                 paths: {
                     'underscore': '../lib/underscore',
-                    'underscore-string': '../lib/underscore.string',
+                    'underscore.string': '../lib/underscore.string',
                     'jquery': '../lib/jquery',
                     'kendo': '../lib/kendo-ui/js/kendo.web',
                     'moment': '../lib/moment',
                     'react': '../lib/react-with-addons',
                     'es5-shim': '../lib/es5-shim',
                     'text': '../lib/text',
+                    'q': '../lib/q',
                     'wingspan-forms': '../lib/wingspan-forms/wingspan-forms',
+                    'wingspan-contrib': '../lib/wingspan-contrib',
                     'wingspan-data': '../lib/wingspan-data',
                     'textassets': '../textassets' // all assets loaded via `text!` must be rooted here (to avoid JSX compilation)
                 },
 
                 shim: {
                     'underscore': { deps: [], exports: '_' },
-                    'underscore-string': { exports: '_s' },
+                    'underscore.string': { exports: '_s' },
                     'jquery': { deps: [], exports: '$' },
                     'kendo': { deps: [], exports: 'kendo' },
                     'moment': { deps: [], exports: 'moment' },
                     'react': { deps: [], exports: 'React'},
-                    'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo', 'moment', 'underscore-string'], exports: 'Wingspan'},
-                    'wingspan-data': { exports: 'WingspanData' }
+                    'q': { deps: [], exports: 'Q'},
+                    'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo', 'moment', 'underscore.string', 'wingspan-contrib', 'wingspan-data'], exports: 'WingspanForms' },
+                    'wingspan-contrib': { deps: ['underscore', 'jquery', 'underscore.string', 'moment', 'q'], exports: 'WingspanContrib' },
+                    'wingspan-data': { deps: ['underscore', 'jquery', 'kendo', 'q'], exports: 'WingspanData' }
                 },
 
                 uglify: {
@@ -124,9 +125,11 @@ module.exports = function (grunt) {
                             'bower_components/react/react-with-addons.js',
                             'bower_components/underscore.string/lib/underscore.string.js',
                             'bower_components/es5-shim/es5-shim.js',
+                            'bower_components/q/q.js',
                             'bower_components/requirejs/require.js',
                             'bower_components/requirejs-text/text.js',
-                            'bower_components/wingspan-data/dist/wingspan-data.js'
+                            '../../vendor/wingspan-contrib/dist/wingspan-contrib.js',
+                            '../../vendor/wingspan-data/dist/wingspan-data.js'
                         ],
                         dest: 'webapp/lib',
                         flatten: true,
@@ -135,14 +138,13 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: 'bower_components/kendo-ui/src/',
-                        // examples/sandbox/bower_components/kendo-ui/src/
                         src: ['js/kendo.web.js', 'styles/kendo.common.css', 'styles/kendo.default.css', 'styles/Default/**', 'styles/textures/**'],
                         dest: 'webapp/lib/kendo-ui/',
                         flatten: false
                     },
                     {
                         expand: true,
-                        cwd: 'bower_components/wingspan-forms/dist/',
+                        cwd: '../../dist/',
                         src: ['**'],
                         dest: 'webapp/lib/wingspan-forms/',
                         flatten: false

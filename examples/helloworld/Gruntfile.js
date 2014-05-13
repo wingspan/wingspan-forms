@@ -26,7 +26,9 @@ module.exports = function (grunt) {
         subgrunt: {
             options: {},
             'wingspan-forms': {
-                '../../': ['default']
+                '../../': ['default'],
+                '../../vendor/wingspan-contrib': ['default'],
+                '../../vendor/wingspan-data': ['default']
             }
         },
 
@@ -35,9 +37,7 @@ module.exports = function (grunt) {
                 extension: 'js'
             },
             app: {
-                files: {
-                    'webapp/js-built': 'webapp/js'
-                }
+                files: [{ expand: true, cwd: 'webapp/js', src: ['**/*.js'], dest: 'webapp/js-built', ext: '.js' }]
             }
         },
 

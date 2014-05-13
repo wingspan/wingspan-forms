@@ -1,8 +1,7 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'react', 'jquery', 'kendo', 'wingspan-forms',
-    'underscore-string'
-], function (_, React, $, kendo, Forms) {
+    'underscore', 'underscore.string', 'react', 'jquery', 'kendo', 'wingspan-forms'
+], function (_, str, React, $, kendo, Forms) {
     'use strict';
 
     var FormField = Forms.FormField;
