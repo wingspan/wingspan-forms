@@ -1,8 +1,8 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'jquery', 'react',
+    'underscore', 'underscore.string', 'jquery', 'react',
     '../ImmutableOptimizations'
-], function (_, $, React, ImmutableOptimizations) {
+], function (_, str, $, React, ImmutableOptimizations) {
     'use strict';
 
     var KendoGridRadioSelectable = React.createClass({
@@ -66,7 +66,7 @@ define([
             var self = this;
             _.each(this.state.value, function (item) {
                 // select and highlight the selected item in the grid
-                var selector = $(_.str.sprintf("input[id='%s']", item[self.props.valueField]) , self.$el);
+                var selector = $(str.sprintf("input[id='%s']", item[self.props.valueField]) , self.$el);
                 selector.attr("checked", true);
                 selector.closest('tr').toggleClass('k-state-selected', selector.is(':checked'));
             })
@@ -98,7 +98,7 @@ define([
         },
 
         getInputTypeString : function (string) {
-            return _.str.sprintf(string, this.props.multiSelect ? 'checkbox' : 'radio')
+            return str.sprintf(string, this.props.multiSelect ? 'checkbox' : 'radio')
         },
 
         getStateVal: function (val) {

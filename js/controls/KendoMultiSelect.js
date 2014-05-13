@@ -1,9 +1,9 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'jquery', 'react',
+    'underscore', 'underscore.string', 'jquery', 'react',
     '../ControlCommon',
     '../ImmutableOptimizations'
-], function (_, $, React, controlCommon, ImmutableOptimizations) {
+], function (_, str, $, React, controlCommon, ImmutableOptimizations) {
     'use strict';
 
 
@@ -16,7 +16,7 @@ define([
                 layout: 'formField',
                 disabled: false,
                 isValid: [true, ''],
-                template: _.str.sprintf('${%s} - ${%s}', this.props.valueField, this.props.displayField),
+                template: str.sprintf('${%s} - ${%s}', this.props.valueField, this.props.displayField),
                 onChange: function () {},
                 readonly: false,
                 noControl: false,
@@ -64,7 +64,7 @@ define([
                 return val[this.props.displayField];
             });
 
-            return _.str.join(displayVals, ', '); // l10n?
+            return str.join(displayVals, ', '); // l10n?
         },
 
         componentDidMount: function () {

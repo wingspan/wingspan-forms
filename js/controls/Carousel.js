@@ -1,9 +1,8 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'react', 'jquery',
-    '../ImmutableOptimizations',
-    'underscore.string'
-], function (_, React, $, ImmutableOptimizations) {
+    'underscore', 'underscore.string', 'react', 'jquery',
+    '../ImmutableOptimizations'
+], function (_, str, React, $, ImmutableOptimizations) {
     'use strict';
 
 
@@ -77,7 +76,7 @@ define([
             else {
                 return (N === 0
                     ? '0 of 0'
-                    : _.str.sprintf('%s of %s', i+1, N));
+                    : str.sprintf('%s of %s', i+1, N));
             }
         }
 

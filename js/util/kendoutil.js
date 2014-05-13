@@ -1,6 +1,6 @@
 define([
-    'underscore', 'jquery', 'kendo', '../util/util'
-], function (_, $, kendo, util) {
+    'underscore', 'underscore.string', 'jquery', 'kendo', '../util/util'
+], function (_, str, $, kendo, util) {
     'use strict';
     var my = {};
 
@@ -35,7 +35,7 @@ define([
         init: function (target, binding, options) {
             // Set the template using the contained markup
             var templateHtml = $(target).html();
-            options.template = kendo.template(_.str.trim(templateHtml));
+            options.template = kendo.template(str.trim(templateHtml));
 
             SourceBinderClass.init.call(this, target, binding, options);
         },
