@@ -3,6 +3,9 @@ define([
 ], function (_) {
     'use strict';
 
+    /**
+     * @Deprecated in favor of wingspan-cursors and Flux.js
+     */
     var FluxFormMixin = {
         componentWillMount: function () {
             console.assert(this.formFields, 'Required to define the form; see SetOfficeStatusComponent for a working usage');
