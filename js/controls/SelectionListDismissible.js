@@ -1,10 +1,10 @@
 /** @jsx React.DOM */
 define([
     'underscore', 'jquery', 'react',
-    'wingspan-contrib',
+    '../util/util',
     '../util/kendoutil',
-    'wingspan-data'
-], function (_, $, React, Contrib, kendoutil, Data) {
+    'wingspan-data' // TODO - remove this dependency
+], function (_, $, React, util, kendoutil, Data) {
     'use strict';
 
     var $el = null;
@@ -30,6 +30,7 @@ define([
             console.assert(this.props.columns);
             console.assert(this.props.onChange);
 
+            // This can be just a kendo datastore.
             this.datastore = Data.DataStore.create({ data: this.props.value });//, schema: this.props.schema });
         },
 
@@ -74,14 +75,14 @@ define([
         },
 
         paramMapper: function (record) {
-            return _.extend(record, this.props.schema, { recordHash: Contrib.hashRecord(record) });
+            return _.extend(record, this.props.schema, { recordHash: util.hashRecord(record) });
         },
 
         onButtonClick: function (e) {
             var recordHashToBeRemoved = parseInt(e.target.getAttribute('id'), 10);
 
             var newValue = _.filter(this.props.value, function (record) {
-                return Contrib.hashRecord(record) !== recordHashToBeRemoved;
+                return util.hashRecord(record) !== recordHashToBeRemoved;
             });
 
             this.props.onChange(newValue);

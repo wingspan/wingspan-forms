@@ -28,8 +28,8 @@ module.exports = function (grunt) {
             moment: '../bower_components/momentjs/moment',
             react: '../bower_components/react/react-with-addons',
             q: '../bower_components/q/q',
-            'wingspan-data': '../bower_components/wingspan-data/dist/wingspan-data',
-            'wingspan-contrib': '../bower_components/wingspan-contrib/dist/wingspan-contrib',
+            'wingspan-data': '../vendor/wingspan-data/dist/wingspan-data',
+            'wingspan-contrib': '../vendor/wingspan-contrib/dist/wingspan-contrib',
             almond: '../bower_components/almond/almond'
         },
 
@@ -86,11 +86,9 @@ module.exports = function (grunt) {
 
         subgrunt: {
             options: {},
-            'wingspan-data': {
-                'bower_components/wingspan-data': ['default']
-            },
-            'wingspan-contrib': {
-                'bower_components/wingspan-contrib': ['default']
+            'all': {
+                'vendor/wingspan-data': ['default'],
+                'vendor/wingspan-contrib': ['default']
             }
         },
 
@@ -117,7 +115,7 @@ module.exports = function (grunt) {
                     out: 'dist/wingspan-forms.js',
                     include: ['almond', 'wingspan-forms'],
                     exclude: ['jquery', 'underscore', 'react', 'require', 'text', 'underscore.string', 'kendo', 'q',
-                        'wingspan-contrib', 'wingspan-data', 'lodash']
+                        'wingspan-contrib', 'wingspan-data']
                 }
             },
             compileQuickStart: {
