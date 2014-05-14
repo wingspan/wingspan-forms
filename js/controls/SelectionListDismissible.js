@@ -2,9 +2,8 @@
 define([
     'underscore', 'jquery', 'react',
     '../util/util',
-    '../util/kendoutil',
-    'wingspan-data' // TODO - remove this dependency
-], function (_, $, React, util, kendoutil, Data) {
+    '../util/kendoutil'
+], function (_, $, React, util, kendoutil) {
     'use strict';
 
     var $el = null;
@@ -30,8 +29,7 @@ define([
             console.assert(this.props.columns);
             console.assert(this.props.onChange);
 
-            // This can be just a kendo datastore.
-            this.datastore = Data.DataStore.create({ data: this.props.value });//, schema: this.props.schema });
+            this.datastore = new kendo.data.DataSource({ data: this.props.value });
         },
 
         componentWillUpdate: function (nextProps, nextState) {
