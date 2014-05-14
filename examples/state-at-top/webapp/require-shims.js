@@ -16,7 +16,8 @@
             'q': '../lib/q',
             'wingspan-forms': '../lib/wingspan-forms/wingspan-forms',
             'wingspan-contrib': '../lib/wingspan-contrib',
-            'wingspan-data': '../lib/wingspan-data'
+            'wingspan-data': '../lib/wingspan-data',
+            'wingspan-cursor': '../lib/wingspan-cursor'
         },
         shim: {
             'underscore': { deps: [], exports: '_' },
@@ -27,7 +28,8 @@
             'react': { deps: [], exports: 'React'},
             'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo', 'moment', 'underscore.string', 'wingspan-contrib', 'wingspan-data'], exports: 'WingspanForms' },
             'wingspan-contrib': { deps: ['underscore', 'jquery', 'underscore.string', 'moment', 'q'], exports: 'WingspanContrib' },
-            'wingspan-data': { deps: ['underscore', 'jquery', 'kendo', 'q'], exports: 'WingspanData' }
+            'wingspan-data': { deps: ['underscore', 'jquery', 'kendo', 'q'], exports: 'WingspanData' },
+            'wingspan-cursor': { deps: [], exports: 'WingspanCursor' }
         }
     });
 })();

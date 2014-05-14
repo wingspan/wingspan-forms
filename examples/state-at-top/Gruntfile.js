@@ -28,7 +28,8 @@ module.exports = function (grunt) {
             'wingspan-forms': {
                 '../../': ['default'],
                 '../../vendor/wingspan-contrib': ['default'],
-                '../../vendor/wingspan-data': ['default']
+                '../../vendor/wingspan-data': ['default'],
+                '../../vendor/wingspan-cursor': ['release']
             }
         },
 
@@ -78,6 +79,7 @@ module.exports = function (grunt) {
                     'wingspan-forms': '../lib/wingspan-forms/wingspan-forms',
                     'wingspan-data': '../lib/wingspan-data',
                     'wingspan-contrib': '../lib/wingspan-contrib',
+                    'wingspan-cursor': '../lib/wingspan-cursor',
                     'textassets': '../textassets' // all assets loaded via `text!` must be rooted here (to avoid JSX compilation)
                 },
 
@@ -91,7 +93,8 @@ module.exports = function (grunt) {
                     'q': { deps: [], exports: 'Q'},
                     'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo', 'moment', 'underscore.string', 'wingspan-contrib', 'wingspan-data'], exports: 'WingspanForms' },
                     'wingspan-contrib': { deps: ['underscore', 'jquery', 'underscore.string', 'moment', 'q'], exports: 'WingspanContrib' },
-                    'wingspan-data': { deps: ['underscore', 'jquery', 'kendo', 'q'], exports: 'WingspanData' }
+                    'wingspan-data': { deps: ['underscore', 'jquery', 'kendo', 'q'], exports: 'WingspanData' },
+                    'wingspan-cursor': { deps: [], exports: 'WingspanCursor' }
                 },
 
                 uglify: {
@@ -127,7 +130,8 @@ module.exports = function (grunt) {
                             'bower_components/requirejs-text/text.js',
                             'bower_components/q/q.js',
                             '../../vendor/wingspan-contrib/dist/wingspan-contrib.js',
-                            '../../vendor/wingspan-data/dist/wingspan-data.js'
+                            '../../vendor/wingspan-data/dist/wingspan-data.js',
+                            '../../vendor/wingspan-cursor/dist/wingspan-cursor.js'
                         ],
                         dest: 'webapp/lib',
                         flatten: true,
@@ -136,7 +140,6 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: 'bower_components/kendo-ui/src/',
-                        // examples/sandbox/bower_components/kendo-ui/src/
                         src: ['js/kendo.web.js', 'styles/kendo.common.css', 'styles/kendo.default.css', 'styles/Default/**', 'styles/textures/**'],
                         dest: 'webapp/lib/kendo-ui/',
                         flatten: false

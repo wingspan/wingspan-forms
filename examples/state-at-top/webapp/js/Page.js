@@ -1,14 +1,15 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'react', 'jquery', 'wingspan-forms', 'Timer'
-], function (_, React, $, Forms, Timer) {
+    'underscore', 'react', 'jquery', 'wingspan-forms', 'wingspan-cursor',
+    'Timer'
+], function (_, React, $, Forms, Cursor,
+             Timer) {
     'use strict';
 
 
     function entrypoint(rootElement) {
 
         var App = React.createClass({
-            mixins: [Forms.TopStateMixin],
 
             getInitialState: function () {
                 return {
@@ -25,16 +26,19 @@ define([
             },
 
             render: function () {
-                var sum = this.state.foo.timer + this.state.foo.bar.timer + this.state.foo.bar.baz.timer;
+                var rootCursor = Cursor.build(this.state, this.setState.bind(this), cloneDeep);
+
+                var sum = rootCursor.refine('foo', 'timer').value +
+                    rootCursor.refine('foo', 'bar', 'timer').value +
+                    rootCursor.refine('foo', 'bar', 'baz', 'timer').value;
+
                 return (
                     <div className="App">
                         <div>
-                            <Foo
-                                value={this.state.foo}
-                                onChange={_.partial(this.onChange, 'foo')} />
+                            <Foo cursor={rootCursor.refine('foo')} />
                             <p>Sum of timers: {sum}</p>
                         </div>
-                        <pre>{JSON.stringify(this.state, undefined, 2)}</pre>
+                        <pre>{JSON.stringify(rootCursor.value, undefined, 2)}</pre>
                     </div>
 
                 );
@@ -44,14 +48,11 @@ define([
 
         var Foo = React.createClass({
             render: function () {
+                var timerCursor = this.props.cursor.refine('timer');
                 return (
                     <div className="Foo">
-                        <Timer
-                            value={this.props.value.timer}
-                            onChange={_.partial(this.props.onChange, 'timer')}/>
-                        <Bar
-                            value={this.props.value.bar}
-                            onChange={_.partial(this.props.onChange, 'bar')} />
+                        <Timer value={timerCursor.value} onChange={timerCursor.onChange}/>
+                        <Bar cursor={this.props.cursor.refine('bar')} />
                     </div>
                 );
             }
@@ -59,14 +60,11 @@ define([
 
         var Bar = React.createClass({
             render: function () {
+                var timerCursor = this.props.cursor.refine('timer');
                 return (
                     <div className="Bar">
-                        <Timer
-                            value={this.props.value.timer}
-                            onChange={_.partial(this.props.onChange, 'timer')}/>
-                        <Baz
-                            value={this.props.value.baz}
-                            onChange={_.partial(this.props.onChange, 'baz')} />
+                        <Timer value={timerCursor.value} onChange={timerCursor.onChange}/>
+                        <Baz cursor={this.props.cursor.refine('baz')} />
                     </div>
                 );
             }
@@ -74,11 +72,10 @@ define([
 
         var Baz = React.createClass({
             render: function () {
+                var timerCursor = this.props.cursor.refine('timer');
                 return (
                     <div className="Baz">
-                        <Timer
-                            value={this.props.value.timer}
-                            onChange={_.partial(this.props.onChange, 'timer')}/>
+                        <Timer value={timerCursor.value} onChange={timerCursor.onChange}/>
                     </div>
                 );
             }
@@ -86,6 +83,8 @@ define([
 
         React.renderComponent(<App />, rootElement);
     }
+
+    function cloneDeep (o) { return JSON.parse(JSON.stringify(o)); }
 
     return {
         entrypoint: entrypoint
