@@ -35,15 +35,10 @@ define([
                 noControl: false,
                 isValid: [true, ''],
                 lockable: false,
+                locked: false,
                 onStickyChange: function (isLocked) { /* set or clear a sticky */},
                 width: '100%',
                 marginLeft: '0'
-            };
-        },
-
-        getInitialState: function () {
-            return {
-                locked: false
             };
         },
 
@@ -68,7 +63,7 @@ define([
                 this.props.lockable ? 'lockable' : null
             ]);
 
-            var lockedClasses = _.compact(['fieldLock', this.state.locked ? 'fieldLockOn' : null]);
+            var lockedClasses = _.compact(['fieldLock', this.props.locked ? 'fieldLockOn' : null]);
             var lockDiv = this.props.lockable ? (<div className={lockedClasses.join(' ')} onClick={this.toggleLock} />) : null;
 
             var styles = {
@@ -117,7 +112,7 @@ define([
         },
 
         toggleLock: function () {
-            var isLocked = !this.state.locked;
+            var isLocked = !this.props.locked;
             this.props.onStickyChange(isLocked);
             this.setState({ locked: isLocked });
         }
