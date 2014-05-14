@@ -27,8 +27,8 @@ module.exports = function (grunt) {
             options: {},
             'wingspan-forms': {
                 '../../': ['default'],
-                '../../vendor/wingspan-contrib': ['default'],
-                '../../vendor/wingspan-data': ['default']
+                'bower_components/wingspan-contrib': ['default'],
+                'bower_components/wingspan-cursor': ['release']
             }
         },
 
@@ -53,63 +53,6 @@ module.exports = function (grunt) {
             }
         },
 
-        requirejs: {
-            options: {
-
-                optimize: 'none',
-                inlineText: true,
-                useStrict: true,
-                skipPragmas: true,
-                preserveLicenseComments: true,
-
-                baseUrl: 'webapp/js-built',
-
-                paths: {
-                    'underscore': '../lib/underscore',
-                    'underscore.string': '../lib/underscore.string',
-                    'jquery': '../lib/jquery',
-                    'kendo': '../lib/kendo-ui/js/kendo.web',
-                    'moment': '../lib/moment',
-                    'react': '../lib/react-with-addons',
-                    'es5-shim': '../lib/es5-shim',
-                    'text': '../lib/text',
-                    'q': '../lib/q',
-                    'wingspan-forms': '../lib/wingspan-forms/wingspan-forms',
-                    'wingspan-data': '../lib/wingspan-data',
-                    'wingspan-contrib': '../lib/wingspan-contrib',
-                    'textassets': '../textassets' // all assets loaded via `text!` must be rooted here (to avoid JSX compilation)
-                },
-
-                shim: {
-                    'underscore': { deps: [], exports: '_' },
-                    'underscore.string': { exports: '_s' },
-                    'jquery': { deps: [], exports: '$' },
-                    'kendo': { deps: [], exports: 'kendo' },
-                    'moment': { deps: [], exports: 'moment' },
-                    'react': { deps: [], exports: 'React'},
-                    'q': { deps: [], exports: 'Q'},
-                    'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo', 'moment', 'underscore.string', 'wingspan-contrib', 'wingspan-data'], exports: 'WingspanForms' },
-                    'wingspan-contrib': { deps: ['underscore', 'jquery', 'underscore.string', 'moment', 'q'], exports: 'WingspanContrib' },
-                    'wingspan-data': { deps: ['underscore', 'jquery', 'kendo', 'q'], exports: 'WingspanData' }
-                },
-
-                uglify: {
-                    toplevel: true,
-                    ascii_only: true,
-                    beautify: true,
-                    max_line_length: 1000,
-                    defines: { DEBUG: ['name', 'false'] },
-                    no_mangle: true
-                }
-            },
-            compile: {
-                options: {
-                    out: 'webapp/Page.js',
-                    include: ['Page']
-                }
-            }
-        },
-
         copy: {
             'libs': {
                 files: [
@@ -127,8 +70,8 @@ module.exports = function (grunt) {
                             'bower_components/requirejs/require.js',
                             'bower_components/requirejs-text/text.js',
                             'bower_components/q/q.js',
-                            '../../vendor/wingspan-contrib/dist/wingspan-contrib.js',
-                            '../../vendor/wingspan-data/dist/wingspan-data.js'
+                            'bower_components/wingspan-contrib/dist/wingspan-contrib.js',
+                            'bower_components/wingspan-cursor/dist/wingspan-cursor.js'
                         ],
                         dest: 'webapp/lib',
                         flatten: true,
@@ -164,6 +107,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
 
-    grunt.registerTask('default', ['bower:install', 'subgrunt', 'copy', 'react', 'less', 'requirejs']);
-    grunt.registerTask('devel', ['bower:install', 'subgrunt', 'copy', 'react', 'less']);
+    grunt.registerTask('default', ['bower:install', 'subgrunt', 'copy', 'react', 'less']);
 };
