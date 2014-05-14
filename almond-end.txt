@@ -6,8 +6,6 @@
     define('underscore.string', function () { return _s; });
     define('kendo', function () { return kendo; });
     define('q', function () { return Q; });
-    define('wingspan-contrib', function () { return WingspanContrib; });
-    define('wingspan-data', function () { return WingspanData; });
 
     return require('wingspan-forms');
 }));
