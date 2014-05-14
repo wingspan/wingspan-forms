@@ -26,18 +26,15 @@ module.exports = function (grunt) {
         subgrunt: {
             options: {},
             'wingspan-forms': {
-                'bower_components/wingspan-forms': ['default']
+                '../../': ['default'],
+                '../../vendor/wingspan-contrib': ['default'],
+                '../../vendor/wingspan-data': ['default']
             }
         },
 
         react: {
-            options: {
-                extension: 'js'
-            },
             app: {
-                files: {
-                    'webapp/js-built': 'webapp/js'
-                }
+                files: [{ expand: true, cwd: 'webapp/js', src: ['**/*.js'], dest: 'webapp/js-built', ext: '.js' }]
             }
         },
 
@@ -71,7 +68,10 @@ module.exports = function (grunt) {
                             'bower_components/underscore.string/lib/underscore.string.js',
                             'bower_components/es5-shim/es5-shim.js',
                             'bower_components/requirejs/require.js',
-                            'bower_components/requirejs-text/text.js'
+                            'bower_components/requirejs-text/text.js',
+                            'bower_components/q/q.js',
+                            '../../vendor/wingspan-contrib/dist/wingspan-contrib.js',
+                            '../../vendor/wingspan-data/dist/wingspan-data.js'
                         ],
                         dest: 'webapp/lib',
                         flatten: true,
@@ -86,7 +86,7 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
-                        cwd: 'bower_components/wingspan-forms/dist/',
+                        cwd: '../../dist/',
                         src: ['**'],
                         dest: 'webapp/lib/wingspan-forms/',
                         flatten: false

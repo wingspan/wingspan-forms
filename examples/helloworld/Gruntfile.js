@@ -33,9 +33,6 @@ module.exports = function (grunt) {
         },
 
         react: {
-            options: {
-                extension: 'js'
-            },
             app: {
                 files: [{ expand: true, cwd: 'webapp/js', src: ['**/*.js'], dest: 'webapp/js-built', ext: '.js' }]
             }

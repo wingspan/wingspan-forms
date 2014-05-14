@@ -33,9 +33,6 @@ module.exports = function (grunt) {
         },
 
         react: {
-            options: {
-                extension: 'js'
-            },
             app: {
                 files: [{ expand: true, cwd: 'webapp/js', src: ['**/*.js'], dest: 'webapp/js-built', ext: '.js' }]
             }
@@ -90,6 +87,7 @@ module.exports = function (grunt) {
                     'kendo': { deps: [], exports: 'kendo' },
                     'moment': { deps: [], exports: 'moment' },
                     'react': { deps: [], exports: 'React'},
+                    'q': { deps: [], exports: 'Q'},
                     'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo', 'moment', 'underscore.string', 'wingspan-contrib', 'wingspan-data'], exports: 'WingspanForms' },
                     'wingspan-contrib': { deps: ['underscore', 'jquery', 'underscore.string', 'moment', 'q'], exports: 'WingspanContrib' },
                     'wingspan-data': { deps: ['underscore', 'jquery', 'kendo', 'q'], exports: 'WingspanData' }

@@ -1,11 +1,10 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'react', 'jquery', 'kendo', 'wingspan-forms',
+    'underscore', 'underscore.string', 'react', 'jquery', 'kendo', 'wingspan-forms',
     'util',
     'FacetDataStore',
-    'text!textassets/types/Contact.json',
-    'underscore-string'
-], function (_, React, $, kendo, Forms, util, FacetDataStore, ContactModel) {
+    'text!textassets/types/Contact.json'
+], function (_, str, React, $, kendo, Forms, util, FacetDataStore, ContactModel) {
     'use strict';
 
     var ContactModel = JSON.parse(ContactModel).data;
@@ -68,7 +67,7 @@ define([
                     return pair[1] !== 0;
                 });
                 var checkboxes = _.map(nonZeroCountsByVal, function (count, val) {
-                    var controlId = _.str.sprintf('%s-%s', facet, val);
+                    var controlId = str.sprintf('%s-%s', facet, val);
                     return (
                         <div className="facetFilterControl" key={controlId}>
                             <CheckBox label={val} id={controlId} value={_.contains(this.state.filters[facet], val)}
@@ -86,7 +85,7 @@ define([
 
             var filterControls = _.map(this.state.filters, function (filters, facet) {
                 return _.map(filters, function (filter) {
-                    var key = _.str.sprintf('%s-%s', facet, filter);
+                    var key = str.sprintf('%s-%s', facet, filter);
                     return (<span className="filter">{filter}<i className="closer" onClick={_.partial(this.onClearFilter, facet, filter)} /></span>);
                 }.bind(this));
             }.bind(this));

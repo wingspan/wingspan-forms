@@ -18,12 +18,12 @@
         "jquery": "~1.9.1",
         "momentjs": "~2.0.0",
         "underscore": "~1.4.4",
-        "react": "~0.8.0",
+        "react": "~0.10.0",
         "requirejs": "~2.1.9",
         "requirejs-text": "~2.0.10",
         "underscore.string": "~2.3.3",
         "kendo-ui": "~2013.3.1119",
         "es5-shim": "~2.1",
-        "wingspan-forms": "91e5e8d5b0756abebccf0191d98a810b7a4529f7"
+        "q": "~0.9.7"
     }
 }

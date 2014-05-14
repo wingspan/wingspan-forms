@@ -1,7 +1,6 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'react', 'jquery', 'wingspan-forms', 'Timer',
-    'underscore-string'
+    'underscore', 'react', 'jquery', 'wingspan-forms', 'Timer'
 ], function (_, React, $, Forms, Timer) {
     'use strict';
 

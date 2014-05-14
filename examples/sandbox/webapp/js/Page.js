@@ -1,7 +1,6 @@
 /** @jsx React.DOM */
 define([
     'underscore', 'react', 'jquery', 'wingspan-forms',
-    'underscore-string'
 ], function (_, React, $, Forms) {
     'use strict';
 
