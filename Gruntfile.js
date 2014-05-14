@@ -84,18 +84,7 @@ module.exports = function (grunt) {
             }
         },
 
-        subgrunt: {
-            options: {},
-            'all': {
-                'vendor/wingspan-data': ['default'],
-                'vendor/wingspan-contrib': ['default']
-            }
-        },
-
         react: {
-            options: {
-                extension: 'js'
-            },
             lib: {
                 files: [{ expand: true, cwd: 'js', src: ['**/*.js'], dest: 'js-built', ext: '.js' }]
             },
@@ -110,8 +99,7 @@ module.exports = function (grunt) {
                 options: {
                     out: 'dist/wingspan-forms.js',
                     include: ['almond', 'wingspan-forms'],
-                    exclude: ['jquery', 'underscore', 'react', 'require', 'text', 'underscore.string', 'kendo', 'q',
-                        'wingspan-contrib', 'wingspan-data']
+                    exclude: ['jquery', 'underscore', 'react', 'require', 'text', 'underscore.string', 'kendo', 'q']
                 }
             },
             compileQuickStart: {
@@ -167,7 +155,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('default', ['bower:install', 'subgrunt', 'react:lib', 'less', 'copy', 'requirejs:compile']);
-    grunt.registerTask('devel', ['bower:install', 'subgrunt', 'react:lib', 'less', 'copy']);
+    grunt.registerTask('default', ['bower:install', 'react:lib', 'less', 'copy', 'requirejs:compile']);
+    grunt.registerTask('devel', ['bower:install', 'react:lib', 'less', 'copy']);
     grunt.registerTask('test', ['default', 'react:spec', 'karma']);
 };

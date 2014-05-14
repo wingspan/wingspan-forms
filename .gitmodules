@@ -1,9 +1,0 @@
-[submodule "vendor/wingspan-data"]
-	path = vendor/wingspan-data
-	url = git@github.com:wingspan/wingspan-data.git
-[submodule "vendor/wingspan-contrib"]
-	path = vendor/wingspan-contrib
-	url = git@github.com:wingspan/wingspan-contrib.git
-[submodule "vendor/wingspan-cursor"]
-	path = vendor/wingspan-cursor
-	url = git@github.com:wingspan/wingspan-cursor.git
