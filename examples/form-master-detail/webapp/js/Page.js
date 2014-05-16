@@ -48,11 +48,13 @@ define([
 
             return (
                 <div className="MasterDetailDemo">
-                    <ol>{list}</ol>
-                    <AutoForm
-                        metadata={ContactModel}
-                        cursor={this.props.cursor.refine('form')} />
-                    <button onClick={this.onSave}>Save</button>
+                    <div>
+                        <ol>{list}</ol>
+                        <AutoForm
+                            metadata={ContactModel}
+                            cursor={this.props.cursor.refine('form')} />
+                        <button onClick={this.onSave}>Save</button>
+                    </div>
                 </div>
             );
         },
