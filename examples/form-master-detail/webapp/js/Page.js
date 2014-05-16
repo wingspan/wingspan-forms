@@ -15,8 +15,8 @@ define([
     var App = React.createClass({
         getInitialState: function () {
             return {
-                database: [],
                 MasterDetail: {
+                    database: contacts,
                     form: {
                         lastName: '',
                         firstName: '',
@@ -28,8 +28,11 @@ define([
         },
         render: function () {
             var cursor = Cursor.build(this.state, this.setState.bind(this), util.deepClone);
-            return this.transferPropsTo(
-                <MasterDetailDemo metadata={ContactModel} cursor={cursor} />
+            return (
+                <div className="App">
+                    <MasterDetailDemo metadata={ContactModel} cursor={cursor.refine('MasterDetail')} />
+                    <pre>{JSON.stringify(cursor.value, undefined, 2)}</pre>
+                </div>
             );
         }
     });
@@ -42,12 +45,18 @@ define([
             };
         },
         render: function () {
+
+            var list = _.map(this.props.cursor.refine('database').value, function (record) {
+                return (<li><a href="javascript:void(0)" onClick={_.partial(this.onTargetChange, record.id)}>{record.lastName}</a></li>);
+            }.bind(this));
+
             return (
                 <div className="MasterDetailDemo">
+                    <ol>{list}</ol>
                     <AutoForm
                         metadata={ContactModel}
-                        cursor={this.props.cursor.refine('MasterDetail')} />
-                    <pre>{JSON.stringify(this.props.cursor.value, undefined, 2)}</pre>
+                        cursor={this.props.cursor.refine('form')} />
+                    <button onClick={this.onFormSaveAB}>Save</button>
                 </div>
             );
         }
@@ -62,16 +71,15 @@ define([
             };
         },
         render: function () {
-            var formCursor = this.props.cursor.refine('form');
             var controls = _.map(this.props.metadata.properties, function (fieldInfo) {
-                var fieldCursor = formCursor.refine(fieldInfo.name);
+                var fieldCursor = this.props.cursor.refine(fieldInfo.name);
                 return (
                     <AutoField
                         fieldInfo={fieldInfo}
                         value={fieldCursor.value}
                         onChange={fieldCursor.onChange}
                     />);
-            });
+            }.bind(this));
 
             return (<div className="AutoForm">{controls}</div>);
         }
