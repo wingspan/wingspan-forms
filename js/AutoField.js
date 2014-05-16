@@ -23,7 +23,8 @@ define([
                     <AutoControl
                         fieldInfo={this.props.fieldInfo}
                         value={this.props.value}
-                        onChange={this.props.onChange} />
+                        onChange={this.props.onChange}
+                        dataSource={this.props.fieldInfo.options} />
                 </FormField>
             );
         }
