@@ -44,6 +44,7 @@ define([
                 cursor: undefined
             };
         },
+
         render: function () {
 
             var list = _.map(this.props.cursor.refine('database').value, function (record) {
@@ -56,9 +57,15 @@ define([
                     <AutoForm
                         metadata={ContactModel}
                         cursor={this.props.cursor.refine('form')} />
-                    <button onClick={this.onFormSaveAB}>Save</button>
+                    <button onClick={undefined}>Save</button>
                 </div>
             );
+        },
+
+        onTargetChange: function (recordId) {
+            // dirty check here
+            var record = _.findWhere(this.props.cursor.refine('database').value, { id: recordId });
+            this.props.cursor.refine('form').onChange(record);
         }
     });
 
