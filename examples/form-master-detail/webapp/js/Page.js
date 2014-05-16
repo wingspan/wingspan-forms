@@ -1,10 +1,10 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'react', 'wingspan-forms', 'wingspan-cursor',
+    'underscore', 'react', 'jquery', 'wingspan-forms', 'wingspan-cursor', 'wingspan-contrib',
     'util',
     'text!textassets/types/Contact.json',
     'text!textassets/contacts.json'
-], function (_, React, Forms, Cursor,
+], function (_, React, $, Forms, Cursor, Contrib,
              util, ContactModel, contacts) {
     'use strict';
 
@@ -52,7 +52,7 @@ define([
                     <AutoForm
                         metadata={ContactModel}
                         cursor={this.props.cursor.refine('form')} />
-                    <button onClick={undefined}>Save</button>
+                    <button onClick={this.onSave}>Save</button>
                 </div>
             );
         },
@@ -61,6 +61,21 @@ define([
             // dirty check here
             var record = _.findWhere(this.props.cursor.refine('database').value, { id: recordId });
             this.props.cursor.refine('form').onChange(record);
+        },
+
+        onSave: function () {
+            var database = this.props.cursor.refine('database').value;
+            var form = this.props.cursor.refine('form').value;
+            var record = _.findWhere(database, { id: form.id });
+
+            var nextRecord = Contrib.merge(record, form, { revision: form['revision'] + 1 });
+
+            // subtract out the stale record (old revision)
+            // union in the new record into the nextCollection
+            var nextCollection = util.differenceDeep(database, [record]);
+            nextCollection = util.unionDeep(nextCollection, [nextRecord]);
+
+            this.props.cursor.onChange({ database: nextCollection, form: nextRecord });
         }
     });
 
