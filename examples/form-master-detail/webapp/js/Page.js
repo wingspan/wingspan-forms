@@ -17,12 +17,7 @@ define([
             return {
                 MasterDetail: {
                     database: contacts,
-                    form: {
-                        lastName: '',
-                        firstName: '',
-                        phoneNumber: '',
-                        contactGroup: ''
-                    }
+                    form: contacts[0]
                 }
             };
         },
