@@ -27,8 +27,8 @@ module.exports = function (grunt) {
             options: {},
             'wingspan-forms': {
                 '../../': ['default'],
-                '../../vendor/wingspan-contrib': ['default'],
-                '../../vendor/wingspan-data': ['default']
+                'bower_components/wingspan-contrib': ['default'],
+                'bower_components/wingspan-cursor': ['release']
             }
         },
 
@@ -124,8 +124,8 @@ module.exports = function (grunt) {
                             'bower_components/requirejs/require.js',
                             'bower_components/requirejs-text/text.js',
                             'bower_components/q/q.js',
-                            '../../vendor/wingspan-contrib/dist/wingspan-contrib.js',
-                            '../../vendor/wingspan-data/dist/wingspan-data.js'
+                            'bower_components/wingspan-contrib/dist/wingspan-contrib.js',
+                            'bower_components/wingspan-cursor/dist/wingspan-cursor.js'
                         ],
                         dest: 'webapp/lib',
                         flatten: true,
