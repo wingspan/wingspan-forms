@@ -74,7 +74,6 @@ module.exports = function (grunt) {
                     'text': '../lib/text',
                     'q': '../lib/q',
                     'wingspan-forms': '../lib/wingspan-forms/wingspan-forms',
-                    'wingspan-data': '../lib/wingspan-data',
                     'wingspan-contrib': '../lib/wingspan-contrib',
                     'textassets': '../textassets' // all assets loaded via `text!` must be rooted here (to avoid JSX compilation)
                 },
@@ -87,9 +86,8 @@ module.exports = function (grunt) {
                     'moment': { deps: [], exports: 'moment' },
                     'react': { deps: [], exports: 'React'},
                     'q': { deps: [], exports: 'Q'},
-                    'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo', 'moment', 'underscore.string', 'wingspan-contrib', 'wingspan-data'], exports: 'WingspanForms' },
-                    'wingspan-contrib': { deps: ['underscore', 'jquery', 'underscore.string', 'moment', 'q'], exports: 'WingspanContrib' },
-                    'wingspan-data': { deps: ['underscore', 'jquery', 'kendo', 'q'], exports: 'WingspanData' }
+                    'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo', 'moment', 'underscore.string'], exports: 'WingspanForms' },
+                    'wingspan-contrib': { deps: ['underscore', 'jquery', 'underscore.string', 'moment', 'q'], exports: 'WingspanContrib' }
                 },
 
                 uglify: {
