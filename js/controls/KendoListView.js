@@ -42,6 +42,10 @@ define([
          * control the widget.
          */
         effectListSelectionById: function (selectedId) {
+            if (!this.isMounted()) {
+                return;
+            }
+
             var listView = $(this.getDOMNode()).data('kendoListView');
             var maybeSelectedChild = _.find(listView.element.children(), function (child) {
                 return selectedId === $(child).data('modelId');
@@ -58,6 +62,10 @@ define([
         },
 
         syncSelectionWithKendo: function () {
+            if (!this.isMounted()) {
+                return;
+            }
+
             this.effectListSelectionById(this.props.selectedId);
 
             if (this.props.selectedId && this.props.scrollToSelectedItem) {
