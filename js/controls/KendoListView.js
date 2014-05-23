@@ -91,13 +91,17 @@ define([
         },
 
         componentDidMount: function () {
-            $(this.getDOMNode()).kendoListView({
+            var listViewWidget = $(this.getDOMNode()).kendoListView({
                 autoBind: this.props.autoBind,
                 dataSource: this.props.dataSource,
                 template: kendoutil.templateWith(kendo.template(this.props.template), this.props.paramMapper),
                 selectable: this.props.selectable,
                 change: this.onValueChange
             }).data('kendoListView');
+
+            if (! this.props.autoBind) {
+                listViewWidget.refresh();
+            }
 
             if (this.props.selectable) {
                 this.syncSelectionWithKendo();
