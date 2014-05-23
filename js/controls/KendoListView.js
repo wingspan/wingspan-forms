@@ -12,6 +12,7 @@ define([
 
         getDefaultProps: function () {
             return {
+                autoBind: false,
                 className: 'content',
                 scrollToSelectedItem: false,
                 scrollDuration: 150,
@@ -91,7 +92,7 @@ define([
 
         componentDidMount: function () {
             $(this.getDOMNode()).kendoListView({
-                autoBind: false,
+                autoBind: this.props.autoBind,
                 dataSource: this.props.dataSource,
                 template: kendoutil.templateWith(kendo.template(this.props.template), this.props.paramMapper),
                 selectable: this.props.selectable,
