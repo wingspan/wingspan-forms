@@ -24,21 +24,23 @@ define([
             };
         },
 
+        componentWillMount: function () {
+          this.stableUniqueId = this.props.id ? this.props.id : _.uniqueId();
+        },
+
         /*jshint ignore:start */
         render: function () {
-            var elemId = this.props.id + 'CheckBox';
-
             if (this.props.noControl) {
                 return (<span>{this.getDisplayValue()}</span>);
             }
 
             return (
                 <span className="CheckBox" tabIndex="0">
-                    <input type="checkbox" id={elemId}
+                    <input type="checkbox" id={this.stableUniqueId}
                         checked={this.props.value} data-checked={this.props.value ? '' : null}
                         onChange={this.onChange}
                         disabled={this.props.disabled || this.props.readonly} />
-                    <label htmlFor={elemId}>{this.props.label}</label>
+                    <label htmlFor={this.stableUniqueId}>{this.props.label}</label>
                 </span>
             );
         },
