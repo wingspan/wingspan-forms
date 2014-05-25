@@ -1,0 +1,51 @@
+@import "vars.less";
+
+input[type='checkbox'], input[type='radio'] {
+  margin: 0px;
+  padding: 0px;
+  width: 0px;
+  display: none;
+  float: left;
+  -moz-appearance: none;
+}
+
+input[type='checkbox'] + label {
+  clear: none;
+  padding: 5px 0 4px 26px; /* make rook for image. */
+  background: url(assets/check_off.png) left center no-repeat;
+}
+
+input[type='checkbox']:checked + label {
+  background-image: url(assets/check_on.png);
+}
+
+input[type='checkbox']:disabled + label {
+  background-image: url(assets/check_off_disabled.png);
+  background-position: 2px center;
+  color: @inputDisabledColor;
+}
+
+input[type='checkbox']:checked:disabled + label {
+  background-image: url(assets/check_on_disabled.png) !important;
+  color: @inputDisabledColor;
+}
+
+input[type='radio'] + label {
+  clear: none;
+  padding: 5px 0 4px 26px; /* make rook for image. */
+  background: url(assets/radio_off.png) left center no-repeat;
+}
+
+input[type='radio']:checked + label {
+  background-image: url(assets/radio_on.png);
+}
+
+input[type='radio']:disabled + label {
+  background-image: url(assets/radio_off_disabled.png);
+  color: @inputDisabledColor;
+}
+
+input[type='radio']:checked:disabled + label {
+  background-image: url(assets/radio_on_disabled.png);
+  color: @inputDisabledColor;
+}

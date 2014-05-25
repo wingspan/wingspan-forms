@@ -112,17 +112,22 @@ module.exports = function (grunt) {
         },
 
         less: {
-            development: {
-                options: {
-                    paths: [
-                        'styles'
-                    ],
-                    ieCompat: true,
-                    yuicompress: true,
-                    report: 'min'
-                },
+            options: {
+                paths: [
+                  'styles'
+                ],
+                ieCompat: true,
+                yuicompress: true,
+                report: 'min'
+            },
+            'wingspan-forms.css': {
                 files: {
                     'dist/wingspan-forms.css': 'styles/app.less'
+                }
+            },
+            'wingspan-forms-checkbox': {
+                files: {
+                    'dist/wingspan-forms-checkbox.css': 'styles/checkbox.less'
                 }
             }
         },
