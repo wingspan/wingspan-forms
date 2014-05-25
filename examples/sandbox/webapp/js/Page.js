@@ -12,6 +12,7 @@ define([
     var KendoComboBox = Forms.KendoComboBox;
     var KendoNumber = Forms.KendoNumber;
     var KendoDate = Forms.KendoDate;
+    var KendoTime = Forms.KendoTime;
     var KendoDatetime = Forms.KendoDatetime;
     var CheckBox = Forms.CheckBox;
     var Radio = Forms.Radio;
@@ -241,6 +242,14 @@ define([
                 <FormField fieldInfo={_.object([['label', 'disabled datetime'], ['disabled', true]])} isValid={[true, '']} layout="formField" >
                     <KendoDatetime value="" />
                 </FormField>
+
+
+                <div class="formTitle">Kendo TimePicker</div>
+
+                <FormField fieldInfo={{label: 'timepicker'}} isValid={[true, '']} layout="formField" >
+                    <KendoTime value="23:11:09" />
+                </FormField>
+
 
                 <div class="formTitle">Custom Checkboxes</div>
 
