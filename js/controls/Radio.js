@@ -18,7 +18,7 @@ define([
                 disabled: false,
                 readonly: false,
                 checked: false,
-                value: undefined
+                value: undefined // the ID of the option this radio represents
             };
         },
 
