@@ -38,7 +38,8 @@ define([
                 locked: false,
                 onStickyChange: function (isLocked) { /* set or clear a sticky */},
                 width: '100%',
-                marginLeft: '0'
+                marginLeft: '0',
+                noLabel: false
             };
         },
 
@@ -82,7 +83,7 @@ define([
 
             return (
                 <div className={classes.join(' ')} data-tooltip={fieldInfo.helpText} data-error-tooltip={this.props.isValid[1]} style={styles}>
-                    {label}
+                    {this.props.noLabel ? null : label}
                     <div className="formElement">
                         {this.props.children}
                     </div>
