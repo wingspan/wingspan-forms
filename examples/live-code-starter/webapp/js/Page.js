@@ -38,29 +38,114 @@ define([
 
     var App = React.createClass({
         getInitialState: function () {
-            return { firstName: '', lastName: '' };
+            return {
+                form: {
+                    firstName: '',
+                    lastName: ''
+                },
+                foo: {
+                    canary: 0
+                }
+            };
         },
+
+        pendingState: function () {
+            return this._pendingState || this.state;
+        },
+
+        render: function () {
+            var cursor = Cursor.build(this.state, this.pendingState, this.setState.bind(this));
+            return <View cursor={cursor} />;
+        },
+        componentDidUpdate: function () {
+            console.log("\n");
+        }
+    });
+
+    var View = React.createClass({
         render: function () {
             return (
                 <div>
-                    <input type="text" value={this.state.firstName} onChange={this.onChangeFirstName} />
-                    <input type="text" value={this.state.lastName} onChange={this.onChangeLastName} />
-                    <PrettyJSON value={this.state} />
+                    <Form cursor={this.props.cursor.refine('form')} />
+                    <Foo cursor={this.props.cursor.refine('foo')} />
+                    <PrettyJSON value={this.props.cursor.value} />
+                </div>
+            );
+        }
+    });
+
+    var Form = React.createClass({
+        render: function () {
+            return (
+                <div>
+                    <KendoText value={this.props.cursor.refine('firstName').value} onChange={this.props.cursor.refine('firstName').onChange} />
+                    <KendoText value={this.props.cursor.refine('lastName').value} onChange={this.props.cursor.refine('lastName').onChange} />
                 </div>
             );
         },
-        onChangeFirstName: function (e) {
-            this.setState({ firstName: e.target.value });
-        },
-        onChangeLastName: function (e) {
-            this.setState({ lastName: e.target.value });
+        shouldComponentUpdate: function (nextProps, nextState) {
+            var shouldUpdate = !_.isEqual(_.omit(this.props, ['cursor']), _.omit(nextProps, ['cursor'])) ||
+                this.props.cursor.value !== nextProps.cursor.value;
+            console.log('Should form update? ', shouldUpdate);
+            return  shouldUpdate;
         }
     });
+
+    var Foo = React.createClass({
+        render: function () {
+            return (
+                <div>
+                    <span>{this.props.cursor.refine('canary').value}</span>
+                    <button onClick={this.pokeTheCanary}>+2</button>
+                </div>
+            );
+        },
+
+        shouldComponentUpdate: function (nextProps) {
+            var shouldUpdate = this.props.cursor.value !== nextProps.cursor.value;
+            console.log('should foo update? ', shouldUpdate);
+            return  shouldUpdate;
+        },
+
+        pokeTheCanary: function () {
+            var canary = this.props.cursor.refine('canary');
+            canary.onChange(canary.pendingValue() + 1);
+            canary.onChange(canary.pendingValue() + 1);
+        }
+    });
+
+
 
     function entrypoint() {
         React.renderComponent(<App />, document.getElementById('root'));
         Forms.ControlCommon.attachFormTooltips($('body'));
     }
+
+    var exports = {};
+
+    exports.hashString = function (str) {
+        var hash = 0, i, ch, l;
+        if (str.length === 0) {
+            return hash;
+        }
+        for (i = 0, l = str.length; i < l; i++) {
+            ch  = str.charCodeAt(i);
+            hash  = ((hash << 5) - hash) + ch;
+            hash |= 0; // Convert to 32bit integer
+        }
+        return hash;
+    };
+
+
+    exports.hashRecord = function (record) {
+        return exports.hashString(JSON.stringify(record));
+    };
+
+    function resolver () {
+        return exports.hashRecord(_.tail(arguments));
+    }
+
+    var mpartial = _.memoize(_.partial, resolver);
 
     return {
         entrypoint: entrypoint

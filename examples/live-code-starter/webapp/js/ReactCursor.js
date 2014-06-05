@@ -1,15 +1,21 @@
 define(['react'], function (React) {
     'use strict';
 
-    function Cursor(state, path, commit) {
-        this.value = getRefAtPath(state, path);
+    function Cursor(state, pendingGetter, path, commit) {
+        // Please treat values as read-only
+        this.value = getRefAtPath(state, path); // value to put in the DOM, use from render()
+
+        // Please treat pending values as read-only
+        this.pendingValue = function () {
+            return getRefAtPath(pendingGetter(), path); // the current value right now, use in event handlers
+        };
 
         this.onChange = function (nextValue) {
             var nextState;
 
             if (path.length > 0) {
                 nextState = React.addons.update(
-                    state,
+                    pendingGetter(),
                     path.concat('$set').reduceRight(unDeref, nextValue)
                 );
             }
@@ -17,17 +23,17 @@ define(['react'], function (React) {
                 nextState = nextValue;
             }
             commit(nextState);
-            return new Cursor(state, path, commit);
+            return new Cursor(state, pendingGetter, path, commit);
         };
 
-        this.refine = function (/* pathStep1, pathStep2, ... pathStepN */) {
+        this.refine = function (/* one or more paths through the tree */) {
             var nextPath = [].concat(path, flatten(arguments));
-            return new Cursor(state, nextPath, commit);
+            return new Cursor(state, pendingGetter, nextPath, commit);
         };
     }
 
-    Cursor.build = function (state, commit) {
-        return new Cursor(state, [], commit);
+    Cursor.build = function (state, pendingGetter, commit) {
+        return new Cursor(state, pendingGetter, [], commit);
     };
 
     function getRefAtPath(tree, paths) {
