@@ -26,6 +26,7 @@
         "stacktrace": "~0.5.3",
         "underscore.string": "~2.3.3",
         "kendo-ui": "~2013.3.1119",
-        "es5-shim": "~2.1"
+        "es5-shim": "~2.1",
+        "wingspan-cursor": "a20da4b8aea09440ad2f72848dcc1df35e6dcb0f"
     }
 }

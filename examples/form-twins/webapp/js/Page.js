@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 define([
-    'react', 'wingspan-forms'
-], function (React, Forms) {
+    'react', 'wingspan-forms', 'wingspan-cursor'
+], function (React, Forms, Cursor) {
     'use strict';
 
 
@@ -17,85 +17,77 @@ define([
     var MyForm = React.createClass({
         getDefaultProps: function () {
             return {
-                value: {}, // form value
-                onChange: undefined
+                cursor: undefined
             };
         },
         render: function () {
-            var fieldInfoFirstName= {label: 'First Name'};
             return (
                 <div className="MyForm">
                     <div className="formTitle">Form</div>
-                    <FormField fieldInfo={fieldInfoFirstName}>
-                        <KendoText value={this.props.value.firstName}
-                            onChange={_.partial(this.props.onChange, 'firstName')} />
+                    <FormField fieldInfo={{ label: 'First Name'}}>
+                        <KendoText value={this.props.cursor.refine('firstName').value}
+                            onChange={this.props.cursor.refine('firstName').onChange} />
                     </FormField>
-                    <FormField fieldInfo={_.object([['label', 'Last Name']])}>
-                        <KendoText type="text" value={this.props.value.lastName}
-                            onChange={_.partial(this.props.onChange, 'lastName')} />
+                    <FormField fieldInfo={{ label: 'Last Name'}}>
+                        <KendoText type="text" value={this.props.cursor.refine('lastName').value}
+                            onChange={this.props.cursor.refine('lastName').onChange} />
                     </FormField>
-                    <FormField fieldInfo={_.object([['label', 'Gender']])}>
+                    <FormField fieldInfo={{ label: 'Gender'}}>
                         <KendoComboBox
-                            value={this.props.value.gender}
-                            onChange={_.partial(this.props.onChange, 'gender')}
+                            value={this.props.cursor.refine('gender').value}
+                            onChange={this.props.cursor.refine('gender').onChange}
                             dataSource={options}
                             valueField="id"
                             displayField="display" />
                     </FormField>
                 </div>
             );
+        },
+        shouldComponentUpdate: function (nextProps) {
+            return this.props.cursor.value !== nextProps.cursor.value;
         }
     });
 
     var App = React.createClass({
-        mixins: [Forms.TopStateMixin],
-
         componentWillMount: function () {
             window.app = this; // save ref for dev console
         },
 
         getInitialState: function () {
             return {
-                forms: [
-                    {
-                        firstName: 'Alice',
-                        lastName: 'Armstrong',
-                        gender: 'female'
-                    },
-                    {
-                        firstName: 'Bob',
-                        lastName: 'Barnaby',
-                        gender: 'male'
-                    },
-                    {
-                        firstName: 'Cindy',
-                        lastName: 'Crawford',
-                        gender: 'female'
-                    }
-                ]
+                forms: _.range(10).map(function (i) { return { "firstName": i, "lastName": "Armstrong", "gender": "female" }; })
             };
         },
+
+        pendingState: function () {
+            return this._pendingState || this.state;
+        },
+
         render: function() {
+            var cursor = Cursor.ReactCursor.build(this.state, this.pendingState, this.setState.bind(this));
+            return (<View cursor={cursor} />);
+        }
 
-            var forms = _.map(this.state.forms, function (form, i) {
-                return (<MyForm value={form} onChange={_.partial(this.onChange, 'forms', i)} />);
-            }.bind(this));
+    });
 
-            var forms2 = _.map(this.state.forms, function (form, i) {
-                return (<MyForm value={form} onChange={_.partial(this.onChange, 'forms', i)} />);
-            }.bind(this));
+    var View = React.createClass({
 
-            var text = "function deepCopy (tree) { return JSON.parse(JSON.stringify(tree)); }\n\
-var nextState = deepCopy(app.state);\n\
-nextState.forms.push({});\n\
-app.setState(nextState);";
+        render: function () {
+            var renderForms = function (form, i) {
+                var formCursor = this.props.cursor.refine('forms', i);
+                return (<MyForm cursor={formCursor} />);
+            }.bind(this);
+
+            var forms = _.map(this.props.cursor.refine('forms').value, renderForms);
+            var forms2 = _.map(this.props.cursor.refine('forms').value, renderForms);
+
+            var text = "TODO: Provide Cursor instructions";
 
             return (
                 <div className="App" >
                     <div>{forms}</div>
                     <div>{forms2}</div>
                     <div>
-                        <PrettyJson value={this.state} />
                         <p>Try this in the javascript console:</p>
                         <pre>{text}</pre>
                         <p><a href="https://github.com/wingspan/wingspan-forms/blob/master/examples/form-twins/webapp/js/Page.js">
@@ -104,7 +96,6 @@ app.setState(nextState);";
                 </div>
             );
         }
-
     });
 
 
