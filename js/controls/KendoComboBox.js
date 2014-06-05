@@ -116,7 +116,7 @@ define([
         },
 
         componentDidUpdate: function (prevProps, prevState) {
-            var $el = $(this.getDOMNode())
+            var $el = $(this.getDOMNode());
 
             if (this.props.noControl) {
                 this.setNoControlValue($el);
