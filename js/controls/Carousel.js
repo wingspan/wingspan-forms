@@ -17,7 +17,6 @@ define([
      * all the possible corner cases.
      */
     var Carousel = React.createClass({
-        mixins: [ImmutableOptimizations],
 
         statics: { fieldClass: function () { return 'formFieldCarousel'; } },
 

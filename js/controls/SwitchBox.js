@@ -14,7 +14,7 @@ define([
     function ignoreClick() { }
 
     var SwitchBox = React.createClass({
-        mixins: [ImmutableOptimizations],
+        mixins: [ImmutableOptimizations(['onChange'])],
 
         statics: { fieldClass: function () { return 'formFieldSwitch'; } },
 

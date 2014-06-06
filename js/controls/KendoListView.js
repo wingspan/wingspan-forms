@@ -8,7 +8,6 @@ define([
 
     return React.createClass({
         displayName: 'KendoListView',
-        mixins: [ImmutableOptimizations],
 
         getDefaultProps: function () {
             return {

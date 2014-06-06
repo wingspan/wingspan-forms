@@ -8,7 +8,7 @@ define([
     var SPACE_KEY = 32;
 
     return React.createClass({
-        mixins: [ImmutableOptimizations],
+        mixins: [ImmutableOptimizations(['onChange'])],
 
         statics: { fieldClass: function () { return 'formFieldCheckbox'; } },
 

@@ -11,7 +11,6 @@ define([
      * This component is not presently stateful so we don't get to control what is selected.
      */
     var TabStrip = React.createClass({
-        mixins: [ImmutableOptimizations],
 
         getDefaultProps: function () {
             return {

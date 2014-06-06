@@ -15,7 +15,7 @@ define([
      * Empty optgroups will be elided.
      */
     return React.createClass({
-        mixins: [ImmutableOptimizations],
+        mixins: [ImmutableOptimizations(['onChange'])],
 
         statics: { fieldClass: function () { return 'formFieldMultiselect'; } },
 

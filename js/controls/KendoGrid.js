@@ -6,7 +6,6 @@ define([
     'use strict';
 
     var KendoGrid = React.createClass({
-        mixins: [ImmutableOptimizations],
 
         getDefaultProps: function () {
             return {

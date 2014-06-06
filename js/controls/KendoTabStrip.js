@@ -12,7 +12,6 @@ define([
      * This component is not presently stateful so we don't get to control what is selected.
      */
     var KendoTabStrip = React.createClass({
-        mixins: [ImmutableOptimizations],
 
         componentWillMount: function () {
             console.assert(_.isObject(this.props.tabs) && _.keys(this.props.tabs).length > 0);

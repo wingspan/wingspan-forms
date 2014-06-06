@@ -8,7 +8,7 @@ define([
 
 
     return React.createClass({
-        mixins: [ImmutableOptimizations],
+        mixins: [ImmutableOptimizations(['onChange'])],
 
         getDefaultProps: function() {
             return {

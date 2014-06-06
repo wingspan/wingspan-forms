@@ -6,7 +6,6 @@ define([
     'use strict';
 
     var KendoGridRadioSelectable = React.createClass({
-        mixins: [ImmutableOptimizations],
 
         $el:{},
 

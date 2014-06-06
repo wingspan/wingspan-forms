@@ -3,11 +3,21 @@ define([
 ], function (_) {
     'use strict';
 
-    var ImmutableOptimizations = {
-        shouldComponentUpdate: function (nextProps, nextState) {
-            return !_.isEqual(nextProps, this.props) || !_.isEqual(nextState, this.state);
-        }
-    };
+    function ImmutableOptimizations (refFields) {
+        return {
+            shouldComponentUpdate: function (nextProps) {
+                var valuesChanged = !_.isEqual(
+                    _.omit(nextProps, refFields),
+                    _.omit(this.props, refFields));
+
+                var refsChanged = !_.every(refFields, function (field) {
+                    return this.props[field] === nextProps[field];
+                }.bind(this));
+
+                return valuesChanged || refsChanged;
+            }
+        };
+    }
 
     return ImmutableOptimizations;
 });

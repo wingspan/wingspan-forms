@@ -17,14 +17,20 @@ define([
     return React.createClass({
 
         displayName: 'UserPickerPlus',
-        mixins: [ImmutableOptimizations],
+        mixins: [ImmutableOptimizations(['onChange', 'dataSource'])],
         statics: { fieldClass: function () { return 'formFieldRadio'; } },
 
         getDefaultProps: function () {
             return {
                 value: undefined,
+                onChange: undefined,
+                dataSource: undefined,
                 disabled: false,
-                readonly: false
+                readonly: false,
+                placeholder: undefined,
+                name: undefined,
+                userList: undefined,
+                width: undefined
             };
         },
 

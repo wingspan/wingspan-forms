@@ -9,7 +9,7 @@ define([
 
 
     var KendoDateTime = React.createClass({
-        mixins: [ImmutableOptimizations],
+        mixins: [ImmutableOptimizations(['onChange'])],
 
         statics: { fieldClass: function () { return 'formFieldDatetimepicker'; } },
 

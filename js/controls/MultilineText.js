@@ -7,7 +7,7 @@ define([
 
 
     var MultilineText = React.createClass({
-        mixins: [ImmutableOptimizations],
+        mixins: [ImmutableOptimizations(['onChange'])],
 
         statics: { fieldClass: function () { return 'formFieldTextarea'; } },
 
@@ -52,7 +52,6 @@ define([
             }
             this.props.onChange(val);
         }
-
     });
 
 

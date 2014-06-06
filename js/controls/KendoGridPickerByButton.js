@@ -12,7 +12,6 @@ define([
     var $el = null;
 
     var KendoGridPickerByButton = React.createClass({
-        mixins: [ImmutableOptimizations],
         
         getDefaultProps: function() {
             return {

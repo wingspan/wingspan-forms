@@ -7,7 +7,7 @@ define([
 
 
     var Button = React.createClass({
-        mixins: [ImmutableOptimizations],
+        mixins: [ImmutableOptimizations(['onClick'])],
 
         getDefaultProps: function () {
             return {

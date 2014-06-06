@@ -7,7 +7,7 @@ define([
 
 
     var RadioGroup = React.createClass({
-        mixins: [ImmutableOptimizations],
+        mixins: [ImmutableOptimizations([])],
 
         statics: { fieldClass: function () { return 'formFieldRadio'; } },
 

@@ -10,7 +10,6 @@ define([
     'use strict';
 
     var KendoGridPicker = React.createClass({
-        mixins: [ImmutableOptimizations],
 
         $el: null,
 

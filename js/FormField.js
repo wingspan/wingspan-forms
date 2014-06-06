@@ -26,7 +26,7 @@ define([
     }
 
     var FormField = React.createClass({
-        mixins: [ImmutableOptimizations],
+        mixins: [ImmutableOptimizations(['onStickyChange'])],
 
         getDefaultProps: function () {
             return {

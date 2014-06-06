@@ -42,7 +42,7 @@ define([
     }
 
     var AutoControl = React.createClass({
-        mixins: [ImmutableOptimizations],
+        mixins: [ImmutableOptimizations(['onChange', 'dataSource'])],
 
         statics: {
             /**

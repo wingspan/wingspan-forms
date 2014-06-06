@@ -6,25 +6,26 @@ define([
 
 
     var AutoField = React.createClass({
-        mixins: [ImmutableOptimizations],
+        mixins: [ImmutableOptimizations(['onChange', 'dataSource'])],
 
         getDefaultProps: function () {
             return {
                 fieldInfo: undefined,
                 value: undefined,
                 onChange: undefined,
-                isValid: [true, '']
+                isValid: [true, ''],
+                dataSource: undefined
             };
         },
 
         render: function () {
             return (
-                <FormField fieldInfo={this.props.fieldInfo} isValid={this.props.isValid} key={this.props.fieldInfo.name}>
+                <FormField fieldInfo={this.props.fieldInfo} isValid={this.props.isValid}>
                     <AutoControl
                         fieldInfo={this.props.fieldInfo}
                         value={this.props.value}
                         onChange={this.props.onChange}
-                        dataSource={this.props.fieldInfo.options} />
+                        dataSource={this.props.dataSource || this.props.fieldInfo.options} />
                 </FormField>
             );
         }
