@@ -1,8 +1,9 @@
 /** @jsx React.DOM */
 define([
     'underscore', 'jquery', 'react', 'kendo',
-    '../ControlCommon'
-], function (_, $, React, kendo, ControlCommon) {
+    '../ControlCommon',
+    '../ImmutableOptimizations'
+], function (_, $, React, kendo, ControlCommon, ImmutableOptimizations) {
     'use strict';
 
 
@@ -112,12 +113,6 @@ define([
         componentWillReceiveProps: function (nextProps) {
             var cantChange = ['template', 'valueField', 'displayField', 'placeholder', 'filter'];
             console.assert(_.isEqual(_.pick(nextProps, cantChange), _.pick(this.props, cantChange)), 'these props cant change after mount');
-        },
-
-        shouldComponentUpdate: function (nextProps/*, nextState) {  // but we don't have any state */) {
-            var valuesChanged = !_.isEqual( _.omit(nextProps, ['onChange', 'dataSource']), _.omit(this.props, ['onChange', 'dataSource']) );
-            var refsChanged = this.props.onChange !== nextProps.onChange || this.props.dataSource !== nextProps.dataSource;
-            return valuesChanged || refsChanged;
         },
 
         componentDidUpdate: function (prevProps, prevState) {
