@@ -28,8 +28,6 @@ module.exports = function (grunt) {
             moment: '../bower_components/momentjs/moment',
             react: '../bower_components/react/react-with-addons',
             q: '../bower_components/q/q',
-            'wingspan-data': '../vendor/wingspan-data/dist/wingspan-data',
-            'wingspan-contrib': '../vendor/wingspan-contrib/dist/wingspan-contrib',
             almond: '../bower_components/almond/almond'
         },
 
