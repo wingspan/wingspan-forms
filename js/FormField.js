@@ -2,9 +2,8 @@
 define([
     'underscore', 'react',
     './AutoControl',
-    './ControlCommon',
-    './ImmutableOptimizations'
-], function (_, React, AutoControl, ControlCommon, ImmutableOptimizations) {
+    './ControlCommon'
+], function (_, React, AutoControl, ControlCommon) {
     'use strict';
 
     function determineFieldClass(children) {
@@ -26,8 +25,6 @@ define([
     }
 
     var FormField = React.createClass({
-        mixins: [ImmutableOptimizations(['onStickyChange'])],
-
         getDefaultProps: function () {
             return {
                 fieldInfo: {},
