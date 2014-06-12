@@ -1,9 +1,8 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'jquery', 'react', 'kendo',
-    'wingspan-forms/ReactCommon',
+    'underscore', 'jquery', 'react', 'kendo', 'underscore.string',
     '../ImmutableOptimizations'
-], function (_, $, React, kendo, ReactCommon, ImmutableOptimizations) {
+], function (_, $, React, kendo, str, ImmutableOptimizations) {
     'use strict';
 
     /**
@@ -14,7 +13,9 @@ define([
 
         getDefaultProps: function () {
             return {
+                tabs: undefined,
                 selectedTab: 0,
+                onChange: undefined, // selectedTab is the value
                 /**
                  * This controls whether to render the content of inactive tabs.
                  * The reason for this is that some usages require state to persist in the hidden tabs.
@@ -47,7 +48,7 @@ define([
             var keys = _.keys(this.props.tabs),
                 len = keys.length;
             _.each(keys, function (title, index) {
-                var id = _.str.sprintf('%s-%s', self.stableUniqueId, index);
+                var id = str.sprintf('%s-%s', self.stableUniqueId, index);
                 var classes = [
                     index === 0 ? 'k-first' : null,
                     index === len - 1 ? 'k-last' : null,
@@ -61,7 +62,7 @@ define([
 
             var divs = [];
             _.each(_.values(this.props.tabs), function (jsx, index) {
-                var id = _.str.sprintf('%s-%s', self.stableUniqueId, index);
+                var id = str.sprintf('%s-%s', self.stableUniqueId, index);
 
                 var activeTab = index === self.props.selectedTab;
                 jsx.props.__WsptTabStripActiveHax = activeTab; // hax specific to the TMF - never use this

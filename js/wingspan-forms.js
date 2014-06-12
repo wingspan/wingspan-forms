@@ -16,6 +16,7 @@ define([
     './controls/KendoMultiSelect',
     './controls/KendoNumber',
     './controls/KendoTabStrip',
+    './controls/TabStrip',
     './controls/KendoText',
     './controls/MultiSelect',
     './controls/MultilineText',
@@ -33,7 +34,7 @@ define([
     './FluxFormMixin'
 ], function (AutoControl, FormField, Button, Carousel, CheckBox, KendoComboBox, KendoDate, KendoTime, KendoDatetime,
              KendoGrid, KendoGridPicker, KendoGridPickerByButton, KendoGridRadioSelectable,
-             KendoListView, KendoMultiSelect, KendoNumber, KendoTabStrip, KendoText, MultiSelect,
+             KendoListView, KendoMultiSelect, KendoNumber, KendoTabStrip, TabStrip, KendoText, MultiSelect,
              MultilineText, Radio, RadioGroup, SwitchBox, UserPicker, UserPickerPlus,
              KendoPager, PromiseButton, SearchBox, SelectionListDismissible, ControlCommon,
              AutoField, FluxFormMixin) {
@@ -66,6 +67,7 @@ define([
         KendoMultiSelect: KendoMultiSelect,
         KendoNumber: KendoNumber,
         KendoTabStrip: KendoTabStrip,
+        TabStrip: TabStrip,
         KendoText: KendoText,
         MultiSelect: MultiSelect,
         MultilineText: MultilineText,
