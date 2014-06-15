@@ -31,13 +31,14 @@ define([
     './controls/SelectionListDismissible',
     './ControlCommon',
     './AutoField',
-    './FluxFormMixin'
+    './FluxFormMixin',
+    './ImmutableOptimizations'
 ], function (AutoControl, FormField, Button, Carousel, CheckBox, KendoComboBox, KendoDate, KendoTime, KendoDatetime,
              KendoGrid, KendoGridPicker, KendoGridPickerByButton, KendoGridRadioSelectable,
              KendoListView, KendoMultiSelect, KendoNumber, KendoTabStrip, TabStrip, KendoText, MultiSelect,
              MultilineText, Radio, RadioGroup, SwitchBox, UserPicker, UserPickerPlus,
              KendoPager, PromiseButton, SearchBox, SelectionListDismissible, ControlCommon,
-             AutoField, FluxFormMixin) {
+             AutoField, FluxFormMixin, ImmutableOptimizations) {
     'use strict';
 
 
@@ -82,6 +83,7 @@ define([
         SelectionListDismissible: SelectionListDismissible,
         ControlCommon: ControlCommon,
         AutoField: AutoField,
-        FluxFormMixin: FluxFormMixin
+        FluxFormMixin: FluxFormMixin,
+        ImmutableOptimizations: ImmutableOptimizations
     };
 });
