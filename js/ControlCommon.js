@@ -84,7 +84,7 @@ define([
             showAfter: 1000,
             width: 240,
             content: function (e) {
-                return e.target.parents('.formFieldError').attr('data-error-tooltip');
+                return e.target.parents('.hasErrorTooltip').attr('data-error-tooltip');
             },
             show: function () {
                 this.popup.element.addClass('formErrorTooltip');
