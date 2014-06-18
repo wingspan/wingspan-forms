@@ -51,7 +51,7 @@ define([
                 close: function (e) {
                     var widget = e.sender;
                     // Don't close the picker on an empty search result because we want to tell the user about it.
-                    if (widget._typing && widget.dataSource.total() === 0) {
+                    if (widget._typing && widget._prev && widget.dataSource.total() === 0) {
                         e.preventDefault();
                     }
                 },
