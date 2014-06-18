@@ -36,9 +36,9 @@ define([
         kendoWidget.min(parseDate(min || DEFAULTS.min));
         kendoWidget.max(parseDate(max || DEFAULTS.max));
 
-        if (valueAsDate === null) {
+        if (valueAsDate === null && kendoWidget.dateView.calendar) {
             // If the value is being cleared, the dateView also needs to be reset to use the current month
-            kendoWidget.dateView.value(kendo.calendar.restrictValue(null, kendoWidget.options.min, kendoWidget.options.max));
+            kendoWidget.dateView.calendar.navigate(NOW);
         }
 
         setKendoDisabledReadonly(kendoWidget, disabled, readonly);
