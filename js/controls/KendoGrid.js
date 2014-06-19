@@ -19,7 +19,6 @@ define([
 
         render: function () {
             console.assert(this.props.dataSource);
-            console.assert(this.props.columns);
             return (<div className={this.props.className} />);
         },
 
