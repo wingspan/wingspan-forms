@@ -38,9 +38,11 @@ define([
             var kendoWidget = $el.data('kendoGrid');
 
             if (this.props.dataSource instanceof Array) {
-                // This better be a datasource that was originally built from inline data.
-                // I don't know how to detect this to verify it.
-                kendoWidget.dataSource.data(this.props.dataSource);
+                if (!_.isEqual(this.props.dataSource, prevProps.dataSource)) {
+                    // This better be a datasource that was originally built from inline data.
+                    // I don't know how to detect this to verify it.
+                    kendoWidget.dataSource.data(this.props.dataSource);
+                }
             }
             else if (prevProps.dataSource !== this.props.dataSource) {
                 kendoWidget.setDataSource(this.props.dataSource);
