@@ -12,7 +12,8 @@ define([
                 className: '',
                 height: 150, // TODO remove this
                 dataSource: undefined,
-                columns: undefined
+                columns: undefined,
+                rowTemplate: undefined
             };
         },
 
@@ -28,7 +29,8 @@ define([
             $rootNode.kendoGrid({
                 dataSource: this.props.dataSource,
                 height: this.props.height,
-                columns: this.props.columns
+                columns: this.props.columns,
+                rowTemplate: this.props.rowTemplate
             });
         },
 
