@@ -106,11 +106,11 @@ define([
                 this.syncSelectionWithKendo();
             }
 
-            this.props.dataSource.bind('change', this.onDataStoreChange);
+            !_.isArray(this.props.dataSource) && this.props.dataSource.bind('change', this.onDataStoreChange);
         },
 
         componentWillUnmount: function () {
-            this.props.dataSource.unbind('change', this.onDataStoreChange);
+            !_.isArray(this.props.dataSource) && this.props.dataSource.unbind('change', this.onDataStoreChange);
         },
 
         onValueChange: function (e) {
