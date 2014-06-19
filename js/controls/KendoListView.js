@@ -122,7 +122,7 @@ define([
         },
 
         onDataStoreChange: function () {
-            this.syncSelectionWithKendo();
+            this.props.selectable && this.syncSelectionWithKendo();
         }
     });
 });
