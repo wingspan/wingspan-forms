@@ -13,7 +13,10 @@ define([
                 height: 150, // TODO remove this
                 dataSource: undefined,
                 columns: undefined,
-                rowTemplate: undefined
+                rowTemplate: undefined,
+                selectable: undefined,
+                scrollable: undefined,
+                change: undefined
             };
         },
 
@@ -29,7 +32,10 @@ define([
                 dataSource: this.props.dataSource,
                 height: this.props.height,
                 columns: this.props.columns,
-                rowTemplate: this.props.rowTemplate
+                rowTemplate: this.props.rowTemplate,
+                selectable: this.props.selectable,
+                scrollable: this.props.scrollable,
+                change: this.props.change
             });
         },
 
