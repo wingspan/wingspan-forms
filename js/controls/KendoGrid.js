@@ -12,13 +12,13 @@ define([
                 className: '',
                 height: 150, // TODO remove this
                 dataSource: undefined,
-                columns: undefined
+                columns: undefined,
+                rowTemplate: undefined
             };
         },
 
         render: function () {
             console.assert(this.props.dataSource);
-            console.assert(this.props.columns);
             return (<div className={this.props.className} />);
         },
 
@@ -28,7 +28,8 @@ define([
             $rootNode.kendoGrid({
                 dataSource: this.props.dataSource,
                 height: this.props.height,
-                columns: this.props.columns
+                columns: this.props.columns,
+                rowTemplate: this.props.rowTemplate
             });
         },
 
