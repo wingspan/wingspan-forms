@@ -6,9 +6,10 @@ define([
     './controls/KendoNumber',
     './controls/KendoDatetime',
     './controls/KendoDate',
+    './controls/KendoTime',
     './controls/KendoComboBox',
     './ImmutableOptimizations'
-], function (_, React, KendoText, MultilineText, SwitchBox, KendoNumber, KendoDatetime, KendoDate, KendoComboBox,
+], function (_, React, KendoText, MultilineText, SwitchBox, KendoNumber, KendoDatetime, KendoDate, KendoTime, KendoComboBox,
              ImmutableOptimizations) {
     'use strict';
 
@@ -18,6 +19,7 @@ define([
         'number' : KendoNumber,
         'date' : KendoDate,
         'datetime' : KendoDatetime,
+        'time' : KendoTime,
         'boolean' : SwitchBox
     };
     var CONTROL_PROPS = ['id', 'value', 'onChange', 'isValid', 'disabled', 'noControl'];
