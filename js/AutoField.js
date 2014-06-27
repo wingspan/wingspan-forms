@@ -11,6 +11,7 @@ define([
         getDefaultProps: function () {
             return {
                 fieldInfo: undefined,
+                layout: undefined,
                 value: undefined,
                 onChange: undefined,
                 isValid: [true, ''],
@@ -20,7 +21,7 @@ define([
 
         render: function () {
             return (
-                <FormField fieldInfo={this.props.fieldInfo} isValid={this.props.isValid}>
+                <FormField fieldInfo={this.props.fieldInfo} isValid={this.props.isValid} layout={this.props.layout}>
                     <AutoControl
                         fieldInfo={this.props.fieldInfo}
                         value={this.props.value}
