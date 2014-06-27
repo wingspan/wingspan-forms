@@ -26,7 +26,7 @@ define([
                         fieldInfo={this.props.fieldInfo}
                         value={this.props.value}
                         onChange={this.props.onChange}
-                        dataSource={this.props.dataSource || this.props.fieldInfo.options} />
+                        dataSource={this.props.dataSource || undefined} />
                 </FormField>
             );
         }
