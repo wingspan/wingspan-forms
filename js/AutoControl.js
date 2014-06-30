@@ -13,7 +13,7 @@ define([
              UserPicker, ImmutableOptimizations) {
     'use strict';
 
-    var TYPE_TO_CONTROL = {
+    var DEFAULT_TYPE_TO_CONTROL = {
         'text' : KendoText,
         'text:multiLine' : MultilineText,
         'number' : KendoNumber,
@@ -58,6 +58,7 @@ define([
 
         getDefaultProps: function () {
             return {
+                typeToControl: DEFAULT_TYPE_TO_CONTROL,
                 value: undefined,
                 onChange: undefined,
                 dataSource: undefined, // optional, usually comes as fieldInfo.options.dataSource. Only use here if the fieldInfo is stored in react state and you don't want to put a DataSource in react state.
