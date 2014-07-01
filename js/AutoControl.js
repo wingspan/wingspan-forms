@@ -7,10 +7,9 @@ define([
     './controls/KendoDatetime',
     './controls/KendoDate',
     './controls/KendoComboBox',
-    './controls/UserPicker',
     './ImmutableOptimizations'
 ], function (_, React, KendoText, MultilineText, SwitchBox, KendoNumber, KendoDatetime, KendoDate, KendoComboBox,
-             UserPicker, ImmutableOptimizations) {
+             ImmutableOptimizations) {
     'use strict';
 
     var TYPE_TO_CONTROL = {
@@ -23,36 +22,21 @@ define([
     };
     var CONTROL_PROPS = ['id', 'value', 'onChange', 'isValid', 'disabled', 'noControl'];
 
-    function controlForField(fieldInfo) {
-        var dataType = fieldInfo.dataType;
-
-        if (fieldInfo.options) {
-            if (dataType === 'User') {
-                return UserPicker;
-            }
-            else {
-                return KendoComboBox;
-            }
-        }
-        if (fieldInfo.multiLine) {
-            dataType = dataType + ':multiLine';
-        }
-
-        return TYPE_TO_CONTROL[dataType];
-    }
-
     var AutoControl = React.createClass({
         mixins: [ImmutableOptimizations(['onChange', 'dataSource'])],
 
         statics: {
-            /**
-             * Static method needed by FormField to determine the underlying field class for the generated control.
-             *
-             * @param fieldInfo
-             * @returns {*}
-             */
-            fieldClassForField: function (fieldInfo) {
-                return controlForField(fieldInfo).fieldClass();
+            controlForField: function (fieldInfo) {
+                var dataType = fieldInfo.dataType;
+
+                if (fieldInfo.options) {
+                    return KendoComboBox;
+                }
+                if (fieldInfo.multiLine) {
+                    dataType = dataType + ':multiLine';
+                }
+
+                return TYPE_TO_CONTROL[dataType];
             }
         },
 
@@ -66,13 +50,14 @@ define([
                 isValid: [true, ''],
                 disabled: false,
                 readonly: false,
-                noControl: false
+                noControl: false,
+                controlForField: AutoControl.controlForField
             };
         },
 
         render: function () {
             var fieldInfo = this.props.fieldInfo;
-            var Control = controlForField(fieldInfo);
+            var Control = this.props.controlForField(fieldInfo) || AutoControl.controlForField(fieldInfo);
             var controlProps = _.pick(this.props, CONTROL_PROPS);
 
             controlProps.name = fieldInfo.name; // to help with debugging in the presence of asynchronous rendering

@@ -14,7 +14,7 @@ define([
         if (children && _.isUndefined(children.type.fieldClass)) {
             // Support a textnode child, which won't have a fieldinfo
             if (children.props && children.props.fieldInfo) {
-                return AutoControl.fieldClassForField(children.props.fieldInfo);
+                return AutoControl.controlForField(children.props.fieldInfo).fieldClass();
             }
             //console.warn('Unknown fieldClass for child component', children);
 

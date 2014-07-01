@@ -23,12 +23,11 @@ define([
     './controls/Radio',
     './controls/RadioGroup',
     './controls/SwitchBox',
-    './controls/UserPicker',
-    './controls/UserPickerPlus',
     './controls/KendoPager',
     './controls/PromiseButton',
     './controls/SearchBox',
     './controls/SelectionListDismissible',
+    './kendo/KendoAutoComplete',
     './ControlCommon',
     './AutoField',
     './FluxFormMixin',
@@ -36,9 +35,10 @@ define([
 ], function (AutoControl, FormField, Button, Carousel, CheckBox, KendoComboBox, KendoDate, KendoTime, KendoDatetime,
              KendoGrid, KendoGridPicker, KendoGridPickerByButton, KendoGridRadioSelectable,
              KendoListView, KendoMultiSelect, KendoNumber, KendoTabStrip, TabStrip, KendoText, MultiSelect,
-             MultilineText, Radio, RadioGroup, SwitchBox, UserPicker, UserPickerPlus,
-             KendoPager, PromiseButton, SearchBox, SelectionListDismissible, ControlCommon,
-             AutoField, FluxFormMixin, ImmutableOptimizations) {
+             MultilineText, Radio, RadioGroup, SwitchBox,
+             KendoPager, PromiseButton, SearchBox, SelectionListDismissible,
+             KendoAutoComplete,
+             ControlCommon, AutoField, FluxFormMixin, ImmutableOptimizations) {
     'use strict';
 
 
@@ -56,6 +56,7 @@ define([
         Button: Button,
         Carousel: Carousel,
         CheckBox: CheckBox,
+        KendoAutoComplete: KendoAutoComplete,
         KendoComboBox: KendoComboBox,
         KendoDate: KendoDate,
         KendoTime: KendoTime,
@@ -75,8 +76,6 @@ define([
         Radio: Radio,
         RadioGroup: RadioGroup,
         SwitchBox: SwitchBox,
-        UserPicker: UserPicker,
-        UserPickerPlus: UserPickerPlus,
         KendoPager: KendoPager,
         PromiseButton: PromiseButton,
         SearchBox: SearchBox,
