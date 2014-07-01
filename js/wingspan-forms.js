@@ -27,7 +27,7 @@ define([
     './controls/PromiseButton',
     './controls/SearchBox',
     './controls/SelectionListDismissible',
-    './kendo/KendoAutoComplete',
+    './controls/KendoAutoComplete',
     './ControlCommon',
     './AutoField',
     './FluxFormMixin',
