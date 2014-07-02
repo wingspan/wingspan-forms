@@ -29,9 +29,9 @@ define([
         var content = (
             <div>
 
-                <div class="formTitle">Default Text Input (all styling variation and tooltips are mocked here)</div>
+                <div className="formTitle">Default Text Input (all styling variation and tooltips are mocked here)</div>
 
-                <div class="formFieldTitle">This is a field title (styled same as formLabel but no form validation rules are applied, lives outside of formField)</div>
+                <div className="formFieldTitle">This is a field title (styled same as formLabel but no form validation rules are applied, lives outside of formField)</div>
 
                 <FormField fieldInfo={_.object([['label', 'normal text input with tooltip'], ['helpText', 'info tooltip']])} isValid={[true, '']} layout="formField">
                     <KendoText value="Hello World!" />
@@ -93,9 +93,9 @@ define([
                     <KendoText value="Hello World!" />
                 </FormField>
 
-                <div class="formFieldTitle">Example of inline elements with no labels, and other complex alignment offsets</div>
+                <div className="formFieldTitle">Example of inline elements with no labels, and other complex alignment offsets</div>
 
-                <div class="formInlineGroup">
+                <div className="formInlineGroup">
                     <FormField fieldInfo={_.object([['label', 'Address / Line 2']])} isValid={[true, '']} layout="formFieldInline" width="25%">
                         <KendoText value="Hello World!" />
                     </FormField>
@@ -111,7 +111,7 @@ define([
                 </div>
 
                 {/* empty label would be used for 2 line fields potentially, offset example shown below */}
-                <div class="formInlineGroup">
+                <div className="formInlineGroup">
                     <FormField fieldInfo={_.object([])} isValid={[true, '']} layout="formFieldInline" width="25%">
                         <KendoText value="Hello World!" />
                     </FormField>
@@ -124,7 +124,7 @@ define([
                 </div>
 
                 {/* if marginLeft is used on first element in inline group, then unique class "formFieldOffset" needed so that padding left can be applied */}
-                <div class="formInlineGroup">
+                <div className="formInlineGroup">
                     <FormField fieldInfo={_.object([])} isValid={[true, '']} layout="formFieldInline formFieldOffset" width="25%" marginLeft="50%">
                         <KendoText value="Hello World!" />
                     </FormField>
@@ -135,7 +135,7 @@ define([
                 {/* maybe if marginLeft is not 0, then add formFieldOffset class to the field automatically in formField.js */}
 
 
-                <div class="formTitle">Default Textarea</div>
+                <div className="formTitle">Default Textarea</div>
 
                 <FormField fieldInfo={_.object([['label', 'normal textarea']])} isValid={[true, '']} layout="formField" >
                     <MultilineText value="Hello World!" />
@@ -153,7 +153,7 @@ define([
                     <MultilineText value="Hello World!" />
                 </FormField>
 
-                <div class="formTitle">Default Multiselect</div>
+                <div className="formTitle">Default Multiselect</div>
 
                 <FormField fieldInfo={_.object([['label', 'normal multiselect']])} isValid={[true, '']} layout="formField" >
                     <MultiSelect selectors={dataSource} />
@@ -171,7 +171,7 @@ define([
                     <MultiSelect selectors={dataSource} />
                 </FormField>
 
-                <div class="formTitle">Kendo ComboBox</div>
+                <div className="formTitle">Kendo ComboBox</div>
 
                 <FormField fieldInfo={_.object([['label', 'normal combo']])} isValid={[true, '']} layout="formField" >
                     <KendoComboBox displayField="name" valueField="id" dataSource={dataSource} value={dataSource[0]} />
@@ -189,7 +189,7 @@ define([
                     <KendoComboBox displayField="name" valueField="id" disabled={true} dataSource={dataSource} value={dataSource[0]} />
                 </FormField>
 
-                <div class="formTitle">Kendo Numeric</div>
+                <div className="formTitle">Kendo Numeric</div>
 
                 <FormField fieldInfo={_.object([['label', 'normal numeric']])} isValid={[true, '']} layout="formField" >
                     <KendoNumber value="!" />
@@ -207,7 +207,7 @@ define([
                     <KendoNumber value="" />
                 </FormField>
 
-                <div class="formTitle">Datepicker</div>
+                <div className="formTitle">Datepicker</div>
 
                 <FormField fieldInfo={_.object([['label', 'normal date']])} isValid={[true, '']} layout="formField" >
                     <KendoDate value="" />
@@ -225,7 +225,7 @@ define([
                     <KendoDate value="" />
                 </FormField>
 
-                <div class="formTitle">Datetimepicker</div>
+                <div className="formTitle">Datetimepicker</div>
 
                 <FormField fieldInfo={_.object([['label', 'normal datetime']])} isValid={[true, '']} layout="formField" >
                     <KendoDatetime value="" />
@@ -244,14 +244,14 @@ define([
                 </FormField>
 
 
-                <div class="formTitle">Kendo TimePicker</div>
+                <div className="formTitle">Kendo TimePicker</div>
 
                 <FormField fieldInfo={{label: 'timepicker'}} isValid={[true, '']} layout="formField" >
                     <KendoTime value="23:11:09" />
                 </FormField>
 
 
-                <div class="formTitle">Custom Checkboxes</div>
+                <div className="formTitle">Custom Checkboxes</div>
 
                 <FormField fieldInfo={_.object([['label', 'normal checkbox']])} isValid={[true, '']} layout="formField">
                     <CheckBox label="Checkbox Label" value={true} />
@@ -315,7 +315,7 @@ define([
                     <CheckBox label="Checkbox Label" value={false} />
                 </FormField>
 
-                <div class="formTitle">Custom Radios</div>
+                <div className="formTitle">Custom Radios</div>
 
                 <FormField fieldInfo={_.object([['label', 'normal radio']])} isValid={[true, '']} layout="formField">
                     <RadioGroup value="2">
@@ -392,7 +392,7 @@ define([
                 </FormField>
 
 
-                <div class="formTitle">Custom Switchbox Checkbox</div>
+                <div className="formTitle">Custom Switchbox Checkbox</div>
 
                 <FormField fieldInfo={_.object([['label', 'normal switchbox']])} isValid={[true, '']} layout="formField">
                     <SwitchBox value={true} />
@@ -427,7 +427,7 @@ define([
                 </FormField>
 
 
-                <div class="formTitle">Grid Form Fields</div>
+                <div className="formTitle">Grid Form Fields</div>
 
                 <FormField fieldInfo={_.object([['label', 'normal grid']])} isValid={[true, '']} layout="formField">
                     <KendoGrid dataSource={{data:[{name: "test"},{name: "test"}]}} columns={[{ field:"name" }]}/>
@@ -446,21 +446,21 @@ define([
                 </FormField>
 
 
-                <div class="formTitle">Buttons</div>
+                <div className="formTitle">Buttons</div>
 
-                <div class="formButtons">
+                <div className="formButtons">
 
-                    <button class="primaryButton">Primary Button</button>
+                    <button className="primaryButton">Primary Button</button>
 
-                    <button class="secondaryButton">Secondary Button</button>
+                    <button className="secondaryButton">Secondary Button</button>
 
-                    <button class="primaryButton buttonDisabled">Disabled Primary Button</button>
+                    <button className="primaryButton buttonDisabled">Disabled Primary Button</button>
 
-                    <button class="secondaryButton buttonDisabled">Disabled Secondary Button</button>
+                    <button className="secondaryButton buttonDisabled">Disabled Secondary Button</button>
 
                 </div>
 
-                <div class="formTitle">Inline Form Heights, fields should clear if forced to next line, if they get hung up height is off and css needs to be adjusted</div>
+                <div className="formTitle">Inline Form Heights, fields should clear if forced to next line, if they get hung up height is off and css needs to be adjusted</div>
 
                 <FormField fieldInfo={_.object([['label', 'normal text']])} isValid={[true, '']} layout="formFieldInline" width="200px">
                     <KendoText value="Hello World!" />
@@ -492,7 +492,7 @@ define([
 
 
 
-                <div class="formClear"></div>
+                <div className="formClear"></div>
 
                 <FormField fieldInfo={_.object([['label', 'normal textarea']])} isValid={[true, '']} layout="formFieldInline" width="200px">
                     <MultilineText value="Hello World!" />
@@ -510,11 +510,11 @@ define([
                     <MultiSelect selectors={dataSource} />
                 </FormField>
 
-                <div class="formTitle">Complex Example</div>
+                <div className="formTitle">Complex Example</div>
 
-                <div class="formColumn formColumnFirst" style={{width: "60%"}}>
+                <div className="formColumn formColumnFirst" style={{width: "60%"}}>
 
-                    <div class="formInlineGroup">
+                    <div className="formInlineGroup">
 
                         <FormField fieldInfo={_.object([['label', 'normal text inline']])} isValid={[true, '']} layout="formFieldInline" width="25%">
                             <KendoText value="Hello World!" />
@@ -546,7 +546,7 @@ define([
                         <KendoText value="Hello World!" />
                     </FormField>
 
-                    <div class="formInlineGroup">
+                    <div className="formInlineGroup">
 
                         <FormField fieldInfo={_.object([['label', 'normal text inline']])} isValid={[true, '']} layout="formFieldInline" width="25%">
                             <KendoText value="Hello World!" />
@@ -562,7 +562,7 @@ define([
 
                     </div>
 
-                    <div class="formInlineGroup">
+                    <div className="formInlineGroup">
 
                         <FormField fieldInfo={_.object([['label', 'normal text inline']])} isValid={[true, '']} layout="formFieldInline" width="50%">
                             <KendoText value="Hello World!" />
@@ -581,9 +581,9 @@ define([
 
                 </div>
 
-                <div class="formColumn" style={{width: "40%"}}>
+                <div className="formColumn" style={{width: "40%"}}>
 
-                    <div class="formInlineGroup">
+                    <div className="formInlineGroup">
 
                         <FormField fieldInfo={_.object([['label', 'normal text inline']])} isValid={[true, '']} layout="formFieldInline" width="25%">
                             <KendoText value="Hello World!" />
@@ -615,7 +615,7 @@ define([
                         <KendoText value="Hello World!" />
                     </FormField>
 
-                    <div class="formInlineGroup">
+                    <div className="formInlineGroup">
 
                         <FormField fieldInfo={_.object([['label', 'normal text inline']])} isValid={[true, '']} layout="formFieldInline" width="25%">
                             <KendoText value="Hello World!" />
@@ -631,7 +631,7 @@ define([
 
                     </div>
 
-                    <div class="formInlineGroup">
+                    <div className="formInlineGroup">
 
                         <FormField fieldInfo={_.object([['label', 'normal text inline']])} isValid={[true, '']} layout="formFieldInline" width="50%">
                             <KendoText value="Hello World!" />
@@ -650,17 +650,17 @@ define([
 
                 </div>
 
-                <div class="formTitle">Missing: Custom Switch</div>
+                <div className="formTitle">Missing: Custom Switch</div>
 
-                <div class="formTitle">Missing: Kendo Select</div>
+                <div className="formTitle">Missing: Kendo Select</div>
 
-                <div class="formTitle">Outdated: Kendo Multiselect</div>
+                <div className="formTitle">Outdated: Kendo Multiselect</div>
 
-                <div class="formTitle">Missing: Kendo Timepicker</div>
+                <div className="formTitle">Missing: Kendo Timepicker</div>
 
-                <div class="formTitle">Missing: Kendo Autocomplete</div>
+                <div className="formTitle">Missing: Kendo Autocomplete</div>
 
-                <div class="formTitle">Custom Carousel</div>
+                <div className="formTitle">Custom Carousel</div>
                 <FormField fieldInfo={_.object([['label', 'normal carousel']])} isValid={[true, '']}>
                     <Carousel options={[1, 2, 3]} value={2} />
                 </FormField>
