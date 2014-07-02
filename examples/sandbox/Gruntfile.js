@@ -26,7 +26,6 @@ module.exports = function (grunt) {
         subgrunt: {
             options: {},
             'all': {
-                'bower_components/wingspan-forms': ['default'],
                 'bower_components/wingspan-data': ['default'],
                 'bower_components/wingspan-contrib': ['default']
             }
