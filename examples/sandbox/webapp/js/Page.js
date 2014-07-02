@@ -677,6 +677,7 @@ define([
         );
 
         React.renderComponent(content, rootEl);
+        Forms.ControlCommon.attachFormTooltips($(rootEl));
     }
 
     return {
