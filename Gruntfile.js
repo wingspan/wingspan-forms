@@ -133,7 +133,8 @@ module.exports = function (grunt) {
         copy: {
             main: {
                 files: [
-                    {expand: true, src: ['styles/assets/**'], dest: 'dist/assets/', flatten: true, filter: 'isFile'}
+                    {expand: true, src: ['styles/assets/**'],       dest: 'dist/assets/',      flatten: true, filter: 'isFile'},
+                    {expand: true, src: ['styles/assets/icons/**'], dest: 'dist/assets/icons', flatten: true, filter: 'isFile'}
                 ]
             }
         },
