@@ -21,7 +21,8 @@ define([
                  * The reason for this is that some usages require state to persist in the hidden tabs.
                  * E.g. when correcting an Inbox task we need the task panel to persist to record the user's entries even when they switch over to the metadata tab.
                  */
-                elideInactiveContent: true
+                elideInactiveContent: true,
+                className: undefined
             };
         },
 
@@ -73,8 +74,9 @@ define([
                 divs.push(jsx);
             });
 
+            var className = _.compact(['k-widget', 'k-header', 'k-tabstrip', this.props.className]).join(' ');
             return (
-                <div data-role="tabstrip" tabIndex="0" className="k-widget k-header k-tabstrip" role="tablist">
+                <div data-role="tabstrip" tabIndex="0" className={className} role="tablist">
                     <ul className="k-tabstrip-items k-reset">
                         {lis}
                     </ul>
