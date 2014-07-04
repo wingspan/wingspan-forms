@@ -154,23 +154,38 @@ define([
         },
 
         setNoControlValue: function ($el) {
-
             if (_.contains(['', null, undefined], this.props.value)) {
                 $el.text('');
                 return;
             }
 
-            // If the value is just an ID, we need to fetch data from the server to get the display value.
+            // If the value is just an ID, we may need to fetch data from the server to get the display value.
             if (!_.isObject(this.props.value)) {
                 // However, if the ID is the display value, we can use it as is.
                 if (this.props.valueField === this.props.displayField) {
                     $el.text(this.props.value);
                     return;
                 }
-                var self = this;
-                this.props.dataSource.fetch().then(function () {
-                    $el.text(getDisplayValue(self.props.dataSource.get(self.props.value), self.props.displayField));
-                }).done();
+                // If the dataSource is a kendo.data.DataSource, we need to fetch
+                if (this.props.dataSource instanceof kendo.data.DataSource) {
+                    var self = this;
+                    this.props.dataSource.fetch().then(function () {
+                        $el.text(getDisplayValue(self.props.dataSource.get(self.props.value), self.props.displayField));
+                    }).done();
+                }
+                // If the dataSource is an array, we can search for the selectedElement
+                // and find the display value using the displayField and valueField props
+                else if (_.isArray(this.props.dataSource)) {
+                    var searchObject = {}, defaultObject = {};
+
+                    searchObject[this.props.valueField] = this.props.value;
+                    defaultObject[this.props.displayField] = '';
+
+                    // Search for the selected element in the dataSource using the searchObject which has its
+                    // valueField key set to the current value. Fall back to the defaultObject if not found
+                    var selectedElement = _.findWhere(this.props.dataSource, searchObject) || defaultObject;
+                    $el.text(selectedElement[this.props.displayField]);
+                }
             }
             else {
                 // valueAsOption, so can skip the query.
