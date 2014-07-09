@@ -1,32 +1,44 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'jquery', 'react', 'kendo',
-    '../util/kendoutil',
-    '../ImmutableOptimizations'
-], function (_, $, React, kendo, kendoutil, ImmutableOptimizations) {
+    'underscore', 'jquery', 'react', 'kendo'
+], function (_, $, React, kendo) {
     'use strict';
+
+    void kendo;
+
+    var PropTypes = React.PropTypes;
+
+    function eitherType(type1, type2) {
+        type1 = _.isString(type1) ? PropTypes[type1] : type1;
+        type2 = _.isString(type2) ? PropTypes[type2] : type2;
+
+        return PropTypes.oneOfType([type1, type2]);
+    }
 
     return React.createClass({
         displayName: 'KendoListView',
 
+        propTypes: {
+            autoBind: PropTypes.bool,
+            className: PropTypes.string,
+            dataSource: eitherType(PropTypes.object.isRequired, PropTypes.array.isRequired),
+            template: eitherType('string', 'func'),
+            selectable: eitherType('bool', 'string'),
+            scrollToSelectedItem: PropTypes.bool,
+            scrollDuration: PropTypes.number,
+            value: PropTypes.any,
+            onChange: PropTypes.func
+        },
+
         getDefaultProps: function () {
             return {
                 autoBind: false,
-                className: 'content',
                 scrollToSelectedItem: false,
                 scrollDuration: 150,
-                dataSource: undefined,
-                selectable: true,
-                selectedId: null,
+                selectable: false,
                 template: '<div data-model-id="${id}">${id}</div>',
-                paramMapper: _.identity,       // function to map the datastore record into template params
-                onChange: function () {}
+                onChange: $.noop
             };
-        },
-
-        componentWillMount: function () {
-            this.preventReentry = false;
-            console.assert(this.props.dataSource);
         },
 
         /* jshint ignore:start */
@@ -37,92 +49,76 @@ define([
 
 
         /**
-         * This method compensates for weird stuff in kendoListView, which has an immature API. Specifically,
-         * there is no way to set the value without causing change events to fire, which makes it difficult for React to
-         * control the widget.
+         * This method updates the ListView's selection and optionally animates scrolling that selection to the top of the list.
          */
-        effectListSelectionById: function (selectedId) {
-            if (!this.isMounted()) {
-                return;
-            }
-
-            var listView = $(this.getDOMNode()).data('kendoListView');
+        selectValue: function (selectedId, scrollToSelectedItem) {
+            var $rootNode = $(this.getDOMNode());
+            var listView = $rootNode.data('kendoListView');
             var maybeSelectedChild = _.find(listView.element.children(), function (child) {
                 return selectedId === $(child).data('modelId');
-            }.bind(this));
+            });
+            var selectedChildIndex;
 
-            var syncSelection = (maybeSelectedChild
-                ? function () { listView.select($(maybeSelectedChild)); }
-                : function () { listView.clearSelection(); });
+            // Updating the selection causes a widget value change event, so we need to prevent reentry to the value change callback
+            listView.unbind('change', this.onValueChange);
 
-            this.preventReentry = true;
-            // this line causes a widget value change event, so we need to prevent reentry to the value change callback
-            syncSelection();
-            this.preventReentry = false;
+            if (maybeSelectedChild) {
+                listView.select($(maybeSelectedChild));
+            } else {
+                listView.clearSelection();
+            }
+
+            listView.bind('change', this.onValueChange);
+
+            if (scrollToSelectedItem && maybeSelectedChild) {
+                selectedChildIndex = _.indexOf(listView.element.children(), maybeSelectedChild);
+                $rootNode.animate({ scrollTop: selectedChildIndex * $(maybeSelectedChild).height() }, this.props.scrollDuration);
+            }
         },
 
         syncSelectionWithKendo: function () {
-            if (!this.isMounted()) {
-                return;
-            }
-
-            this.effectListSelectionById(this.props.selectedId);
-
-            if (this.props.selectedId && this.props.scrollToSelectedItem) {
-                var rootEl = $(this.getDOMNode());
-                var listView = rootEl.data('kendoListView');
-                var maybeSelectedChild = _.find(listView.element.children(), function (child) {
-                    return this.props.selectedId === $(child).data('modelId');
-                }.bind(this));
-
-                var selectedChildIndex = _.indexOf(listView.element.children(), maybeSelectedChild);
-                if (selectedChildIndex >= 0) {
-                    var scrollTop = selectedChildIndex * $(maybeSelectedChild).height();
-                    rootEl.animate({ scrollTop: scrollTop }, this.props.scrollDuration);
-                }
-            }
+            this.selectValue(this.props.value, this.props.scrollToSelectedItem);
         },
 
-        componentDidUpdate: function (prevProps, prevState) {
-            if (this.props.selectable && !_.isEqual(this.props.selectedId, prevProps.selectedId)) {
+        componentDidUpdate: function (prevProps) {
+            if (this.props.selectable && !_.isEqual(this.props.value, prevProps.value)) {
                 this.syncSelectionWithKendo();
             }
         },
 
         componentDidMount: function () {
-            var listViewWidget = $(this.getDOMNode()).kendoListView({
+            var $rootNode = $(this.getDOMNode());
+            var listViewWidget = $rootNode.kendoListView({
                 autoBind: this.props.autoBind,
                 dataSource: this.props.dataSource,
-                template: kendoutil.templateWith(kendo.template(this.props.template), this.props.paramMapper),
+                template: this.props.template,
                 selectable: this.props.selectable,
-                change: this.onValueChange
+                dataBound: this.onDataBound
             }).data('kendoListView');
 
-            if (! this.props.autoBind) {
+            if (!this.props.autoBind) {
                 listViewWidget.refresh();
             }
-
-            if (this.props.selectable) {
-                this.syncSelectionWithKendo();
-            }
-
-            !_.isArray(this.props.dataSource) && this.props.dataSource.bind('change', this.onDataStoreChange);
         },
 
         componentWillUnmount: function () {
-            !_.isArray(this.props.dataSource) && this.props.dataSource.unbind('change', this.onDataStoreChange);
+            var $rootNode = $(this.getDOMNode());
+
+            $rootNode.data('kendoListView').destroy();
         },
 
         onValueChange: function (e) {
-            if (this.preventReentry) return;
-            var listView = $(e.sender.element[0]).data('kendoListView');
+            var listView = e.sender;
             var val = listView.select().data('modelId');
-            this.effectListSelectionById(this.props.selectedId); // unwind the kendo state change to respect flux lifecycle
+
+            this.selectValue(this.props.value);    // unwind the widget state change to respect flux lifecycle
             this.props.onChange(val);
         },
 
-        onDataStoreChange: function () {
-            this.props.selectable && this.syncSelectionWithKendo();
+        onDataBound: function () {
+            if (this.props.selectable) {
+                this.syncSelectionWithKendo();
+            }
         }
     });
 });

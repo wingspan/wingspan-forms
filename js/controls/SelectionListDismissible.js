@@ -1,12 +1,36 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'jquery', 'react',
-    '../util/util',
-    '../util/kendoutil'
-], function (_, $, React, util, kendoutil) {
+    'underscore', 'jquery', 'react', 'kendo'
+], function (_, $, React, kendo) {
     'use strict';
 
-    var $el = null;
+    /**
+     * Hash of a javascript string
+     *
+     * http://stackoverflow.com/a/7616484/20003
+     */
+    /*jshint bitwise:false */
+    function hashString(str) {
+        var hash = 0, i, ch, l;
+        if (str.length === 0) {
+            return hash;
+        }
+        for (i = 0, l = str.length; i < l; i++) {
+            ch  = str.charCodeAt(i);
+            hash  = ((hash << 5) - hash) + ch;
+            hash |= 0; // Convert to 32bit integer
+        }
+        return hash;
+    }
+    /*jshint bitwise:true */
+
+    function hashRecord(record) {
+        return hashString(JSON.stringify(record));
+    }
+
+    function addHashRecord(record) {
+        return _.extend({ recordHash: hashRecord(record) }, record);
+    }
 
     /**
      * Doesn't make any assumptions about the shape of the selection records. They don't
@@ -14,73 +38,68 @@ define([
      */
     var SelectionListDismissible = React.createClass({
 
+        propTypes: {
+            columns: React.PropTypes.array.isRequired,
+            value: React.PropTypes.array.isRequired,
+            onChange: React.PropTypes.func.isRequired
+        },
+
         getDefaultProps: function () {
             return {
-                className: 'content',
-                height: '150',
-                schema: {},
-                onChange: undefined,
-                value: undefined
+                height: '150'
             };
         },
 
         componentWillMount: function () {
-            console.assert(this.props.value);
-            console.assert(this.props.columns);
-            console.assert(this.props.onChange);
-
-            this.datastore = new kendo.data.DataSource({ data: this.props.value });
+            this.datastore = new kendo.data.DataSource({ data: this.props.value.map(addHashRecord) });
         },
 
-        componentWillUpdate: function (nextProps, nextState) {
+        componentWillUpdate: function (nextProps) {
             if (nextProps.value !== this.props.value) {
-                this.datastore.data(nextProps.value);
+                this.datastore.data(nextProps.value.map(addHashRecord));
             }
         },
 
         componentWillUnmount: function () {
-            $el = null;
+            var $rootNode = $(this.getDOMNode());
+
+            $rootNode.data('kendoGrid').destroy();
         },
 
+        /* jshint ignore:start */
         render: function () {
             return (<div className={this.props.className} />);
         },
+        /* jshint ignore:end */
 
         componentDidMount: function () {
-            $el = $(this.getDOMNode());
-            var self = this;
+            var $el = $(this.getDOMNode());
 
             var columns = [{
                 title: '',
-                template: '<span id="#: recordHash #" class="icon iconButton iconDelete" />',
+                template: '<span class="icon iconButton iconDelete" />',
                 width: 34
-            }];
-            columns = _.map(columns.concat(this.props.columns), function (column) {
-                column.template = kendoutil.templateWith(kendo.template(column.template), self.paramMapper);
-                return column;
-            });
+            }].concat(this.props.columns);
 
-            this.kendoGrid = $el.kendoGrid({
+            $el.kendoGrid({
                 dataSource: this.datastore,
                 height: this.props.height,
                 columns: columns,
                 sortable: this.props.sortable,
                 editable: this.props.editable,
                 pageable: false
-            }).data('kendoGrid');
+            });
 
             $el.on('click', '.iconDelete', this.onButtonClick);
         },
 
-        paramMapper: function (record) {
-            return _.extend(record, this.props.schema, { recordHash: util.hashRecord(record) });
-        },
-
         onButtonClick: function (e) {
-            var recordHashToBeRemoved = parseInt(e.target.getAttribute('id'), 10);
+            var rowUid = $(e.target).parents('tr').data('uid');
+            var grid = $(this.getDOMNode()).data('kendoGrid');
+            var recordHashToBeRemoved = grid.dataSource.getByUid(rowUid).recordHash;
 
             var newValue = _.filter(this.props.value, function (record) {
-                return util.hashRecord(record) !== recordHashToBeRemoved;
+                return hashRecord(record) !== recordHashToBeRemoved;
             });
 
             this.props.onChange(newValue);
