@@ -11,10 +11,9 @@ module.exports = function (grunt) {
         preserveLicenseComments: true,
 
         wrap: {
-            "startFile": "almond-begin.txt",
-            "endFile": "almond-end.txt"
+            startFile: 'almond-begin.txt',
+            endFile: 'almond-end.txt'
         },
-
 
         baseUrl: 'js-built',
 
@@ -27,7 +26,6 @@ module.exports = function (grunt) {
             kendo: '../bower_components/kendo-ui/src/js/kendo.web',
             moment: '../bower_components/momentjs/moment',
             react: '../bower_components/react/react-with-addons',
-            q: '../bower_components/q/q',
             almond: '../bower_components/almond/almond'
         },
 
@@ -59,16 +57,6 @@ module.exports = function (grunt) {
             '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
             ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
 
-        // Task configuration.
-//        jshint: {
-//            platform: 'webapp/js/platform/**/*.js',
-//            tmf: 'webapp/js/tmf/**/*.js',
-//
-//            options: {
-//                jshintrc: '.jshintrc'
-//            }
-//        },
-
         bower: {
             install: {
                 options: {
@@ -97,7 +85,7 @@ module.exports = function (grunt) {
                 options: {
                     out: 'dist/wingspan-forms.js',
                     include: ['almond', 'wingspan-forms'],
-                    exclude: ['jquery', 'underscore', 'react', 'require', 'text', 'underscore.string', 'kendo', 'q']
+                    exclude: ['jquery', 'underscore', 'react', 'require', 'text', 'underscore.string', 'kendo']
                 }
             },
             compileQuickStart: {
@@ -111,9 +99,7 @@ module.exports = function (grunt) {
 
         less: {
             options: {
-                paths: [
-                  'styles'
-                ],
+                paths: ['styles'],
                 ieCompat: true,
                 yuicompress: true,
                 report: 'min'

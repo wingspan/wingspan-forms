@@ -5,7 +5,6 @@
     define('jquery', function () { return $; });
     define('underscore.string', function () { return _s; });
     define('kendo', function () { return kendo; });
-    define('q', function () { return Q; });
 
     return require('wingspan-forms');
 }));

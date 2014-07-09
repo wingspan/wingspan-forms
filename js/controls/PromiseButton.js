@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'react', 'q'
-], function (_, React, Q) {
+    'underscore', 'react'
+], function (_, React) {
     'use strict';
 
     var VISIBLE = {display: 'inline-block'};
@@ -9,14 +9,24 @@ define([
     var INVISIBLE = {display: 'none'};
     void INVISIBLE;
 
+    var PropTypes = React.PropTypes;
+
     var PromiseButton = React.createClass({
-        mixins: [],
+
+        propTypes: {
+            label: PropTypes.string,
+            className: PropTypes.string,
+            disabled: PropTypes.bool,
+            terminateChain: PropTypes.bool,
+            handler: PropTypes.func
+        },
 
         getDefaultProps: function () {
             return {
                 label: '',
                 className: 'secondaryButton',
                 disabled: false,
+                terminateChain: true,
                 handler: _.identity
             };
         },
@@ -27,16 +37,12 @@ define([
             };
         },
 
-        componentWillReceiveProps : function (nextProps) {
-            this.setState({ disabled: nextProps.disabled });
-        },
-
         render: function () {
             var self = this,
                 handler = this.props.handler,
                 disabled = this.props.disabled || this.state.busy;
 
-            function onFinally() {
+            function onSettled() {
                 if (self.isMounted()) {
                     self.setState({ busy: false });
                 }
@@ -45,11 +51,15 @@ define([
                 var promise = handler();
 
                 // If the handler returns a promise, enter "busy" mode and disable the button.
-                // Note that this component calls "done()" to complete the promise chain, since this click handler
-                // does not have a return value.
                 if (promise) {
                     self.setState({ busy: true });
-                    Q(promise).fin(onFinally).done();
+                    promise = promise.then(onSettled, onSettled);
+
+                    // By default component calls "done()" to complete the promise chain, since this click handler
+                    // does not have a return value.
+                    if (self.props.terminateChain) {
+                        promise.done();
+                    }
                 }
             }
 
