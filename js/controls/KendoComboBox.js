@@ -7,10 +7,6 @@ define([
     'use strict';
 
 
-    function getDisplayValue(value, displayField) {
-        return _.isObject(value) ? value[displayField] : '';
-    }
-
     function setComboValue(comboWidget, props) {
         var value = props.value;
 
@@ -69,7 +65,7 @@ define([
         /*jshint ignore:start */
         render: function () {
             return (this.props.noControl
-                ? (<span id={this.props.id}>{getDisplayValue(this.props.value, this.props.displayField)}</span>)
+                ? (<span id={this.props.id}>{this.getDisplayValue(this.props.value, this.props.displayField)}</span>)
                 : (<select id={this.props.id}/>));
         },
         /*jshint ignore:end */
@@ -169,18 +165,24 @@ define([
                 }
                 var self = this;
                 this.props.dataSource.fetch().then(function () {
-                    $el.text(getDisplayValue(self.props.dataSource.get(self.props.value), self.props.displayField));
+                    $el.text(this.getDisplayValue(self.props.dataSource.get(self.props.value), self.props.displayField));
                 }).done();
             }
             else {
                 // valueAsOption, so can skip the query.
-                $el.text(getDisplayValue(this.props.value, this.props.displayField));
+                $el.text(this.getDisplayValue(this.props.value, this.props.displayField));
             }
+        },
+
+        getDisplayValue: function (value, displayField) {
+            var valueAsOption = _.isObject(value);
+            var option = valueAsOption
+                ? value
+                : _.findWhere(this.props.dataSource, _.object([[this.props.valueField, this.props.value]]));
+            return option ? option[displayField] : '';
         }
     });
 
-    void getDisplayValue;
-    void KendoComboBox;
 
     return KendoComboBox;
 });
