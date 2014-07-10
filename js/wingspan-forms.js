@@ -4,6 +4,7 @@ define([
     './controls/Button',
     './controls/Carousel',
     './controls/CheckBox',
+    './controls/KendoAutoComplete',
     './controls/KendoComboBox',
     './controls/KendoDate',
     './controls/KendoTime',
@@ -25,21 +26,18 @@ define([
     './controls/PromiseButton',
     './controls/SearchBox',
     './controls/SelectionListDismissible',
-    './controls/KendoAutoComplete',
     './ControlCommon',
     './AutoField',
     './FluxFormMixin',
     './ImmutableOptimizations'
-], function (AutoControl, FormField, Button, Carousel, CheckBox, KendoComboBox, KendoDate, KendoTime, KendoDatetime,
-             KendoGrid, KendoGridPicker, KendoGridPickerByButton,
-             KendoListView, KendoMultiSelect, KendoNumber, KendoTabStrip, TabStrip, KendoText, MultiSelect,
-             MultilineText, Radio, RadioGroup, SwitchBox,
-             KendoPager, PromiseButton, SearchBox, SelectionListDismissible,
-             KendoAutoComplete,
+], function (AutoControl, FormField, Button, Carousel, CheckBox, KendoAutoComplete, KendoComboBox, KendoDate, KendoTime, KendoDatetime,
+             KendoGrid, KendoGridPicker, KendoListView, KendoMultiSelect, KendoNumber, KendoTabStrip, TabStrip, KendoText, MultiSelect,
+             MultilineText, Radio, RadioGroup, SwitchBox, KendoPager, PromiseButton, SearchBox, SelectionListDismissible,
              ControlCommon, AutoField, FluxFormMixin, ImmutableOptimizations) {
     'use strict';
 
-
+    // If the function arguments get out-of-sync with the require define(), the last argument might be undefined.
+    console.assert(ImmutableOptimizations);
 
     // This module should never actually be used.  It exists only to collect all of the top-level modules into one
     // place so that the require optimizer can do a single-page optimization across the entire application
