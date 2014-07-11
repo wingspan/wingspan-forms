@@ -16,13 +16,9 @@
     ],
     "dependencies": {
         "jquery": "~1.9.1",
-        "momentjs": "~2.0.0",
         "underscore": "~1.4.4",
         "react": "~0.10.0",
-        "q": "~0.9.7",
-        "stacktrace": "~0.5.3",
         "underscore.string": "~2.3.3",
-        "kendo-ui": "~2013.3.1119",
-        "es5-shim": "~2.1"
+        "kendo-ui": "~2013.3.1119"
     }
 }

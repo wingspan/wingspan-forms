@@ -18,9 +18,9 @@ define([
 
         propTypes: {
             value: PropTypes.any,
-            onChange: PropTypes.func.isRequired,
+            onChange: PropTypes.func,
             id: PropTypes.string,
-            dataSource: PropTypes.object.isRequired,
+            dataSource: PropTypes.oneOfType([PropTypes.array.isRequired, PropTypes.object.isRequired]),
             dataTextField: PropTypes.string,
             disabled: PropTypes.bool,
             readonly: PropTypes.bool,
@@ -28,6 +28,14 @@ define([
             placeholder: PropTypes.string,
             template: PropTypes.any
         },
+
+        getDefaultProps: function () {
+        	return {
+                disabled: false,
+                readonly: false,
+        		onChange: $.noop
+        	}
+		},
 
         componentDidMount: function () {
             var $el = $(this.getDOMNode());
@@ -91,6 +99,8 @@ define([
         onChange: function (e) {
             var widget = e.sender;
 
+			widget.value(this.props.value);
+
             if (widget.dataSource.total() === 1) {
                 // Exact match - so raise the change event
                 this.props.onChange(widget.dataItem(0));
@@ -99,6 +109,8 @@ define([
 
         onSelect: function (e) {
             var widget = e.sender;
+
+            widget.value(this.props.value);
             this.props.onChange(widget.dataItem(e.item.index()));
         }
     });

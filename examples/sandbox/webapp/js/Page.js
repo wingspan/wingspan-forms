@@ -9,7 +9,9 @@ define([
     var KendoText = Forms.KendoText;
     var MultilineText = Forms.MultilineText;
     var MultiSelect = Forms.MultiSelect;
+    var KendoAutoComplete = Forms.KendoAutoComplete;
     var KendoComboBox = Forms.KendoComboBox;
+    var KendoMultiSelect = Forms.KendoMultiSelect;
     var KendoNumber = Forms.KendoNumber;
     var KendoDate = Forms.KendoDate;
     var KendoTime = Forms.KendoTime;
@@ -24,7 +26,7 @@ define([
 
     function entrypoint(rootEl) {
 
-        var dataSource = [{ id: 10, name: 'Dustin'}, { id: 11, name: 'Jon'}, { id: 12, name: 'Paul'}];
+        var dataSource = [{ id: 10, name: 'Dustin'}, { id: 11, name: 'Jon'}, { id: 12, name: 'Paul'}, { id: 14, name: 'Danny' }];
 
         var content = (
             <div>
@@ -171,6 +173,24 @@ define([
                     <MultiSelect selectors={dataSource} />
                 </FormField>
 
+                <div className="formTitle">Kendo KendoAutoComplete</div>
+
+                <FormField fieldInfo={{ label: 'normal autocomplete' }} isValid={[true, '']} layout="formField" >
+                    <KendoAutoComplete dataTextField="name" dataSource={dataSource} value={dataSource[0].name} />
+                </FormField>
+
+                <FormField fieldInfo={{ label: 'invalid autocomplete' }} isValid={[false, '']} layout="formField" >
+                    <KendoAutoComplete dataTextField="name" dataSource={dataSource} value={dataSource[0].name} />
+                </FormField>
+
+                <FormField fieldInfo={{ label: 'readOnly autocomplete', readOnly: true }} isValid={[true, '']} layout="formField" >
+                    <KendoAutoComplete dataTextField="name" readonly={true} dataSource={dataSource} value={dataSource[0].name} />
+                </FormField>
+
+                <FormField fieldInfo={{ label: 'disabled autocomplete', disabled: true }} isValid={[true, '']} layout="formField" >
+                    <KendoAutoComplete dataTextField="name" disabled={true} dataSource={dataSource} value={dataSource[0].name} />
+                </FormField>
+
                 <div className="formTitle">Kendo ComboBox</div>
 
                 <FormField fieldInfo={{ label: 'normal combo' }} isValid={[true, '']} layout="formField" >
@@ -187,6 +207,24 @@ define([
 
                 <FormField fieldInfo={{ label: 'disabled combo', disabled: true }} isValid={[true, '']} layout="formField" >
                     <KendoComboBox displayField="name" valueField="id" disabled={true} dataSource={dataSource} value={dataSource[0]} />
+                </FormField>
+
+                <div className="formTitle">Kendo MultiSelect</div>
+
+                <FormField fieldInfo={{ label: 'normal multiselect' }} isValid={[true, '']} layout="formField" >
+                    <KendoMultiSelect displayField="name" valueField="id" dataSource={dataSource} value={[dataSource[1]]} />
+                </FormField>
+
+                <FormField fieldInfo={{ label: 'invalid multiselect' }} isValid={[false, '']} layout="formField" >
+                    <KendoMultiSelect displayField="name" valueField="id" dataSource={dataSource} value={[dataSource[1]]} />
+                </FormField>
+
+                <FormField fieldInfo={{ label: 'readOnly multiselect', readOnly: true }} isValid={[true, '']} layout="formField" >
+                    <KendoMultiSelect displayField="name" valueField="id" readonly={true} dataSource={dataSource} value={[dataSource[1]]} />
+                </FormField>
+
+                <FormField fieldInfo={{ label: 'disabled multiselect', disabled: true }} isValid={[true, '']} layout="formField" >
+                    <KendoMultiSelect displayField="name" valueField="id" disabled={true} dataSource={dataSource} value={[dataSource[1]]} />
                 </FormField>
 
                 <div className="formTitle">Kendo Numeric</div>
@@ -649,16 +687,6 @@ define([
 
 
                 </div>
-
-                <div className="formTitle">Missing: Custom Switch</div>
-
-                <div className="formTitle">Missing: Kendo Select</div>
-
-                <div className="formTitle">Outdated: Kendo Multiselect</div>
-
-                <div className="formTitle">Missing: Kendo Timepicker</div>
-
-                <div className="formTitle">Missing: Kendo Autocomplete</div>
 
                 <div className="formTitle">Custom Carousel</div>
                 <FormField fieldInfo={{ label: 'normal carousel' }} isValid={[true, '']}>

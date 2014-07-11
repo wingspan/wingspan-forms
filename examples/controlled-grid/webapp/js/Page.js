@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'underscore.string', 'react', 'jquery', 'kendo', 'wingspan-forms'
-], function (_, str, React, $, kendo, Forms) {
+    'underscore', 'react', 'jquery', 'kendo', 'wingspan-forms'
+], function (_, React, $, kendo, Forms) {
     'use strict';
 
     var FormField = Forms.FormField;
@@ -23,9 +23,15 @@ define([
             { name: 'Louie',   id: '8',  gender: 'male'   },
             { name: 'Max',     id: '9',  gender: 'female' }
         ];
+        var fields = [
+            { label: 'Pick a Person' },
+            { label: 'Selected Person' },
+            { label: 'People by Gender' },
+            { label: 'People by Checkboxes' },
+            { label: 'People by Grid' }
+        ];
 
         var App = React.createClass({
-            mixins: [Forms.TopStateMixin],
 
             getInitialState: function () {
                 return {
@@ -138,7 +144,7 @@ define([
                 /* jshint ignore:start */
                 return (
                     <div className="App">
-                        <FormField fieldInfo={{ label: 'Pick a Person' }}>
+                        <FormField fieldInfo={fields[0]}>
                             <KendoComboBox
                                 value={this.state.selection}
                                 dataSource={this.visibleDataSource}
@@ -148,19 +154,19 @@ define([
                                 valueField="id" />
                         </FormField>
 
-                        <FormField fieldInfo={{ label: 'Selected Person' }}>
+                        <FormField fieldInfo={fields[1]}>
                             <KendoText value={selectedPerson.name} />
                         </FormField>
 
-                        <FormField fieldInfo={{ label: 'People by Gender' }}>
+                        <FormField fieldInfo={fields[2]}>
                             {genderCheckBoxes}
                         </FormField>
 
-                        <FormField fieldInfo={{ label: 'People by Checkboxes' }}>
+                        <FormField fieldInfo={fields[3]}>
                             {nameCheckBoxes}
                         </FormField>
 
-                        <FormField fieldInfo={{ label: 'People by Grid' }}>
+                        <FormField fieldInfo={fields[4]}>
                             <KendoGridPicker
                                 dataSource={this.props.data}
                                 value={this.state.visible}
@@ -174,6 +180,13 @@ define([
                     </div>
                 );
                 /* jshint ignore:end */
+            },
+
+            onChange: function (field, value) {
+                var newState = {};
+                newState[field] = value;
+
+                this.setState(newState);
             },
 
             onCheckboxChecked: function (record, checked) {
@@ -203,7 +216,10 @@ define([
 
     var FormCloser = React.createClass({
         /* jshint ignore:start */
-        render: function () { return (<div style={{ clear: 'both'}} />); }
+        render: function () {
+            var style = { clear: 'both'};
+            return (<div style={style} />);
+        }
         /* jshint ignore:end */
     });
 
@@ -228,11 +244,11 @@ define([
         }, []);
     }
 
-    function unionDeep (/* set1, set2, ... */) {
+    function unionDeep(/* set1, set2, ... */) {
         return uniqueDeep(_.flatten(arguments));
     }
 
-    function differenceDeep (/* set1, set2, ... */) {
+    function differenceDeep(/* set1, set2, ... */) {
         var removeTheseItems = _.flatten(_.tail(arguments));
         var fromTheseItems = _.head(arguments);
         return _.filter(fromTheseItems, function (x) {

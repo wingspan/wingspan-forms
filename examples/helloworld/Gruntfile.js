@@ -26,9 +26,7 @@ module.exports = function (grunt) {
         subgrunt: {
             options: {},
             'wingspan-forms': {
-                '../../': ['default'],
-                '../../vendor/wingspan-contrib': ['default'],
-                '../../vendor/wingspan-data': ['default']
+                '../../': ['default']
             }
         },
 
@@ -60,14 +58,9 @@ module.exports = function (grunt) {
                         expand: true,
                         src: [
                             'bower_components/jquery/jquery.js',
-                            'bower_components/momentjs/moment.js',
                             'bower_components/underscore/underscore.js',
                             'bower_components/react/react-with-addons.js',
-                            'bower_components/underscore.string/lib/underscore.string.js',
-                            'bower_components/es5-shim/es5-shim.js',
-                            'bower_components/q/q.js',
-                            '../../vendor/wingspan-contrib/dist/wingspan-contrib.js',
-                            '../../vendor/wingspan-data/dist/wingspan-data.js'
+                            'bower_components/underscore.string/lib/underscore.string.js'
                         ],
                         dest: 'webapp/lib',
                         flatten: true,
@@ -91,7 +84,7 @@ module.exports = function (grunt) {
             }
         },
 
-        clean: ['bower_components', 'webapp/js-built', 'webapp/libs', 'webapp/styles/App.css', 'webapp/Page.js']
+        clean: ['bower_components', 'webapp/js-built', 'webapp/lib', 'webapp/styles/App.css', 'webapp/Page.js']
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');

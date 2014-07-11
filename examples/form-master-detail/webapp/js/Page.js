@@ -1,16 +1,35 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'react', 'jquery', 'wingspan-forms', 'wingspan-cursor', 'wingspan-contrib',
+    'underscore', 'react', 'jquery', 'wingspan-forms', 'wingspan-cursor',
     'util',
     'text!textassets/types/Contact.json',
     'text!textassets/contacts.json'
-], function (_, React, $, Forms, Cursor, Contrib,
+], function (_, React, $, Forms, Cursor,
              util, ContactModel, contacts) {
     'use strict';
 
-    var ContactModel = JSON.parse(ContactModel).data;
-    var contacts = JSON.parse(contacts).data;
+    ContactModel = JSON.parse(ContactModel).data;
+    contacts = JSON.parse(contacts).data;
 
+    var contactGroup = ContactModel.properties['contactGroup'];
+    contactGroup.options.dataSource = contactGroup.options.data;
+
+    function mergeInto(one, two) {
+        if (two != null) {
+            for (var key in two) {
+                if (!two.hasOwnProperty(key)) {
+                    continue;
+                }
+                one[key] = two[key];
+            }
+        }
+
+        return one;
+    }
+
+    function merge(/* a, b, ... */) {
+        return _.reduce(arguments, mergeInto, {});
+    }
 
     var App = React.createClass({
         getInitialState: function () {
@@ -70,7 +89,7 @@ define([
             var form = this.props.cursor.refine('form').value;
             var record = _.findWhere(database, { id: form.id });
 
-            var nextRecord = Contrib.merge(record, form, { revision: form['revision'] + 1 });
+            var nextRecord = merge(record, form, { revision: form['revision'] + 1 });
 
             // subtract out the stale record (old revision)
             // union in the new record into the nextCollection

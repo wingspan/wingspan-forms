@@ -16,17 +16,11 @@
   ],
   "dependencies": {
       "jquery": "~1.9.1",
-      "momentjs": "~2.0.0",
       "underscore": "~1.4.4",
       "react": "0.10.0",
       "requirejs": "~2.1.9",
       "requirejs-text": "~2.0.10",
       "underscore.string": "~2.3.3",
-      "kendo-ui": "~2013.3.1119",
-      "q": "~0.9.6",
-      "es5-shim": "~2.1",
-      "q": "~0.9.7",
-      "wingspan-data": "3b8e83999a1a0ab3c55cf62749a9db73cf33f7ea",
-      "wingspan-contrib": "2b47b0f177aeb2086378b4e5ff8af3ef61b82e5d"
+      "kendo-ui": "~2013.3.1119"
   }
 }

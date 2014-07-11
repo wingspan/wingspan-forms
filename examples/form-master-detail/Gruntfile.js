@@ -27,8 +27,7 @@ module.exports = function (grunt) {
             options: {},
             'wingspan-forms': {
                 '../../': ['default'],
-                'bower_components/wingspan-contrib': ['default'],
-                'bower_components/wingspan-cursor': ['release']
+                '../../../wingspan-cursor': ['release']
             }
         },
 
@@ -44,7 +43,8 @@ module.exports = function (grunt) {
                     paths: ['styles'],
                     ieCompat: true,
                     yuicompress: true,
-                    report: 'min'
+                    report: 'min',
+                    relativeUrls: true
                 },
                 files: {
                     'webapp/styles/App.css': 'webapp/styles/App.less'
@@ -59,16 +59,12 @@ module.exports = function (grunt) {
                         expand: true,
                         src: [
                             'bower_components/jquery/jquery.js',
-                            'bower_components/momentjs/moment.js',
                             'bower_components/underscore/underscore.js',
                             'bower_components/react/react-with-addons.js',
                             'bower_components/underscore.string/lib/underscore.string.js',
-                            'bower_components/es5-shim/es5-shim.js',
                             'bower_components/requirejs/require.js',
                             'bower_components/requirejs-text/text.js',
-                            'bower_components/q/q.js',
-                            'bower_components/wingspan-contrib/dist/wingspan-contrib.js',
-                            'bower_components/wingspan-cursor/dist/wingspan-cursor.js'
+                            '../../../wingspan-cursor/dist/wingspan-cursor.js'
                         ],
                         dest: 'webapp/lib',
                         flatten: true,
@@ -92,7 +88,7 @@ module.exports = function (grunt) {
             }
         },
 
-        clean: ['bower_components', 'webapp/js-built', 'webapp/libs', 'webapp/styles/App.css', 'webapp/Page.js']
+        clean: ['bower_components', 'webapp/js-built', 'webapp/lib', 'webapp/styles/App.css', 'webapp/Page.js']
 
     });
 

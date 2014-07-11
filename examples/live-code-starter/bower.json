@@ -16,18 +16,12 @@
     ],
     "dependencies": {
         "jquery": "~1.9.1",
-        "momentjs": "~2.0.0",
         "underscore": "~1.4.4",
         "react": "~0.10.0",
         "requirejs": "~2.1.9",
         "requirejs-text": "~2.0.10",
         "require-jsx": "e6315ab6864480943302f01b9cd7eba315e045db",
-        "q": "~0.9.7",
-        "stacktrace": "~0.5.3",
         "underscore.string": "~2.3.3",
-        "kendo-ui": "~2013.3.1119",
-        "es5-shim": "~2.1",
-        "wingspan-contrib": "2b47b0f177aeb2086378b4e5ff8af3ef61b82e5d",
-        "wingspan-cursor": "ebc92165c06d962ab089273ce73949151d823fec"
+        "kendo-ui": "~2013.3.1119"
     }
 }

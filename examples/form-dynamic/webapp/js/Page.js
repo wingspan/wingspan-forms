@@ -6,17 +6,23 @@ define([
 ], function (_, React, Forms, kendo, ContactModel, contacts) {
     'use strict';
 
-    var ContactModel = JSON.parse(ContactModel).data;
-    var contacts = JSON.parse(contacts).data;
+    ContactModel = JSON.parse(ContactModel).data;
+    contacts = JSON.parse(contacts).data;
 
 
     var App = React.createClass({
-        mixins: [Forms.TopStateMixin],
 
         getInitialState: function () {
             return {
                 formValue: contacts[0]
             };
+        },
+
+        onChange: function (field, value) {
+            var newFormValue = _.clone(this.state.formValue);
+            newFormValue[field] = value;
+
+            this.setState({ formValue: newFormValue });
         },
 
         render: function () {
@@ -25,7 +31,7 @@ define([
                     <AutoForm
                         model={ContactModel}
                         value={this.state.formValue}
-                        onChange={_.partial(this.onChange, 'formValue')} />
+                        onChange={this.onChange} />
                     <pre>{JSON.stringify(this.state, undefined, 2)}</pre>
                 </div>
             );
