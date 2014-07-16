@@ -56,7 +56,7 @@ define([
                 change: this.onChange
             }, this.props.options);
 
-            var kendoWidget = $el.kendoMultiSelect(widgetOptions).data('');
+            var kendoWidget = $el.kendoMultiSelect(widgetOptions).data('kendoMultiSelect');
 
             // the 'value' method is a getter/setter that gets/sets the valueField. It will look up the record
             // in the store via the value set here.
