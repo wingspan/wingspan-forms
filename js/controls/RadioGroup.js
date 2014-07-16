@@ -1,13 +1,15 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'react',
-    '../ImmutableOptimizations'
-], function (_, React, ImmutableOptimizations) {
+    'underscore', 'react'
+], function (_, React) {
     'use strict';
 
 
     var RadioGroup = React.createClass({
-        mixins: [ImmutableOptimizations([])],
+
+        propTypes: {
+            value: React.PropTypes.any
+        },
 
         statics: { fieldClass: function () { return 'formFieldRadio'; } },
 
@@ -15,9 +17,10 @@ define([
         render: function () {
             var value = this.props.value;
 
-            _.each(this.props.children, function (radio) {
-                // Check the radio button whose value matches the group's value
-                radio.props.checked = (radio.props.value === value);
+            React.Children.forEach(this.props.children, function (radio) {
+
+                // The use of double-equals is intentional here, so that numbers represented as strings will match.
+                radio.props.checked = (radio.props.value == value);
             });
 
             return (
