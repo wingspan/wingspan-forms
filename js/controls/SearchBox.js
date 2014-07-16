@@ -32,7 +32,7 @@ define([
             console.assert(this.props.handler, 'SearchBox requires a handler function');
         },
 
-        componentDidMount : function () {
+        componentDidUpdate : function () {
             // Hide the clear button if there's no text
             setVisible($(this.getDOMNode()).find('.iconClear'), this.refs.myInput.getDOMNode().value.length > 0);
         },
