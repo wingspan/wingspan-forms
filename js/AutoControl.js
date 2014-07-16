@@ -67,6 +67,9 @@ define([
             // Add placeholder text
             controlProps.placeholder = fieldInfo.placeholder;
 
+            // pass through format prop for controls that use it
+            controlProps.format = fieldInfo.format;
+
             // Either fieldInfo or parent component can specify readonly status
             controlProps.readonly = this.props.readonly || fieldInfo.readOnly;
 
