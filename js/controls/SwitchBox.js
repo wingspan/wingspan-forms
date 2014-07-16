@@ -26,7 +26,8 @@ define([
                 disabled: false,
                 readonly: false,
                 noControl: false,    // does this even make sense on a switchbox?
-                id: undefined
+                id: undefined,
+                labels: {pos: 'Yes', neg: 'No'}
             };
         },
 
@@ -49,8 +50,8 @@ define([
             return (
                 <div tabIndex="0" className="switch">
                     <ul>
-                        <li className={yes ? 'active' : ''} onClick={clickYes}><span className={yes ? 'pos' : ''}>Yes</span></li>
-                        <li className={no ? 'active' : ''} onClick={clickNo}><span className={no ? 'neg' : ''}>No</span></li>
+                        <li className={yes ? 'active' : ''} onClick={clickYes}><span className={yes ? 'pos' : ''}>{this.props.labels.pos}</span></li>
+                        <li className={no ? 'active' : ''} onClick={clickNo}><span className={no ? 'neg' : ''}>{this.props.labels.neg}</span></li>
                     </ul>
                 </div>
             );
