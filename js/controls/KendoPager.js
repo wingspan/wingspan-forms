@@ -27,14 +27,16 @@ define([
         propTypes: {
             dataSource: React.PropTypes.object.isRequired,
             className: React.PropTypes.string,
-            messages: React.PropTypes.object
+            messages: React.PropTypes.object,
+            onChange: React.PropTypes.func
         },
 
         getDefaultProps: function () {
             return {
                 className: 'k-pager-wrap',
                 // Empty object means override none of kendo's defaults, which are shown above for convenience
-                messages: {}
+                messages: {},
+                change: $.noop
             };
         },
 
@@ -45,7 +47,8 @@ define([
         componentDidMount: function () {
             $(this.getDOMNode()).kendoPager({
                 dataSource: this.props.dataSource,
-                messages: this.props.messages
+                messages: this.props.messages,
+                change: this.props.onChange
             });
         }
     });
