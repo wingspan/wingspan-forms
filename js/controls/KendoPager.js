@@ -24,6 +24,11 @@ define([
      */
 
     var KendoPager = React.createClass({
+        propTypes: {
+            dataSource: React.PropTypes.object.isRequired,
+            className: React.PropTypes.string,
+            messages: React.PropTypes.object
+        },
 
         getDefaultProps: function () {
             return {
@@ -34,7 +39,6 @@ define([
         },
 
         render: function () {
-            console.assert(this.props.dataSource, 'Need a dataSource to page');
             return React.DOM.div({ className: this.props.className });
         },
 
