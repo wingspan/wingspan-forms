@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 define([
     'underscore', 'jquery', 'react', 'kendo'
 ], function (_, $, React, kendo) {
@@ -34,12 +33,10 @@ define([
             };
         },
 
-        /* jshint ignore:start */
         render: function () {
             console.assert(this.props.dataSource, 'Need a dataSource to page');
-            return (<div className={this.props.className}></div>);
+            return React.DOM.div({ className: this.props.className });
         },
-        /* jshint ignore:end */
 
         componentDidMount: function () {
             $(this.getDOMNode()).kendoPager({
