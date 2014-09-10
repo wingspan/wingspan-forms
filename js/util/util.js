@@ -493,7 +493,7 @@ define([
         return kendo.toString(date, ISO_DATE_ONLY);
     };
     exports.formatISODateTime = function (date) {
-        return date.toISOString();
+        return (date instanceof Date && date.toISOString()) || '';
     };
     exports.parseISODate = function (dateStr) {
         return kendo.parseDate(dateStr, ISO_DATE_ONLY);
