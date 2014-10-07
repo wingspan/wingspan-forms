@@ -1,12 +1,16 @@
 /** @jsx React.DOM */
 define([
     'underscore', 'jquery', 'react', 'kendo',
-    '../util/util',
     '../ControlCommon',
     '../ImmutableOptimizations'
-], function (_, $, React, kendo, util, ControlCommon, ImmutableOptimizations) {
+], function (_, $, React, kendo, ControlCommon, ImmutableOptimizations) {
     'use strict';
 
+    var ISO_DATE_ONLY = 'yyyy-MM-dd';
+
+    function parseISODate(dateStr) {
+        return kendo.parseDate(dateStr, ISO_DATE_ONLY);
+    }
 
     var KendoDate = React.createClass({
         mixins: [ImmutableOptimizations(['onChange'])],
@@ -18,9 +22,8 @@ define([
                 format: 'dd-MMM-yyyy',
                 value: undefined,
                 id: undefined,
-                onChange: function () {},
+                onChange: $.noop,
                 disabled: false,
-                isValid: [true, ''],
                 readonly: false,
                 noControl: false
             };
@@ -29,13 +32,12 @@ define([
         /*jshint ignore:start */
         render: function () {
             return (this.props.noControl
-                ? (<span>{this.props.value ? kendo.toString(util.parseISODate(this.props.value), this.props.format) : ''}</span>)
+                ? (<span>{this.props.value ? kendo.toString(parseISODate(this.props.value), this.props.format) : ''}</span>)
                 : (<input id={this.props.id} type="text" />));
         },
         /*jshint ignore:end */
 
         componentDidMount: function () {
-
             if (this.props.noControl) {
                 // Everything was done in JSX.
                 return;
@@ -51,7 +53,7 @@ define([
 
             ControlCommon.setKendoDateState(
                 $el.data('kendoDatePicker'),
-                util.parseISODate(this.props.value), this.props.disabled, this.props.readonly,
+                parseISODate(this.props.value), this.props.disabled, this.props.readonly,
                 this.props.max, this.props.min);
         },
 
@@ -66,13 +68,14 @@ define([
 
             ControlCommon.setKendoDateState(
                 $el.data('kendoDatePicker'),
-                util.parseISODate(this.props.value), this.props.disabled, this.props.readonly,
+                parseISODate(this.props.value), this.props.disabled, this.props.readonly,
                 this.props.max, this.props.min);
         },
 
         onChange: function (event) {
             var kendoWidget = event.sender;
-            var val = util.formatISODate(kendoWidget.value());
+            var val = kendo.toString(kendoWidget.value(), ISO_DATE_ONLY);
+
             this.props.onChange(val);
         }
     });

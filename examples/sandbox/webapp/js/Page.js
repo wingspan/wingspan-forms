@@ -23,6 +23,7 @@ define([
     var Carousel = Forms.Carousel;
     var KendoGrid = Forms.KendoGrid;
 
+    var now = new Date().toISOString();
 
     function entrypoint(rootEl) {
 
@@ -245,47 +246,56 @@ define([
                     <KendoNumber value="" />
                 </FormField>
 
-                <div className="formTitle">Datepicker</div>
+                <div className="formTitle">Kendo DatePicker</div>
 
                 <FormField fieldInfo={{ label: 'normal date' }} isValid={[true, '']} layout="formField" >
-                    <KendoDate value="" />
+                    <KendoDate value={now} />
                 </FormField>
 
                 <FormField fieldInfo={{ label: 'invalid date' }} isValid={[false, '']} layout="formField" >
-                    <KendoDate value="" />
+                    <KendoDate value={now} />
                 </FormField>
 
                 <FormField fieldInfo={{ label: 'ReadOnly date', readOnly: true }} isValid={[true, '']} layout="formField" >
-                    <KendoDate value="" />
+                    <KendoDate value={now} readonly={true} />
                 </FormField>
 
                 <FormField fieldInfo={{ label: 'disabled date', disabled: true }} isValid={[true, '']} layout="formField" >
-                    <KendoDate value="" />
+                    <KendoDate value={now} disabled={true} />
                 </FormField>
 
-                <div className="formTitle">Datetimepicker</div>
+                <div className="formTitle">Kendo DateTimePicker</div>
 
                 <FormField fieldInfo={{ label: 'normal datetime' }} isValid={[true, '']} layout="formField" >
-                    <KendoDatetime value="" />
+                    <KendoDatetime value={now} />
                 </FormField>
 
                 <FormField fieldInfo={{ label: 'invalid datetime' }} isValid={[false, '']} layout="formField" >
-                    <KendoDatetime value="" />
+                    <KendoDatetime value={now} />
                 </FormField>
 
                 <FormField fieldInfo={{ label: 'ReadOnly datetime', readOnly: true }} isValid={[true, '']} layout="formField" >
-                    <KendoDatetime value="" />
+                    <KendoDatetime value={now} />
                 </FormField>
 
                 <FormField fieldInfo={{ label: 'disabled datetime', disabled: true }} isValid={[true, '']} layout="formField" >
-                    <KendoDatetime value="" />
+                    <KendoDatetime value={now} />
                 </FormField>
 
 
                 <div className="formTitle">Kendo TimePicker</div>
 
-                <FormField fieldInfo={{label: 'timepicker'}} isValid={[true, '']} layout="formField" >
+                <FormField fieldInfo={{label: 'normal timepicker'}} isValid={[true, '']} layout="formField" >
                     <KendoTime value="23:11:09" />
+                </FormField>
+                <FormField fieldInfo={{label: 'invalid timepicker'}} isValid={[false, '']} layout="formField" >
+                    <KendoTime value="23:12:09" />
+                </FormField>
+                <FormField fieldInfo={{label: 'readonly timepicker'}} isValid={[true, '']} layout="formField" >
+                    <KendoTime value="23:13:09" readonly={true} />
+                </FormField>
+                <FormField fieldInfo={{label: 'disabled timepicker'}} isValid={[true, '']} layout="formField" >
+                    <KendoTime value="23:14:09" disabled={true} />
                 </FormField>
 
 

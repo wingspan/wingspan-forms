@@ -1,10 +1,12 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'jquery', 'react', '../util/util', '../ControlCommon',
+    'underscore', 'jquery', 'react',
+    '../ControlCommon',
     '../ImmutableOptimizations'
-], function (_, $, React, u, controlCommon, ImmutableOptimizations) {
+], function (_, $, React, controlCommon, ImmutableOptimizations) {
     'use strict';
 
+    var PropTypes = React.PropTypes;
 
     /**
      * Creates a multi-select control.
@@ -19,11 +21,17 @@ define([
 
         statics: { fieldClass: function () { return 'formFieldMultiselect'; } },
 
+        propTypes: {
+            id: PropTypes.string,
+            selectors: PropTypes.array.isRequired,
+            selections: PropTypes.array,
+            isFlat: PropTypes.bool
+        },
+
         getDefaultProps: function () {
             return {
                 disabled: false,
                 readonly: false,
-                isValid: [true, ''],
                 isFlat: true,
                 selectors: [],
                 selections: [], // this is the value prop that pairs with onChange.
@@ -35,12 +43,12 @@ define([
         getInitialState: function () {
             // Here, we cull out all the inactive panels.
             var selectors = this.props.selectors;
-            u.test(_.isArray(selectors), 'array required for selectors');
+
             // implements the behavior that the absence of an active property makes it automatically active.
             function isActive(selector) {
                 return _.isUndefined(selector.active) || !! selector.active;
             }
-            u.test(_.isArray(selectors), 'array required for selectors');
+
             if (this.props.isFlat) {
                 selectors = _.filter(selectors, function (selector) {
                     return isActive(selector);
@@ -58,11 +66,7 @@ define([
                 });
                 selectors = _.filter(selectors, function (g) { return 0 < g.children.length; });
             }
-            return ({
-                selectors: selectors,
-                selections: this.props.selections,
-                isValid: this.props.isValid
-            });
+            return { selectors: selectors };
         },
 
         /* jshint ignore:start */
@@ -85,9 +89,7 @@ define([
                 });
             }
 
-            return(
-                        <select id={this.props.id} ref="multiselector" value={selections} multiple="multiple">{selectors}</select>
-            );
+            return (<select id={this.props.id} value={selections} multiple="multiple">{selectors}</select>);
         },
         /* jshint ignore:end */
 
@@ -96,7 +98,7 @@ define([
                 $el = $(this.getDOMNode());
             $el.on('change', function (event) {
                 void event;
-                var selections = _.map(_.filter(self.refs['multiselector'].getDOMNode().options, function (opt) {
+                var selections = _.map(_.filter($el.options, function (opt) {
                     return opt.selected;
                 }), function (opt) {
                     return opt.value;
