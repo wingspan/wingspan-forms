@@ -6,6 +6,13 @@ define([
 ], function (_, React, AutoControl, ControlCommon) {
     'use strict';
 
+    var DEFAULTS = {
+        readOnly: false,
+        disabled: false,
+        label: '',
+        helpText: ''
+    };
+
     function determineFieldClass(children) {
         if (_.isArray(children)) {
             children = children[0];
@@ -42,12 +49,7 @@ define([
 
         /* jshint ignore:start */
         render: function () {
-            var fieldInfo = _.defaults(this.props.fieldInfo, {
-                readOnly: false,
-                disabled: false,
-                label: '',
-                helpText: ''
-            });
+            var fieldInfo = _.defaults({}, this.props.fieldInfo, DEFAULTS);
 
             var hasInfoTooltip = !!fieldInfo.helpText;
             var hasErrorTooltip = (!this.props.isValid[0] && (this.props.isValid[1] || '').length > 0);
