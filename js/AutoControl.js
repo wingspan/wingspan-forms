@@ -53,7 +53,7 @@ define([
                 disabled: false,
                 readonly: false,
                 noControl: false,
-                controlForField: AutoControl.controlForField
+                controlForField: function() {}
             };
         },
 
