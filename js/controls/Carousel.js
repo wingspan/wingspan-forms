@@ -1,8 +1,7 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'underscore.string', 'react', 'jquery',
-    '../ImmutableOptimizations'
-], function (_, str, React, $, ImmutableOptimizations) {
+    'underscore', 'react', 'jquery', 'kendo'
+], function (_, React, $, kendo) {
     'use strict';
 
 
@@ -57,11 +56,11 @@ define([
                 );
         },
 
-        onChange: function (direction, event) {
+        onChange: function (direction) {
             var i = this.props.value;
             var N = this.props.options.length;
 
-            console.assert(_.contains(['left', 'right'], direction))
+            console.assert(_.contains(['left', 'right'], direction));
             var nextIndex = (direction === 'left' ? (i - 1 + N) % N : (i + 1) % N);
 
             // don't actually move the carousel, the flux state must allow the change first.
@@ -75,7 +74,7 @@ define([
             else {
                 return (N === 0
                     ? '0 of 0'
-                    : str.sprintf('%s of %s', i+1, N));
+                    : kendo.format('{0} of {1}', i+1, N));
             }
         }
 

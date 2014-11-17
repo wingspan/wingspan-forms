@@ -13,7 +13,6 @@ module.exports = function(config) {
             'bower_components/react/react-with-addons.js',
             'bower_components/underscore/underscore.js',
             'bower_components/lodash/dist/lodash.compat.js',
-            'bower_components/underscore.string/lib/underscore.string.js',
             'bower_components/jquery/jquery.js',
             'bower_components/kendo-ui/src/js/kendo.web.js',
             'bower_components/react/react-with-addons.js',

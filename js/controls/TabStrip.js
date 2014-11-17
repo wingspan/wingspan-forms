@@ -1,8 +1,7 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'jquery', 'react', 'kendo', 'underscore.string',
-    '../ImmutableOptimizations'
-], function (_, $, React, kendo, str, ImmutableOptimizations) {
+    'underscore', 'jquery', 'react', 'kendo'
+], function (_, $, React, kendo) {
     'use strict';
 
     /**
@@ -49,7 +48,7 @@ define([
             var keys = _.keys(this.props.tabs),
                 len = keys.length;
             _.each(keys, function (title, index) {
-                var id = str.sprintf('%s-%s', self.stableUniqueId, index);
+                var id = kendo.format('{0}-{1}', self.stableUniqueId, index);
                 var classes = [
                     index === 0 ? 'k-first' : null,
                     index === len - 1 ? 'k-last' : null,
@@ -63,7 +62,7 @@ define([
 
             var divs = [];
             _.each(_.values(this.props.tabs), function (jsx, index) {
-                var id = str.sprintf('%s-%s', self.stableUniqueId, index);
+                var id = kendo.format('{0}-{1}', self.stableUniqueId, index);
 
                 var activeTab = index === self.props.selectedTab;
                 jsx.props.__WsptTabStripActiveHax = activeTab; // hax specific to the TMF - never use this

@@ -3,7 +3,6 @@
     define('underscore', function () { return _; });
     define('react', function () { return React; });
     define('jquery', function () { return $; });
-    define('underscore.string', function () { return _s; });
     define('kendo', function () { return kendo; });
 
     return require('wingspan-forms');

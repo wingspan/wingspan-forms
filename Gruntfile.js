@@ -21,7 +21,6 @@ module.exports = function (grunt) {
             textassets: '../textassets', // all assets loaded via `text!` must be rooted here so the JSX compiler works.
             text: '../bower_components/requirejs-text/text',
             underscore: '../bower_components/underscore/underscore',
-            'underscore.string': '../bower_components/underscore.string/lib/underscore.string',
             jquery: '../bower_components/jquery/jquery',
             kendo: '../bower_components/kendo-ui/src/js/kendo.web',
             moment: '../bower_components/momentjs/moment',
@@ -31,7 +30,6 @@ module.exports = function (grunt) {
 
         shim: {
             'underscore': { deps: [], exports: '_' },
-            'underscore.string': { deps: ['underscore'], exports: ['_s'] },
             'jquery': { deps: [], exports: '$' },
             'kendo': { deps: [], exports: 'kendo' },
             'react': { deps: [], exports: 'React'}
@@ -85,7 +83,7 @@ module.exports = function (grunt) {
                 options: {
                     out: 'dist/wingspan-forms.js',
                     include: ['almond', 'wingspan-forms'],
-                    exclude: ['jquery', 'underscore', 'react', 'require', 'text', 'underscore.string', 'kendo']
+                    exclude: ['jquery', 'underscore', 'react', 'require', 'text', 'kendo']
                 }
             },
             compileQuickStart: {
