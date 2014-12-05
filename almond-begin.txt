@@ -6,4 +6,4 @@
     } else {
         root.WingspanForms = factory(root._, root.React, root.$, root.kendo);
     }
-}(this, function (_, React, $, _s, kendo) {
+}(this, function (_, React, $, kendo) {
