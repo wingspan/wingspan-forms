@@ -1,37 +1,41 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'react', './FormField', './AutoControl', './ImmutableOptimizations'
+    'underscore', 'react',
+    './FormField',
+    './AutoControl',
+    './ImmutableOptimizations'
 ], function (_, React, FormField, AutoControl, ImmutableOptimizations) {
     'use strict';
 
+    var EXCLUDE_FROM_CONTROL = ['isValid', 'layout'];
+
+    var PropTypes = React.PropTypes;
 
     var AutoField = React.createClass({
         mixins: [ImmutableOptimizations(['onChange', 'dataSource'])],
 
+        propTypes: _.extend({
+            fieldInfo: PropTypes.object.isRequired,
+            isValid: PropTypes.array,
+            layout: PropTypes.string
+        }, AutoControl.propTypes),
+
         getDefaultProps: function () {
             return {
-                fieldInfo: undefined,
-                layout: undefined,
-                value: undefined,
-                onChange: undefined,
-                isValid: [true, ''],
-                dataSource: undefined
+                isValid: [true, '']
             };
         },
 
         render: function () {
+            var controlProps = _.omit(this.props, EXCLUDE_FROM_CONTROL);
+
             return (
                 <FormField fieldInfo={this.props.fieldInfo} isValid={this.props.isValid} layout={this.props.layout}>
-                    <AutoControl
-                        fieldInfo={this.props.fieldInfo}
-                        value={this.props.value}
-                        onChange={this.props.onChange}
-                        dataSource={this.props.dataSource || undefined} />
+                    {AutoControl(controlProps)}
                 </FormField>
             );
         }
     });
-
 
     return AutoField;
 });

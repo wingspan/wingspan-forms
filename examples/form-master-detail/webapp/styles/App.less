@@ -7,34 +7,39 @@ body {
 }
 
 .App {
-  display:table;
-  padding: 10px;
-
-  > .MasterDetailDemo {
-    display:table-cell;
-    width: 50%;
-    padding: 10px;
-  }
-  > pre {
-    display: table-cell;
-    vertical-align: top;
-    padding: 10px;
-  }
+  display: table;
+  width: 100%;
+  height: 100%;
 }
 
-.MasterDetailDemo {
-  > div {
-    display: table;
+.header {
+  display: table-row;
+  height: 1px;
+  text-align: center;
+}
 
-    > ol {
-      display: table-cell;
-      vertical-align: top;
-      padding: 10px;
-    }
-    > .AutoForm {
-      display: table-cell;
-      padding: 10px;
-    }
+.main {
+  height: 100%;
+  display: table;
+  width: 100%;
+}
 
-  }
+.box {
+  display: table-cell;
+}
+
+.content {
+  padding: 10px;
+}
+
+.sidebar {
+  width: 100px;
+  border: 1px solid #808080;
+  vertical-align: top;
+}
+
+.footer {
+  display: table-row;
+  height: 1px;
+  color: darkgray;
 }

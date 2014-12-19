@@ -7,12 +7,17 @@ define([
 
     var PropTypes = React.PropTypes;
 
-    function toScalarValue(valueField, value) {
-    	return _.isObject(value) ? value[valueField] : value;
+    function toScalarValues(data, valueField) {
+        if (!valueField) {
+            return data;
+        }
+        return data.map(function (dataItem) {
+            return dataItem[valueField];
+        });
     }
 
     return React.createClass({
-        mixins: [ImmutableOptimizations(['onChange'])],
+        mixins: [ImmutableOptimizations(['onChange', 'dataSource'])],
 
         statics: { fieldClass: function () { return 'formFieldMultiselect'; } },
 
@@ -34,7 +39,7 @@ define([
             return {
             	disabled: false,
                 readonly: false,
-                onChange: $.noop
+                value: []
             };
         },
 
@@ -52,16 +57,17 @@ define([
                 dataValueField: this.props.valueField,
                 dataSource: this.props.dataSource,
                 placeholder: this.props.placeholder,
-                itemTemplate: this.props.template,
-                change: this.onChange
+                itemTemplate: this.props.template
             }, this.props.options);
 
             var kendoWidget = $el.kendoMultiSelect(widgetOptions).data('kendoMultiSelect');
 
-            // the 'value' method is a getter/setter that gets/sets the valueField. It will look up the record
-            // in the store via the value set here.
+            if (this.props.onChange) {
+                kendoWidget.bind('change', this.onChange);
+            }
+
             if (this.props.value) {
-            	kendoWidget.value(this.props.value.map(toScalarValue.bind(null, this.props.valueField)));
+            	kendoWidget.value(this.props.value);
             }
 
             if (this.props.disabled) {
@@ -84,7 +90,7 @@ define([
             console.assert(_.isEqual(_.pick(nextProps, cantChange), _.pick(this.props, cantChange)), 'these props cant change after mount');
         },
 
-        componentDidUpdate: function (prevProps, prevState) {
+        componentDidUpdate: function (prevProps) {
             var $el = $(this.getDOMNode());
             var kendoWidget = $el.data('kendoMultiSelect');
 
@@ -93,7 +99,7 @@ define([
             }
 
             if (this.props.value !== prevProps.value) {
-            	kendoWidget.value(this.props.value.map(toScalarValue.bind(null, this.props.valueField)));
+            	kendoWidget.value(this.props.value);
             }
 
             if (this.props.disabled !== prevProps.disabled) {
@@ -105,12 +111,13 @@ define([
         },
 
         onChange: function (event) {
-            var kendoMultiSelect = event.sender;
-            var records = kendoMultiSelect.dataItems();
+            var kendoWidget = event.sender;
+            var newValues = toScalarValues(kendoWidget.dataItems(), this.props.valueField);
 
-            kendoMultiSelect.value(this.props.value.map(toScalarValue.bind(null, this.props.valueField)));
+            // To keep the "Flux" loop, we need to reset the widget value to props so that data flows down.
+            kendoWidget.value(this.props.value);
 
-            this.props.onChange(records);
+            this.props.onChange(newValues);
         }
     });
 

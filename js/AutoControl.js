@@ -8,9 +8,10 @@ define([
     './controls/KendoDate',
     './controls/KendoTime',
     './controls/KendoComboBox',
+    './controls/KendoMultiSelect',
     './ImmutableOptimizations'
-], function (_, React, KendoText, MultilineText, SwitchBox, KendoNumber, KendoDatetime, KendoDate, KendoTime, KendoComboBox,
-             ImmutableOptimizations) {
+], function (_, React, KendoText, MultilineText, SwitchBox, KendoNumber, KendoDatetime, KendoDate, KendoTime,
+             KendoComboBox, KendoMultiSelect, ImmutableOptimizations) {
     'use strict';
 
     var TYPE_TO_CONTROL = {
@@ -22,7 +23,29 @@ define([
         'time' : KendoTime,
         'boolean' : SwitchBox
     };
-    var CONTROL_PROPS = ['id', 'value', 'onChange', 'isValid', 'disabled', 'noControl'];
+    var EXCLUDE_FROM_CONTROL = ['fieldInfo', 'controlForField'];
+
+    var PropTypes = React.PropTypes;
+
+    var FieldInfoType = React.PropTypes.shape({
+        "name": PropTypes.string.isRequired,
+        "label": PropTypes.string,
+        "dataType": PropTypes.string.isRequired,
+        "placeholder": PropTypes.string,
+        "helpText": PropTypes.string,
+        "array": PropTypes.bool,
+        "readOnly": PropTypes.bool,
+        "required": PropTypes.bool,
+        "multiLine": PropTypes.bool,
+        "options": PropTypes.object,
+        "maxLength": PropTypes.number,
+        "minLength": PropTypes.number,
+        "pattern": PropTypes.string,
+        "maxValue": PropTypes.any,
+        "minValue": PropTypes.any,
+        "decimals": PropTypes.number,
+        "stepValue": PropTypes.number
+    });
 
     var AutoControl = React.createClass({
         mixins: [ImmutableOptimizations(['onChange', 'dataSource'])],
@@ -32,7 +55,7 @@ define([
                 var dataType = fieldInfo.dataType;
 
                 if (fieldInfo.options) {
-                    return KendoComboBox;
+                    return fieldInfo.array ? KendoMultiSelect : KendoComboBox;
                 }
                 if (fieldInfo.multiLine) {
                     dataType = dataType + ':multiLine';
@@ -42,17 +65,18 @@ define([
             }
         },
 
+        /* AutoControl will pass all unknown props to the generated control, but these are the common ones. */
+        propTypes: {
+            fieldInfo: FieldInfoType.isRequired,
+            value: PropTypes.any,
+            onChange: PropTypes.func,
+            dataSource: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+            readonly: PropTypes.bool,
+            controlForField: PropTypes.func
+        },
+
         getDefaultProps: function () {
             return {
-                value: undefined,
-                onChange: undefined,
-                dataSource: undefined, // optional, usually comes as fieldInfo.options.dataSource. Only use here if the fieldInfo is stored in react state and you don't want to put a DataSource in react state.
-                id: undefined,
-                fieldInfo: undefined,
-                isValid: [true, ''],
-                disabled: false,
-                readonly: false,
-                noControl: false,
                 controlForField: function() {}
             };
         },
@@ -60,7 +84,7 @@ define([
         render: function () {
             var fieldInfo = this.props.fieldInfo;
             var Control = this.props.controlForField(fieldInfo) || AutoControl.controlForField(fieldInfo);
-            var controlProps = _.pick(this.props, CONTROL_PROPS);
+            var controlProps = _.omit(this.props, EXCLUDE_FROM_CONTROL);
 
             controlProps.name = fieldInfo.name; // to help with debugging in the presence of asynchronous rendering
 
@@ -78,7 +102,8 @@ define([
             controlProps.maxLength = fieldInfo.maxLength;
 
             if (fieldInfo.options) {
-                controlProps.dataSource = this.props.dataSource || fieldInfo.options.dataSource;
+                // The DataSource can either be explicitly passed in or the widgets will use inline (array) data
+                controlProps.dataSource = this.props.dataSource || fieldInfo.options.data;
                 controlProps.valueField = fieldInfo.options.metadata.idProperty;
                 controlProps.displayField = fieldInfo.options.metadata.nameProperty;
             }
@@ -89,27 +114,3 @@ define([
 
     return AutoControl;
 });
-
-/*
-    fieldInfo looks like this:
-
-{
-    "name": "tmfItemId",
-    "label": "ID",
-    "dataType": "text",
-    "placeholder": "100.02",
-    "helpText": "Unique identifier for the List Item (####.##)",
-    "array": false,
-    "readonly": false,
-    "required": true,
-    "multiLine": false,
-    "options": null,
-    "maxLength": 32,
-    "minLength": 32,
-    "pattern": "^[a-zA-Z0-9]{1,5}\\.[a-zA-Z0-9]{1,3}$",
-    "maxValue": null,
-    "minValue": null,
-    "decimals": 0,
-    "stepValue": 1.0
-}
-*/
