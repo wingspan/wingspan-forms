@@ -21,6 +21,7 @@
         "phoneNumber": "415-555-3317",
         "email": "bill.buckley@example.com",
         "contactGroup": "friend",
+        "socialNetworks": ["fb", "tw"],
         "id": "2b52b0b8-7e6a-11e3-a426-c28cc531c7ca",
         "revision": 1
     }]

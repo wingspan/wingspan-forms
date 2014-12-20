@@ -48,6 +48,8 @@ define([
     });
 
     var AutoControl = React.createClass({
+        displayName: 'AutoControl',
+
         mixins: [ImmutableOptimizations(['onChange', 'dataSource'])],
 
         statics: {

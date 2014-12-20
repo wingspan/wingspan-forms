@@ -7,16 +7,11 @@ define([
 
     var PropTypes = React.PropTypes;
 
-    function toScalarValues(data, valueField) {
-        if (!valueField) {
-            return data;
-        }
-        return data.map(function (dataItem) {
-            return dataItem[valueField];
-        });
+    function toPlainObject(data) {
+        return data.toJSON();
     }
 
-    return React.createClass({
+    var KendoMultiSelect = React.createClass({
         mixins: [ImmutableOptimizations(['onChange', 'dataSource'])],
 
         statics: { fieldClass: function () { return 'formFieldMultiselect'; } },
@@ -112,13 +107,16 @@ define([
 
         onChange: function (event) {
             var kendoWidget = event.sender;
-            var newValues = toScalarValues(kendoWidget.dataItems(), this.props.valueField);
+            var values = _.clone(kendoWidget.value());
+            var dataItems = kendoWidget.dataItems().map(toPlainObject);
 
             // To keep the "Flux" loop, we need to reset the widget value to props so that data flows down.
             kendoWidget.value(this.props.value);
 
-            this.props.onChange(newValues);
+            // Provide both scalar and object values for clients
+            this.props.onChange(values, dataItems);
         }
     });
 
+    return KendoMultiSelect;
 });

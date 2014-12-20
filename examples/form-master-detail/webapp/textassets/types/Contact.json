@@ -52,8 +52,8 @@
                     }
                 }
             },
-            "social": {
-                "name": "social",
+            "socialNetworks": {
+                "name": "socialNetworks",
                 "label": "Social Networks",
                 "dataType": "enum",
                 "helpText" : "Networks that the contact uses",
