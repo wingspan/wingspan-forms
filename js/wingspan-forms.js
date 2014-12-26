@@ -26,14 +26,13 @@ define([
     './controls/TabStrip',
     './controls/PromiseButton',
     './controls/SearchBox',
-    './controls/SelectionListDismissible',
     './ControlCommon',
     './FluxFormMixin',
     './ImmutableOptimizations'
 ], function (AutoControl, FormField, AutoField, Button, Carousel, CheckBox,
              KendoAutoComplete, KendoComboBox, KendoDatePicker, KendoDateTimePicker, KendoGrid, KendoGridPicker,
              KendoListView, KendoMultiSelect, KendoNumericTextBox, KendoPager, KendoTabStrip, KendoText, KendoTimePicker,
-             MultiSelect, MultilineText, Radio, RadioGroup, SwitchBox, TabStrip, PromiseButton, SearchBox, SelectionListDismissible,
+             MultiSelect, MultilineText, Radio, RadioGroup, SwitchBox, TabStrip, PromiseButton, SearchBox,
              ControlCommon, FluxFormMixin, ImmutableOptimizations) {
     'use strict';
 
@@ -75,7 +74,6 @@ define([
         TabStrip: TabStrip,
         PromiseButton: PromiseButton,
         SearchBox: SearchBox,
-        SelectionListDismissible: SelectionListDismissible,
         ControlCommon: ControlCommon,
         FluxFormMixin: FluxFormMixin,
         ImmutableOptimizations: ImmutableOptimizations
