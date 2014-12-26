@@ -76,16 +76,16 @@ define([
                     var controlId = str.sprintf('%s-%s', facet, val);
                     return (
                         <div className="facetFilterControl" key={controlId}>
-                            <CheckBox label={val} id={controlId} value={_.contains(this.state.filters[facet], val)}
+                            <Forms.CheckBox label={val} id={controlId} value={_.contains(this.state.filters[facet], val)}
                                 onChange={_.partial(this.onFilterToggle, facet, val)}/>
                             <span className="count">{count}</span>
                         </div>
                     );
                 }.bind(this));
                 return (
-                    <FormField key={facet} fieldInfo={_.object([['label', ContactModel.properties[facet].label]])}>
+                    <Forms.FormField key={facet} fieldInfo={_.object([['label', ContactModel.properties[facet].label]])}>
                         {checkboxes}
-                    </FormField>
+                    </Forms.FormField>
                 );
             }.bind(this));
 
@@ -120,8 +120,11 @@ define([
                             </div>
                             <div className="right">
                                 <div>
-                                    <KendoGrid className="KendoGrid" dataSource={this.dataSource}
-                                    columns={this.columns} height="400" />
+                                    <Forms.KendoGrid
+                                        className="KendoGrid"
+                                        dataSource={this.dataSource}
+                                        columns={this.columns}
+                                        height="400" />
                                 </div>
                             </div>
                         </div>
@@ -136,22 +139,6 @@ define([
     function entrypoint(rootElement) {
         React.renderComponent(<App />, rootElement);
     }
-
-
-    var FormField = Forms.FormField;
-    var KendoText = Forms.KendoText;
-    var MultilineText = Forms.MultilineText;
-    var MultiSelect = Forms.MultiSelect;
-    var KendoComboBox = Forms.KendoComboBox;
-    var KendoNumber = Forms.KendoNumber;
-    var KendoDate = Forms.KendoDate;
-    var KendoDatetime = Forms.KendoDatetime;
-    var CheckBox = Forms.CheckBox;
-    var Radio = Forms.Radio;
-    var RadioGroup = Forms.RadioGroup;
-    var SwitchBox = Forms.SwitchBox;
-    var Carousel = Forms.Carousel;
-    var KendoGrid = Forms.KendoGrid;
 
 
     return {

@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'react', 'jquery', 'wingspan-forms',
+    'underscore', 'react', 'jquery', 'wingspan-forms'
 ], function (_, React, $, Forms) {
     'use strict';
 
@@ -12,10 +12,10 @@ define([
     var KendoAutoComplete = Forms.KendoAutoComplete;
     var KendoComboBox = Forms.KendoComboBox;
     var KendoMultiSelect = Forms.KendoMultiSelect;
-    var KendoNumber = Forms.KendoNumber;
-    var KendoDate = Forms.KendoDate;
-    var KendoTime = Forms.KendoTime;
-    var KendoDatetime = Forms.KendoDatetime;
+    var KendoNumber = Forms.KendoNumericTextBox;
+    var KendoDate = Forms.KendoDatePicker;
+    var KendoTime = Forms.KendoTimePicker;
+    var KendoDatetime = Forms.KendoDateTimePicker;
     var CheckBox = Forms.CheckBox;
     var Radio = Forms.Radio;
     var RadioGroup = Forms.RadioGroup;

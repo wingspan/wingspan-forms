@@ -49,11 +49,11 @@ define([
                         </FormField>
 
                         <FormField fieldInfo={SimpleFormMetadata.age} isValid={this.isFieldValid('age')}>
-                            <KendoNumber spinners={true} value={this.state.age} onChange={_.partial(this.onFieldChange, 'age')} />
+                            <KendoNumericTextBox spinners={true} value={this.state.age} onChange={_.partial(this.onFieldChange, 'age')} />
                         </FormField>
 
                         <FormField fieldInfo={SimpleFormMetadata.birthday} isValid={this.isFieldValid('birthday')}>
-                            <KendoDate value={this.state.birthday} onChange={_.partial(this.onFieldChange, 'birthday')} />
+                            <KendoDatePicker value={this.state.birthday} onChange={_.partial(this.onFieldChange, 'birthday')} />
                         </FormField>
 
                     </div>
@@ -85,8 +85,8 @@ define([
     var FormField = Forms.FormField;
     var KendoText = Forms.KendoText;
     var KendoComboBox = Forms.KendoComboBox;
-    var KendoNumber = Forms.KendoNumber;
-    var KendoDate = Forms.KendoDate;
+    var KendoNumericTextBox = Forms.KendoNumericTextBox;
+    var KendoDatePicker = Forms.KendoDatePicker;
 
     return {
         entrypoint: entrypoint

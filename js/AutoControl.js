@@ -3,23 +3,24 @@ define([
     './controls/KendoText',
     './controls/MultilineText',
     './controls/SwitchBox',
-    './controls/KendoNumber',
-    './controls/KendoDatetime',
-    './controls/KendoDate',
-    './controls/KendoTime',
+    './controls/KendoNumericTextBox',
+    './controls/KendoDateTimePicker',
+    './controls/KendoDatePicker',
+    './controls/KendoTimePicker',
     './controls/KendoComboBox',
     './ImmutableOptimizations'
-], function (_, React, KendoText, MultilineText, SwitchBox, KendoNumber, KendoDatetime, KendoDate, KendoTime, KendoComboBox,
+], function (_, React, KendoText, MultilineText, SwitchBox,
+             KendoNumericTextBox, KendoDateTimePicker, KendoDatePicker, KendoTimePicker, KendoComboBox,
              ImmutableOptimizations) {
     'use strict';
 
     var TYPE_TO_CONTROL = {
         'text' : KendoText,
         'text:multiLine' : MultilineText,
-        'number' : KendoNumber,
-        'date' : KendoDate,
-        'datetime' : KendoDatetime,
-        'time' : KendoTime,
+        'number' : KendoNumericTextBox,
+        'date' : KendoDatePicker,
+        'datetime' : KendoDateTimePicker,
+        'time' : KendoTimePicker,
         'boolean' : SwitchBox
     };
     var CONTROL_PROPS = ['id', 'value', 'onChange', 'isValid', 'disabled', 'noControl'];

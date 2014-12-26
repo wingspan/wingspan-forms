@@ -16,7 +16,7 @@ define([
      * value interface is ISO-8601, with the date portion omitted.
      * HH:MM:SS
      */
-    var KendoTime = React.createClass({
+    var KendoTimePicker = React.createClass({
 
         mixins: [ImmutableOptimizations(['onChange'])],
 
@@ -86,5 +86,5 @@ define([
         }
     });
 
-    return KendoTime;
+    return KendoTimePicker;
 });

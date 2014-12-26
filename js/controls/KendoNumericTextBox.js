@@ -7,7 +7,7 @@ define([
     'use strict';
 
 
-    var KendoNumber = React.createClass({
+    var KendoNumericTextBox = React.createClass({
         mixins: [ImmutableOptimizations(['onChange'])],
 
         statics: { fieldClass: function () { return 'formFieldNumeric'; } },
@@ -102,6 +102,6 @@ define([
         }
     });
 
-    return KendoNumber;
+    return KendoNumericTextBox;
 
 });
