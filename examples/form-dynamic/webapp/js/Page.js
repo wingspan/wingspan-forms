@@ -52,15 +52,6 @@ define([
             };
         },
 
-        componentWillMount: function () {
-            // Initialize datastores for widgets that require one
-            _.each(this.props.model.properties, function (fieldInfo) {
-                if (fieldInfo.options) {
-                    fieldInfo.options.dataSource = new kendo.data.DataSource(fieldInfo.options);
-                }
-            }.bind(this));
-        },
-
         render: function () {
             var controls = _.map(this.props.model.properties, function (fieldInfo) {
                 return (
@@ -83,7 +74,7 @@ define([
 
 
     function entrypoint(rootEl) {
-        React.renderComponent(<App/>, rootEl);
+        React.render(<App/>, rootEl);
     }
 
     return {

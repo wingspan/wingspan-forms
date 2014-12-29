@@ -6,7 +6,6 @@
         baseUrl: 'js-built',
         paths: {
             'underscore': '../lib/underscore',
-            'underscore.string': '../lib/underscore.string',
             'jquery': '../lib/jquery',
             'kendo': '../lib/kendo-ui/js/kendo.web',
             'react': '../lib/react-with-addons',
@@ -16,7 +15,6 @@
         },
         shim: {
             'underscore': { deps: [], exports: '_' },
-            'underscore.string': { exports: '_s' },
             'jquery': { deps: [], exports: '$' },
             'kendo': { deps: [], exports: 'kendo' },
             'react': { deps: [], exports: 'React'},

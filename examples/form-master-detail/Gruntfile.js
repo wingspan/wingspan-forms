@@ -53,7 +53,6 @@ module.exports = function (grunt) {
                             'bower_components/jquery/jquery.js',
                             'bower_components/underscore/underscore.js',
                             'bower_components/react/react-with-addons.js',
-                            'bower_components/underscore.string/lib/underscore.string.js',
                             'bower_components/requirejs/require.js',
                             'bower_components/requirejs-text/text.js'
                         ],

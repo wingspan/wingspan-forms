@@ -52,6 +52,31 @@
                     }
                 }
             },
+            "socialNetworks": {
+                "name": "socialNetworks",
+                "label": "Social Networks",
+                "dataType": "enum",
+                "helpText" : "Networks that the contact uses",
+                "array": true,
+                "required" : false,
+                "options": {
+                    "data" : [ {
+                        "value" : "fb",
+                        "name" : "Facebook"
+                    }, {
+                        "value" : "tw",
+                        "name" : "Twitter"
+                    }, {
+                        "value" : "inst",
+                        "name" : "Instagram"
+                    } ],
+                    "metadata": {
+                        "root": "data",
+                        "idProperty": "value",
+                        "nameProperty": "name"
+                    }
+                }
+            },
             "id": {
                 "name": "id",
                 "label": "ID",
