@@ -10,8 +10,7 @@
             'jquery': '../lib/jquery',
             'kendo': '../lib/kendo-ui/js/kendo.web',
             'react': '../lib/react-with-addons',
-            'wingspan-forms': '../lib/wingspan-forms/wingspan-forms',
-            'wingspan-cursor': '../lib/wingspan-cursor'
+            'wingspan-forms': '../lib/wingspan-forms/wingspan-forms'
         },
         shim: {
             'underscore': { deps: [], exports: '_' },
@@ -20,8 +19,7 @@
             'kendo': { deps: [], exports: 'kendo' },
             'moment': { deps: [], exports: 'moment' },
             'react': { deps: [], exports: 'React'},
-            'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo', 'underscore.string'], exports: 'WingspanForms' },
-            'wingspan-cursor': { deps: [], exports: 'WingspanCursor' }
+            'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo'], exports: 'WingspanForms' }
         }
     });
 })();

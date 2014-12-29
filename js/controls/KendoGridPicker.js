@@ -41,9 +41,11 @@ define([
         },
 
         render: function () {
-            var columns = [{ title: '', template: kendo.template(KendoGridPickerTemplate), width: 34 }].concat(this.props.columns);
+            var columns = [{ title: '', template: kendo.template(KendoGridPickerTemplate), width: 34 }]
+                .concat(this.props.columns);
+            var gridProps = { columns: columns, selectable: 'multiple, row', onChange: this.onGridChange };
 
-            return this.transferPropsTo(KendoGrid({ columns: columns, selectable: 'multiple, row', onChange: this.onGridChange }));
+            return React.createElement(KendoGrid, _.defaults(gridProps, this.props));
         },
 
         componentDidMount: function () {

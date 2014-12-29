@@ -23,14 +23,6 @@ module.exports = function (grunt) {
             }
         },
 
-        subgrunt: {
-            options: {},
-            'wingspan-forms': {
-                '../../': ['default'],
-                '../../../wingspan-cursor': ['release']
-            }
-        },
-
         react: {
             app: {
                 files: [{ expand: true, cwd: 'webapp/js', src: ['**/*.js'], dest: 'webapp/js-built', ext: '.js' }]
@@ -72,7 +64,6 @@ module.exports = function (grunt) {
                     'react': '../lib/react-with-addons',
                     'text': '../lib/text',
                     'wingspan-forms': '../lib/wingspan-forms/wingspan-forms',
-                    'wingspan-cursor': '../lib/wingspan-cursor',
                     'textassets': '../textassets' // all assets loaded via `text!` must be rooted here (to avoid JSX compilation)
                 },
 
@@ -82,8 +73,7 @@ module.exports = function (grunt) {
                     'jquery': { deps: [], exports: '$' },
                     'kendo': { deps: [], exports: 'kendo' },
                     'react': { deps: [], exports: 'React'},
-                    'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo', 'underscore.string'], exports: 'WingspanForms' },
-                    'wingspan-cursor': { deps: [], exports: 'WingspanCursor' }
+                    'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo'], exports: 'WingspanForms' }
                 },
 
                 uglify: {
@@ -114,8 +104,7 @@ module.exports = function (grunt) {
                             'bower_components/react/react-with-addons.js',
                             'bower_components/underscore.string/lib/underscore.string.js',
                             'bower_components/requirejs/require.js',
-                            'bower_components/requirejs-text/text.js',
-                            '../../../wingspan-cursor/dist/wingspan-cursor.js'
+                            'bower_components/requirejs-text/text.js'
                         ],
                         dest: 'webapp/lib',
                         flatten: true,
@@ -147,10 +136,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-react');
     grunt.loadNpmTasks('grunt-bower-task');
-    grunt.loadNpmTasks('grunt-subgrunt');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
 
-    grunt.registerTask('default', ['bower:install', 'subgrunt', 'copy', 'react', 'less', 'requirejs']);
-    grunt.registerTask('devel', ['bower:install', 'subgrunt', 'copy', 'react', 'less']);
+    grunt.registerTask('default', ['bower:install', 'copy', 'react', 'less', 'requirejs']);
 };

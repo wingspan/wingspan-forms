@@ -23,13 +23,6 @@ module.exports = function (grunt) {
             }
         },
 
-        subgrunt: {
-            options: {},
-            'wingspan-forms': {
-                '../../': ['default']
-            }
-        },
-
         react: {
             app: {
                 files: [{ expand: true, cwd: 'webapp/js', src: ['**/*.js'], dest: 'webapp/js-built', ext: '.js' }]
@@ -92,9 +85,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-react');
     grunt.loadNpmTasks('grunt-bower-task');
-    grunt.loadNpmTasks('grunt-subgrunt');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
 
-    grunt.registerTask('default', ['bower:install', 'subgrunt', 'copy', 'react', 'less']);
+    grunt.registerTask('default', ['bower:install', 'copy', 'react', 'less']);
 };

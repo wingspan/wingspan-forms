@@ -12,7 +12,6 @@
             'react': '../lib/react-with-addons',
             'text': '../lib/text',
             'wingspan-forms': '../lib/wingspan-forms/wingspan-forms',
-            'wingspan-cursor': '../lib/wingspan-cursor',
             'textassets': '../textassets/'
         },
         shim: {
@@ -21,8 +20,7 @@
             'jquery': { deps: [], exports: '$' },
             'kendo': { deps: [], exports: 'kendo' },
             'react': { deps: [], exports: 'React'},
-            'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo', 'underscore.string'], exports: 'WingspanForms' },
-            'wingspan-cursor': { deps: [], exports: 'WingspanCursor' }
+            'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo'], exports: 'WingspanForms' }
         }
     });
 })();

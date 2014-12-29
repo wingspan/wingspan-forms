@@ -20,7 +20,7 @@
             'jquery': { deps: [], exports: '$' },
             'kendo': { deps: [], exports: 'kendo' },
             'react': { deps: [], exports: 'React'},
-            'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo', 'underscore.string'], exports: 'WingspanForms' }
+            'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo'], exports: 'WingspanForms' }
         }
     });
 })();

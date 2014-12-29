@@ -1,6 +1,6 @@
 define([
-    'underscore'
-], function (_) {
+    'underscore', 'underscore.string'
+], function (_, str) {
     'use strict';
 
 
@@ -14,9 +14,12 @@ define([
             return {
                 firstName: firstName,
                 lastName: lastName,
-                phoneNumber: [_.str.pad(_.random(0, 999), 3, '0', 'left'), _.str.pad(_.random(0, 999), 3, '0', 'left'), _.str.pad(_.random(0, 9999), 4, '0', 'left')].join('-'),
+                phoneNumber: [
+                    str.pad(_.random(0, 999), 3, '0', 'left'),
+                    str.pad(_.random(0, 999), 3, '0', 'left'),
+                    str.pad(_.random(0, 9999), 4, '0', 'left')].join('-'),
                 contactGroup: ['friend', 'work', 'family'][_.random(0,2)],
-                email: _.str.sprintf('%s.%s@example.com', firstName, lastName).toLowerCase(),
+                email: str.sprintf('%s.%s@example.com', firstName, lastName).toLowerCase(),
                 id: generateUUID(),
                 revision: 1
             };

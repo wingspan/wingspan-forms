@@ -18,12 +18,9 @@ module.exports = function (grunt) {
         baseUrl: 'js-built',
 
         paths: {
-            textassets: '../textassets', // all assets loaded via `text!` must be rooted here so the JSX compiler works.
-            text: '../bower_components/requirejs-text/text',
             underscore: '../bower_components/underscore/underscore',
             jquery: '../bower_components/jquery/jquery',
             kendo: '../bower_components/kendo-ui/src/js/kendo.web',
-            moment: '../bower_components/momentjs/moment',
             react: '../bower_components/react/react-with-addons',
             almond: '../bower_components/almond/almond'
         },
@@ -83,7 +80,7 @@ module.exports = function (grunt) {
                 options: {
                     out: 'dist/wingspan-forms.js',
                     include: ['almond', 'wingspan-forms'],
-                    exclude: ['jquery', 'underscore', 'react', 'require', 'text', 'kendo']
+                    exclude: ['jquery', 'underscore', 'react', 'require', 'kendo']
                 }
             },
             compileQuickStart: {
@@ -123,6 +120,24 @@ module.exports = function (grunt) {
             }
         },
 
+        subgrunt: {
+            options: {},
+            examples: [
+                'examples/controlled-grid',
+                'examples/faceted-search',
+                'examples/form-dynamic',
+                'examples/form-master-detail',
+                'examples/form-simple',
+                'examples/form-simple-2',
+                'examples/form-twins',
+                'examples/helloworld',
+                'examples/helloworld-requirejs',
+                'examples/live-code-starter',
+                'examples/sandbox',
+                'examples/state-at-top'
+            ]
+        },
+
         karma: {
             unit: {
                 configFile: 'karma.conf.js'
@@ -139,10 +154,14 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-subgrunt');
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-react');
 
     grunt.registerTask('default', ['bower:install', 'react:lib', 'less', 'copy', 'requirejs:compile']);
     grunt.registerTask('devel', ['bower:install', 'react:lib', 'less', 'copy']);
     grunt.registerTask('test', ['default', 'react:spec', 'karma']);
+
+    // Before building examples, build the wingspan-forms.js distribution
+    grunt.registerTask('examples', ['default', 'subgrunt']);
 };

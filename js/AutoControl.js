@@ -84,7 +84,7 @@ define([
                 controlProps.displayField = fieldInfo.options.metadata.nameProperty;
             }
 
-            return Control(controlProps);
+            return React.createElement(Control, controlProps);
         }
     });
 
