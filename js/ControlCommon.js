@@ -3,9 +3,6 @@ define([
 ], function (_, $, kendo) {
     'use strict';
 
-    var NOW = new Date();
-    var DEFAULTS = kendo.ui.DateTimePicker.fn.options;
-
     function quadState(disabled, readonly, isValid, noControl) {
         if (noControl) {
             return 'noControl';
@@ -19,29 +16,6 @@ define([
         } else {
             return null;
         }
-    }
-
-    /**
-     * Handle the unusual format used by TypeInfo for specifying the current time.
-     * @param date
-     * @returns {Date}
-     */
-    function parseDate(date) {
-        return (date === 'NOW') ? NOW : date;
-    }
-
-
-    function setKendoDateState(kendoWidget, valueAsDate, disabled, readonly, max, min) {
-        kendoWidget.value(valueAsDate);
-        kendoWidget.min(parseDate(min || DEFAULTS.min));
-        kendoWidget.max(parseDate(max || DEFAULTS.max));
-
-        if (valueAsDate === null && kendoWidget.dateView.calendar) {
-            // If the value is being cleared, the dateView also needs to be reset to use the current month
-            kendoWidget.dateView.calendar.navigate(NOW);
-        }
-
-        setKendoDisabledReadonly(kendoWidget, disabled, readonly);
     }
 
     function setKendoNumberState(kendoWidget, value, disabled, readonly) {
@@ -121,11 +95,9 @@ define([
 
     return {
         quadState: quadState,
-        parseDate: parseDate,
         attachFormTooltips: attachFormTooltips,
         hideErrorTooltip: hideErrorTooltip,
         refreshErrorTooltip: refreshErrorTooltip,
-        setKendoDateState: setKendoDateState,
         setKendoNumberState: setKendoNumberState,
         setKendoNumberValue: setKendoNumberValue,
         setKendoDisabledReadonly: setKendoDisabledReadonly

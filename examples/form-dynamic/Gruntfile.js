@@ -57,7 +57,6 @@ module.exports = function (grunt) {
 
                 paths: {
                     'underscore': '../lib/underscore',
-                    'underscore.string': '../lib/underscore.string',
                     'jquery': '../lib/jquery',
                     'kendo': '../lib/kendo-ui/js/kendo.web',
                     'react': '../lib/react-with-addons',
@@ -68,11 +67,10 @@ module.exports = function (grunt) {
 
                 shim: {
                     'underscore': { deps: [], exports: '_' },
-                    'underscore.string': { exports: '_s' },
                     'jquery': { deps: [], exports: '$' },
                     'kendo': { deps: [], exports: 'kendo' },
                     'react': { deps: [], exports: 'React'},
-                    'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo', 'underscore.string'], exports: 'WingspanForms' }
+                    'wingspan-forms': { deps: ['underscore', 'react', 'jquery', 'kendo'], exports: 'WingspanForms' }
                 },
 
                 uglify: {
@@ -101,7 +99,6 @@ module.exports = function (grunt) {
                             'bower_components/jquery/jquery.js',
                             'bower_components/underscore/underscore.js',
                             'bower_components/react/react-with-addons.js',
-                            'bower_components/underscore.string/lib/underscore.string.js',
                             'bower_components/requirejs/require.js',
                             'bower_components/requirejs-text/text.js'
                         ],

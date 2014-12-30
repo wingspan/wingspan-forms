@@ -11,10 +11,10 @@ define([
         gender: { dataType: 'enum', label: 'Gender', name: 'gender',
                   options: {
                       metadata: { idProperty: 'value', nameProperty: 'label'},
-                      dataSource: [{ value: 'male', label: 'Male'}, { value: 'female', label: 'Female'}] }
+                      data: [{ value: 'male', label: 'Male'}, { value: 'female', label: 'Female'}] }
                   },
         age: { dataType: 'number', label: 'Age', name: 'age' },
-        birthday: { dataType: 'date', label: 'Birthday', name: 'birthday'}
+        birthday: { dataType: 'date', label: 'Birthday', name: 'birthday', maxValue: 'NOW' }
     };
 
     var MyForm = React.createClass({

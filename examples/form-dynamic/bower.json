@@ -17,6 +17,7 @@
         "kendo-ui": "~2013.3.1119",
         "underscore": "~1.7.0",
         "react": "~0.12.0",
-        "requirejs": "~2.1.9"
+        "requirejs": "~2.1.9",
+        "requirejs-text": "~2.0.10"
     }
 }
