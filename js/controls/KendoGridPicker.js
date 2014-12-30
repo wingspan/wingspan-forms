@@ -9,7 +9,7 @@ define([
 
     var PropTypes = React.PropTypes;
 
-    var KendoGridPickerTemplate = '<div class="checkboxWrap"><input id="#: uid #" type="checkbox" value="#: id #" name="checkboxSelector"><label for="#: uid #"></label></div>';
+    var KendoGridPickerTemplate = '<div><input id="#: uid #" type="checkbox" value="#: id #" name="checkboxSelector"><label></label></div>';
 
     function enableCheckboxSelection(grid) {
         grid.selectable.userEvents.notify = function (eventName, data) {

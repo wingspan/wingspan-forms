@@ -23,21 +23,21 @@ define([
     }
 
     function updateGridSelection(component, grid) {
-        // Ignore change events while updating selection
-        grid.unbind('change', component.onGridChange);
-
-        if (_.isEmpty(component.props.value)) {
-            grid.clearSelection();
-            grid.bind('change', component.onGridChange);
-            return;
-        }
-
         var selectors = _.pluck(component.props.value, 'id')
             .map(function (id) { return grid.dataSource.get(id); })
             .filter(function (dataItem) { return !!dataItem; })
             .map(function (dataItem) { return 'tr[data-uid="' + dataItem.uid + '"]'; });
 
-        grid.select(selectors.join(', '));
+        // Ignore change events while updating selection
+        grid.unbind('change', component.onGridChange);
+
+        // Clear the selection completely since we cannot de-select using grid.select()
+        grid.clearSelection();
+
+        if (selectors.length) {
+            grid.select(selectors.join(', '));
+        }
+
         grid.bind('change', component.onGridChange);
     }
 
