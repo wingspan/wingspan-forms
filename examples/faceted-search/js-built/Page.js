@@ -1,18 +1,16 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'react', 'jquery', 'kendo', 'wingspan-forms',
+    'underscore', 'underscore.string', 'react', 'jquery', 'kendo', 'wingspan-forms',
     'util',
     'FacetDataStore',
-    'text!textassets/types/Contact.json',
-    'underscore-string'
-], function (_, React, $, kendo, Forms, util, FacetDataStore, ContactModel) {
+    'text!textassets/types/Contact.json'
+], function (_, str, React, $, kendo, Forms, util, FacetDataStore, ContactModel) {
     'use strict';
 
-    var ContactModel = JSON.parse(ContactModel).data;
+    ContactModel = JSON.parse(ContactModel).data;
 
 
-    var App = React.createClass({displayName: 'App',
-        mixins: [Forms.TopStateMixin],
+    var App = React.createClass({displayName: "App",
 
         getInitialState: function () {
             this.emptyFilters = _.object(_.map(_.keys(ContactModel.properties), function (field) { return [field, []]; }));
@@ -50,15 +48,22 @@ define([
         onFilterToggle: function (facet/*contactGroup*/, value/*work*/, isActive/*true*/) {
             var currentFiltersForField = this.state.filters[facet];
             var nextFiltersForField = (isActive ? _.union :_.difference)(currentFiltersForField, [value]);
-            this.onChange('filters', facet, nextFiltersForField);
+            this.onChange(facet, nextFiltersForField);
         },
 
         onClearFilters: function () {
-            this.onChange('filters', this.emptyFilters);
+            this.setState({ filters: this.emptyFilters });
         },
 
         onClearFilter: function (facet, filter) {
-            this.onChange('filters', facet, _.difference(this.state.filters[facet], [filter]));
+            this.onChange(facet, _.difference(this.state.filters[facet], [filter]));
+        },
+
+        onChange: function (facet, value) {
+            var newFilters = _.clone(this.state.filters);
+            newFilters[facet] = value;
+
+            this.setState({ filters: newFilters });
         },
 
         render: function () {
@@ -68,17 +73,17 @@ define([
                     return pair[1] !== 0;
                 });
                 var checkboxes = _.map(nonZeroCountsByVal, function (count, val) {
-                    var controlId = _.str.sprintf('%s-%s', facet, val);
+                    var controlId = str.sprintf('%s-%s', facet, val);
                     return (
-                        React.DOM.div( {className:"facetFilterControl", key:controlId}, 
-                            CheckBox( {label:val, id:controlId, value:_.contains(this.state.filters[facet], val),
-                                onChange:_.partial(this.onFilterToggle, facet, val)}),
-                            React.DOM.span( {className:"count"}, count)
+                        React.createElement("div", {className: "facetFilterControl", key: controlId}, 
+                            React.createElement(Forms.CheckBox, {label: val, id: controlId, value: _.contains(this.state.filters[facet], val), 
+                                onChange: _.partial(this.onFilterToggle, facet, val)}), 
+                            React.createElement("span", {className: "count"}, count)
                         )
                     );
                 }.bind(this));
                 return (
-                    FormField( {key:facet, fieldInfo:_.object([['label', ContactModel.properties[facet].label]])}, 
+                    React.createElement(Forms.FormField, {key: facet, fieldInfo: _.object([['label', ContactModel.properties[facet].label]])}, 
                         checkboxes
                     )
                 );
@@ -86,42 +91,45 @@ define([
 
             var filterControls = _.map(this.state.filters, function (filters, facet) {
                 return _.map(filters, function (filter) {
-                    var key = _.str.sprintf('%s-%s', facet, filter);
-                    return (React.DOM.span( {className:"filter"}, filter,React.DOM.i( {className:"closer", onClick:_.partial(this.onClearFilter, facet, filter)} )));
+                    var key = str.sprintf('%s-%s', facet, filter);
+                    return (React.createElement("span", {className: "filter", key: key}, filter, React.createElement("i", {className: "closer", onClick: _.partial(this.onClearFilter, facet, filter)})));
                 }.bind(this));
             }.bind(this));
 
             filterControls = _.flatten(filterControls);
             filterControls = (filterControls.length > 0
-                ? (React.DOM.span( {className:"filters"}, React.DOM.span( {className:"trash", onClick:this.onClearFilters}),_.flatten(filterControls)))
-                : (React.DOM.span( {className:"hint"}, "Use filters on the left to narrow results.")));
+                ? (React.createElement("span", {className: "filters"}, React.createElement("span", {className: "trash", onClick: this.onClearFilters}), _.flatten(filterControls)))
+                : (React.createElement("span", {className: "hint"}, "Use filters on the left to narrow results.")));
 
             return (
-                React.DOM.div( {className:"App"}, 
-                    React.DOM.div( {className:"table"}, 
-                        React.DOM.div( {className:"row"}, 
-                            React.DOM.div( {className:"left"}),
-                            React.DOM.div( {className:"right"}, 
-                                React.DOM.div(null, 
-                                    React.DOM.div( {className:"filterControls"}, 
+                React.createElement("div", {className: "App"}, 
+                    React.createElement("div", {className: "table"}, 
+                        React.createElement("div", {className: "row"}, 
+                            React.createElement("div", {className: "left"}), 
+                            React.createElement("div", {className: "right"}, 
+                                React.createElement("div", null, 
+                                    React.createElement("div", {className: "filterControls"}, 
                                         filterControls
                                     )
                                 )
                             )
-                        ),
-                        React.DOM.div( {className:"row"}, 
-                            React.DOM.div( {className:"left"}, 
-                                React.DOM.div(null, facetControls)
-                            ),
-                            React.DOM.div( {className:"right"}, 
-                                React.DOM.div(null, 
-                                    KendoGrid( {className:"KendoGrid", dataSource:this.dataSource,
-                                    columns:this.columns, height:"400"} )
+                        ), 
+                        React.createElement("div", {className: "row"}, 
+                            React.createElement("div", {className: "left"}, 
+                                React.createElement("div", null, facetControls)
+                            ), 
+                            React.createElement("div", {className: "right"}, 
+                                React.createElement("div", null, 
+                                    React.createElement(Forms.KendoGrid, {
+                                        className: "KendoGrid", 
+                                        dataSource: this.dataSource, 
+                                        columns: this.columns, 
+                                        height: "400"})
                                 )
                             )
                         )
-                    ),
-                    React.DOM.pre(null, JSON.stringify(this.state, undefined, 2))
+                    ), 
+                    React.createElement("pre", null, JSON.stringify(this.state, undefined, 2))
                 )
             );
         }
@@ -129,24 +137,8 @@ define([
 
 
     function entrypoint(rootElement) {
-        React.renderComponent(App(null ), rootElement);
+        React.render(React.createElement(App, null), rootElement);
     }
-
-
-    var FormField = Forms.FormField;
-    var KendoText = Forms.KendoText;
-    var MultilineText = Forms.MultilineText;
-    var MultiSelect = Forms.MultiSelect;
-    var KendoComboBox = Forms.KendoComboBox;
-    var KendoNumber = Forms.KendoNumber;
-    var KendoDate = Forms.KendoDate;
-    var KendoDatetime = Forms.KendoDatetime;
-    var CheckBox = Forms.CheckBox;
-    var Radio = Forms.Radio;
-    var RadioGroup = Forms.RadioGroup;
-    var SwitchBox = Forms.SwitchBox;
-    var Carousel = Forms.Carousel;
-    var KendoGrid = Forms.KendoGrid;
 
 
     return {
