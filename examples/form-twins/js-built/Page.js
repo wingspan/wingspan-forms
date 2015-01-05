@@ -8,13 +8,13 @@ define([
     var options = [{ id: 'male', display: 'Male'}, { id: 'female', display: 'Female'}];
 
 
-    var PrettyJson = React.createClass({displayName: 'PrettyJson',
+    var PrettyJson = React.createClass({displayName: "PrettyJson",
         render: function () {
-            return (React.DOM.pre(null, JSON.stringify(this.props.value, undefined, 2)));
+            return (React.createElement("pre", null, JSON.stringify(this.props.value, undefined, 2)));
         }
     });
 
-    var MyForm = React.createClass({displayName: 'MyForm',
+    var MyForm = React.createClass({displayName: "MyForm",
         getDefaultProps: function () {
             return {
                 value: {}, // form value
@@ -24,31 +24,30 @@ define([
         render: function () {
             var fieldInfoFirstName= {label: 'First Name'};
             return (
-                React.DOM.div( {className:"MyForm"}, 
-                    React.DOM.div( {className:"formTitle"}, "Form"),
-                    FormField( {fieldInfo:fieldInfoFirstName}, 
-                        KendoText( {value:this.props.value.firstName,
-                            onChange:_.partial(this.props.onChange, 'firstName')} )
-                    ),
-                    FormField( {fieldInfo:_.object([['label', 'Last Name']])}, 
-                        KendoText( {type:"text", value:this.props.value.lastName,
-                            onChange:_.partial(this.props.onChange, 'lastName')} )
-                    ),
-                    FormField( {fieldInfo:_.object([['label', 'Gender']])}, 
-                        KendoComboBox(
-                            {value:this.props.value.gender,
-                            onChange:_.partial(this.props.onChange, 'gender'),
-                            dataSource:options,
-                            valueField:"id",
-                            displayField:"display"} )
+                React.createElement("div", {className: "MyForm"}, 
+                    React.createElement("div", {className: "formTitle"}, "Form"), 
+                    React.createElement(FormField, {fieldInfo: fieldInfoFirstName}, 
+                        React.createElement(KendoText, {value: this.props.value.firstName, 
+                            onChange: _.partial(this.props.onChange, 'firstName')})
+                    ), 
+                    React.createElement(FormField, {fieldInfo: _.object([['label', 'Last Name']])}, 
+                        React.createElement(KendoText, {type: "text", value: this.props.value.lastName, 
+                            onChange: _.partial(this.props.onChange, 'lastName')})
+                    ), 
+                    React.createElement(FormField, {fieldInfo: _.object([['label', 'Gender']])}, 
+                        React.createElement(KendoComboBox, {
+                            value: this.props.value.gender, 
+                            onChange: _.partial(this.props.onChange, 'gender'), 
+                            dataSource: options, 
+                            valueField: "id", 
+                            displayField: "display"})
                     )
                 )
             );
         }
     });
 
-    var App = React.createClass({displayName: 'App',
-        mixins: [Forms.TopStateMixin],
+    var App = React.createClass({displayName: "App",
 
         componentWillMount: function () {
             window.app = this; // save ref for dev console
@@ -75,14 +74,25 @@ define([
                 ]
             };
         },
+
+        onChange: function (formIndex, field, value) {
+        	var forms = _.clone(this.state.forms);
+        	var newForm = _.clone(this.state.forms[formIndex]);
+
+        	newForm[field] = value;
+        	forms[formIndex] = newForm;
+
+        	this.setState({ forms: forms });
+        },
+
         render: function() {
 
             var forms = _.map(this.state.forms, function (form, i) {
-                return (MyForm( {value:form, onChange:_.partial(this.onChange, 'forms', i)} ));
+                return (React.createElement(MyForm, {value: form, onChange: _.partial(this.onChange, i)}));
             }.bind(this));
 
             var forms2 = _.map(this.state.forms, function (form, i) {
-                return (MyForm( {value:form, onChange:_.partial(this.onChange, 'forms', i)} ));
+                return (React.createElement(MyForm, {value: form, onChange: _.partial(this.onChange, i)}));
             }.bind(this));
 
             var text = "function deepCopy (tree) { return JSON.parse(JSON.stringify(tree)); }\n\
@@ -91,15 +101,15 @@ nextState.forms.push({});\n\
 app.setState(nextState);";
 
             return (
-                React.DOM.div( {className:"App"} , 
-                    React.DOM.div(null, forms),
-                    React.DOM.div(null, forms2),
-                    React.DOM.div(null, 
-                        PrettyJson( {value:this.state} ),
-                        React.DOM.p(null, "Try this in the javascript console:"),
-                        React.DOM.pre(null, text),
-                        React.DOM.p(null, React.DOM.a( {href:"https://github.com/wingspan/wingspan-forms/blob/master/examples/form-twins/webapp/js/Page.js"}, 
-" The source to this example is available here."))
+                React.createElement("div", {className: "App"}, 
+                    React.createElement("div", null, forms), 
+                    React.createElement("div", null, forms2), 
+                    React.createElement("div", null, 
+                        React.createElement(PrettyJson, {value: this.state}), 
+                        React.createElement("p", null, "Try this in the javascript console:"), 
+                        React.createElement("pre", null, text), 
+                        React.createElement("p", null, React.createElement("a", {href: "https://github.com/wingspan/wingspan-forms/blob/master/examples/form-twins/webapp/js/Page.js"}, 
+                        "The source to this example is available here."))
                     )
                 )
             );
@@ -115,7 +125,7 @@ app.setState(nextState);";
 
 
     function entrypoint() {
-        React.renderComponent(App(null ), document.getElementById('root'));
+        React.renderComponent(React.createElement(App, null), document.getElementById('root'));
     }
 
     return {

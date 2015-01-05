@@ -48,7 +48,6 @@ define([
     });
 
     var App = React.createClass({
-        mixins: [Forms.TopStateMixin],
 
         componentWillMount: function () {
             window.app = this; // save ref for dev console
@@ -75,14 +74,25 @@ define([
                 ]
             };
         },
+
+        onChange: function (formIndex, field, value) {
+        	var forms = _.clone(this.state.forms);
+        	var newForm = _.clone(this.state.forms[formIndex]);
+
+        	newForm[field] = value;
+        	forms[formIndex] = newForm;
+
+        	this.setState({ forms: forms });
+        },
+
         render: function() {
 
             var forms = _.map(this.state.forms, function (form, i) {
-                return (<MyForm value={form} onChange={_.partial(this.onChange, 'forms', i)} />);
+                return (<MyForm value={form} onChange={_.partial(this.onChange, i)} />);
             }.bind(this));
 
             var forms2 = _.map(this.state.forms, function (form, i) {
-                return (<MyForm value={form} onChange={_.partial(this.onChange, 'forms', i)} />);
+                return (<MyForm value={form} onChange={_.partial(this.onChange, i)} />);
             }.bind(this));
 
             var text = "function deepCopy (tree) { return JSON.parse(JSON.stringify(tree)); }\n\
