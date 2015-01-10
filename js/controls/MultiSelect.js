@@ -1,9 +1,8 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'jquery', 'react',
-    '../ControlCommon',
+    'underscore', 'react',
     '../ImmutableOptimizations'
-], function (_, $, React, controlCommon, ImmutableOptimizations) {
+], function (_, React, ImmutableOptimizations) {
     'use strict';
 
     var PropTypes = React.PropTypes;
@@ -16,7 +15,7 @@ define([
      * Each level can also have an active property that will be assumed to be true if undefined.
      * Empty optgroups will be elided.
      */
-    return React.createClass({
+    var MultiSelect = React.createClass({
         mixins: [ImmutableOptimizations(['onChange'])],
 
         statics: { fieldClass: function () { return 'formFieldMultiselect'; } },
@@ -71,11 +70,14 @@ define([
 
         /* jshint ignore:start */
         render: function () {
+            var props = this.props;
             var selectors = this.state.selectors;
             var selections = this.props.selections;
+
             function option(selector) {
-                return (<option value={selector.id}>{selector.name}</option>);
+                return (<option key={selector.id} value={selector.id}>{selector.name}</option>);
             }
+
             if (this.props.isFlat) {
                 selectors = _.map(selectors, function (selector) {
                     return option(selector); // (<option value={selector.id}>{selector.name}</option>);
@@ -85,27 +87,26 @@ define([
                     var options = _.map(group.children, function(child) {
                         return option(child); // (<option value={child.id}>{child.name}</option>);
                     });
-                    return (<optgroup label={group.name}>{options}</optgroup>);
+                    return (<optgroup key={group.name} label={group.name}>{options}</optgroup>);
                 });
             }
 
-            return (<select id={this.props.id} value={selections} multiple="multiple">{selectors}</select>);
-        },
-        /* jshint ignore:end */
-
-        componentDidMount: function () {
-            var self = this,
-                $el = $(this.getDOMNode());
-            $el.on('change', function (event) {
-                void event;
-                var selections = _.map(_.filter($el.options, function (opt) {
+            function onChange(event) {
+                var selections = _.map(_.filter(event.target.options, function (opt) {
                     return opt.selected;
                 }), function (opt) {
                     return opt.value;
                 });
-                self.props.onChange(selections);
-                return true;
-            });
+                props.onChange(selections);
+            }
+            return (
+                <select id={props.id} value={selections}  multiple="multiple" disabled={this.props.disabled}
+                    onChange={!this.props.readonly ? onChange : undefined}>
+                    {selectors}
+                </select>);
         }
+        /* jshint ignore:end */
     });
+
+    return MultiSelect;
 });

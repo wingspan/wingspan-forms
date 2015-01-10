@@ -167,11 +167,11 @@ define([
                 </FormField>
 
                 <FormField fieldInfo={{ label: 'readOnly multiselect', readOnly: true }} isValid={[true, '']} layout="formField" >
-                    <MultiSelect selectors={dataSource} />
+                    <MultiSelect selectors={dataSource} readonly={true} />
                 </FormField>
 
                 <FormField fieldInfo={{ label: 'disabled multiselect', disabled: true }} isValid={[true, '']} layout="formField" >
-                    <MultiSelect selectors={dataSource} />
+                    <MultiSelect selectors={dataSource} disabled={true} />
                 </FormField>
 
                 <div className="formTitle">Kendo KendoAutoComplete</div>
