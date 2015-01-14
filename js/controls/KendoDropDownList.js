@@ -7,9 +7,9 @@ define([
 
     var PropTypes = React.PropTypes;
 
-    var KendoComboBox = React.createClass({
+    var KendoDropDownList = React.createClass({
         mixins: [
-            SelectWidgetMixin('kendoComboBox'),
+            SelectWidgetMixin('kendoDropDownList'),
             ImmutableOptimizations(['onChange'])
         ],
 
@@ -25,21 +25,12 @@ define([
             readonly: PropTypes.bool,
             options: PropTypes.object,
             filter: PropTypes.string,
-            placeholder: PropTypes.string,
+            optionLabel: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
             template: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
         },
 
         statics: {
             fieldClass: function () { return 'formFieldCombobox'; }
-        },
-
-        getDefaultProps: function () {
-            return {
-                filter: 'startswith',
-                options: {
-                    highlightFirst: false
-                }
-            };
         },
 
         /*jshint ignore:start */
@@ -51,5 +42,5 @@ define([
         /*jshint ignore:end */
     });
 
-    return KendoComboBox;
+    return KendoDropDownList;
 });

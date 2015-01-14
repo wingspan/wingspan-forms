@@ -9,6 +9,7 @@ define([
     './controls/KendoComboBox',
     './controls/KendoDatePicker',
     './controls/KendoDateTimePicker',
+    './controls/KendoDropDownList',
     './controls/KendoGrid',
     './controls/KendoGridPicker',
     './controls/KendoListView',
@@ -30,7 +31,7 @@ define([
     './FluxFormMixin',
     './ImmutableOptimizations'
 ], function (AutoControl, FormField, AutoField, Button, Carousel, CheckBox,
-             KendoAutoComplete, KendoComboBox, KendoDatePicker, KendoDateTimePicker, KendoGrid, KendoGridPicker,
+             KendoAutoComplete, KendoComboBox, KendoDatePicker, KendoDateTimePicker, KendoDropDownList, KendoGrid, KendoGridPicker,
              KendoListView, KendoMultiSelect, KendoNumericTextBox, KendoPager, KendoTabStrip, KendoText, KendoTimePicker,
              MultiSelect, MultilineText, Radio, RadioGroup, SwitchBox, TabStrip, PromiseButton, SearchBox,
              ControlCommon, FluxFormMixin, ImmutableOptimizations) {
@@ -57,6 +58,7 @@ define([
         KendoComboBox: KendoComboBox,
         KendoDatePicker: KendoDatePicker,
         KendoDateTimePicker: KendoDateTimePicker,
+        KendoDropDownList: KendoDropDownList,
         KendoGrid: KendoGrid,
         KendoGridPicker: KendoGridPicker,
         KendoListView: KendoListView,
