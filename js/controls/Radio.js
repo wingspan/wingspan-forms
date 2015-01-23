@@ -1,10 +1,17 @@
 /** @jsx React.DOM */
 define([
-    'underscore', 'react', 'jquery'
-], function (_, React, $) {
+    'underscore', 'react'
+], function (_, React) {
     'use strict';
 
     var PropTypes = React.PropTypes;
+
+    function fireChange(props) {
+        if (props.readonly) {
+            return;
+        }
+        props.onChange(props.value);
+    }
 
     /**
      *     Careful:
@@ -23,7 +30,7 @@ define([
 
         getDefaultProps: function () {
             return {
-                onChange: $.noop,
+                onChange: _.noop,
                 disabled: false,
                 readonly: false,
                 checked: false
@@ -36,9 +43,13 @@ define([
 
         /*jshint ignore:start */
         render: function () {
+            // Disabled controls should not receive focus
+            var tabIndex = this.props.disabled ? null : 0;
+
             return (
-                <span>
-                    <input type="radio" name={this.props.name} id={this.stableUniqueId} value={this.props.value} onChange={this.onChange}
+                <span className="formRadio" tabIndex={tabIndex} onKeyDown={this.onKeyDown}>
+                    <input type="radio" name={this.props.name} id={this.stableUniqueId}
+                           value={this.props.value} onChange={this.onChange}
                            checked={this.props.checked} data-checked={this.props.checked ? '' : null}
                            disabled={this.props.disabled} />
                     <label htmlFor={this.stableUniqueId}>{this.props.children}</label>
@@ -47,9 +58,16 @@ define([
         },
         /*jshint ignore:end */
 
-        onChange: function (e) {
-            if (!this.props.readonly) {
-                this.props.onChange(e.target.value);
+        onChange: function () {
+            fireChange(this.props);
+        },
+
+        onKeyDown: function (e) {
+            if (e.key === ' ') {
+                // Prevent the default always so that the space key doesn't scroll the page.
+                e.preventDefault();
+
+                fireChange(this.props);
             }
         }
     });
