@@ -27,8 +27,10 @@
 
 //100% width field
 .formField {
+    font-size: .75em;
+    font-family: sans-serif;
 	float: left;
-	width: 100%;
+    width: 100%;
 	padding: 0 0 10px 0;
 	position: relative;
 
@@ -329,10 +331,9 @@
 	}
 }
 
-
 .formFieldDropdown, .formFieldCombobox {
 	.formElement {
-		.k-dropdown, .k-combobox {
+		.k-widget {
 			width: 100%;
 			.k-dropdown-wrap {
 				height: @inputHeight - 2px;
@@ -351,7 +352,7 @@
 				}
 			}
 		}
-		.k-dropdown:hover, .k-dropdown:focus, .k-combobox:hover, .k-combobox:focus {
+		.k-widget:hover, .k-widget:focus {
 			.k-dropdown-wrap {
 				background: @inputHoverBackground;
 				border: 1px solid @inputHoverBorder;
@@ -365,10 +366,9 @@
 		}
 	}
 
-
 	&.formFieldError {
 		.formElement {
-			.k-dropdown, .k-combobox {
+			.k-widget {
 				.k-dropdown-wrap {
 					background: @inputErrorBackground;
 					border: 1px solid @inputErrorBorder;
@@ -380,7 +380,7 @@
 					}
 				}
 			}
-			.k-dropdown:hover, .k-dropdown:focus, .k-combobox:hover, .k-combobox:focus {
+			.k-widget:hover, .k-widget:focus {
 				.k-dropdown-wrap {
 					background: @inputErrorHoverBackground;
 					border: 1px solid @inputErrorHoverBorder;
@@ -397,7 +397,7 @@
 
 	&.formFieldDisabled {
 		.formElement {
-			.k-dropdown, .k-combobox {
+			.k-widget {
 				.k-dropdown-wrap {
 					background: @inputDisabledBackground;
 					border: 1px solid @inputDisabledBorder;
@@ -409,7 +409,7 @@
 					}
 				}
 			}
-			.k-dropdown:hover, .k-dropdown:focus, .k-combobox:hover, .k-combobox:focus {
+			.k-widget:hover, .k-widget:focus {
 				.k-dropdown-wrap {
 					background: @inputDisabledHoverBackground;
 					border: 1px solid @inputDisabledHoverBorder;
@@ -426,7 +426,7 @@
 
 	&.formFieldReadonly {
 		.formElement {
-			.k-dropdown, .k-combobox {
+			.k-widget {
 				.k-dropdown-wrap {
 					background: @inputReadonlyBackground;
 					border: 1px solid @inputReadonlyBorder;
@@ -438,7 +438,7 @@
 					}
 				}
 			}
-			.k-dropdown:hover, .k-dropdown:focus, .k-combobox:hover, .k-combobox:focus {
+			.k-widget:hover, .k-widget:focus {
 				.k-dropdown-wrap {
 					background: @inputReadonlyHoverBackground;
 					border: 1px solid @inputReadonlyHoverBorder;
@@ -746,11 +746,9 @@
 	}
 }
 
-
-
 .formFieldDatepicker, .formFieldTimepicker, .formFieldDatetimepicker {
 	.formElement {
-		.k-timepicker, .k-datepicker, .k-datetimepicker {
+		.k-widget {
 			height: @inputHeight;
 			width: 100%;
 			.k-picker-wrap {
@@ -766,11 +764,11 @@
 					background: @inputBackground;
 					border-color: @inputBorder;
 				    border-radius: 0 4px 4px 0;
-				    line-height: @inputHeight - 4px;
+				    line-height: @inputHeight - 2px;
 				}
 			}
 		}
-		.k-timepicker:hover, .k-datepicker:hover, .k-datetimepicker:hover, .k-timepicker:focus, .k-datepicker:focus, .k-datetimepicker:focus {
+		.k-widget:hover, .k-widget:focus {
 			.k-picker-wrap {
 				border: 1px solid @inputHoverBorder;
 				.k-input {
@@ -786,7 +784,7 @@
 
 	}
 	&.formFieldError {
-		.k-timepicker, .k-datepicker, .k-datetimepicker {
+		.k-widget {
 			.k-picker-wrap {
 				border: 1px solid @inputErrorBorder;
 				.k-input {
@@ -799,7 +797,7 @@
 				}
 			}
 		}
-		.k-timepicker:hover, .k-datepicker:hover, .k-datetimepicker:hover, .k-timepicker:focus, .k-datepicker:focus, .k-datetimepicker:focus {
+		.k-widget:hover, .k-widget:focus {
 			.k-picker-wrap {
 				border: 1px solid @inputErrorHoverBorder;
 				.k-input {
@@ -814,7 +812,7 @@
 		}
 	}
 	&.formFieldDisabled {
-		.k-timepicker, .k-datepicker, .k-datetimepicker {
+		.k-widget {
 			.k-picker-wrap {
 				border: 1px solid @inputDisabledBorder;
 				.k-input {
@@ -827,7 +825,7 @@
 				}
 			}
 		}
-		.k-timepicker:hover, .k-datepicker:hover, .k-datetimepicker:hover, .k-timepicker:focus, .k-datepicker:focus, .k-datetimepicker:focus {
+		.k-widget:hover, .k-widget:focus {
 			.k-picker-wrap {
 				border: 1px solid @inputDisabledHoverBorder;
 				.k-input {
@@ -842,7 +840,7 @@
 		}
 	}
 	&.formFieldReadonly {
-		.k-timepicker, .k-datepicker, .k-datetimepicker {
+		.k-widget {
 			.k-picker-wrap {
 				border: 1px solid @inputReadonlyBorder;
 				.k-input {
@@ -855,7 +853,7 @@
 				}
 			}
 		}
-		.k-timepicker:hover, .k-datepicker:hover, .k-datetimepicker:hover, .k-timepicker:focus, .k-datepicker:focus, .k-datetimepicker:focus {
+		.k-widget:hover, .k-widget:focus {
 			.k-picker-wrap {
 				border: 1px solid @inputReadonlyHoverBorder;
 				.k-input {
@@ -898,7 +896,6 @@
             text-shadow: 0px -1px 1px #666;
         }
     }
-
 
 	 &.buttonDisabled {
 		cursor: default;
@@ -1324,37 +1321,3 @@ button i.k-loading {
 	}
 
  }
-
-
- /* ******************************************
- *
- *   CONTROL WRAPPER DIVS
- *
- * *************************************** */
-
- //USED IN DIALOGS
-.controlsWrapper {
-	background: #DEDEDE;
-	border-top: solid 1px #CCCCCC;
-	position: relative;
-	float: left;
-	width: 100%;
-	padding: 10px 10px 0 10px;
-	box-sizing: border-box;
-	-moz-box-sizing:border-box;
-
-	.verticalCenterButton {
-		position: absolute;
-		top: 50%;
-		left: 0;
-		@buttonHeight: 34px; /* this may want to be moved into vars and applied to button styles below */
-		height: @buttonHeight;
-		margin-top: -@buttonHeight / 2;
-		padding-left: 10px;
-	}
-}
-
-.controlsWrapperTop {
-	.controlsWrapper;
-	border-top: 0;
-}
