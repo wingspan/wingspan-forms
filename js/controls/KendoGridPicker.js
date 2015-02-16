@@ -1,15 +1,21 @@
 define([
-    'underscore',
-    'jquery',
-    'react',
-    'kendo',
+    'underscore', 'jquery', 'react', 'kendo',
     './KendoGrid'
 ], function (_, $, React, kendo, KendoGrid) {
     'use strict';
 
     var PropTypes = React.PropTypes;
 
-    var KendoGridPickerTemplate = '<div><input id="#: uid #" type="checkbox" value="#: id #" name="checkboxSelector"><label></label></div>';
+    var CheckTemplate = '<div><input id="#: uid #" type="checkbox" value="#: uid #" name="selector"><label></label></div>';
+    var RadioTemplate = '<div><input id="#: uid #" type="radio"    value="#: uid #" name="selector"><label></label></div>';
+
+    function buttonColumn(multiple) {
+        return {
+            title: '',
+            template: kendo.template(multiple ? CheckTemplate : RadioTemplate),
+            width: 34
+        };
+    }
 
     function enableCheckboxSelection(grid) {
         grid.selectable.userEvents.notify = function (eventName, data) {
@@ -21,11 +27,12 @@ define([
         };
     }
 
-    var KendoGridPicker = React.createClass({
+    var KendoGridPicker = React.createClass({displayName: "KendoGridPicker",
 
         propTypes: {
             columns: PropTypes.array.isRequired,
-            value: PropTypes.array,
+            multiple: PropTypes.bool,
+            value: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
             onChange: PropTypes.func
         },
 
@@ -34,6 +41,7 @@ define([
                 autoBind: true,
                 editable: false,
                 pageable: false,
+                multiple: true,
                 height: 250,
                 onChange: $.noop,
                 value: []  // list of selected records, just like combo.
@@ -41,9 +49,10 @@ define([
         },
 
         render: function () {
-            var columns = [{ title: '', template: kendo.template(KendoGridPickerTemplate), width: 34 }]
-                .concat(this.props.columns);
-            var gridProps = { columns: columns, selectable: 'multiple, row', onChange: this.onGridChange };
+            var columns = [buttonColumn(this.props.multiple)].concat(this.props.columns);
+
+            var selectable = this.props.multiple ? 'multiple, row' : 'row';
+            var gridProps = { columns: columns, selectable: selectable, onChange: this.onGridChange };
 
             return React.createElement(KendoGrid, _.defaults(gridProps, this.props));
         },
@@ -53,7 +62,9 @@ define([
 
             // The standard kendo grid multiple selection UI requires holding the Control key to select multiple rows.
             // Change the behavior to allow individual clicks to toggle the row's selection state.
-            enableCheckboxSelection(grid);
+            if (this.props.multiple) {
+                enableCheckboxSelection(grid);
+            }
 
             this.updateCheckboxValues();
             grid.bind('dataBound', this.updateCheckboxValues);
@@ -66,15 +77,23 @@ define([
         updateCheckboxValues: function () {
             // the SSP page has changed, so we have new DOM.
             // Sync up the DOM with the checked state.
-            var $rootNode = $(this.getDOMNode());
-            var valueIDs = _.pluck(this.props.value, 'id');
+            var grid = $(this.getDOMNode()).data('kendoGrid');
 
-            // Update the checked state of checkbox inputs
-            $rootNode.find('input[type="checkbox"]').val(valueIDs);
+            var valueIDs = grid.select().get().map(function (tr) {
+                return tr.getAttribute('data-uid');
+            });
+
+            // Update the checked state of radio/checkbox inputs
+            grid.tbody.find('input[name="selector"]').val(valueIDs);
         },
 
         onGridChange: function (selectedValues) {
             var grid = $(this.getDOMNode()).data('kendoGrid');
+
+            if (!this.props.multiple) {
+                this.props.onChange(selectedValues ? selectedValues.toJSON() : null);
+                return;
+            }
 
             // The `selectedValues` represents the selection for the current page of results. We need to merge those values
             // with existing values on separate pages.

@@ -22,8 +22,18 @@ define([
         return _.isString(selectable) ? selectable.indexOf('multiple') !== -1 : false;
     }
 
+    function getValueIds(value) {
+        if (_.isArray(value)) {
+            return _.pluck(value, 'id');
+        }
+        if (_.isObject(value)) {
+            return [value.id];
+        }
+        return [];
+    }
+
     function updateGridSelection(component, grid) {
-        var selectors = _.pluck(component.props.value, 'id')
+        var selectors = getValueIds(component.props.value)
             .map(function (id) { return grid.dataSource.get(id); })
             .filter(function (dataItem) { return !!dataItem; })
             .map(function (dataItem) { return 'tr[data-uid="' + dataItem.uid + '"]'; });
@@ -65,7 +75,8 @@ define([
                 pageable: false,
                 scrollable: true,
                 selectable: false,
-                sortable: false
+                sortable: false,
+                onChange: $.noop
             };
         },
 
@@ -143,8 +154,8 @@ define([
             var selectedValues = selectedNodes.map(isCellSelection(this.props.selectable) ? cellSelection : rowSelection);
 
             // Don't hand the caller an array if they are doing only single selection. It's nicer that way.
-            if (!isMultiSelect(this.props.selectable) && (selectedValues.length === 1)) {
-                selectedValues = selectedValues[0];
+            if (!isMultiSelect(this.props.selectable)) {
+                selectedValues = _.first(selectedValues);
             }
 
             this.props.onChange(selectedValues);
