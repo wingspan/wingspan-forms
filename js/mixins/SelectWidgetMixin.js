@@ -23,8 +23,8 @@ define([
         var dataItem = dataSource.data().find(function (item) {
             return (item.get(props.valueField) === props.value);
         });
-        return dataItem ? dataItem.get(props.displayField) : '';
-
+        // If no match is found, assume the value is a custom value
+        return dataItem ? dataItem.get(props.displayField) : props.value;
     }
 
     function SelectWidgetMixin(widgetName) {
@@ -145,7 +145,7 @@ define([
                 // Don't return a model instance to the caller, just the object data
                 this.props.onChange(value, valueObject ? valueObject.toJSON() : null);
             }
-        }
+        };
     }
 
     return SelectWidgetMixin;
