@@ -9,10 +9,12 @@ define([
     var CheckTemplate = '<div><input id="#: uid #" type="checkbox" value="#: uid #" name="selector"><label></label></div>';
     var RadioTemplate = '<div><input id="#: uid #" type="radio"    value="#: uid #" name="selector"><label></label></div>';
 
+    var SelectAllTemplate = '<div><input id="kgp_sel_all" type="checkbox" value="on"><label for="kgp_sel_all"></label></div>';
+
     function buttonColumn(multiple) {
         return {
-            title: '',
             template: kendo.template(multiple ? CheckTemplate : RadioTemplate),
+            headerTemplate: kendo.template(multiple ? SelectAllTemplate : '<div></div>'),
             width: 34
         };
     }
@@ -68,6 +70,15 @@ define([
 
             this.updateCheckboxValues();
             grid.bind('dataBound', this.updateCheckboxValues);
+
+            // Handle a change to the "Select All" checkbox column
+            grid.thead.on('change', '#kgp_sel_all', function (e) {
+                if (e.target.checked) {
+                    grid.select('tr');
+                } else {
+                    grid.clearSelection();
+                }
+            });
         },
 
         componentDidUpdate: function () {
@@ -82,9 +93,13 @@ define([
             var valueIDs = grid.select().get().map(function (tr) {
                 return tr.getAttribute('data-uid');
             });
+            var allSelected = valueIDs.length === grid.dataSource.view().length;
 
             // Update the checked state of radio/checkbox inputs
             grid.tbody.find('input[name="selector"]').val(valueIDs);
+
+            // Update the Select All checkbox if our selection is the whole page
+            grid.thead.find('#kgp_sel_all').val(allSelected ? ['on'] : []);
         },
 
         onGridChange: function (selectedValues) {
