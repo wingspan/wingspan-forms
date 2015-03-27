@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 define([
     'underscore', 'jquery', 'react'
 ], function (_, $, React) {
@@ -32,18 +31,15 @@ define([
             console.assert(this.props.handler, 'SearchBox requires a handler function');
         },
 
-        componentDidUpdate : function () {
-            // Hide the clear button if there's no text
-            setVisible($(this.getDOMNode()).find('.iconClear'), this.refs.myInput.getDOMNode().value.length > 0);
-        },
-
         /*jshint ignore:start */
         render: function () {
+            var iconClearStyle = { visibility: _.isEmpty(this.props.value) ? 'hidden' : 'visible' };
+
             return (
                 <span className="searchBox">
                     <input type="text" disabled={this.props.disabled} placeholder={this.props.placeholder} value={this.props.value}
-                           autoComplete="off" onKeyDown={this.onKeyDown} defaultValue={this.props.defaultValue} ref="myInput" onChange={this.onTextChange}/>
-                    <span className="iconClear" onClick={this.onClickClear} onMouseDown={noBrowserDefault} />
+                           autoComplete="off" onKeyDown={this.onKeyDown} defaultValue={this.props.defaultValue} onChange={this.onTextChange}/>
+                    <span className="iconClear" onClick={this.onClickClear} onMouseDown={noBrowserDefault} style={iconClearStyle} />
                     <span className="iconSearch" onClick={this.onClickSearch} onMouseDown={noBrowserDefault} />
                 </span>)
         },
@@ -51,25 +47,19 @@ define([
 
         onKeyDown: function (event) {
             // Don't let the Enter key propagate because it might cause parent components to do things we don't want
-            if (event.keyCode === ENTER_KEY) {
+            if (event.key === 'Enter') {
                 event.stopPropagation();
                 event.preventDefault();
-            }
 
-            if (event.keyCode === ENTER_KEY || this.props.instantSearch) {
                 this.props.handler(event.target.value);
-                return;
             }
-
-            var icon = $(event.target).siblings('.iconClear');
-            setVisible(icon, (event.target.value.length > 0));
         },
 
         onClickClear: function (event) {
             event.stopPropagation();
 
-            this.refs.myInput.getDOMNode().value = '';
-            setVisible(event.target, false);
+            this.props.onChange('');
+
             if (this.props.fireClearEvent) {
                 this.props.handler('');
             }
@@ -79,12 +69,16 @@ define([
             event.stopPropagation();
 
             if (!this.props.disabled) {
-                this.props.handler(this.refs.myInput.getDOMNode().value);
+                this.props.handler(this.props.value);
             }
         },
 
         onTextChange: function (event) {
             this.props.onChange(event.target.value);
+
+            if (this.props.instantSearch) {
+                this.props.handler(event.target.value);
+            }
         }
     });
 
