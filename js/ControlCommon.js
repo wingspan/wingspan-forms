@@ -99,6 +99,15 @@ define([
         }
     };
 
+    /* Let tooltip users hook the popup open event to cancel showing an empty tooltip */
+    kendo.ui.Tooltip.fn._initPopup = _.wrap(kendo.ui.Tooltip.fn._initPopup, function (wrapped) {
+        wrapped.call(this);
+
+        if (this.options.open) {
+            this.popup.bind('open', this.options.open.bind(this));
+        }
+    });
+
     return {
         quadState: quadState,
         attachFormTooltips: attachFormTooltips,

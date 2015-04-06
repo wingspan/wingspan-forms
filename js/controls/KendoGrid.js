@@ -51,6 +51,25 @@ define([
         grid.bind('change', component.onGridChange);
     }
 
+    function createRowTooltip(rowTooltip, $rootNode) {
+        var tooltipTemplate = kendo.template(rowTooltip);
+
+        $rootNode.kendoTooltip({
+            filter: 'tr',
+            showAfter: 800,
+            content: function (e) {
+                // Run the template using the model object for the target's row
+                return tooltipTemplate($rootNode.data("kendoGrid").dataItem(e.target));
+            },
+            open: function (e) {
+                // If the template returns empty text, cancel the popup
+                if (this.content.text().length === 0) {
+                    e.preventDefault();
+                }
+            }
+        });
+    }
+
     var KendoGrid = React.createClass({
 
         propTypes: {
@@ -66,7 +85,8 @@ define([
             sortable: eitherType('bool', 'object'),
             options: PropTypes.object,
             value: PropTypes.any,
-            onChange: PropTypes.func
+            onChange: PropTypes.func,
+            rowTooltip: eitherType('string', 'func')
         },
 
         getDefaultProps: function () {
@@ -102,10 +122,18 @@ define([
             }, this.props.options);
 
             $rootNode.kendoGrid(widgetOptions);
+
+            if (this.props.rowTooltip) {
+                createRowTooltip(this.props.rowTooltip, $rootNode);
+            }
         },
 
         componentWillUnmount: function () {
             $(this.getDOMNode()).data('kendoGrid').destroy();
+
+            if (this.props.rowTooltip) {
+                $(this.getDOMNode()).data('kendoTooltip').destroy();
+            }
         },
 
         componentDidUpdate: function (prevProps) {
