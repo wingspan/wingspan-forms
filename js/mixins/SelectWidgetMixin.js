@@ -105,14 +105,6 @@ define([
 
                 if (props.value !== prevProps.value) {
                     kendoWidget.value(rawValue(props));
-
-                    // We are handling a bug in kendoComboBox wherein it doesn't refresh its html representation of the
-                    // old dataSource models when it gets a new dataSource but no value was previously set.
-                    // When a truthy value is passed into the comboWidget.value(), the comboWidget will fetch() the dataSource,
-                    // refresh()-ing itself as well.
-                    if (_.isEmpty(props.value)) {
-                        kendoWidget.refresh();
-                    }
                 }
 
                 if (props.disabled !== prevProps.disabled) {
