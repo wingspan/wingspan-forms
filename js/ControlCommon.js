@@ -68,6 +68,12 @@ define([
             },
             show: function () {
                 this.popup.element.addClass('formErrorTooltip');
+
+                this.targetMouseDown = this.hide.bind(this);
+                this.target().on('mousedown', this.targetMouseDown);
+            },
+            hide: function () {
+                this.target().off('mousedown', this.targetMouseDown);
             }
         });
     }
