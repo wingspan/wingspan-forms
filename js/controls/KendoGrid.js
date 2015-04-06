@@ -136,6 +136,9 @@ define([
             if (grid.selectable) {
                 updateGridSelection(this, grid);
             }
+            if (this.props.options && this.props.options.dataBound) {
+                this.props.options.dataBound(e);
+            }
         },
 
         onGridChange: function (e) {
