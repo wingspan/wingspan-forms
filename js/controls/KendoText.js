@@ -1,54 +1,87 @@
-/** @jsx React.DOM */
 define([
-    'underscore', 'jquery', 'react',
+    'underscore', 'react',
     '../ImmutableOptimizations'
-], function (_, $, React, ImmutableOptimizations) {
+], function (_, React, ImmutableOptimizations) {
     'use strict';
 
+    var PropTypes = React.PropTypes;
 
-    return React.createClass({
+    var KendoText = React.createClass({
         mixins: [ImmutableOptimizations(['onChange'])],
+
+        propTypes: {
+            id: PropTypes.string,
+            value: PropTypes.string,
+            onChange: PropTypes.func,
+            placeholder: PropTypes.string,
+            disabled: PropTypes.bool,
+            readonly: PropTypes.bool,
+            noControl: PropTypes.bool,
+            minLength: PropTypes.number,
+            maxLength: PropTypes.number,
+            isPassword: PropTypes.bool,
+            trimValue: PropTypes.bool
+        },
 
         statics: { fieldClass: function () { return 'formFieldInput'; } },
 
         getDefaultProps: function () {
             return {
-                value: undefined,
+                value: '',
                 onChange: function () {},
                 placeholder: '',
                 disabled: false,
-                isValid: [true, ''],
                 readonly: false,
                 noControl: false,
-                minLength: undefined,
-                maxLength: undefined,
-                id: undefined
+                isPassword: false,
+                trimValue: true
             };
         },
 
         render: function () {
-
+            var value = this.props.value || '';
             /*jshint ignore:start */
-            return (this.props.noControl ? (<span>{this.props.value || ''}</span>) : (
-                <input className="k-textbox" value={this.props.value || ''} onChange={this.onChange}
-                    placeholder={this.props.placeholder} id={this.props.id}
+            if (this.props.noControl) {
+                return (<span>{value}</span>);
+            }
+            return (
+                <input id={this.props.id}
+                    type={this.props.isPassword ? 'password' : 'text'}
+                    className="k-textbox"
+                    value={value}
+                    onChange={this.onChange}
+                    onBlur={this.onBlur}
+                    placeholder={this.props.placeholder}
                     readOnly={this.props.readonly}
                     disabled={this.props.disabled} />
-            ));
+            );
             /*jshint ignore:end */
         },
 
+        onBlur: function (event) {
+            var val = event.target.value;
+
+            // Do not trim values for a password field since the whitespace may be intended
+            if (this.props.trimValue && event.target.type === 'text') {
+                // Only fire a change event if the trim() will change the value
+                if (val !== val.trim()) {
+                    this.props.onChange(val.trim());
+                }
+            }
+        },
+
         onChange: function (event) {
+            var val = event.target.value;
+
             if (this.props.readonly) {
                 return;
             }
-            var val = event.target.value;
             if (this.props.maxLength && val.length > this.props.maxLength) {
                 return;
             }
             this.props.onChange(val);
         }
-
     });
 
+    return KendoText;
 });
