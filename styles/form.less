@@ -458,24 +458,14 @@
 	.formElement {
 		.k-multiselect {
 			width: 100%;
-			border: 1px solid @inputBorder;
-			line-height: 0px;
+			box-sizing: border-box;
+
 			.k-multiselect-wrap {
-				background: @inputBackground;
-				padding-top: 1px;
-				padding-bottom: 0px;
-				line-height: 0px;
-				box-sizing: content-box;
-				-moz-box-sizing:content-box;
+				min-height: @inputHeight - 3px;
+                padding-top: 1px;
 
 				.k-button {
-					background: none;
-					color: @inputColor;
-					line-height: @inputHeight - 10px;
-					height: @inputHeight - 7px;
-					overflow: hidden;
-					border: 1px solid @inputBorder;
-					margin: 0 0 0 3px;
+                    margin: 1px 1px 1px 2px;
 					span {
 						padding-left: 3px;
 					}

@@ -7,6 +7,20 @@ define([
 
     var PropTypes = React.PropTypes;
 
+    function rawValue(props) {
+        var value = props.value;
+
+        if (_.isEmpty(value)) {
+            return value;
+        }
+
+        value = _.isArray(value) ? value : [value];
+
+        return value.map(function (val) {
+            return _.isObject(val) ? val[props.valueField] : val;
+        });
+    }
+
     function toPlainObject(data) {
         return data.toJSON();
     }
@@ -62,7 +76,7 @@ define([
             // the 'value' method is a getter/setter that gets/sets the valueField. It will look up the record
             // in the store via the value set here.
             if (this.props.value) {
-            	kendoWidget.value(this.props.value);
+                kendoWidget.value(rawValue(this.props));
             }
 
             if (this.props.disabled) {
@@ -94,7 +108,7 @@ define([
             }
 
             if (this.props.value !== prevProps.value) {
-            	kendoWidget.value(this.props.value);
+                kendoWidget.value(rawValue(this.props));
             }
 
             if (this.props.disabled !== prevProps.disabled) {
@@ -110,8 +124,13 @@ define([
             var values = _.clone(kendoWidget.value());
             var dataItems = kendoWidget.dataItems().map(toPlainObject);
 
+            // Before we update the value, we need to clear the filter or some values may not
+            // be recognized as being in the data source.
+            if (kendoWidget.dataSource.filter()) {
+                kendoWidget.dataSource.filter(null);
+            }
             // To keep the "Flux" loop, we need to reset the widget value to props so that data flows down.
-            kendoWidget.value(this.props.value);
+            kendoWidget.value(rawValue(this.props));
 
             // Provide both scalar and object values for clients
             this.props.onChange(values, dataItems);
