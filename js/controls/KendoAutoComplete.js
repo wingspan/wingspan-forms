@@ -8,7 +8,7 @@ define([
     var PropTypes = React.PropTypes;
 
     var KendoAutoComplete = React.createClass({
-        mixins: [ImmutableOptimizations(['onChange', 'dataSource'])],
+        mixins: [ImmutableOptimizations(['onChange', 'onSelect', 'dataSource'])],
 
         statics: {
             fieldClass: function () {
@@ -19,6 +19,7 @@ define([
         propTypes: {
             value: PropTypes.any,
             onChange: PropTypes.func,
+            onSelect: PropTypes.func,
             id: PropTypes.string,
             dataSource: PropTypes.oneOfType([PropTypes.array.isRequired, PropTypes.object.isRequired]),
             dataTextField: PropTypes.string,
@@ -33,8 +34,9 @@ define([
         	return {
                 disabled: false,
                 readonly: false,
-        		onChange: $.noop
-        	}
+        		onChange: $.noop,
+                onSelect: $.noop
+        	};
 		},
 
         componentDidMount: function () {
@@ -98,20 +100,17 @@ define([
 
         onChange: function (e) {
             var widget = e.sender;
+            var value = widget.value();
 
 			widget.value(this.props.value);
 
-            if (widget.dataSource.total() === 1) {
-                // Exact match - so raise the change event
-                this.props.onChange(widget.dataItem(0));
-            }
+            this.props.onChange(value);
         },
 
         onSelect: function (e) {
             var widget = e.sender;
 
-            widget.value(this.props.value);
-            this.props.onChange(widget.dataItem(e.item.index()));
+            this.props.onSelect(widget.dataItem(e.item.index()));
         }
     });
 
