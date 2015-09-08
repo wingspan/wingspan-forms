@@ -1,85 +1,69 @@
-/** @jsx React.DOM */
 define([
-    'underscore', 'jquery', 'react',
+    'underscore', 'react',
     '../ImmutableOptimizations'
-], function (_, $, React, ImmutableOptimizations) {
+], function (_, React, ImmutableOptimizations) {
     'use strict';
 
-    var SPACE_KEY = 32;
-    var SPAN_STYLE = {
-        display: 'inline-block',
-        height: '38px'
-    };
+    function noop() { }
 
-    function ignoreClick() { }
-
-    var SwitchBox = React.createClass({
+    var SwitchBox = React.createClass({displayName: "SwitchBox",
         mixins: [ImmutableOptimizations(['onChange'])],
 
         statics: { fieldClass: function () { return 'formFieldSwitch'; } },
 
         getDefaultProps: function () {
             return {
-                value: undefined,
-                onChange: function () {},
-                isValid: [true, ''],
+                onChange: noop,
+                labels: { 'yes': 'Yes', 'no': 'No' },
                 disabled: false,
                 readonly: false,
-                noControl: false,    // does this even make sense on a switchbox?
-                id: undefined
+                noControl: false
             };
+        },
+
+        getDisplayValue: function () {
+            return !!this.props.value ? this.props.labels.yes : this.props.labels.no;
+        },
+
+        onKeyDown: function (e) {
+            if (e.key === ' ') {
+                if (!this.props.readonly) {
+                    this.props.onChange(!this.props.value);
+                }
+                // Prevent the default always so that the space key doesn't scroll the page.
+                e.preventDefault();
+            }
         },
 
         /*jshint ignore:start */
         render: function () {
+            var props = this.props;
 
-
-            if (this.props.noControl) {
-                return (<span>{this.getDisplayValue()}</span>);
+            if (props.noControl) {
+                return (React.createElement("span", null, this.getDisplayValue()));
             }
 
-            var yes = this.props.value === true;
-            var no = this.props.value === false;
+            var yes = props.value === true;
+            var no  = props.value === false;
 
-            var clickYes = this.props.readonly ? ignoreClick : _.partial(this.props.onChange, true);
-            var clickNo =  this.props.readonly ? ignoreClick : _.partial(this.props.onChange, false);
+            var clickYes = props.readonly ? noop : _.partial(props.onChange, true);
+            var clickNo  = props.readonly ? noop : _.partial(props.onChange, false);
 
-            // this <label> is part of the switchbox markup, not the <FormField>'s label
-            // < span style={SPAN_STYLE}
             return (
-                <div tabIndex="0" className="switch">
+                <div tabIndex="0" className="switch" onKeyDown={this.onKeyDown}>
                     <ul>
-                        <li className={yes ? 'active' : ''} onClick={clickYes}><span className={yes ? 'pos' : ''}>Yes</span></li>
-                        <li className={no ? 'active' : ''} onClick={clickNo}><span className={no ? 'neg' : ''}>No</span></li>
+                        <li className={yes ? 'active' : ''} onClick={clickYes}>
+                            <span className={yes ? 'pos' : ''}>{props.labels.yes}</span>
+                        </li>
+                        <li className={no ? 'active' : ''} onClick={clickNo}>
+                            <span className={no ? 'neg' : ''}>{props.labels.no}</span>
+                        </li>
                     </ul>
                 </div>
             );
-        },
-        /*jshint ignore:end */
-
-        componentDidMount: function () {
-            var self = this,
-                $el = $(this.getDOMNode());
-
-            $el.on('keypress', function (e) {
-                if (e.keyCode === SPACE_KEY) {
-                    self.props.onChange(!self.props.value);
-                }
-            });
-        },
-
-        componentWillUnmount: function () {
-            $(this.getDOMNode()).off('keypress');
-        },
-
-        getDisplayValue: function () {
-            return !!this.props.value ? 'Yes' : 'No'; // l10n requires thought, no locale manager all the way down here.
-            // Also need to localize the switchbox images as the words "on" "off" appear.
         }
+        /*jshint ignore:end */
     });
 
-    void SPAN_STYLE;
-
     return SwitchBox;
-
 });
