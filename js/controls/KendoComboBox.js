@@ -1,11 +1,27 @@
 define([
-    'underscore', 'react',
+    'react',
     '../mixins/SelectWidgetMixin',
     '../ImmutableOptimizations'
-], function (_, React, SelectWidgetMixin, ImmutableOptimizations) {
+], function (React, SelectWidgetMixin, ImmutableOptimizations) {
     'use strict';
 
     var PropTypes = React.PropTypes;
+
+    function resetCustomValue(mixinOnChange, e) {
+        var widget = e.sender;
+
+        if (widget.value() && widget.select() === -1) {
+            //custom has been selected
+            widget.value(''); //reset widget
+            // Also clear the filter that the custom value applied so all the options are available
+            if (widget.options.filter !== 'none') {
+                widget.dataSource.filter(null);
+            }
+        }
+
+        // Call the base onChange so that the value in props is put back
+        mixinOnChange.call(this, e);
+    }
 
     var KendoComboBox = React.createClass({
         mixins: [
@@ -26,7 +42,8 @@ define([
             options: PropTypes.object,
             filter: PropTypes.string,
             placeholder: PropTypes.string,
-            template: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+            template: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+            preventCustomValues: PropTypes.bool
         },
 
         statics: {
@@ -40,6 +57,14 @@ define([
                     highlightFirst: false
                 }
             };
+        },
+
+        componentWillMount: function () {
+            // Preventing custom values requires us to hook the change event before the mixin's
+            // default behavior because we don't want the custom value to be passed to our parent.
+            if (this.props.preventCustomValues) {
+                this.onChange = resetCustomValue.bind(this, this.onChange);
+            }
         },
 
         /*jshint ignore:start */
