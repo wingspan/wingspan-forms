@@ -1,13 +1,12 @@
-/** @jsx React.DOM */
 define([
     'underscore', 'react', 'wingspan-forms', 'kendo',
-    'text!textassets/types/Contact.json',
-    'text!textassets/contacts.json'
+    'json!../textassets/types/Contact.json',
+    'json!../textassets/contacts.json'
 ], function (_, React, Forms, kendo, ContactModel, contacts) {
     'use strict';
 
-    ContactModel = JSON.parse(ContactModel).data;
-    contacts = JSON.parse(contacts).data;
+    ContactModel = ContactModel.data;
+    contacts = contacts.data;
 
 
     var App = React.createClass({

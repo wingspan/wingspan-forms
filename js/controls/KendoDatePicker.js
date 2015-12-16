@@ -1,7 +1,7 @@
-/** @jsx React.DOM */
+
 define([
     'underscore', 'react',
-    'mixins/DateWidgetMixin',
+    '../mixins/DateWidgetMixin',
     '../ImmutableOptimizations'
 ], function (_, React, DateWidgetMixin, ImmutableOptimizations) {
     'use strict';

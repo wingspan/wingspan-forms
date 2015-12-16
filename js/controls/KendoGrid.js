@@ -1,10 +1,10 @@
-/** @jsx React.DOM */
+
 define([
-    'underscore', 'jquery', 'react', 'kendo'
-], function (_, $, React, kendo) {
+    'underscore', 'react', 'kendo',
+    '../ReactCommon'
+], function (_, React, kendo, Common) {
     'use strict';
 
-    void kendo;
     var PropTypes = React.PropTypes;
 
     function eitherType(type1, type2) {
@@ -96,7 +96,7 @@ define([
                 scrollable: true,
                 selectable: false,
                 sortable: false,
-                onChange: $.noop
+                onChange: _.noop
             };
         },
 
@@ -107,7 +107,7 @@ define([
         /*jshint ignore:end */
 
         componentDidMount: function () {
-            var $rootNode = $(this.getDOMNode());
+            var $rootNode = Common.findWidget(this);
             var widgetOptions = _.defaults({
                 autoBind: this.props.autoBind,
                 dataSource: this.props.dataSource,
@@ -129,16 +129,15 @@ define([
         },
 
         componentWillUnmount: function () {
-            $(this.getDOMNode()).data('kendoGrid').destroy();
+            Common.findWidget(this, 'kendoGrid').destroy();
 
             if (this.props.rowTooltip) {
-                $(this.getDOMNode()).data('kendoTooltip').destroy();
+                Common.findWidget(this, 'kendoTooltip').destroy();
             }
         },
 
         componentDidUpdate: function (prevProps) {
-            var $el = $(this.getDOMNode());
-            var grid = $el.data('kendoGrid');
+            var grid = Common.findWidget(this, 'kendoGrid');
 
             if (this.props.dataSource instanceof Array) {
                 if (!_.isEqual(this.props.dataSource, prevProps.dataSource)) {

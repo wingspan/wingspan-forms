@@ -1,7 +1,8 @@
-/** @jsx React.DOM */
+
 define([
-    'underscore', 'jquery', 'react', 'kendo'
-], function (_, $, React, kendo) {
+    'underscore', 'react', 'kendo',
+    '../ReactCommon'
+], function (_, React, kendo, Common) {
     'use strict';
 
     /**
@@ -37,7 +38,7 @@ define([
          * content that is newly made visible.
          */
         componentDidUpdate: function () {
-            $(this.getDOMNode()).find('.k-content.k-state-active').resize();
+            Common.findWidget(this).find('.k-content.k-state-active').resize();
         },
 
         /* jshint ignore:start */
@@ -63,9 +64,6 @@ define([
             var divs = [];
             _.each(_.values(this.props.tabs), function (jsx, index) {
                 var id = kendo.format('{0}-{1}', self.stableUniqueId, index);
-
-                var activeTab = index === self.props.selectedTab;
-                jsx.props.__WsptTabStripActiveHax = activeTab; // hax specific to the TMF - never use this
 
                 var jsx = (index === self.props.selectedTab
                     ? (<div key={index} className="k-content k-state-active" role="tabpanel" aria-expanded="true" style={visibleStyle}>{jsx}</div>)

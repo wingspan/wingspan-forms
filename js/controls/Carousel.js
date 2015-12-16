@@ -1,4 +1,4 @@
-/** @jsx React.DOM */
+
 define([
     'underscore', 'react', 'jquery', 'kendo'
 ], function (_, React, $, kendo) {

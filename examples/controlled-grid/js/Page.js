@@ -1,7 +1,6 @@
-/** @jsx React.DOM */
 define([
-    'underscore', 'react', 'jquery', 'kendo', 'wingspan-forms'
-], function (_, React, $, kendo, Forms) {
+    'underscore', 'react', 'react-dom', 'kendo', 'wingspan-forms'
+], function (_, React, ReactDOM, kendo, Forms) {
     'use strict';
 
     var FormField = Forms.FormField;
@@ -195,9 +194,7 @@ define([
             }
         });
 
-        /* jshint ignore:start */
-        React.renderComponent(<App data={data} />, rootElement);
-        /* jshint ignore:end */
+        ReactDOM.render(React.createElement(App, {data: data}), rootElement);
     }
 
     var PrettyJson = React.createClass({
@@ -208,19 +205,15 @@ define([
         },
 
         render: function () {
-            /* jshint ignore:start */
-            return (<pre>{JSON.stringify(this.props.value, undefined, this.props.indentSpaces)}</pre>);
-            /* jshint ignore:end */
+            return React.createElement('pre', null, JSON.stringify(this.props.value, undefined, this.props.indentSpaces));
         }
     });
 
     var FormCloser = React.createClass({
-        /* jshint ignore:start */
         render: function () {
             var style = { clear: 'both'};
-            return (<div style={style} />);
+            return React.createElement('div', {style: style});
         }
-        /* jshint ignore:end */
     });
 
     function capitalizeFirstLetter(string) {

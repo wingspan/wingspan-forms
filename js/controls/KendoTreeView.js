@@ -1,6 +1,7 @@
 define([
-    'underscore', 'jquery', 'react', 'kendo'
-], function (_, $, React, kendo) {
+    'underscore', 'react', 'kendo',
+    '../ReactCommon'
+], function (_, React, kendo, Common) {
     'use strict';
 
     void kendo;
@@ -17,18 +18,14 @@ define([
 
         getDefaultProps: function () {
             return {
-                onExpand: $.noop,
-                onCollapse: $.noop,
-                onSelect: $.noop
+                onExpand: _.noop,
+                onCollapse: _.noop,
+                onSelect: _.noop
             };
         },
 
-        getWidget: function () {
-            return $(this.getDOMNode()).data('kendoTreeView');
-        },
-
         componentDidMount: function () {
-            var $el = $(this.getDOMNode());
+            var $el = Common.findWidget(this);
 
             function propCallback(callback) {
                 // Return an event handler that invokes the callback with the relevant node data
@@ -49,12 +46,12 @@ define([
         },
 
         componentWillUnmount: function () {
-            this.getWidget().destroy();
+            Common.findWidget(this, 'kendoTreeView').destroy();
         },
 
         componentDidUpdate: function (prevProps) {
             if (this.props.dataSource !== prevProps.dataSource) {
-                this.getWidget().setDataSource(this.props.dataSource);
+                Common.findWidget(this, 'kendoTreeView').setDataSource(this.props.dataSource);
             }
         },
 

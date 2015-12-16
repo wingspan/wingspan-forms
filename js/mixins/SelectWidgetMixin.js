@@ -1,6 +1,6 @@
 define([
-    'underscore', 'jquery', 'kendo'
-], function (_, $, kendo) {
+    'underscore', 'jquery', 'kendo', 'react-dom'
+], function (_, $, kendo, ReactDOM) {
     'use strict';
 
     var DataSource = kendo.data.DataSource;
@@ -41,7 +41,7 @@ define([
             },
 
             getWidget: function () {
-                return $(this.getDOMNode()).data(widgetName);
+                return $(ReactDOM.findDOMNode(this)).data(widgetName);
             },
 
             renderValue: function () {
@@ -67,7 +67,7 @@ define([
                 }
 
                 var props = this.props;
-                var $el = $(this.getDOMNode());
+                var $el = $(ReactDOM.findDOMNode(this));
 
                 $el[widgetName](_.defaults({
                     autoBind: props.autoBind,
