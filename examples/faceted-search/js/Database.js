@@ -1,12 +1,12 @@
 define([
     'underscore', 'kendo', 'q',
-    'util',
-    'Fixtures',
-    'text!textassets/types/Contact.json'
+    './util',
+    './Fixtures',
+    'json!../textassets/types/Contact.json'
 ], function (_, kendo, Q, util, Fixtures, ContactModel) {
     'use strict';
 
-    var ContactModel = JSON.parse(ContactModel).data;
+    ContactModel = ContactModel.data;
     var database = Fixtures.generateDatabase();
 
     /*
@@ -49,7 +49,7 @@ define([
 
         var results = _.filter(database, _.partial(whereClause, applicableFilters));
         var groupedResults = _.groupBy(results, fieldName);
-        var countsByVal = _.object(_.map(groupedResults, function (v, k) { return [k, v.length] })); // does too much work- computes all counts, not just the one we need
+        var countsByVal = _.object(_.map(groupedResults, function (v, k) { return [k, v.length]; })); // does too much work- computes all counts, not just the one we need
         return countsByVal[value] || 0; // results that were filtered out of the grid have zero count
     }
 

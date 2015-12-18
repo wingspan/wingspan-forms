@@ -1,6 +1,6 @@
 define([
     'underscore', 'kendo', 'q',
-    'Database'
+    './Database'
 ], function (_, kendo, Q, Database) {
     'use strict';
 

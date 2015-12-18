@@ -1,8 +1,39 @@
 define([
-    'underscore', 'underscore.string'
-], function (_, str) {
+    'underscore'
+], function (_) {
     'use strict';
 
+    function strRepeat(str, qty){
+        if (qty < 1) return '';
+        var result = '';
+        while (qty > 0) {
+            if (qty & 1) result += str;
+            qty >>= 1, str += str;
+        }
+        return result;
+    }
+    function pad(str, length, padStr, type) {
+        length = ~~length;
+
+        var padlen = 0;
+
+        if (!padStr)
+            padStr = ' ';
+        else if (padStr.length > 1)
+            padStr = padStr.charAt(0);
+
+        switch (type) {
+            case 'right':
+                padlen = length - str.length;
+                return str + strRepeat(padStr, padlen);
+            case 'both':
+                padlen = length - str.length;
+                return strRepeat(padStr, Math.ceil(padlen / 2)) + str + strRepeat(padStr, Math.floor(padlen / 2));
+            default: // 'left'
+                padlen = length - str.length;
+                return strRepeat(padStr, padlen) + str;
+        }
+    }
 
     function generateDatabase() {
         var N = 100;
@@ -15,11 +46,11 @@ define([
                 firstName: firstName,
                 lastName: lastName,
                 phoneNumber: [
-                    str.pad(_.random(0, 999), 3, '0', 'left'),
-                    str.pad(_.random(0, 999), 3, '0', 'left'),
-                    str.pad(_.random(0, 9999), 4, '0', 'left')].join('-'),
+                    pad(_.random(0, 999), 3, '0', 'left'),
+                    pad(_.random(0, 999), 3, '0', 'left'),
+                    pad(_.random(0, 9999), 4, '0', 'left')].join('-'),
                 contactGroup: ['friend', 'work', 'family'][_.random(0,2)],
-                email: str.sprintf('%s.%s@example.com', firstName, lastName).toLowerCase(),
+                email: `${firstName}.${lastName}@example.com`.toLowerCase(),
                 id: generateUUID(),
                 revision: 1
             };

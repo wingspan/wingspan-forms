@@ -4,6 +4,7 @@ module.exports = {
 
     entry: {
         "controlled-grid": './examples/controlled-grid/js/Page',
+        "faceted-search": './examples/faceted-search/js/Page',
         "form-dynamic": './examples/form-dynamic/js/Page'
     },
     output: {
@@ -15,6 +16,7 @@ module.exports = {
         "kendo": true,
         "jquery": true,
         "underscore": true,
+        "q": true,
         "react": true,
         "react-dom": true,
         "wingspan-forms": true

@@ -1,0 +1,77 @@
+body {
+  overflow: auto;
+}
+.App {
+  padding: 10px;
+}
+.App > .table {
+  display: table;
+}
+.App > .table .row {
+  display: table-row;
+}
+.App > .table .left {
+  display: table-cell;
+  width: 20%;
+  padding: 10px;
+}
+.App > .table .left > div {
+  height: 400px;
+  overflow-y: auto;
+}
+.App > .table .right {
+  display: table-cell;
+  padding: 0 10px 0 10px;
+  vertical-align: top;
+}
+.App .filterControls {
+  border: solid 1px #eee;
+  background: #f8f8f8;
+  padding: 9px 10px;
+  margin-top: 15px;
+  border-radius: 6px;
+}
+.App .filterControls .trash {
+  display: inline-block;
+  width: 24px;
+  height: 14px;
+  background: url(assets/trash.png) no-repeat left center;
+  cursor: pointer;
+}
+.App .filterControls .filters {
+  color: #2c5985;
+  text-transform: uppercase;
+}
+.App .filterControls .filters .filter {
+  margin-right: 5px;
+}
+.App .filterControls .filters i.closer {
+  display: inline-block;
+  width: 16px;
+  height: 15px;
+  background: url(assets/tag-closer.png);
+  cursor: pointer;
+}
+.App .filterControls .filters i.closer:hover {
+  background: url(assets/tag-closer-over.png);
+}
+.App .filterControls .hint {
+  color: #999;
+  font-style: italic;
+}
+.App .left {
+  font-size: 14px;
+}
+.App .left .formLabel {
+  font-weight: bold;
+}
+.App .left .formElement label {
+  line-height: 25px;
+}
+.App .left .formCheckBox {
+  padding-right: 5px;
+}
+.App .left .count {
+  color: #999;
+  padding-left: 5px;
+}
