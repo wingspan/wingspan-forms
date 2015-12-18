@@ -1,0 +1,1754 @@
+/* Common Variables
+------------------------------------------------------------------------- */
+/* Mixins
+------------------------------------------------------------------------- */
+.hr {
+  height: 1px;
+  background: #cfcfcf;
+  border-bottom: solid 1px white;
+}
+.borderBoxed {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.unselectable {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.icon {
+  float: left;
+  background-position: top left;
+  background-repeat: no-repeat;
+}
+.iconButton {
+  float: left;
+  cursor: pointer;
+}
+.hasTooltip .statusIcon {
+  background: url("assets/icons/form-tooltip.png") no-repeat center right;
+}
+.formFieldError.hasErrorTooltip .statusIcon {
+  background: url("assets/icons/form-tooltip-error.png") no-repeat center right;
+}
+/* ********************
+ * CAROUSEL ICONS
+ * ***************** */
+.carousel .iconPrev {
+  width: 7px;
+  height: 12px;
+  background-image: url("assets/carousel-left.png");
+}
+.carousel .iconNext {
+  width: 7px;
+  height: 12px;
+  background-image: url("assets/carousel-right.png");
+}
+.carousel .iconCaret {
+  width: 7px;
+  height: 4px;
+  background-image: url("assets/carousel-caret.png");
+}
+.formFieldError .carousel .iconCaret {
+  background-image: url("assets/carousel-caret-error.png");
+}
+.formFieldDisabled .carousel .iconCaret {
+  background-image: url("assets/carousel-caret-disabled.png");
+}
+/* ******************************************
+ *
+ *   GENERAL FORM CLASSES
+ *
+ * *************************************** */
+.formTitle {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 0;
+  float: left;
+  width: 100%;
+}
+.formFieldTitle {
+  padding: 10px 0 10px;
+  float: left;
+  width: 100%;
+  font-size: 12px;
+  line-height: 15px;
+}
+.formField {
+  font-size: .75em;
+  font-family: sans-serif;
+  float: left;
+  width: 100%;
+  padding: 0 0 10px 0;
+  position: relative;
+}
+.formField .formLabel {
+  padding: 0 0 1px 0;
+  float: left;
+  width: 100%;
+  font-size: 12px;
+  line-height: 12px;
+  color: #000;
+}
+.formField .formElement {
+  position: relative;
+  float: left;
+  width: 100%;
+}
+.formField.lockable .formElement {
+  padding-right: 30px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+.formField.lockable .fieldLock {
+  position: absolute;
+  top: 20px;
+  right: 5px;
+  bottom: auto;
+  left: auto;
+  cursor: pointer;
+}
+.formField.lockable .fieldLockOn {
+  right: 9px;
+}
+.formField.formFieldDisabled .formLabel {
+  color: #aaa;
+}
+.formField.formFieldReadonly .formLabel {
+  color: #aaa;
+}
+.formField.noControl .formElement {
+  line-height: 28px;
+}
+.formField.hasTooltip .formLabel {
+  color: #3271B1;
+}
+.formField.hasTooltip .formLabel .statusIcon {
+  padding-right: 15px;
+  cursor: pointer;
+}
+.formField.formFieldError .formLabel {
+  color: red;
+}
+.formField.formFieldError .formLabel .statusIcon {
+  padding-right: 15px;
+  cursor: pointer;
+}
+.formFieldInline {
+  font-size: .75em;
+  font-family: sans-serif;
+  float: left;
+  width: 100%;
+  padding: 0 0 10px 0;
+  position: relative;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  padding-right: 10px;
+}
+.formFieldInline .formLabel {
+  padding: 0 0 1px 0;
+  float: left;
+  width: 100%;
+  font-size: 12px;
+  line-height: 12px;
+  color: #000;
+}
+.formFieldInline .formElement {
+  position: relative;
+  float: left;
+  width: 100%;
+}
+.formFieldInline.lockable .formElement {
+  padding-right: 30px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+.formFieldInline.lockable .fieldLock {
+  position: absolute;
+  top: 20px;
+  right: 5px;
+  bottom: auto;
+  left: auto;
+  cursor: pointer;
+}
+.formFieldInline.lockable .fieldLockOn {
+  right: 9px;
+}
+.formFieldInline.formFieldDisabled .formLabel {
+  color: #aaa;
+}
+.formFieldInline.formFieldReadonly .formLabel {
+  color: #aaa;
+}
+.formFieldInline.noControl .formElement {
+  line-height: 28px;
+}
+.formFieldInline.hasTooltip .formLabel {
+  color: #3271B1;
+}
+.formFieldInline.hasTooltip .formLabel .statusIcon {
+  padding-right: 15px;
+  cursor: pointer;
+}
+.formFieldInline.formFieldError .formLabel {
+  color: red;
+}
+.formFieldInline.formFieldError .formLabel .statusIcon {
+  padding-right: 15px;
+  cursor: pointer;
+}
+.formInlineGroup {
+  float: left;
+  clear: left;
+  width: 100%;
+}
+.formInlineGroup .formFieldInline {
+  padding-right: 0;
+  padding-left: 10px;
+}
+.formInlineGroup .formFieldInline:first-child {
+  padding-left: 0;
+}
+.formInlineGroup .formFieldOffset:first-child {
+  padding-left: 10px;
+}
+.formFieldNoWrap {
+  font-size: .75em;
+  font-family: sans-serif;
+  float: left;
+  width: 100%;
+  padding: 0 0 10px 0;
+  position: relative;
+}
+.formFieldNoWrap .formLabel {
+  padding: 0 0 1px 0;
+  float: left;
+  width: 100%;
+  font-size: 12px;
+  line-height: 12px;
+  color: #000;
+}
+.formFieldNoWrap .formElement {
+  position: relative;
+  float: left;
+  width: 100%;
+}
+.formFieldNoWrap.lockable .formElement {
+  padding-right: 30px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+.formFieldNoWrap.lockable .fieldLock {
+  position: absolute;
+  top: 20px;
+  right: 5px;
+  bottom: auto;
+  left: auto;
+  cursor: pointer;
+}
+.formFieldNoWrap.lockable .fieldLockOn {
+  right: 9px;
+}
+.formFieldNoWrap.formFieldDisabled .formLabel {
+  color: #aaa;
+}
+.formFieldNoWrap.formFieldReadonly .formLabel {
+  color: #aaa;
+}
+.formFieldNoWrap.noControl .formElement {
+  line-height: 28px;
+}
+.formFieldNoWrap.hasTooltip .formLabel {
+  color: #3271B1;
+}
+.formFieldNoWrap.hasTooltip .formLabel .statusIcon {
+  padding-right: 15px;
+  cursor: pointer;
+}
+.formFieldNoWrap.formFieldError .formLabel {
+  color: red;
+}
+.formFieldNoWrap.formFieldError .formLabel .statusIcon {
+  padding-right: 15px;
+  cursor: pointer;
+}
+.formFieldNoWrap .formLabel {
+  width: 37%;
+  padding: 0 3% 0 0;
+  text-align: right;
+  line-height: 28px;
+}
+.formFieldNoWrap .formElement {
+  width: 60%;
+}
+.formColumn {
+  float: left;
+  padding-left: 20px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+.formColumnFirst {
+  padding-left: 0;
+}
+.formButtons {
+  float: left;
+  width: 100%;
+}
+.formClear {
+  clear: both;
+}
+/* ******************************************
+ *
+ *   SPECIFIC FORM ELEMENTS
+ *
+ * *************************************** */
+.formFieldCheckbox .formElement label,
+.formFieldRadio .formElement label,
+.formFieldSwitchbox .formElement label {
+  padding-right: 10px;
+  line-height: 25px;
+}
+.formFieldCheckbox .formElement label:last-child,
+.formFieldRadio .formElement label:last-child,
+.formFieldSwitchbox .formElement label:last-child {
+  padding-right: 0;
+}
+.formFieldCheckbox .formElement span label:last-child,
+.formFieldRadio .formElement span label:last-child,
+.formFieldSwitchbox .formElement span label:last-child {
+  padding-right: 10px;
+}
+.formFieldCheckbox .formElement span:last-child label:last-child,
+.formFieldRadio .formElement span:last-child label:last-child,
+.formFieldSwitchbox .formElement span:last-child label:last-child {
+  padding-right: 0;
+}
+.formFieldCheckbox.formFieldDisabled .formElement label,
+.formFieldRadio.formFieldDisabled .formElement label,
+.formFieldSwitchbox.formFieldDisabled .formElement label {
+  color: #aaa;
+}
+.formFieldCheckbox.formFieldReadonly .formElement label,
+.formFieldRadio.formFieldReadonly .formElement label,
+.formFieldSwitchbox.formFieldReadonly .formElement label {
+  color: #aaa;
+}
+.formFieldCheckbox.formFieldNoWrap .formLabel,
+.formFieldRadio.formFieldNoWrap .formLabel,
+.formFieldSwitchbox.formFieldNoWrap .formLabel {
+  padding-top: 5px;
+  line-height: 20px;
+}
+.formFieldSwitchbox.formFieldNoWrap .formLabel {
+  padding-top: 10px;
+}
+.formFieldInput .formElement .k-textbox,
+.formFieldTextarea .formElement .k-textbox,
+.formFieldAutocomplete .formElement .k-textbox {
+  background: #F9FBFD;
+  border: 1px solid #c5c5c5;
+  color: #000;
+  padding: 0px 10px;
+  width: 100%;
+  height: 28px;
+  resize: none;
+}
+.formFieldInput .formElement .k-textbox:hover,
+.formFieldTextarea .formElement .k-textbox:hover,
+.formFieldAutocomplete .formElement .k-textbox:hover,
+.formFieldInput .formElement .k-textbox:focus,
+.formFieldTextarea .formElement .k-textbox:focus,
+.formFieldAutocomplete .formElement .k-textbox:focus {
+  background: #F9FBFD;
+  border: 1px solid #c5c5c5;
+  color: #000;
+}
+.formFieldInput.formFieldError .formElement .k-textbox,
+.formFieldTextarea.formFieldError .formElement .k-textbox,
+.formFieldAutocomplete.formFieldError .formElement .k-textbox {
+  background: pink;
+  border: 1px solid red;
+  color: red;
+}
+.formFieldInput.formFieldError .formElement .k-textbox:hover,
+.formFieldTextarea.formFieldError .formElement .k-textbox:hover,
+.formFieldAutocomplete.formFieldError .formElement .k-textbox:hover,
+.formFieldInput.formFieldError .formElement .k-textbox:focus,
+.formFieldTextarea.formFieldError .formElement .k-textbox:focus,
+.formFieldAutocomplete.formFieldError .formElement .k-textbox:focus {
+  background: #fff;
+  border: 1px solid red;
+  color: red;
+}
+.formFieldInput.formFieldDisabled .formElement .k-textbox,
+.formFieldTextarea.formFieldDisabled .formElement .k-textbox,
+.formFieldAutocomplete.formFieldDisabled .formElement .k-textbox {
+  background: #eee;
+  border: 1px solid #aaa;
+  color: #aaa;
+}
+.formFieldInput.formFieldDisabled .formElement .k-textbox:hover,
+.formFieldTextarea.formFieldDisabled .formElement .k-textbox:hover,
+.formFieldAutocomplete.formFieldDisabled .formElement .k-textbox:hover,
+.formFieldInput.formFieldDisabled .formElement .k-textbox:focus,
+.formFieldTextarea.formFieldDisabled .formElement .k-textbox:focus,
+.formFieldAutocomplete.formFieldDisabled .formElement .k-textbox:focus {
+  background: #eee;
+  border: 1px solid #aaa;
+  color: #aaa;
+}
+.formFieldInput.formFieldReadonly .formElement .k-textbox,
+.formFieldTextarea.formFieldReadonly .formElement .k-textbox,
+.formFieldAutocomplete.formFieldReadonly .formElement .k-textbox {
+  background: #eee;
+  border: 1px solid #aaa;
+  color: #aaa;
+}
+.formFieldInput.formFieldReadonly .formElement .k-textbox:hover,
+.formFieldTextarea.formFieldReadonly .formElement .k-textbox:hover,
+.formFieldAutocomplete.formFieldReadonly .formElement .k-textbox:hover,
+.formFieldInput.formFieldReadonly .formElement .k-textbox:focus,
+.formFieldTextarea.formFieldReadonly .formElement .k-textbox:focus,
+.formFieldAutocomplete.formFieldReadonly .formElement .k-textbox:focus {
+  background: #eee;
+  border: 1px solid #aaa;
+  color: #aaa;
+}
+.formFieldTextarea .formElement .k-textbox {
+  background: #F9FBFD;
+  border: 1px solid #c5c5c5;
+  color: #000;
+  padding: 0px 10px;
+  width: 100%;
+  height: 28px;
+  resize: none;
+}
+.formFieldTextarea .formElement .k-textbox:hover,
+.formFieldTextarea .formElement .k-textbox:focus {
+  background: #F9FBFD;
+  border: 1px solid #c5c5c5;
+  color: #000;
+}
+.formFieldTextarea.formFieldError .formElement .k-textbox {
+  background: pink;
+  border: 1px solid red;
+  color: red;
+}
+.formFieldTextarea.formFieldError .formElement .k-textbox:hover,
+.formFieldTextarea.formFieldError .formElement .k-textbox:focus {
+  background: #fff;
+  border: 1px solid red;
+  color: red;
+}
+.formFieldTextarea.formFieldDisabled .formElement .k-textbox {
+  background: #eee;
+  border: 1px solid #aaa;
+  color: #aaa;
+}
+.formFieldTextarea.formFieldDisabled .formElement .k-textbox:hover,
+.formFieldTextarea.formFieldDisabled .formElement .k-textbox:focus {
+  background: #eee;
+  border: 1px solid #aaa;
+  color: #aaa;
+}
+.formFieldTextarea.formFieldReadonly .formElement .k-textbox {
+  background: #eee;
+  border: 1px solid #aaa;
+  color: #aaa;
+}
+.formFieldTextarea.formFieldReadonly .formElement .k-textbox:hover,
+.formFieldTextarea.formFieldReadonly .formElement .k-textbox:focus {
+  background: #eee;
+  border: 1px solid #aaa;
+  color: #aaa;
+}
+.formFieldTextarea .formElement .k-textbox {
+  height: 60px;
+  /* 1px fix */
+  padding-right: 0;
+}
+.formFieldTextarea.formFieldNoWrap .formLabel {
+  line-height: 61px;
+}
+.formFieldAutocomplete .formElement .k-autocomplete {
+  padding: 0;
+  border: 0 !important;
+}
+.formFieldAutocomplete .formElement .k-autocomplete input {
+  padding-left: 5px;
+}
+.formFieldDropdown .formElement .k-widget,
+.formFieldCombobox .formElement .k-widget {
+  width: 100%;
+}
+.formFieldDropdown .formElement .k-widget .k-dropdown-wrap,
+.formFieldCombobox .formElement .k-widget .k-dropdown-wrap {
+  height: 26px;
+  background: #F9FBFD;
+  border: 1px solid #c5c5c5;
+}
+.formFieldDropdown .formElement .k-widget .k-dropdown-wrap .k-input,
+.formFieldCombobox .formElement .k-widget .k-dropdown-wrap .k-input {
+  color: #000;
+  background: none;
+  line-height: 22px;
+  height: 22px;
+  padding-left: 7px;
+}
+.formFieldDropdown .formElement .k-widget .k-dropdown-wrap .k-select,
+.formFieldCombobox .formElement .k-widget .k-dropdown-wrap .k-select {
+  border-color: #c5c5c5;
+  line-height: 26px;
+}
+.formFieldDropdown .formElement .k-widget:hover .k-dropdown-wrap,
+.formFieldCombobox .formElement .k-widget:hover .k-dropdown-wrap,
+.formFieldDropdown .formElement .k-widget:focus .k-dropdown-wrap,
+.formFieldCombobox .formElement .k-widget:focus .k-dropdown-wrap {
+  background: #F9FBFD;
+  border: 1px solid #c5c5c5;
+}
+.formFieldDropdown .formElement .k-widget:hover .k-dropdown-wrap .k-input,
+.formFieldCombobox .formElement .k-widget:hover .k-dropdown-wrap .k-input,
+.formFieldDropdown .formElement .k-widget:focus .k-dropdown-wrap .k-input,
+.formFieldCombobox .formElement .k-widget:focus .k-dropdown-wrap .k-input {
+  color: #000;
+}
+.formFieldDropdown .formElement .k-widget:hover .k-dropdown-wrap .k-select,
+.formFieldCombobox .formElement .k-widget:hover .k-dropdown-wrap .k-select,
+.formFieldDropdown .formElement .k-widget:focus .k-dropdown-wrap .k-select,
+.formFieldCombobox .formElement .k-widget:focus .k-dropdown-wrap .k-select {
+  border-color: #c5c5c5;
+}
+.formFieldDropdown.formFieldError .formElement .k-widget .k-dropdown-wrap,
+.formFieldCombobox.formFieldError .formElement .k-widget .k-dropdown-wrap {
+  background: pink;
+  border: 1px solid red;
+}
+.formFieldDropdown.formFieldError .formElement .k-widget .k-dropdown-wrap .k-input,
+.formFieldCombobox.formFieldError .formElement .k-widget .k-dropdown-wrap .k-input {
+  color: red;
+}
+.formFieldDropdown.formFieldError .formElement .k-widget .k-dropdown-wrap .k-select,
+.formFieldCombobox.formFieldError .formElement .k-widget .k-dropdown-wrap .k-select {
+  border-color: red;
+}
+.formFieldDropdown.formFieldError .formElement .k-widget:hover .k-dropdown-wrap,
+.formFieldCombobox.formFieldError .formElement .k-widget:hover .k-dropdown-wrap,
+.formFieldDropdown.formFieldError .formElement .k-widget:focus .k-dropdown-wrap,
+.formFieldCombobox.formFieldError .formElement .k-widget:focus .k-dropdown-wrap {
+  background: #fff;
+  border: 1px solid red;
+}
+.formFieldDropdown.formFieldError .formElement .k-widget:hover .k-dropdown-wrap .k-input,
+.formFieldCombobox.formFieldError .formElement .k-widget:hover .k-dropdown-wrap .k-input,
+.formFieldDropdown.formFieldError .formElement .k-widget:focus .k-dropdown-wrap .k-input,
+.formFieldCombobox.formFieldError .formElement .k-widget:focus .k-dropdown-wrap .k-input {
+  color: red;
+}
+.formFieldDropdown.formFieldError .formElement .k-widget:hover .k-dropdown-wrap .k-select,
+.formFieldCombobox.formFieldError .formElement .k-widget:hover .k-dropdown-wrap .k-select,
+.formFieldDropdown.formFieldError .formElement .k-widget:focus .k-dropdown-wrap .k-select,
+.formFieldCombobox.formFieldError .formElement .k-widget:focus .k-dropdown-wrap .k-select {
+  border-color: red;
+}
+.formFieldDropdown.formFieldDisabled .formElement .k-widget .k-dropdown-wrap,
+.formFieldCombobox.formFieldDisabled .formElement .k-widget .k-dropdown-wrap {
+  background: #eee;
+  border: 1px solid #aaa;
+}
+.formFieldDropdown.formFieldDisabled .formElement .k-widget .k-dropdown-wrap .k-input,
+.formFieldCombobox.formFieldDisabled .formElement .k-widget .k-dropdown-wrap .k-input {
+  color: #aaa;
+}
+.formFieldDropdown.formFieldDisabled .formElement .k-widget .k-dropdown-wrap .k-select,
+.formFieldCombobox.formFieldDisabled .formElement .k-widget .k-dropdown-wrap .k-select {
+  border-color: #aaa;
+}
+.formFieldDropdown.formFieldDisabled .formElement .k-widget:hover .k-dropdown-wrap,
+.formFieldCombobox.formFieldDisabled .formElement .k-widget:hover .k-dropdown-wrap,
+.formFieldDropdown.formFieldDisabled .formElement .k-widget:focus .k-dropdown-wrap,
+.formFieldCombobox.formFieldDisabled .formElement .k-widget:focus .k-dropdown-wrap {
+  background: #eee;
+  border: 1px solid #aaa;
+}
+.formFieldDropdown.formFieldDisabled .formElement .k-widget:hover .k-dropdown-wrap .k-input,
+.formFieldCombobox.formFieldDisabled .formElement .k-widget:hover .k-dropdown-wrap .k-input,
+.formFieldDropdown.formFieldDisabled .formElement .k-widget:focus .k-dropdown-wrap .k-input,
+.formFieldCombobox.formFieldDisabled .formElement .k-widget:focus .k-dropdown-wrap .k-input {
+  color: #aaa;
+}
+.formFieldDropdown.formFieldDisabled .formElement .k-widget:hover .k-dropdown-wrap .k-select,
+.formFieldCombobox.formFieldDisabled .formElement .k-widget:hover .k-dropdown-wrap .k-select,
+.formFieldDropdown.formFieldDisabled .formElement .k-widget:focus .k-dropdown-wrap .k-select,
+.formFieldCombobox.formFieldDisabled .formElement .k-widget:focus .k-dropdown-wrap .k-select {
+  border-color: #aaa;
+}
+.formFieldDropdown.formFieldReadonly .formElement .k-widget .k-dropdown-wrap,
+.formFieldCombobox.formFieldReadonly .formElement .k-widget .k-dropdown-wrap {
+  background: #eee;
+  border: 1px solid #aaa;
+}
+.formFieldDropdown.formFieldReadonly .formElement .k-widget .k-dropdown-wrap .k-input,
+.formFieldCombobox.formFieldReadonly .formElement .k-widget .k-dropdown-wrap .k-input {
+  color: #aaa;
+}
+.formFieldDropdown.formFieldReadonly .formElement .k-widget .k-dropdown-wrap .k-select,
+.formFieldCombobox.formFieldReadonly .formElement .k-widget .k-dropdown-wrap .k-select {
+  border-color: #aaa;
+}
+.formFieldDropdown.formFieldReadonly .formElement .k-widget:hover .k-dropdown-wrap,
+.formFieldCombobox.formFieldReadonly .formElement .k-widget:hover .k-dropdown-wrap,
+.formFieldDropdown.formFieldReadonly .formElement .k-widget:focus .k-dropdown-wrap,
+.formFieldCombobox.formFieldReadonly .formElement .k-widget:focus .k-dropdown-wrap {
+  background: #eee;
+  border: 1px solid #aaa;
+}
+.formFieldDropdown.formFieldReadonly .formElement .k-widget:hover .k-dropdown-wrap .k-input,
+.formFieldCombobox.formFieldReadonly .formElement .k-widget:hover .k-dropdown-wrap .k-input,
+.formFieldDropdown.formFieldReadonly .formElement .k-widget:focus .k-dropdown-wrap .k-input,
+.formFieldCombobox.formFieldReadonly .formElement .k-widget:focus .k-dropdown-wrap .k-input {
+  color: #aaa;
+}
+.formFieldDropdown.formFieldReadonly .formElement .k-widget:hover .k-dropdown-wrap .k-select,
+.formFieldCombobox.formFieldReadonly .formElement .k-widget:hover .k-dropdown-wrap .k-select,
+.formFieldDropdown.formFieldReadonly .formElement .k-widget:focus .k-dropdown-wrap .k-select,
+.formFieldCombobox.formFieldReadonly .formElement .k-widget:focus .k-dropdown-wrap .k-select {
+  border-color: #aaa;
+}
+.formFieldMultiselect .formElement .k-multiselect {
+  width: 100%;
+  box-sizing: border-box;
+}
+.formFieldMultiselect .formElement .k-multiselect .k-multiselect-wrap {
+  min-height: 25px;
+  padding-top: 1px;
+}
+.formFieldMultiselect .formElement .k-multiselect .k-multiselect-wrap .k-button {
+  margin: 1px 1px 1px 2px;
+}
+.formFieldMultiselect .formElement .k-multiselect .k-multiselect-wrap .k-button span {
+  padding-left: 3px;
+}
+.formFieldMultiselect .formElement .k-multiselect:hover,
+.formFieldMultiselect .formElement .k-multiselect:focus {
+  border: 1px solid #c5c5c5;
+}
+.formFieldMultiselect .formElement .k-multiselect:hover .k-multiselect-wrap,
+.formFieldMultiselect .formElement .k-multiselect:focus .k-multiselect-wrap {
+  background: #F9FBFD;
+}
+.formFieldMultiselect .formElement .k-multiselect:hover .k-multiselect-wrap .k-button,
+.formFieldMultiselect .formElement .k-multiselect:focus .k-multiselect-wrap .k-button {
+  color: #000;
+  border: 1px solid #c5c5c5;
+}
+.formFieldMultiselect .formElement select {
+  width: 100%;
+  border: 1px solid #c5c5c5;
+  background: #F9FBFD;
+  color: #000;
+  height: 61px;
+  border-radius: 5px;
+}
+.formFieldMultiselect .formElement select:hover,
+.formFieldMultiselect .formElement select:focus {
+  border: 1px solid #c5c5c5;
+  background: #F9FBFD;
+  color: #000;
+}
+.formFieldMultiselect.formFieldDisabled .formElement .k-multiselect {
+  border: 1px solid #aaa;
+}
+.formFieldMultiselect.formFieldDisabled .formElement .k-multiselect .k-multiselect-wrap {
+  background: #eee;
+}
+.formFieldMultiselect.formFieldDisabled .formElement .k-multiselect .k-multiselect-wrap .k-button {
+  color: #aaa;
+  border-color: #aaa;
+}
+.formFieldMultiselect.formFieldDisabled .formElement .k-multiselect:hover,
+.formFieldMultiselect.formFieldDisabled .formElement .k-multiselect:focus {
+  border: 1px solid #aaa;
+}
+.formFieldMultiselect.formFieldDisabled .formElement .k-multiselect:hover .k-multiselect-wrap,
+.formFieldMultiselect.formFieldDisabled .formElement .k-multiselect:focus .k-multiselect-wrap {
+  background: #eee;
+}
+.formFieldMultiselect.formFieldDisabled .formElement .k-multiselect:hover .k-multiselect-wrap .k-button,
+.formFieldMultiselect.formFieldDisabled .formElement .k-multiselect:focus .k-multiselect-wrap .k-button {
+  color: #aaa;
+  border-color: #aaa;
+}
+.formFieldMultiselect.formFieldDisabled select {
+  border: 1px solid #aaa;
+  background: #eee;
+  color: #aaa;
+}
+.formFieldMultiselect.formFieldDisabled select:hover,
+.formFieldMultiselect.formFieldDisabled select:focus {
+  border: 1px solid #aaa;
+  background: #eee;
+  color: #aaa;
+}
+.formFieldMultiselect.formFieldReadonly .formElement .k-multiselect {
+  border: 1px solid #aaa;
+}
+.formFieldMultiselect.formFieldReadonly .formElement .k-multiselect .k-multiselect-wrap {
+  background: #eee;
+}
+.formFieldMultiselect.formFieldReadonly .formElement .k-multiselect .k-multiselect-wrap .k-button {
+  color: #aaa;
+  border-color: #aaa;
+}
+.formFieldMultiselect.formFieldReadonly .formElement .k-multiselect:hover,
+.formFieldMultiselect.formFieldReadonly .formElement .k-multiselect:focus {
+  border: 1px solid #aaa;
+}
+.formFieldMultiselect.formFieldReadonly .formElement .k-multiselect:hover .k-multiselect-wrap,
+.formFieldMultiselect.formFieldReadonly .formElement .k-multiselect:focus .k-multiselect-wrap {
+  background: #eee;
+}
+.formFieldMultiselect.formFieldReadonly .formElement .k-multiselect:hover .k-multiselect-wrap .k-button,
+.formFieldMultiselect.formFieldReadonly .formElement .k-multiselect:focus .k-multiselect-wrap .k-button {
+  color: #aaa;
+  border-color: #aaa;
+}
+.formFieldMultiselect.formFieldReadonly select {
+  border: 1px solid #aaa;
+  background: #eee;
+  color: #aaa;
+}
+.formFieldMultiselect.formFieldReadonly select:hover,
+.formFieldMultiselect.formFieldReadonly select:focus {
+  border: 1px solid #aaa;
+  background: #eee;
+  color: #aaa;
+}
+.formFieldNumeric .formElement .k-numerictextbox {
+  height: 28px;
+  width: 100%;
+}
+.formFieldNumeric .formElement .k-numerictextbox .k-numeric-wrap {
+  border: 1px solid #c5c5c5;
+}
+.formFieldNumeric .formElement .k-numerictextbox .k-numeric-wrap .k-input {
+  background: #F9FBFD;
+  color: #000;
+  height: 22px;
+  line-height: 22px;
+}
+.formFieldNumeric .formElement .k-numerictextbox .k-numeric-wrap .k-select {
+  background: #F9FBFD;
+  border-color: #c5c5c5;
+}
+.formFieldNumeric .formElement .k-numerictextbox .k-numeric-wrap .k-select .k-link:first-child {
+  margin-top: 1px;
+}
+.formFieldNumeric .formElement .k-numerictextbox:hover .k-numeric-wrap,
+.formFieldNumeric .formElement .k-numerictextbox:focus .k-numeric-wrap {
+  border: 1px solid #c5c5c5;
+}
+.formFieldNumeric .formElement .k-numerictextbox:hover .k-numeric-wrap .k-input,
+.formFieldNumeric .formElement .k-numerictextbox:focus .k-numeric-wrap .k-input {
+  background: #F9FBFD;
+  color: #000;
+}
+.formFieldNumeric .formElement .k-numerictextbox:hover .k-numeric-wrap .k-select,
+.formFieldNumeric .formElement .k-numerictextbox:focus .k-numeric-wrap .k-select {
+  background: #F9FBFD;
+  border-color: #c5c5c5;
+}
+.formFieldNumeric.formFieldError .formElement .k-numerictextbox .k-numeric-wrap {
+  border: 1px solid red;
+}
+.formFieldNumeric.formFieldError .formElement .k-numerictextbox .k-numeric-wrap .k-input {
+  background: pink;
+  color: red;
+}
+.formFieldNumeric.formFieldError .formElement .k-numerictextbox .k-numeric-wrap .k-select {
+  background: pink;
+  border-color: red;
+}
+.formFieldNumeric.formFieldError .formElement .k-numerictextbox:hover .k-numeric-wrap,
+.formFieldNumeric.formFieldError .formElement .k-numerictextbox:focus .k-numeric-wrap {
+  border: 1px solid red;
+}
+.formFieldNumeric.formFieldError .formElement .k-numerictextbox:hover .k-numeric-wrap .k-input,
+.formFieldNumeric.formFieldError .formElement .k-numerictextbox:focus .k-numeric-wrap .k-input {
+  background: #fff;
+  color: red;
+}
+.formFieldNumeric.formFieldError .formElement .k-numerictextbox:hover .k-numeric-wrap .k-select,
+.formFieldNumeric.formFieldError .formElement .k-numerictextbox:focus .k-numeric-wrap .k-select {
+  background: #fff;
+  border-color: red;
+}
+.formFieldNumeric.formFieldDisabled .formElement .k-numerictextbox .k-numeric-wrap {
+  border: 1px solid #aaa;
+}
+.formFieldNumeric.formFieldDisabled .formElement .k-numerictextbox .k-numeric-wrap .k-input {
+  background: #eee;
+  color: #aaa;
+}
+.formFieldNumeric.formFieldDisabled .formElement .k-numerictextbox .k-numeric-wrap .k-select {
+  background: #eee;
+  border-color: #aaa;
+}
+.formFieldNumeric.formFieldDisabled .formElement .k-numerictextbox:hover .k-numeric-wrap,
+.formFieldNumeric.formFieldDisabled .formElement .k-numerictextbox:focus .k-numeric-wrap {
+  border: 1px solid #aaa;
+}
+.formFieldNumeric.formFieldDisabled .formElement .k-numerictextbox:hover .k-numeric-wrap .k-input,
+.formFieldNumeric.formFieldDisabled .formElement .k-numerictextbox:focus .k-numeric-wrap .k-input {
+  background: #eee;
+  color: #aaa;
+}
+.formFieldNumeric.formFieldDisabled .formElement .k-numerictextbox:hover .k-numeric-wrap .k-select,
+.formFieldNumeric.formFieldDisabled .formElement .k-numerictextbox:focus .k-numeric-wrap .k-select {
+  background: #eee;
+  border-color: #aaa;
+}
+.formFieldNumeric.formFieldReadonly .formElement .k-numerictextbox .k-numeric-wrap {
+  border: 1px solid #aaa;
+}
+.formFieldNumeric.formFieldReadonly .formElement .k-numerictextbox .k-numeric-wrap .k-input {
+  background: #eee;
+  color: #aaa;
+}
+.formFieldNumeric.formFieldReadonly .formElement .k-numerictextbox .k-numeric-wrap .k-select {
+  background: #eee;
+  border-color: #aaa;
+}
+.formFieldNumeric.formFieldReadonly .formElement .k-numerictextbox:hover .k-numeric-wrap,
+.formFieldNumeric.formFieldReadonly .formElement .k-numerictextbox:focus .k-numeric-wrap {
+  border: 1px solid #aaa;
+}
+.formFieldNumeric.formFieldReadonly .formElement .k-numerictextbox:hover .k-numeric-wrap .k-input,
+.formFieldNumeric.formFieldReadonly .formElement .k-numerictextbox:focus .k-numeric-wrap .k-input {
+  background: #eee;
+  color: #aaa;
+}
+.formFieldNumeric.formFieldReadonly .formElement .k-numerictextbox:hover .k-numeric-wrap .k-select,
+.formFieldNumeric.formFieldReadonly .formElement .k-numerictextbox:focus .k-numeric-wrap .k-select {
+  background: #eee;
+  border-color: #aaa;
+}
+.formFieldDatepicker .formElement .k-widget,
+.formFieldTimepicker .formElement .k-widget,
+.formFieldDatetimepicker .formElement .k-widget {
+  height: 28px;
+  width: 100%;
+}
+.formFieldDatepicker .formElement .k-widget .k-picker-wrap,
+.formFieldTimepicker .formElement .k-widget .k-picker-wrap,
+.formFieldDatetimepicker .formElement .k-widget .k-picker-wrap {
+  border: 1px solid #c5c5c5;
+}
+.formFieldDatepicker .formElement .k-widget .k-picker-wrap .k-input,
+.formFieldTimepicker .formElement .k-widget .k-picker-wrap .k-input,
+.formFieldDatetimepicker .formElement .k-widget .k-picker-wrap .k-input {
+  background: #F9FBFD;
+  color: #000;
+  height: 22px;
+  line-height: 22px;
+  padding-left: 5px;
+}
+.formFieldDatepicker .formElement .k-widget .k-picker-wrap .k-select,
+.formFieldTimepicker .formElement .k-widget .k-picker-wrap .k-select,
+.formFieldDatetimepicker .formElement .k-widget .k-picker-wrap .k-select {
+  background: #F9FBFD;
+  border-color: #c5c5c5;
+  border-radius: 0 4px 4px 0;
+  line-height: 26px;
+}
+.formFieldDatepicker .formElement .k-widget:hover .k-picker-wrap,
+.formFieldTimepicker .formElement .k-widget:hover .k-picker-wrap,
+.formFieldDatetimepicker .formElement .k-widget:hover .k-picker-wrap,
+.formFieldDatepicker .formElement .k-widget:focus .k-picker-wrap,
+.formFieldTimepicker .formElement .k-widget:focus .k-picker-wrap,
+.formFieldDatetimepicker .formElement .k-widget:focus .k-picker-wrap {
+  border: 1px solid #c5c5c5;
+}
+.formFieldDatepicker .formElement .k-widget:hover .k-picker-wrap .k-input,
+.formFieldTimepicker .formElement .k-widget:hover .k-picker-wrap .k-input,
+.formFieldDatetimepicker .formElement .k-widget:hover .k-picker-wrap .k-input,
+.formFieldDatepicker .formElement .k-widget:focus .k-picker-wrap .k-input,
+.formFieldTimepicker .formElement .k-widget:focus .k-picker-wrap .k-input,
+.formFieldDatetimepicker .formElement .k-widget:focus .k-picker-wrap .k-input {
+  background: #F9FBFD;
+  color: #000;
+}
+.formFieldDatepicker .formElement .k-widget:hover .k-picker-wrap .k-select,
+.formFieldTimepicker .formElement .k-widget:hover .k-picker-wrap .k-select,
+.formFieldDatetimepicker .formElement .k-widget:hover .k-picker-wrap .k-select,
+.formFieldDatepicker .formElement .k-widget:focus .k-picker-wrap .k-select,
+.formFieldTimepicker .formElement .k-widget:focus .k-picker-wrap .k-select,
+.formFieldDatetimepicker .formElement .k-widget:focus .k-picker-wrap .k-select {
+  background: #F9FBFD;
+  border-color: #c5c5c5;
+}
+.formFieldDatepicker.formFieldError .k-widget .k-picker-wrap,
+.formFieldTimepicker.formFieldError .k-widget .k-picker-wrap,
+.formFieldDatetimepicker.formFieldError .k-widget .k-picker-wrap {
+  border: 1px solid red;
+}
+.formFieldDatepicker.formFieldError .k-widget .k-picker-wrap .k-input,
+.formFieldTimepicker.formFieldError .k-widget .k-picker-wrap .k-input,
+.formFieldDatetimepicker.formFieldError .k-widget .k-picker-wrap .k-input {
+  background: pink;
+  color: red;
+}
+.formFieldDatepicker.formFieldError .k-widget .k-picker-wrap .k-select,
+.formFieldTimepicker.formFieldError .k-widget .k-picker-wrap .k-select,
+.formFieldDatetimepicker.formFieldError .k-widget .k-picker-wrap .k-select {
+  background: pink;
+  border-color: red;
+}
+.formFieldDatepicker.formFieldError .k-widget:hover .k-picker-wrap,
+.formFieldTimepicker.formFieldError .k-widget:hover .k-picker-wrap,
+.formFieldDatetimepicker.formFieldError .k-widget:hover .k-picker-wrap,
+.formFieldDatepicker.formFieldError .k-widget:focus .k-picker-wrap,
+.formFieldTimepicker.formFieldError .k-widget:focus .k-picker-wrap,
+.formFieldDatetimepicker.formFieldError .k-widget:focus .k-picker-wrap {
+  border: 1px solid red;
+}
+.formFieldDatepicker.formFieldError .k-widget:hover .k-picker-wrap .k-input,
+.formFieldTimepicker.formFieldError .k-widget:hover .k-picker-wrap .k-input,
+.formFieldDatetimepicker.formFieldError .k-widget:hover .k-picker-wrap .k-input,
+.formFieldDatepicker.formFieldError .k-widget:focus .k-picker-wrap .k-input,
+.formFieldTimepicker.formFieldError .k-widget:focus .k-picker-wrap .k-input,
+.formFieldDatetimepicker.formFieldError .k-widget:focus .k-picker-wrap .k-input {
+  background: #fff;
+  color: red;
+}
+.formFieldDatepicker.formFieldError .k-widget:hover .k-picker-wrap .k-select,
+.formFieldTimepicker.formFieldError .k-widget:hover .k-picker-wrap .k-select,
+.formFieldDatetimepicker.formFieldError .k-widget:hover .k-picker-wrap .k-select,
+.formFieldDatepicker.formFieldError .k-widget:focus .k-picker-wrap .k-select,
+.formFieldTimepicker.formFieldError .k-widget:focus .k-picker-wrap .k-select,
+.formFieldDatetimepicker.formFieldError .k-widget:focus .k-picker-wrap .k-select {
+  background: #fff;
+  border-color: red;
+}
+.formFieldDatepicker.formFieldDisabled .k-widget .k-picker-wrap,
+.formFieldTimepicker.formFieldDisabled .k-widget .k-picker-wrap,
+.formFieldDatetimepicker.formFieldDisabled .k-widget .k-picker-wrap {
+  border: 1px solid #aaa;
+}
+.formFieldDatepicker.formFieldDisabled .k-widget .k-picker-wrap .k-input,
+.formFieldTimepicker.formFieldDisabled .k-widget .k-picker-wrap .k-input,
+.formFieldDatetimepicker.formFieldDisabled .k-widget .k-picker-wrap .k-input {
+  background: #eee;
+  color: #aaa;
+}
+.formFieldDatepicker.formFieldDisabled .k-widget .k-picker-wrap .k-select,
+.formFieldTimepicker.formFieldDisabled .k-widget .k-picker-wrap .k-select,
+.formFieldDatetimepicker.formFieldDisabled .k-widget .k-picker-wrap .k-select {
+  background: #eee;
+  border-color: #aaa;
+}
+.formFieldDatepicker.formFieldDisabled .k-widget:hover .k-picker-wrap,
+.formFieldTimepicker.formFieldDisabled .k-widget:hover .k-picker-wrap,
+.formFieldDatetimepicker.formFieldDisabled .k-widget:hover .k-picker-wrap,
+.formFieldDatepicker.formFieldDisabled .k-widget:focus .k-picker-wrap,
+.formFieldTimepicker.formFieldDisabled .k-widget:focus .k-picker-wrap,
+.formFieldDatetimepicker.formFieldDisabled .k-widget:focus .k-picker-wrap {
+  border: 1px solid #aaa;
+}
+.formFieldDatepicker.formFieldDisabled .k-widget:hover .k-picker-wrap .k-input,
+.formFieldTimepicker.formFieldDisabled .k-widget:hover .k-picker-wrap .k-input,
+.formFieldDatetimepicker.formFieldDisabled .k-widget:hover .k-picker-wrap .k-input,
+.formFieldDatepicker.formFieldDisabled .k-widget:focus .k-picker-wrap .k-input,
+.formFieldTimepicker.formFieldDisabled .k-widget:focus .k-picker-wrap .k-input,
+.formFieldDatetimepicker.formFieldDisabled .k-widget:focus .k-picker-wrap .k-input {
+  background: #eee;
+  color: #aaa;
+}
+.formFieldDatepicker.formFieldDisabled .k-widget:hover .k-picker-wrap .k-select,
+.formFieldTimepicker.formFieldDisabled .k-widget:hover .k-picker-wrap .k-select,
+.formFieldDatetimepicker.formFieldDisabled .k-widget:hover .k-picker-wrap .k-select,
+.formFieldDatepicker.formFieldDisabled .k-widget:focus .k-picker-wrap .k-select,
+.formFieldTimepicker.formFieldDisabled .k-widget:focus .k-picker-wrap .k-select,
+.formFieldDatetimepicker.formFieldDisabled .k-widget:focus .k-picker-wrap .k-select {
+  background: #eee;
+  border-color: #aaa;
+}
+.formFieldDatepicker.formFieldReadonly .k-widget .k-picker-wrap,
+.formFieldTimepicker.formFieldReadonly .k-widget .k-picker-wrap,
+.formFieldDatetimepicker.formFieldReadonly .k-widget .k-picker-wrap {
+  border: 1px solid #aaa;
+}
+.formFieldDatepicker.formFieldReadonly .k-widget .k-picker-wrap .k-input,
+.formFieldTimepicker.formFieldReadonly .k-widget .k-picker-wrap .k-input,
+.formFieldDatetimepicker.formFieldReadonly .k-widget .k-picker-wrap .k-input {
+  background: #eee;
+  color: #aaa;
+}
+.formFieldDatepicker.formFieldReadonly .k-widget .k-picker-wrap .k-select,
+.formFieldTimepicker.formFieldReadonly .k-widget .k-picker-wrap .k-select,
+.formFieldDatetimepicker.formFieldReadonly .k-widget .k-picker-wrap .k-select {
+  background: #eee;
+  border-color: #aaa;
+}
+.formFieldDatepicker.formFieldReadonly .k-widget:hover .k-picker-wrap,
+.formFieldTimepicker.formFieldReadonly .k-widget:hover .k-picker-wrap,
+.formFieldDatetimepicker.formFieldReadonly .k-widget:hover .k-picker-wrap,
+.formFieldDatepicker.formFieldReadonly .k-widget:focus .k-picker-wrap,
+.formFieldTimepicker.formFieldReadonly .k-widget:focus .k-picker-wrap,
+.formFieldDatetimepicker.formFieldReadonly .k-widget:focus .k-picker-wrap {
+  border: 1px solid #aaa;
+}
+.formFieldDatepicker.formFieldReadonly .k-widget:hover .k-picker-wrap .k-input,
+.formFieldTimepicker.formFieldReadonly .k-widget:hover .k-picker-wrap .k-input,
+.formFieldDatetimepicker.formFieldReadonly .k-widget:hover .k-picker-wrap .k-input,
+.formFieldDatepicker.formFieldReadonly .k-widget:focus .k-picker-wrap .k-input,
+.formFieldTimepicker.formFieldReadonly .k-widget:focus .k-picker-wrap .k-input,
+.formFieldDatetimepicker.formFieldReadonly .k-widget:focus .k-picker-wrap .k-input {
+  background: #eee;
+  color: #aaa;
+}
+.formFieldDatepicker.formFieldReadonly .k-widget:hover .k-picker-wrap .k-select,
+.formFieldTimepicker.formFieldReadonly .k-widget:hover .k-picker-wrap .k-select,
+.formFieldDatetimepicker.formFieldReadonly .k-widget:hover .k-picker-wrap .k-select,
+.formFieldDatepicker.formFieldReadonly .k-widget:focus .k-picker-wrap .k-select,
+.formFieldTimepicker.formFieldReadonly .k-widget:focus .k-picker-wrap .k-select,
+.formFieldDatetimepicker.formFieldReadonly .k-widget:focus .k-picker-wrap .k-select {
+  background: #eee;
+  border-color: #aaa;
+}
+/* ******************************************
+ *
+ *   FORM BUTTONS
+ *
+ * *************************************** */
+.secondaryButton {
+  cursor: pointer;
+  display: inline-block;
+  height: 33px;
+  margin: 0 5px 0 10px;
+}
+.secondaryButton > div {
+  background: url('assets/button-secondary.png') no-repeat top right;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  float: left;
+}
+.secondaryButton > div > span {
+  color: white;
+  margin: 0 10px 0 -10px;
+  padding: 10px 4px 11px 15px;
+  display: inline-block;
+  background: url('assets/button-secondary.png') no-repeat top left;
+  text-shadow: 0px -1px 1px #666;
+}
+.secondaryButton.buttonDisabled {
+  cursor: default;
+}
+.secondaryButton.buttonDisabled > div {
+  background-image: url('assets/button-disabled.png');
+}
+.secondaryButton.buttonDisabled > div > span {
+  background-image: url('assets/button-disabled.png');
+}
+.primaryButton {
+  cursor: pointer;
+  display: inline-block;
+  height: 33px;
+  margin: 0 5px 0 10px;
+}
+.primaryButton > div {
+  background: url('assets/button-primary.png') no-repeat top right;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  float: left;
+}
+.primaryButton > div > span {
+  color: white;
+  margin: 0 10px 0 -10px;
+  padding: 10px 4px 11px 15px;
+  display: inline-block;
+  background: url('assets/button-primary.png') no-repeat top left;
+  text-shadow: 0px -1px 1px #666;
+}
+.primaryButton.buttonDisabled {
+  cursor: default;
+}
+.primaryButton.buttonDisabled > div {
+  background-image: url('assets/button-disabled.png');
+}
+.primaryButton.buttonDisabled > div > span {
+  background-image: url('assets/button-disabled.png');
+}
+button.primaryButton {
+  margin-right: 5px;
+  margin-left: 0;
+  background: url("assets/button-primary-bg.png") top left repeat-x #787A82;
+  border-top: 0;
+  border-bottom: 1px solid #43657F;
+  border-left: 1px solid #658EAE;
+  border-right: 1px solid #43657F;
+  border-radius: 5px;
+  text-shadow: 0px -1px 1px #666;
+  color: #fff;
+  font-size: 12px;
+  padding: 0 13px !important;
+}
+button.primaryButton[disabled] {
+  border-bottom: 1px solid #9EA3AE;
+  border-right: 1px solid #9EA3AE;
+  border-left: 1px solid #B9BABE;
+  background: url("assets/button-disabled-bg.png") top left repeat-x #BBBCC0;
+}
+button.secondaryButton {
+  margin-right: 5px;
+  margin-left: 0;
+  background: url("assets/button-secondary-bg.png") top left repeat-x #787A82;
+  border-top: 0;
+  border-bottom: 1px solid #474B55;
+  border-left: 1px solid #74777E;
+  border-right: 1px solid #474B55;
+  border-radius: 5px;
+  text-shadow: 0px -1px 1px #666;
+  color: #fff;
+  font-size: 12px;
+  padding: 0 13px !important;
+}
+button.secondaryButton[disabled] {
+  border-bottom: 1px solid #9EA3AE;
+  border-right: 1px solid #9EA3AE;
+  border-left: 1px solid #B9BABE;
+  background: url("assets/button-disabled-bg.png") top left repeat-x #BBBCC0;
+}
+button.plainButton {
+  cursor: pointer;
+  display: inline-block;
+  height: 33px;
+  margin: 0 5px 0 10px;
+  margin-right: 5px;
+  margin-left: 0;
+  background: none;
+  border: 0;
+  color: #000;
+  font-size: 12px;
+  padding: 0 13px !important;
+}
+button i.k-loading {
+  height: 16px;
+  width: 16px;
+  vertical-align: middle;
+  padding-left: 5px;
+}
+/* ******************************************
+ *
+ *   TOOLTIPS
+ *
+ * *************************************** */
+.k-widget.formTooltip {
+  background: #3271B1;
+  border-color: #3271B1;
+  color: #fff;
+  padding: 10px;
+  border-radius: 7px;
+  line-height: normal;
+  font-size: 12px;
+}
+.k-widget.formTooltip .k-callout-s {
+  border-top-color: #3271B1;
+}
+.k-widget.formErrorTooltip {
+  background: #CC0000;
+  border-color: #CC0000;
+  color: #fff;
+}
+.k-widget.formErrorTooltip .k-callout-n {
+  border-bottom-color: #CC0000;
+}
+/* ******************************************
+ *
+ *   ONE OFF FORM ELEMENTS
+ *
+ * *************************************** */
+.formFieldSwitch .formElement .switch,
+.formFieldSwitch .formElement .switch ul,
+.formFieldSwitch .formElement .switch li,
+.formFieldSwitch .formElement .switch li span {
+  float: left;
+  border-radius: 5px;
+}
+.formFieldSwitch .formElement .switch {
+  background: #ECF2F8;
+  padding: 3px;
+}
+.formFieldSwitch .formElement .switch ul {
+  border: 1px solid #AFAFAF;
+  background: #ccc;
+  white-space: nowrap;
+}
+.formFieldSwitch .formElement .switch ul li {
+  margin: -1px;
+  border: 1px solid transparent;
+  color: #fff;
+  cursor: pointer;
+}
+.formFieldSwitch .formElement .switch ul li span {
+  padding: 0 10px;
+  line-height: 28px;
+}
+.formFieldSwitch .formElement .switch ul li.active {
+  border-left: 1px solid #AFAFAF;
+  border-right: 1px solid #AFAFAF;
+  color: #000;
+  cursor: default;
+}
+.formFieldSwitch .formElement .switch ul li.active span {
+  background: #f9f9f9;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #f9f9f9 0%, #eaeaea 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f9f9f9), color-stop(100%, #eaeaea));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #f9f9f9 0%, #eaeaea 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #f9f9f9 0%, #eaeaea 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #f9f9f9 0%, #eaeaea 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #f9f9f9 0%, #eaeaea 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f9f9f9, endColorstr=#eaeaea, GradientType=0);
+  /* IE6-9 */
+  box-shadow: inset 0px 1px 0px #fff, inset 0px -1px 0px #fff;
+}
+.formFieldSwitch .formElement .switch ul li.active .neg {
+  color: #B11100;
+}
+.formFieldSwitch .formElement .switch ul li.active .pos {
+  color: #3A9800;
+}
+.formFieldSwitch .formElement .switch ul li:first-child.active {
+  border-left: 1px solid transparent;
+}
+.formFieldSwitch .formElement .switch ul li:last-child.active {
+  border-right: 1px solid transparent;
+}
+.formFieldSwitch .formElement .switch:hover,
+.formFieldSwitch .formElement .switch:focus {
+  background: #fff;
+}
+.formFieldSwitch.formFieldError .formElement .switch ul {
+  border-color: #cb1702;
+}
+.formFieldSwitch.formFieldError .formElement .switch:hover,
+.formFieldSwitch.formFieldError .formElement .switch:focus {
+  background: pink;
+}
+.formFieldSwitch.formFieldDisabled .formElement .switch {
+  background: #f9f9f9;
+}
+.formFieldSwitch.formFieldDisabled .formElement .switch ul {
+  background: #e8e8e8;
+  border-color: #dbdbdb;
+}
+.formFieldSwitch.formFieldDisabled .formElement .switch ul li {
+  cursor: default;
+}
+.formFieldSwitch.formFieldDisabled .formElement .switch ul li.active {
+  color: #bcbcbc;
+  border-left-color: #dbdbdb;
+  border-right-color: #dbdbdb;
+}
+.formFieldSwitch.formFieldDisabled .formElement .switch ul li.active .pos,
+.formFieldSwitch.formFieldDisabled .formElement .switch ul li.active .neg {
+  color: #bcbcbc;
+}
+.formFieldSwitch.formFieldDisabled .formElement .switch ul li.active span {
+  background: #fcfcfc;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #fcfcfc 0%, #f5f5f5 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fcfcfc), color-stop(100%, #f5f5f5));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #fcfcfc 0%, #f5f5f5 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #fcfcfc 0%, #f5f5f5 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #fcfcfc 0%, #f5f5f5 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #fcfcfc 0%, #f5f5f5 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#fcfcfc, endColorstr=#f5f5f5, GradientType=0);
+  /* IE6-9 */
+}
+.formFieldSwitch.formFieldDisabled .formElement .switch:hover,
+.formFieldSwitch.formFieldDisabled .formElement .switch:focus {
+  background: #f9f9f9;
+}
+.formFieldSwitch.formFieldReadonly .formElement .switch {
+  background: #ECF2F8;
+}
+.formFieldSwitch.formFieldReadonly .formElement .switch ul {
+  background: #e8e8e8;
+  border-color: #dbdbdb;
+}
+.formFieldSwitch.formFieldReadonly .formElement .switch ul li {
+  cursor: default;
+}
+.formFieldSwitch.formFieldReadonly .formElement .switch ul li.active {
+  color: #bcbcbc;
+  border-left-color: #dbdbdb;
+  border-right-color: #dbdbdb;
+}
+.formFieldSwitch.formFieldReadonly .formElement .switch:hover,
+.formFieldSwitch.formFieldReadonly .formElement .switch:focus {
+  background: #ECF2F8;
+}
+.formFieldCarousel .formElement .carousel {
+  float: left;
+  width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 144px 0 30px;
+  position: relative;
+  height: 30px;
+}
+.formFieldCarousel .formElement .carousel .carouselButton,
+.formFieldCarousel .formElement .carousel .carouselInput {
+  height: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: #f9f9f9;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #f9f9f9 0%, #eaeaea 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f9f9f9), color-stop(100%, #eaeaea));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #f9f9f9 0%, #eaeaea 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #f9f9f9 0%, #eaeaea 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #f9f9f9 0%, #eaeaea 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #f9f9f9 0%, #eaeaea 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f9f9f9, endColorstr=#eaeaea, GradientType=0);
+  /* IE6-9 */
+  box-shadow: inset 0px 1px 0px #fff, inset 0px -1px 0px #fff;
+  border-top: 1px solid #dfdfdf;
+  border-right: 1px solid #c8c8c8;
+  border-bottom: 1px solid #9d9d9d;
+  border-left: 1px solid #c8c8c8;
+}
+.formFieldCarousel .formElement .carousel .carouselButton {
+  position: absolute;
+  top: 0;
+  color: #333;
+  font-size: 14px;
+  padding: 0 0 0 5px;
+  cursor: pointer;
+}
+.formFieldCarousel .formElement .carousel .carouselButton .icon {
+  margin-left: 2px;
+}
+.formFieldCarousel .formElement .carousel .carouselInput {
+  width: 100%;
+  border-left: 0;
+  border-right: 0;
+  padding-left: 10px;
+}
+.formFieldCarousel .formElement .carousel .backButton {
+  left: 0;
+  width: 30px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 0;
+}
+.formFieldCarousel .formElement .carousel .forwardButton {
+  right: 114px;
+  width: 30px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 5px;
+}
+.formFieldCarousel .formElement .carousel .editButton {
+  right: 0;
+  width: 110px;
+  border-radius: 5px;
+}
+.formFieldCarousel .formElement .carousel .editButton .icon {
+  float: right;
+  margin: 7px 5px 0 5px;
+}
+.formFieldCarousel.formFieldError .formElement .carousel .editButton {
+  background: #f9f9f9;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #f9f9f9 0%, pink 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f9f9f9), color-stop(100%, pink));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #f9f9f9 0%, pink 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #f9f9f9 0%, pink 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #f9f9f9 0%, pink 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #f9f9f9 0%, pink 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f9f9f9, endColorstr=pink, GradientType=0);
+  /* IE6-9 */
+  color: red;
+  box-shadow: none;
+  border-color: red;
+}
+.formFieldCarousel.formFieldError .formElement .carousel .backButton {
+  border-left-color: red;
+  border-top-color: red;
+  border-bottom-color: red;
+}
+.formFieldCarousel.formFieldError .formElement .carousel .forwardButton {
+  border-right-color: red;
+  border-top-color: red;
+  border-bottom-color: red;
+}
+.formFieldCarousel.formFieldError .formElement .carousel .carouselInput {
+  border-top-color: red;
+  border-bottom-color: red;
+}
+.formFieldCarousel.formFieldDisabled .formElement .carousel .editButton {
+  background: #eaeaea;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #eaeaea 0%, #eaeaea 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eaeaea), color-stop(100%, #eaeaea));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #eaeaea 0%, #eaeaea 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #eaeaea 0%, #eaeaea 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #eaeaea 0%, #eaeaea 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #eaeaea 0%, #eaeaea 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#eaeaea, endColorstr=#eaeaea, GradientType=0);
+  /* IE6-9 */
+  color: #bbb;
+  box-shadow: none;
+}
+/* ******************************************
+ *
+ *   GRID OVERRIDES
+ *
+ * *************************************** */
+.templateGridWrap .k-grid .k-grid-content tr {
+  border: 0;
+}
+.templateGridWrap .k-grid .k-grid-content tr td {
+  margin-top: -1px;
+  padding: 0;
+  border: 0;
+}
+/* ******************************************
+ *
+ *   GENERAL FORM CLASSES
+ *
+ * *************************************** */
+.gridRow {
+  color: #333;
+  border: solid 1px transparent !important;
+  float: left;
+  width: 100%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+.gridRow .gridRowCheckbox {
+  position: absolute;
+  top: 0;
+  left: 14px;
+  height: 100%;
+  width: 40px;
+  background: url("common/assets/check_off.png") center left no-repeat;
+}
+.gridRow .gridRowIcon {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  width: 85px;
+}
+.gridRow .gridRowName {
+  margin-bottom: 5px;
+}
+.gridRow .gridRowName,
+.gridRow .gridRowName a {
+  color: #568CB1;
+  font-size: 1.25em;
+  font-weight: bold;
+}
+.gridRow .gridRowName:hover,
+.gridRow .gridRowName a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.gridRow .gridRowColumns .gridRowColumn {
+  float: left;
+  width: 100%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  padding: 0 0 0 15px;
+}
+.gridRow .gridRowColumns .gridRowColumn:first-child {
+  padding-left: 0;
+}
+.gridRow .gridRowColumns.gridRowColumnsDouble .gridRowColumn {
+  width: 50%;
+}
+.gridRow .gridRowColumns.gridRowColumnsTriple .gridRowColumn {
+  width: 33%;
+}
+.gridRow .gridRowControls {
+  position: absolute;
+  top: 0;
+  right: -14px;
+  width: 170px;
+}
+.gridRow .gridRowControls .actionButton {
+  margin-right: 12px;
+}
+.gridRow .gridRowControls .divider {
+  width: 1px;
+  height: 35px;
+  margin-top: 1px;
+  margin-right: 12px;
+  background: #c4dae8;
+}
+.gridRow .gridRowColumnsWrap {
+  position: relative;
+  float: left;
+  width: 100%;
+}
+.gridRow .gridRowTop {
+  border: solid 1px white;
+  border-bottom: none;
+  padding: 13px 14px 4px 14px;
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 115px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+.gridRow .gridRowDetails {
+  display: none;
+  clear: left;
+  float: left;
+  width: 100%;
+  border: solid 1px white;
+  border-top: solid 1px #9ebbc6;
+  padding: 6px 14px 6px 14px;
+  background: #e9f2f7;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+/* ******************************************
+ *
+ *   ELEMENT MIXINS
+ *
+ * *************************************** */
+.gridRow.hasCheckbox .gridRowName,
+.gridRow.hasCheckbox .gridRowColumns {
+  margin-left: 40px;
+}
+.gridRow.hasIcon .gridRowName,
+.gridRow.hasIcon .gridRowColumns {
+  margin-left: 85px;
+}
+.gridRow.hasIcon.hasCheckbox .gridRowIcon {
+  left: 54px;
+}
+.gridRow.hasIcon.hasCheckbox .gridRowName,
+.gridRow.hasIcon.hasCheckbox .gridRowColumns {
+  margin-left: 125px;
+}
+.gridRow.hasControls .gridRowColumns {
+  margin-right: 170px;
+}
+/* ******************************************
+ *
+ *   STATES (k-state-selected, k-state-disabled)
+ *
+ * *************************************** */
+tr:hover:not(.k-state-disabled) .gridRow {
+  border: solid 1px #9ebbc6 !important;
+  background: #e9f2f7 !important;
+}
+tr.k-state-selected .gridRow,
+tr.k-state-selected:hover .gridRow {
+  border: solid 1px #9ebbc6 !important;
+  background: #d7e9f4 !important;
+}
+tr.k-state-selected .gridRow .gridRowDetails,
+tr.k-state-selected:hover .gridRow .gridRowDetails {
+  display: block;
+}
+tr.k-state-selected .gridRow .gridRowCheckbox {
+  background-image: url("common/assets/check_on.png");
+}
+tr.k-state-disabled .gridRow .gridRowCheckbox {
+  background-image: url("common/assets/check_off_disabled.png");
+}
+/* ******************************************
+ *
+ *   CONTENT ELEMENTS
+ *
+ * *************************************** */
+.detailsList li {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.detailsList li .detailsLabel {
+  font-weight: bold;
+  color: #333;
+}
+.detailsList li .detailsValue {
+  color: #666;
+}
+.detailsList li .detailsSplit {
+  padding: 0 3px;
+  color: #333;
+}
+/* ******************************************
+ *
+ *   COLORS (red, yellow, green, gray, default)
+ *
+ * *************************************** */
+.gridRowRed {
+  border-color: #EECDCD !important;
+  background: #F7E9E9 !important;
+}
+.gridRowRed .gridRowDetails {
+  border-top-color: #EECDCD !important;
+  background: #FAF2F2 !important;
+}
+.gridRowRed .highlight,
+.gridRowRed .highlight .detailsLabel {
+  color: red !important;
+}
+.gridRowYellow {
+  border-color: #F2D892 !important;
+  background: #FFF2CF !important;
+}
+.gridRowYellow .gridRowDetails {
+  border-top-color: #F2D892 !important;
+  background: #FEF7E2 !important;
+}
+.gridRowGreen {
+  border-color: #B5DEAD !important;
+  background: #EBF6E8 !important;
+}
+.gridRowGreen .gridRowDetails {
+  border-top-color: #B5DEAD !important;
+  background: #F3F9F2;
+}
+.gridRowGray {
+  border-color: #CCC !important;
+  background: #F0F0F0 !important;
+}
+.gridRowGray .gridRowDetails {
+  border-top-color: #CCC !important;
+  background: #F5F5F5 !important;
+}
+/* if you wanted hover/selected states on colors, they would go here */
+tr:hover:not(.k-state-disabled) .gridRowRed,
+tr.k-state-selected .gridRowRed,
+tr.k-state-selected:hover .gridRowRed {
+  border-color: #EECDCD !important;
+  background: #F7E9E9 !important;
+}
+tr:hover:not(.k-state-disabled) .gridRowRed .gridRowDetails,
+tr.k-state-selected .gridRowRed .gridRowDetails,
+tr.k-state-selected:hover .gridRowRed .gridRowDetails {
+  border-top-color: #EECDCD !important;
+  background: #FAF2F2 !important;
+}
+tr:hover:not(.k-state-disabled) .gridRowRed .highlight,
+tr.k-state-selected .gridRowRed .highlight,
+tr.k-state-selected:hover .gridRowRed .highlight,
+tr:hover:not(.k-state-disabled) .gridRowRed .highlight .detailsLabel,
+tr.k-state-selected .gridRowRed .highlight .detailsLabel,
+tr.k-state-selected:hover .gridRowRed .highlight .detailsLabel {
+  color: red !important;
+}
+tr:hover:not(.k-state-disabled) .gridRowYellow,
+tr.k-state-selected .gridRowYellow,
+tr.k-state-selected:hover .gridRowYellow {
+  border-color: #F2D892 !important;
+  background: #FFF2CF !important;
+}
+tr:hover:not(.k-state-disabled) .gridRowYellow .gridRowDetails,
+tr.k-state-selected .gridRowYellow .gridRowDetails,
+tr.k-state-selected:hover .gridRowYellow .gridRowDetails {
+  border-top-color: #F2D892 !important;
+  background: #FEF7E2 !important;
+}
+tr:hover:not(.k-state-disabled) .gridRowGreen,
+tr.k-state-selected .gridRowGreen,
+tr.k-state-selected:hover .gridRowGreen {
+  border-color: #B5DEAD !important;
+  background: #EBF6E8 !important;
+}
+tr:hover:not(.k-state-disabled) .gridRowGreen .gridRowDetails,
+tr.k-state-selected .gridRowGreen .gridRowDetails,
+tr.k-state-selected:hover .gridRowGreen .gridRowDetails {
+  border-top-color: #B5DEAD !important;
+  background: #F3F9F2;
+}
+tr:hover:not(.k-state-disabled) .gridRowGray,
+tr.k-state-selected .gridRowGray,
+tr.k-state-selected:hover .gridRowGray {
+  border-color: #CCC !important;
+  background: #F0F0F0 !important;
+}
+tr:hover:not(.k-state-disabled) .gridRowGray .gridRowDetails,
+tr.k-state-selected .gridRowGray .gridRowDetails,
+tr.k-state-selected:hover .gridRowGray .gridRowDetails {
+  border-top-color: #CCC !important;
+  background: #F5F5F5 !important;
+}
+/* sample selected state 
+ tr.k-state-selected, tr.k-state-selected:hover {
+	.gridRowGreen {
+		background: black !important;
+		.gridRowDetails {
+			background: orange;
+		}
+	}
+
+ }
+*/
+.searchBox {
+  display: inline-block;
+  position: relative;
+}
+.searchBox input {
+  border-radius: 5px;
+  border: 0;
+  font-family: inherit;
+  font-size: 100%;
+  padding: 0.2em 0;
+  text-indent: 4px;
+  width: 100%;
+  height: 1.75em;
+}
+.searchBox .iconClear {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  cursor: pointer;
+}
+.searchBox .iconSearch {
+  position: absolute;
+  top: 0;
+  right: 1px;
+  cursor: pointer;
+}

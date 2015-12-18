@@ -2,10 +2,8 @@ Thumbs.db
 .gradle
 *.iml
 .DS_Store
-build
 .idea/
 node_modules/
 bower_components/
-dist/
 js-built/
 spec-built/

@@ -1,6 +1,6 @@
 {
   "name": "wingspan-forms",
-  "version": "1.0.0",
+  "version": "1.1.0-beta1",
   "description": "A forms package for React applications using Kendo UI widgets",
   "main": "wingspan-forms.js",
   "repository": {
@@ -17,10 +17,10 @@
   "author": "Wingspan Technology, Inc.",
   "license": "MIT",
   "peerDependencies": {
-    "react": "~0.14.0",
-    "react-dom": "~0.14.0",
-    "jquery": "~1.9.1",
-    "underscore": "~1.7.0"
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "jquery": "^1.9.1",
+    "underscore": "^1.7.0"
   },
   "devDependencies": {
     "babel-loader": "^6.2.0",
@@ -37,5 +37,8 @@
       "es2015",
       "react"
     ]
+  },
+  "publishConfig": {
+    "registry": "http://repo02.wingspan.com:8081/nexus/content/repositories/releases-ui/"
   }
 }
