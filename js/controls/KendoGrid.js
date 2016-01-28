@@ -5,6 +5,7 @@ define([
 ], function (_, React, kendo, Common) {
     'use strict';
 
+    var $ = kendo.jQuery;
     var PropTypes = React.PropTypes;
 
     function eitherType(type1, type2) {
@@ -86,7 +87,8 @@ define([
             options: PropTypes.object,
             value: PropTypes.any,
             onChange: PropTypes.func,
-            rowTooltip: eitherType('string', 'func')
+            rowTooltip: eitherType('string', 'func'),
+            rowDataBind: PropTypes.func
         },
 
         getDefaultProps: function () {
@@ -126,6 +128,9 @@ define([
             if (this.props.rowTooltip) {
                 createRowTooltip(this.props.rowTooltip, $rootNode);
             }
+            if (this.props.rowDataBind) {
+                $rootNode.data('kendoGrid').bind('dataBinding', this.onGridDataBinding);
+            }
         },
 
         componentWillUnmount: function () {
@@ -157,14 +162,33 @@ define([
             }
         },
 
+        onGridDataBinding: function (e) {
+            var grid = e.sender;
+
+            // If the rowDataBind function installed widgets, they need to be destroyed before grid refresh.
+            if (e.action === 'rebind') {
+                kendo.destroy(grid.table.find('tr'));
+            }
+        },
+
         onGridDataBound: function (e) {
             var grid = e.sender;
+            var props = this.props;
 
             if (grid.selectable) {
                 updateGridSelection(this, grid);
             }
-            if (this.props.options && this.props.options.dataBound) {
-                this.props.options.dataBound(e);
+
+            if (props.options && props.options.dataBound) {
+                props.options.dataBound(e);
+            }
+
+            // Render any custom widgets using the provided function
+            if (props.rowDataBind) {
+                grid.table.find('tr').each(function() {
+                    var $el = $(this);
+                    props.rowDataBind($el, grid.dataItem($el));
+                });
             }
         },
 
