@@ -23,6 +23,7 @@ define([
 
         render: function () {
             var props = this.props;
+            var children;
 
             function renderRadio(option) {
                 return (React.createElement(Radio, {
@@ -34,13 +35,22 @@ define([
                 }, option.label));
             }
 
-            React.Children.forEach(this.props.children, function (radio) {
+            function setRadioChecked(child) {
+                if (!child.props.hasOwnProperty('value')) {
+                    return child;
+                }
                 // The use of double-equals is intentional here, so that numbers represented as strings will match.
-                radio.props.checked = (radio.props.value == props.value);
-            });
+                let checked = child.props.value == props.value;
+                return React.cloneElement(child, { checked: checked });
+            }
 
-            return React.createElement("fieldset", { className: props.className },
-                this.props.dataSource ? this.props.dataSource.map(renderRadio) : this.props.children);
+            if (props.dataSource) {
+                children = props.dataSource.map(renderRadio);
+            } else {
+                children = React.Children.map(props.children, setRadioChecked);
+            }
+
+            return React.createElement("fieldset", { className: props.className }, children);
         }
     });
 

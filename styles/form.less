@@ -248,7 +248,6 @@
 			padding: 0px 10px;
 			width: 100%;
 			height: @inputHeight;
-			resize: none;
 		}
 
 		.k-textbox:hover, .k-textbox:focus {
@@ -313,10 +312,9 @@
 
 	&.formFieldNoWrap {
 		.formLabel {
-			line-height: @textareaHeight;
+			padding-top: (@textareaHeight - @inputHeight - 11px) / 2;
 		}
 	}
-
 }
 
 .formFieldAutocomplete {
@@ -1191,6 +1189,12 @@ button i.k-loading {
             }
         }
     }
+
+	&.formFieldNoWrap {
+		.formLabel {
+			padding-top: 4px;
+		}
+	}
 }
 
 

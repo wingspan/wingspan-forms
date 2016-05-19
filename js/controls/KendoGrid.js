@@ -136,9 +136,8 @@ define([
         componentWillUnmount: function () {
             Common.findWidget(this, 'kendoGrid').destroy();
 
-            if (this.props.rowTooltip) {
-                Common.findWidget(this, 'kendoTooltip').destroy();
-            }
+            // The rowTooltip widget doesn't need to be explicitly destroyed
+            // because the grid destroy() method destroys all kendo widgets bound to the DOM element.
         },
 
         componentDidUpdate: function (prevProps) {
