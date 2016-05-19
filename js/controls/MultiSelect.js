@@ -75,7 +75,7 @@ define([
             var selections = this.props.selections;
 
             function option(selector) {
-                return (<option key={selector.id} value={selector.id}>{selector.name}</option>);
+                return (<option key={selector.id} value={selector.id} title={selector.name}>{selector.name}</option>);
             }
 
             if (this.props.isFlat) {
