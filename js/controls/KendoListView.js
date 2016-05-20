@@ -1,7 +1,8 @@
-/** @jsx React.DOM */
+
 define([
-    'underscore', 'jquery', 'react', 'kendo'
-], function (_, $, React, kendo) {
+    'underscore', 'jquery', 'react', 'kendo',
+    '../ReactCommon'
+], function (_, $, React, kendo, Common) {
     'use strict';
 
     void kendo;
@@ -37,7 +38,7 @@ define([
                 scrollDuration: 150,
                 selectable: false,
                 template: '<div data-model-id="${id}">${id}</div>',
-                onChange: $.noop
+                onChange: _.noop
             };
         },
 
@@ -52,8 +53,8 @@ define([
          * This method updates the ListView's selection and optionally animates scrolling that selection to the top of the list.
          */
         selectValue: function (selectedId, scrollToSelectedItem) {
-            var $rootNode = $(this.getDOMNode());
-            var listView = $rootNode.data('kendoListView');
+            var $rootNode = Common.findWidget(this);
+            var listView = Common.findWidget(this, 'kendoListView');
             var maybeSelectedChild = _.find(listView.element.children(), function (child) {
                 return selectedId === $(child).data('modelId');
             });
@@ -87,7 +88,7 @@ define([
         },
 
         componentDidMount: function () {
-            var $rootNode = $(this.getDOMNode());
+            var $rootNode = Common.findWidget(this);
             var listViewWidget = $rootNode.kendoListView({
                 autoBind: this.props.autoBind,
                 dataSource: this.props.dataSource,
@@ -102,9 +103,8 @@ define([
         },
 
         componentWillUnmount: function () {
-            var $rootNode = $(this.getDOMNode());
 
-            $rootNode.data('kendoListView').destroy();
+            Common.findWidget(this, 'kendoListView').destroy();
         },
 
         onValueChange: function (e) {

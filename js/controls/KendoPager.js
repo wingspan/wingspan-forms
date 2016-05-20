@@ -1,6 +1,7 @@
 define([
-    'underscore', 'jquery', 'react', 'kendo'
-], function (_, $, React, kendo) {
+    'underscore', 'react', 'kendo',
+    '../ReactCommon'
+], function (_, React, kendo, Common) {
     'use strict';
 
     void kendo;
@@ -40,16 +41,22 @@ define([
             };
         },
 
-        render: function () {
-            return React.DOM.div({ className: this.props.className });
-        },
-
         componentDidMount: function () {
-            $(this.getDOMNode()).kendoPager({
+            var $el = Common.findWidget(this);
+
+            $el.kendoPager({
                 dataSource: this.props.dataSource,
                 messages: this.props.messages,
                 change: this.props.onChange
             });
+        },
+
+        componentWillUnmount: function () {
+            Common.findWidget(this, 'kendoPager').destroy();
+        },
+
+        render: function () {
+            return (<div className={this.props.className} />);
         }
     });
 

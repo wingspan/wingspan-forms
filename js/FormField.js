@@ -1,4 +1,4 @@
-/** @jsx React.DOM */
+
 define([
     'underscore', 'react',
     './AutoControl',
@@ -11,6 +11,11 @@ define([
         disabled: false,
         label: '',
         helpText: ''
+    };
+    var SUBTEXT_STYLE = {
+        width: '33%',
+        textAlign: 'right',
+        lineHeight: '0.5em'
     };
 
     function determineFieldClass(children) {
@@ -31,6 +36,10 @@ define([
         return children && children.type.fieldClass();
     }
 
+    function when(condition, element) {
+        return condition ? element : null;
+    }
+
     var FormField = React.createClass({
         getDefaultProps: function () {
             return {
@@ -49,6 +58,7 @@ define([
 
         /* jshint ignore:start */
         render: function () {
+            var props = this.props;
             var fieldInfo = _.defaults({}, this.props.fieldInfo, DEFAULTS);
 
             var hasInfoTooltip = !!fieldInfo.helpText;
@@ -64,8 +74,6 @@ define([
             ]);
 
             var lockedClasses = _.compact(['fieldLock', this.props.locked ? 'fieldLockOn' : null]);
-            var lockDiv = this.props.lockable ? (<div className={lockedClasses.join(' ')} onClick={this.toggleLock} />) : null;
-
             var styles = {
                'width': this.props.width,
                'marginLeft': this.props.marginLeft
@@ -74,19 +82,25 @@ define([
             var statusIcon = (hasInfoTooltip ? (<span className="statusIcon" />) : null);
 
             // If there is no label and no icon, we must render &nbsp; so the fields line up right.
-
-
-            var label = ((fieldInfo.label || '').length === 0 && statusIcon === null
-                ? (<label className="formLabel">{'\u00A0'}</label>) // unicode &nbsp; to work around JSX bug:  https://groups.google.com/forum/?fromgroups=#!topic/reactjs/7FmlIyJBofA
-                : (<label className="formLabel">{fieldInfo.label}{statusIcon}</label>));
+            var label = fieldInfo.label || '\u00A0';
 
             return (
-                <div className={classes.join(' ')} data-tooltip={fieldInfo.helpText} data-error-tooltip={this.props.isValid[1]} style={styles}>
-                    {this.props.noLabel ? null : label}
+                <div className={classes.join(' ')}
+                     data-tooltip={fieldInfo.helpText}
+                     data-error-tooltip={this.props.isValid[1]}
+                     style={styles}>
+                    {when(!props.noLabel, (
+                        <label className="formLabel">{label}{statusIcon}</label>
+                    ))}
                     <div className="formElement">
                         {this.props.children}
                     </div>
-                    {lockDiv}
+                    {when(props.lockable, (
+                        <div className={lockedClasses.join(' ')} onClick={this.toggleLock}></div>
+                    ))}
+                    {when(fieldInfo.subText, (
+                        <p style={SUBTEXT_STYLE}><em>{fieldInfo.subText}</em></p>
+                    ))}
                 </div>
             );
         },

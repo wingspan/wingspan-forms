@@ -1,4 +1,4 @@
-/** @jsx React.DOM */
+
 'use strict';
 
 var ReactTestUtils = React.addons.TestUtils;

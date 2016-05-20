@@ -17,14 +17,6 @@ module.exports = function (grunt) {
 
         baseUrl: 'js-built',
 
-        paths: {
-            underscore: '../bower_components/underscore/underscore',
-            jquery: '../bower_components/jquery/jquery',
-            kendo: '../bower_components/kendo-ui/src/js/kendo.web',
-            react: '../bower_components/react/react-with-addons',
-            almond: '../bower_components/almond/almond'
-        },
-
         shim: {
             'underscore': { deps: [], exports: '_' },
             'jquery': { deps: [], exports: '$' },
@@ -52,20 +44,11 @@ module.exports = function (grunt) {
             '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
             ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
 
-        bower: {
-            install: {
-                options: {
-                    copy: false,
-                    install: true,
-                    verbose: false,
-                    cleanTargetDir: false,
-                    cleanBowerDir: false,
-                    bowerOptions: {}
-                }
-            }
-        },
-
-        react: {
+        babel: {
+            options: {
+                sourceMap: false,
+                presets: ['es2015', 'react']
+            },
             lib: {
                 files: [{ expand: true, cwd: 'js', src: ['**/*.js'], dest: 'js-built', ext: '.js' }]
             },
@@ -144,23 +127,21 @@ module.exports = function (grunt) {
             }
         },
 
-        clean: ['bower_components', 'js-built', 'spec-built', 'dist']
+        clean: ['js-built', 'spec-built', 'dist']
     });
 
     // These plugins provide necessary tasks.
-    grunt.loadNpmTasks('grunt-bower-task');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-babel');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-subgrunt');
-    grunt.loadNpmTasks('grunt-karma');
-    grunt.loadNpmTasks('grunt-react');
+//    grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('default', ['bower:install', 'react:lib', 'less', 'copy', 'requirejs:compile']);
-    grunt.registerTask('devel', ['bower:install', 'react:lib', 'less', 'copy']);
-    grunt.registerTask('test', ['default', 'react:spec', 'karma']);
+    grunt.registerTask('default', ['babel:lib', 'less', 'copy', 'requirejs:compile']);
+    grunt.registerTask('devel', ['babel:lib', 'less', 'copy']);
+    grunt.registerTask('test', ['default', 'babel:spec', 'karma']);
 
     // Before building examples, build the wingspan-forms.js distribution
     grunt.registerTask('examples', ['default', 'subgrunt']);

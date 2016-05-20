@@ -1,20 +1,26 @@
-/** @jsx React.DOM */
+
 define([
-    'underscore', 'jquery', 'react', 'kendo'
-], function (_, $, React, kendo) {
+    'underscore', 'react', '../ReactCommon'
+], function (_, React, Common) {
     'use strict';
+
+    const PropTypes = React.PropTypes;
 
     /**
      * Takes a "tabs" prop which is a map from title string to a JSX instance.
      * This component is not presently stateful so we don't get to control what is selected.
      */
     var TabStrip = React.createClass({
+        propTypes: {
+            tabs: PropTypes.object.isRequired,
+            selectedTab: PropTypes.number,
+            onChange: PropTypes.func.isRequired,
+            elideInactiveContent: PropTypes.bool
+        },
 
         getDefaultProps: function () {
             return {
-                tabs: undefined,
                 selectedTab: 0,
-                onChange: undefined, // selectedTab is the value
                 /**
                  * This controls whether to render the content of inactive tabs.
                  * The reason for this is that some usages require state to persist in the hidden tabs.
@@ -37,7 +43,7 @@ define([
          * content that is newly made visible.
          */
         componentDidUpdate: function () {
-            $(this.getDOMNode()).find('.k-content.k-state-active').resize();
+            Common.findWidget(this).find('.k-content.k-state-active').resize();
         },
 
         /* jshint ignore:start */
@@ -48,7 +54,7 @@ define([
             var keys = _.keys(this.props.tabs),
                 len = keys.length;
             _.each(keys, function (title, index) {
-                var id = kendo.format('{0}-{1}', self.stableUniqueId, index);
+                var id = `${self.stableUniqueId}-${index}`;
                 var classes = [
                     index === 0 ? 'k-first' : null,
                     index === len - 1 ? 'k-last' : null,
@@ -62,11 +68,6 @@ define([
 
             var divs = [];
             _.each(_.values(this.props.tabs), function (jsx, index) {
-                var id = kendo.format('{0}-{1}', self.stableUniqueId, index);
-
-                var activeTab = index === self.props.selectedTab;
-                jsx.props.__WsptTabStripActiveHax = activeTab; // hax specific to the TMF - never use this
-
                 var jsx = (index === self.props.selectedTab
                     ? (<div key={index} className="k-content k-state-active" role="tabpanel" aria-expanded="true" style={visibleStyle}>{jsx}</div>)
                     : (<div key={index} className="k-content" aria-hidden="true" role="tabpanel" aria-expanded="false" style={hiddenStyle}>{self.props.elideInactiveContent ? null : jsx}</div>));

@@ -1,7 +1,7 @@
-/** @jsx React.DOM */
+
 define([
-    'underscore', 'react', 'jquery', 'kendo'
-], function (_, React, $, kendo) {
+    'underscore', 'react', 'jquery'
+], function (_, React, $) {
     'use strict';
 
 
@@ -23,15 +23,11 @@ define([
             return {
                 value: undefined,    // integer - the selected index (0-based)
                 onChange: $.noop,    // fluxes up the index as an integer
-                placeholder: '',
                 disabled: false,
-                isValid: [true, ''],
                 readonly: false,
                 noControl: false,
                 id: undefined,
-
-                onEdit: $.noop,
-                options: undefined, // value compared to options via === i think
+                options: undefined,
                 displayTextFn: undefined
             };
         },
@@ -46,14 +42,26 @@ define([
                 console.assert(_.contains([undefined, null], this.props.value));
             }
 
+            if (this.props.noControl) {
+                return (<div className="carousel"/>);
+            }
+
             return (
                 <div className="carousel">
-                    <button disabled={N < 2} className="carouselButton backButton" onClick={_.partial(this.onChange, 'left')}><i className="icon iconPrev"/></button>
-                    <input className="carouselInput" placeholder={this.props.placeholder} value={this.displayTextFn(i, N)} readOnly={true} id={this.props.id} />
-                    <button disabled={N < 2} className="carouselButton forwardButton" onClick={_.partial(this.onChange, 'right')}><i className="icon iconNext"/></button>
-                    <button className="carouselButton editButton" disabled={this.props.disabled} onClick={this.props.onEdit}>Edit Indices<i className="icon iconCaret"/></button>
+                    <button disabled={N < 2} className="carouselButton backButton"
+                            onClick={_.partial(this.onChange, 'left')}><i className="icon iconPrev"/></button>
+                    <input className="carouselInput"
+                           value={this.displayTextFn(i, N)}
+                           readOnly={true}
+                           id={this.props.id} />
+                    <button disabled={N < 2} className="carouselButton forwardButton"
+                            onClick={_.partial(this.onChange, 'right')}><i className="icon iconNext"/></button>
+                    {this.props.onEdit ? (
+                        <button className="carouselButton editButton" disabled={this.props.disabled}
+                                onClick={this.props.onEdit}>{this.props.buttonLabel}</button>
+                    ) : null}
                 </div>
-                );
+            );
         },
 
         onChange: function (direction) {
@@ -72,9 +80,7 @@ define([
                 return this.props.displayTextFn(i, N);
             }
             else {
-                return (N === 0
-                    ? '0 of 0'
-                    : kendo.format('{0} of {1}', i+1, N));
+                return (N === 0) ? '(none)' : `${i+1} of ${N}`;
             }
         }
 

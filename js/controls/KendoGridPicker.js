@@ -1,7 +1,8 @@
 define([
-    'underscore', 'jquery', 'react', 'kendo',
+    'underscore', 'react', 'kendo',
+    '../ReactCommon',
     './KendoGrid'
-], function (_, $, React, kendo, KendoGrid) {
+], function (_, React, kendo, Common, KendoGrid) {
     'use strict';
 
     var PropTypes = React.PropTypes;
@@ -45,7 +46,7 @@ define([
                 pageable: false,
                 multiple: true,
                 height: 250,
-                onChange: $.noop,
+                onChange: _.noop,
                 value: []  // list of selected records, just like combo.
             };
         },
@@ -60,7 +61,7 @@ define([
         },
 
         componentDidMount: function () {
-            var grid = $(this.getDOMNode()).data('kendoGrid');
+            var grid = Common.findWidget(this, 'kendoGrid');
 
             // The standard kendo grid multiple selection UI requires holding the Control key to select multiple rows.
             // Change the behavior to allow individual clicks to toggle the row's selection state.
@@ -88,7 +89,7 @@ define([
         updateCheckboxValues: function () {
             // the SSP page has changed, so we have new DOM.
             // Sync up the DOM with the checked state.
-            var grid = $(this.getDOMNode()).data('kendoGrid');
+            var grid = Common.findWidget(this, 'kendoGrid');
 
             var valueIDs = grid.select().get().map(function (tr) {
                 return tr.getAttribute('data-uid');
@@ -103,7 +104,7 @@ define([
         },
 
         onGridChange: function (selectedValues) {
-            var grid = $(this.getDOMNode()).data('kendoGrid');
+            var grid = Common.findWidget(this, 'kendoGrid');
 
             if (!this.props.multiple) {
                 this.props.onChange(selectedValues ? selectedValues.toJSON() : null);

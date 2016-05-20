@@ -110,8 +110,7 @@ define([
                 controlProps.valueField = fieldInfo.options.metadata.idProperty;
                 controlProps.displayField = fieldInfo.options.metadata.nameProperty;
 
-                // Right now, fields with options do not allow selections outside the available choices
-                controlProps.preventCustomValues = true;
+                controlProps.preventCustomValues = !fieldInfo.options.allowCustomValues;
             }
 
             return React.createElement(Control, controlProps);

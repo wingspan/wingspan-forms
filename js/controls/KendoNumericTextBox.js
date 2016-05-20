@@ -1,9 +1,9 @@
-/** @jsx React.DOM */
+
 define([
-    'underscore', 'jquery', 'react', 'kendo',
-    '../ControlCommon',
+    'underscore', 'react', 'kendo',
+    '../ReactCommon',
     '../ImmutableOptimizations'
-], function (_, $, React, kendo, ControlCommon, ImmutableOptimizations) {
+], function (_, React, kendo, Common, ImmutableOptimizations) {
     'use strict';
 
 
@@ -42,8 +42,7 @@ define([
         /*jshint ignore:end */
 
         componentDidMount: function () {
-            var $el = $(this.getDOMNode());
-            console.assert($el);
+            var $el = Common.findWidget(this);
 
             if (this.props.noControl) {
                 // Everything was done in JSX.
@@ -51,6 +50,7 @@ define([
             }
 
             $el.kendoNumericTextBox({
+                value: this.props.value,
                 format: this.props.format,
                 min: this.props.min,
                 max: this.props.max,
@@ -61,30 +61,32 @@ define([
                 spin: this.onSpinChange
             });
 
-            ControlCommon.setKendoNumberState(
-                $el.data('kendoNumericTextBox'),
-                this.props.value, this.props.disabled, this.props.readonly);
+            if (this.props.disabled) {
+                // disabled beats readonly
+                $el.data('kendoNumericTextBox').enable(false);
+            }
+            else if (this.props.readonly) {
+                $el.data('kendoNumericTextBox').readonly(true);
+            }
         },
 
         componentDidUpdate: function (prevProps, prevState) {
-            var $el = $(this.getDOMNode());
-            console.assert($el);
-
             if (this.props.noControl) {
                 // Everything was done in JSX.
                 return;
             }
 
-            var kendoWidget = $el.data('kendoNumericTextBox');
+            var kendoWidget = Common.findWidget(this, 'kendoNumericTextBox');
 
             if (prevProps.value !== this.props.value) {
-                ControlCommon.setKendoNumberValue(kendoWidget, this.props.value);
+                kendoWidget.value(this.props.value);
             }
-            if (
-                (prevProps.disabled !== this.props.disabled) ||
-                (prevProps.readonly !== this.props.readonly)
-            ) {
-                ControlCommon.setKendoDisabledReadonly(kendoWidget, this.props.disabled, this.props.readonly);
+
+            if (this.props.disabled !== prevProps.disabled) {
+                kendoWidget.enable(!this.props.disabled);
+            }
+            else if (this.props.readonly !== prevProps.readonly) {
+                kendoWidget.readonly(this.props.readonly);
             }
         },
 

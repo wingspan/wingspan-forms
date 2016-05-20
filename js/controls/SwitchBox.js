@@ -46,8 +46,15 @@ define([
             var yes = props.value === true;
             var no  = props.value === false;
 
-            var clickYes = props.readonly ? noop : _.partial(props.onChange, true);
-            var clickNo  = props.readonly ? noop : _.partial(props.onChange, false);
+            var toggle = (onChange, val) => {
+                // Prevent toggle if already in that state
+                if(val !== this.props.value) {
+                    return _.partial(onChange, val);
+                }
+            };
+
+            var clickYes = props.readonly ? noop : toggle(props.onChange, true);
+            var clickNo  = props.readonly ? noop : toggle(props.onChange, false);
 
             return (
                 <div tabIndex="0" className="switch" onKeyDown={this.onKeyDown}>

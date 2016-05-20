@@ -1,8 +1,9 @@
-/** @jsx React.DOM */
+
 define([
-    'underscore', 'jquery', 'react',
+    'underscore', 'react',
+    '../ReactCommon',
     '../ImmutableOptimizations'
-], function (_, $, React, ImmutableOptimizations) {
+], function (_, React, Common, ImmutableOptimizations) {
     'use strict';
 
     var PropTypes = React.PropTypes;
@@ -49,7 +50,7 @@ define([
             	disabled: false,
                 readonly: false,
                 value: [],
-                onChange: $.noop
+                onChange: _.noop
             };
         },
 
@@ -60,7 +61,7 @@ define([
         /*jshint ignore:end */
 
         componentDidMount: function () {
-            var $el = $(this.getDOMNode());
+            var $el = Common.findWidget(this);
 
             var widgetOptions = _.defaults({
                 dataTextField: this.props.displayField,
@@ -89,9 +90,7 @@ define([
         },
 
         componentWillUnmount: function () {
-            var $el = $(this.getDOMNode());
-
-            $el.data('kendoMultiSelect').destroy();
+            Common.findWidget(this, 'kendoMultiSelect').destroy();
         },
 
         componentWillReceiveProps: function (nextProps) {
@@ -100,8 +99,7 @@ define([
         },
 
         componentDidUpdate: function (prevProps) {
-            var $el = $(this.getDOMNode());
-            var kendoWidget = $el.data('kendoMultiSelect');
+            var kendoWidget = Common.findWidget(this, 'kendoMultiSelect');
 
             if (prevProps.dataSource !== this.props.dataSource) {
                 kendoWidget.setDataSource(this.props.dataSource);

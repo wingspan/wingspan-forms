@@ -1,10 +1,11 @@
-/** @jsx React.DOM */
+
 define([
-    'underscore', 'jquery', 'react', 'kendo'
-], function (_, $, React, kendo) {
+    'underscore', 'react', 'kendo',
+    '../ReactCommon'
+], function (_, React, kendo, Common) {
     'use strict';
 
-    void kendo;
+    var $ = kendo.jQuery;
     var PropTypes = React.PropTypes;
 
     function eitherType(type1, type2) {
@@ -86,7 +87,8 @@ define([
             options: PropTypes.object,
             value: PropTypes.any,
             onChange: PropTypes.func,
-            rowTooltip: eitherType('string', 'func')
+            rowTooltip: eitherType('string', 'func'),
+            rowDataBind: PropTypes.func
         },
 
         getDefaultProps: function () {
@@ -96,7 +98,7 @@ define([
                 scrollable: true,
                 selectable: false,
                 sortable: false,
-                onChange: $.noop
+                onChange: _.noop
             };
         },
 
@@ -107,7 +109,7 @@ define([
         /*jshint ignore:end */
 
         componentDidMount: function () {
-            var $rootNode = $(this.getDOMNode());
+            var $rootNode = Common.findWidget(this);
             var widgetOptions = _.defaults({
                 autoBind: this.props.autoBind,
                 dataSource: this.props.dataSource,
@@ -126,19 +128,20 @@ define([
             if (this.props.rowTooltip) {
                 createRowTooltip(this.props.rowTooltip, $rootNode);
             }
-        },
-
-        componentWillUnmount: function () {
-            $(this.getDOMNode()).data('kendoGrid').destroy();
-
-            if (this.props.rowTooltip) {
-                $(this.getDOMNode()).data('kendoTooltip').destroy();
+            if (this.props.rowDataBind) {
+                $rootNode.data('kendoGrid').bind('dataBinding', this.onGridDataBinding);
             }
         },
 
+        componentWillUnmount: function () {
+            Common.findWidget(this, 'kendoGrid').destroy();
+
+            // The rowTooltip widget doesn't need to be explicitly destroyed
+            // because the grid destroy() method destroys all kendo widgets bound to the DOM element.
+        },
+
         componentDidUpdate: function (prevProps) {
-            var $el = $(this.getDOMNode());
-            var grid = $el.data('kendoGrid');
+            var grid = Common.findWidget(this, 'kendoGrid');
 
             if (this.props.dataSource instanceof Array) {
                 if (!_.isEqual(this.props.dataSource, prevProps.dataSource)) {
@@ -158,14 +161,33 @@ define([
             }
         },
 
+        onGridDataBinding: function (e) {
+            var grid = e.sender;
+
+            // If the rowDataBind function installed widgets, they need to be destroyed before grid refresh.
+            if (e.action === 'rebind') {
+                kendo.destroy(grid.table.find('tr'));
+            }
+        },
+
         onGridDataBound: function (e) {
             var grid = e.sender;
+            var props = this.props;
 
             if (grid.selectable) {
                 updateGridSelection(this, grid);
             }
-            if (this.props.options && this.props.options.dataBound) {
-                this.props.options.dataBound(e);
+
+            if (props.options && props.options.dataBound) {
+                props.options.dataBound(e);
+            }
+
+            // Render any custom widgets using the provided function
+            if (props.rowDataBind) {
+                grid.table.find('tr').each(function() {
+                    var $el = $(this);
+                    props.rowDataBind($el, grid.dataItem($el));
+                });
             }
         },
 

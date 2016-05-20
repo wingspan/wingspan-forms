@@ -1,11 +1,9 @@
-/** @jsx React.DOM */
+
 define([
     'underscore', 'jquery', 'react',
     '../ImmutableOptimizations'
 ], function (_, $, React, ImmutableOptimizations) {
     'use strict';
-
-    var SPACE_KEY = 32;
 
     return React.createClass({
         mixins: [ImmutableOptimizations(['onChange'])],
@@ -30,36 +28,28 @@ define([
 
         /*jshint ignore:start */
         render: function () {
-            if (this.props.noControl) {
+            var props = this.props;
+
+            if (props.noControl) {
                 return (<span>{this.getDisplayValue()}</span>);
             }
 
+            function onKeyDown(e) {
+                if (e.key === ' ') {
+                    props.onChange(!props.value);
+                }
+            }
             return (
-                <span className="CheckBox" tabIndex="0">
+                <span className="CheckBox" tabIndex="0" onKeyDown={onKeyDown}>
                     <input type="checkbox" id={this.stableUniqueId}
-                        checked={this.props.value} data-checked={this.props.value ? '' : null}
+                        checked={props.value} data-checked={props.value ? '' : null}
                         onChange={this.onChange}
-                        disabled={this.props.disabled || this.props.readonly} />
-                    <label htmlFor={this.stableUniqueId}>{this.props.label}</label>
+                        disabled={props.disabled || props.readonly} />
+                    <label htmlFor={this.stableUniqueId}>{props.label}</label>
                 </span>
             );
         },
         /*jshint ignore:end */
-
-        componentDidMount: function () {
-            var self = this,
-                $el = $(this.getDOMNode());
-
-            $el.on('keypress', function (e) {
-                if (e.keyCode === SPACE_KEY) {
-                    self.props.onChange(!self.props.value);
-                }
-            });
-        },
-
-        componentWillUnmount: function () {
-            $(this.getDOMNode()).off('keypress');
-        },
 
         onChange: function (event) {
             var val = event.target.checked;

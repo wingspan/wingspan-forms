@@ -1,8 +1,9 @@
-/** @jsx React.DOM */
+
 define([
-    'underscore', 'jquery', 'react', 'kendo',
+    'underscore', 'react', 'kendo',
+    '../ReactCommon',
     '../ImmutableOptimizations'
-], function (_, $, React, kendo, ImmutableOptimizations) {
+], function (_, React, kendo, Common, ImmutableOptimizations) {
     'use strict';
 
     var PropTypes = React.PropTypes;
@@ -34,13 +35,13 @@ define([
         	return {
                 disabled: false,
                 readonly: false,
-        		onChange: $.noop,
-                onSelect: $.noop
+        		onChange: _.noop,
+                onSelect: _.noop
         	};
 		},
 
         componentDidMount: function () {
-            var $el = $(this.getDOMNode());
+            var $el = Common.findWidget(this);
 
             var widgetOptions = _.defaults({
                 dataSource: this.props.dataSource,
@@ -67,14 +68,11 @@ define([
         },
 
         componentWillUnmount: function () {
-            var $el = $(this.getDOMNode());
-
-            $el.data('kendoAutoComplete').destroy();
+            Common.findWidget(this, 'kendoAutoComplete').destroy();
         },
 
         componentDidUpdate: function (prevProps) {
-            var $el = $(this.getDOMNode()),
-                autoComplete = $el.data('kendoAutoComplete');
+            var autoComplete = Common.findWidget(this, 'kendoAutoComplete');
 
             if (prevProps.dataSource !== this.props.dataSource) {
                 autoComplete.setDataSource(this.props.dataSource);

@@ -1,6 +1,6 @@
 {
   "name": "wingspan-forms",
-  "version": "1.0.0",
+  "version": "1.1.0-beta1",
   "description": "A forms package for React applications using Kendo UI widgets",
   "main": "wingspan-forms.js",
   "repository": {
@@ -8,27 +8,37 @@
     "url": "https://github.com/wingspan/wingspan-forms.git"
   },
   "scripts": {
+    "build": "webpack --progress",
+    "less": "lessc styles/app.less dist/styles/wingspan-forms.css",
+    "examples": "webpack --config examples/webpack.config.js",
+    "dev": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Wingspan Technology, Inc.",
   "license": "MIT",
   "peerDependencies": {
-    "react": "~0.13.0",
-    "kendo-ui-core": "~1.0.0",
-    "jquery": "~1.9.1",
-    "underscore": "~1.7.0"
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "jquery": "^1.9.1",
+    "underscore": "^1.7.0"
   },
   "devDependencies": {
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
     "grunt": "~0.4.5",
-    "grunt-react": "~0.10.0",
-    "grunt-bower-task": "~0.4.0",
-    "grunt-contrib-copy": "~0.7.0",
-    "grunt-contrib-clean": "~0.6.0",
-    "grunt-contrib-jshint": "~0.10.0",
-    "grunt-contrib-requirejs": "~0.4.1",
-    "grunt-contrib-less": "~1.0.0",
-    "grunt-subgrunt": "~0.4.3",
-    "karma": "~0.12.28",
-    "grunt-karma": "~0.9.0"
+    "json-loader": "^0.5.4",
+    "less": "^2.5.3",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
+  },
+  "publishConfig": {
+    "registry": "http://repo02.wingspan.com:8081/nexus/content/repositories/releases-ui/"
   }
 }

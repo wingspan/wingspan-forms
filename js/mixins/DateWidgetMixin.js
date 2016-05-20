@@ -1,6 +1,6 @@
 define([
-    'underscore', 'jquery', 'kendo'
-], function (_, $, kendo) {
+    'underscore', 'jquery', 'kendo', 'react-dom'
+], function (_, $, kendo, ReactDOM) {
     'use strict';
 
     var NOW = new Date();
@@ -54,7 +54,7 @@ define([
             },
 
             getWidget: function () {
-                return $(this.getDOMNode()).data(widgetName);
+                return $(ReactDOM.findDOMNode(this)).data(widgetName);
             },
 
             renderValue: function () {
@@ -70,7 +70,7 @@ define([
                     return;
                 }
 
-                var $el = $(this.getDOMNode());
+                var $el = $(ReactDOM.findDOMNode(this));
                 $el[widgetName]({
                     format: this.props.format,
                     min: fromISOString(this.props.min),

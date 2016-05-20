@@ -1,4 +1,4 @@
-/** @jsx React.DOM */
+
 define([
     'underscore', 'jquery', 'react', 'kendo',
     '../ReactCommon',
@@ -22,7 +22,7 @@ define([
         },
 
         componentDidMount: function () {
-            var $el = $(this.getDOMNode());
+            var $el = ReactCommon.findWidget(this);
             $el.kendoTabStrip({
                 select: this.onSelect
             });
