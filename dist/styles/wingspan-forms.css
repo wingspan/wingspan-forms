@@ -352,7 +352,6 @@
   padding: 0px 10px;
   width: 100%;
   height: 28px;
-  resize: none;
 }
 .formFieldInput .formElement .k-textbox:hover,
 .formFieldTextarea .formElement .k-textbox:hover,
@@ -422,7 +421,6 @@
   padding: 0px 10px;
   width: 100%;
   height: 28px;
-  resize: none;
 }
 .formFieldTextarea .formElement .k-textbox:hover,
 .formFieldTextarea .formElement .k-textbox:focus {
@@ -469,7 +467,7 @@
   padding-right: 0;
 }
 .formFieldTextarea.formFieldNoWrap .formLabel {
-  line-height: 61px;
+  padding-top: 11px;
 }
 .formFieldAutocomplete .formElement .k-autocomplete {
   padding: 0;
@@ -1144,7 +1142,7 @@ button i.k-loading {
  *   TOOLTIPS
  *
  * *************************************** */
-.k-widget.formTooltip {
+.k-widget.k-tooltip.formTooltip {
   background: #3271B1;
   border-color: #3271B1;
   color: #fff;
@@ -1153,15 +1151,16 @@ button i.k-loading {
   line-height: normal;
   font-size: 12px;
 }
-.k-widget.formTooltip .k-callout-s {
+.k-widget.k-tooltip.formTooltip .k-callout-s {
   border-top-color: #3271B1;
 }
-.k-widget.formErrorTooltip {
+.k-widget.k-tooltip.formErrorTooltip {
   background: #CC0000;
   border-color: #CC0000;
   color: #fff;
+  margin-top: 5px;
 }
-.k-widget.formErrorTooltip .k-callout-n {
+.k-widget.k-tooltip.formErrorTooltip .k-callout-n {
   border-bottom-color: #CC0000;
 }
 /* ******************************************
@@ -1302,6 +1301,9 @@ button i.k-loading {
 .formFieldSwitch.formFieldReadonly .formElement .switch:hover,
 .formFieldSwitch.formFieldReadonly .formElement .switch:focus {
   background: #ECF2F8;
+}
+.formFieldSwitch.formFieldNoWrap .formLabel {
+  padding-top: 4px;
 }
 .formFieldCarousel .formElement .carousel {
   float: left;

@@ -41,6 +41,10 @@ define([
     function attachFormTooltips(body) {
         var $body = $(body);
 
+        function tooltipMarginLeft(target) {
+            return target.parent().hasClass('formFieldNoWrap') ? '90px' : '';
+        }
+
         // The tooltip for the [i] button and the label
         $body.kendoTooltip({
             prefix: 'Info',
@@ -53,6 +57,9 @@ define([
             },
             show: function () {
                 this.popup.element.addClass('formTooltip');
+
+                // (AHG) Fields with labels on the left should have the tooltips move over
+                this.popup.element.css('margin-left', tooltipMarginLeft(this.target()));
             }
         });
 

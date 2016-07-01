@@ -1000,7 +1000,7 @@ button i.k-loading {
  *
  * *************************************** */
 
-.k-widget.formTooltip {
+.k-widget.k-tooltip.formTooltip {
 	background: @inputTooltipBackgroundColor;
 	border-color: @inputTooltipBackgroundColor;
 	color: @inputTooltipColor;
@@ -1014,10 +1014,11 @@ button i.k-loading {
     }
 }
 
-.k-widget.formErrorTooltip {
+.k-widget.k-tooltip.formErrorTooltip {
 	background: @inputErrorTooltipBackgroundColor;
 	border-color: @inputErrorTooltipBackgroundColor;
 	color: @inputErrorTooltipColor;
+	margin-top: 5px;
 
 	.k-callout-n {
     	border-bottom-color: @inputErrorTooltipBackgroundColor;
