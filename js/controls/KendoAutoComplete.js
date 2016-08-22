@@ -1,12 +1,32 @@
 
 define([
-    'underscore', 'react', 'kendo',
+    'react', 'kendo',
     '../ReactCommon',
     '../ImmutableOptimizations'
-], function (_, React, kendo, Common, ImmutableOptimizations) {
+], function (React, kendo, Common, ImmutableOptimizations) {
     'use strict';
 
+    var $ = kendo.jQuery;
     var PropTypes = React.PropTypes;
+
+    function noResultsOnDataBound(e) {
+        var widget = e.sender;
+        var noItems = widget.list.find(".noResults");
+
+        if (!widget.dataSource.view()[0]) {
+            noItems.show();
+            widget.popup.open();
+        } else {
+            noItems.hide();
+        }
+    }
+    function noResultsOnClose(e) {
+        var widget = e.sender;
+
+        if (!widget.shouldClose && !widget.dataSource.view()[0]) {
+            e.preventDefault();
+        }
+    }
 
     var KendoAutoComplete = React.createClass({
         mixins: [ImmutableOptimizations(['onChange', 'onSelect', 'dataSource'])],
@@ -27,30 +47,38 @@ define([
             disabled: PropTypes.bool,
             readonly: PropTypes.bool,
             options: PropTypes.object,
+            noResultsMsg: PropTypes.string,
             placeholder: PropTypes.string,
             template: PropTypes.any
         },
 
         getDefaultProps: function () {
-        	return {
+            return {
                 disabled: false,
                 readonly: false,
-        		onChange: _.noop,
-                onSelect: _.noop
-        	};
-		},
+                onChange: $.noop,
+                onSelect: $.noop
+            };
+        },
 
         componentDidMount: function () {
+            var props = this.props;
             var $el = Common.findWidget(this);
 
-            var widgetOptions = _.defaults({
+            var widgetOptions = $.extend({}, this.props.options, {
                 dataSource: this.props.dataSource,
                 dataTextField: this.props.dataTextField,
                 placeholder: this.props.placeholder,
                 template: this.props.template,
                 change: this.onChange,
                 select: this.onSelect
-            }, this.props.options);
+            });
+
+            if (props.noResultsMsg) {
+                widgetOptions.dataBound = noResultsOnDataBound;
+                widgetOptions.close = noResultsOnClose;
+                widgetOptions.headerTemplate = `<em class="noResults">${props.noResultsMsg}</em>`;
+            }
 
             var autoComplete = $el.kendoAutoComplete(widgetOptions)
                 .data('kendoAutoComplete');
@@ -64,6 +92,14 @@ define([
             }
             else if (this.props.readonly) {
                 autoComplete.readonly(true);
+            }
+
+            if (props.noResultsMsg) {
+                autoComplete.element.on('blur', () => {
+                    autoComplete.shouldClose = true;
+                    autoComplete.close();
+                    autoComplete.shouldClose = false;
+                })
             }
         },
 
@@ -92,7 +128,7 @@ define([
 
         /*jshint ignore:start */
         render: function () {
-            return (<input type="text" id={this.props.id} className="k-textbox"/>);
+            return (<input type="text" id={this.props.id} className="k-textbox" style={this.props.style} />);
         },
         /*jshint ignore:end */
 
