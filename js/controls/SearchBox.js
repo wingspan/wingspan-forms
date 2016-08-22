@@ -1,123 +1,122 @@
-define([
-    'underscore', 'jquery', 'react'
-], function (_, $, React) {
-    'use strict';
+import React from 'react'
+import $ from 'jquery'
+import { noop } from '../ReactCommon'
 
-    var ENTER_KEY = 13;
 
-    function setVisible(el, visible) {
-        // I'm using visibility instead of $.hide/show because I don't want to change the icon's "display" style. Something
-        // goes wrong in jQuery and it changes the span's display from inline-block to block when showing it using $.show().
-        $(el).css('visibility', visible ? 'visible' : 'hidden');
-    }
+const ENTER_KEY = 13;
 
-    function noBrowserDefault(e) {
-        // The browser changes focus on mouse down, but we don't want that.
-        e.preventDefault();
-    }
+function setVisible(el, visible) {
+    // I'm using visibility instead of $.hide/show because I don't want to change the icon's "display" style. Something
+    // goes wrong in jQuery and it changes the span's display from inline-block to block when showing it using $.show().
+    $(el).css('visibility', visible ? 'visible' : 'hidden');
+}
 
-    var SearchBox = React.createClass({
+function noBrowserDefault(e) {
+    // The browser changes focus on mouse down, but we don't want that.
+    e.preventDefault();
+}
 
-        getDefaultProps: function () {
-            return {
-                disabled: false,
-                fireClearEvent: false,
-                instantSearch: false,
-                onChange: function () {}
-            };
-        },
+const SearchBox = React.createClass({
 
-        componentWillMount : function () {
-            console.assert(this.props.handler, 'SearchBox requires a handler function');
-        },
+    getDefaultProps: function () {
+        return {
+            disabled: false,
+            fireClearEvent: false,
+            instantSearch: false,
+            onChange: noop
+        };
+    },
 
-        /*jshint ignore:start */
-        render: function () {
-            var iconClearStyle = { visibility: _.isEmpty(this.props.value) ? 'hidden' : 'visible' };
+    componentWillMount : function () {
+        console.assert(this.props.handler, 'SearchBox requires a handler function');
+    },
 
-            return (
-                <span className="searchBox">
-                    <input type="text" disabled={this.props.disabled} placeholder={this.props.placeholder} value={this.props.value}
-                           autoComplete="off" onKeyDown={this.onKeyDown} defaultValue={this.props.defaultValue} onChange={this.onTextChange}/>
-                    <span className="iconClear" onClick={this.onClickClear} onMouseDown={noBrowserDefault} style={iconClearStyle} />
-                    <span className="iconSearch" onClick={this.onClickSearch} onMouseDown={noBrowserDefault} />
-                </span>)
-        },
-        /*jshint ignore:end */
+    /*jshint ignore:start */
+    render: function () {
+        var iconClearStyle = { visibility: (!this.props.value) ? 'hidden' : 'visible' };
 
-        onKeyDown: function (event) {
-            // Don't let the Enter key propagate because it might cause parent components to do things we don't want
-            if (event.key === 'Enter') {
-                event.stopPropagation();
-                event.preventDefault();
+        return (
+            <span className="searchBox">
+                <input type="text" disabled={this.props.disabled} placeholder={this.props.placeholder} value={this.props.value}
+                       autoComplete="off" onKeyDown={this.onKeyDown} defaultValue={this.props.defaultValue} onChange={this.onTextChange}/>
+                <span className="iconClear" onClick={this.onClickClear} onMouseDown={noBrowserDefault} style={iconClearStyle} />
+                <span className="iconSearch" onClick={this.onClickSearch} onMouseDown={noBrowserDefault} />
+            </span>)
+    },
+    /*jshint ignore:end */
 
-                this.props.handler(event.target.value);
-            }
-        },
-
-        onClickClear: function (event) {
+    onKeyDown: function (event) {
+        // Don't let the Enter key propagate because it might cause parent components to do things we don't want
+        if (event.key === 'Enter') {
             event.stopPropagation();
+            event.preventDefault();
 
-            this.props.onChange('');
-
-            if (this.props.fireClearEvent) {
-                this.props.handler('');
-            }
-        },
-
-        onClickSearch: function (event) {
-            event.stopPropagation();
-
-            if (!this.props.disabled) {
-                this.props.handler(this.props.value);
-            }
-        },
-
-        onTextChange: function (event) {
-            this.props.onChange(event.target.value);
-
-            if (this.props.instantSearch) {
-                this.props.handler(event.target.value);
-            }
+            this.props.handler(event.target.value);
         }
-    });
+    },
 
-    /* An installer for non-react users */
-    SearchBox.install = function (searchBox, placeholder, handler) {
-        var input = searchBox.find('input');
-        var clearBtn = searchBox.find('.iconClear');
+    onClickClear: function (event) {
+        event.stopPropagation();
 
-        console.assert(handler, 'SearchBox requires a handler function');
+        this.props.onChange('');
 
-        function inputKey(e) {
-            e.stopPropagation();
-
-            if (e.keyCode === ENTER_KEY) {
-                // keep the event from bubbling up to where react can see it (whence it will attempt to confirm the dialog).
-                e.preventDefault();
-                handler(input.val());
-            }
-            setVisible(clearBtn, (input.val().length > 0));
+        if (this.props.fireClearEvent) {
+            this.props.handler('');
         }
-        function iconClick(e) {
-            e.stopPropagation();
+    },
 
-            if (e.target.className === 'iconClear') {
-                input.val('');
-                setVisible(clearBtn, false);
-            }
-            else if (e.target.className === 'iconSearch') {
-                handler(input.val());
-            }
+    onClickSearch: function (event) {
+        event.stopPropagation();
+
+        if (!this.props.disabled) {
+            this.props.handler(this.props.value);
         }
+    },
 
-        input.attr('placeholder', placeholder)
-            .on('keydown', inputKey);
-        searchBox.find('span')
-            .on('mousedown', noBrowserDefault)
-            .on('click', iconClick);
-        setVisible(clearBtn, false);
-    };
+    onTextChange: function (event) {
+        this.props.onChange(event.target.value);
 
-    return SearchBox;
+        if (this.props.instantSearch) {
+            this.props.handler(event.target.value);
+        }
+    }
 });
+
+/* An installer for non-react users */
+SearchBox.install = function (searchBox, placeholder, handler) {
+    var input = searchBox.find('input');
+    var clearBtn = searchBox.find('.iconClear');
+
+    console.assert(handler, 'SearchBox requires a handler function');
+
+    function inputKey(e) {
+        e.stopPropagation();
+
+        if (e.keyCode === ENTER_KEY) {
+            // keep the event from bubbling up to where react can see it (whence it will attempt to confirm the dialog).
+            e.preventDefault();
+            handler(input.val());
+        }
+        setVisible(clearBtn, (input.val().length > 0));
+    }
+    function iconClick(e) {
+        e.stopPropagation();
+
+        if (e.target.className === 'iconClear') {
+            input.val('');
+            setVisible(clearBtn, false);
+        }
+        else if (e.target.className === 'iconSearch') {
+            handler(input.val());
+        }
+    }
+
+    input.attr('placeholder', placeholder)
+        .on('keydown', inputKey);
+    searchBox.find('span')
+        .on('mousedown', noBrowserDefault)
+        .on('click', iconClick);
+    setVisible(clearBtn, false);
+};
+
+export default SearchBox;

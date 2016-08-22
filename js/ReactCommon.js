@@ -1,27 +1,32 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+import $ from 'jquery'
 
-define([
-    'underscore', 'jquery', 'react', 'react-dom'
-], function (_, $, React, ReactDOM) {
-    'use strict';
+const PropTypes = React.PropTypes;
 
-    function findWidget(component, name) {
-        if (!name) {
-            // Just return the jquery node (helps with componentDidMount)
-            return $(ReactDOM.findDOMNode(component));
-        }
-        return $(ReactDOM.findDOMNode(component)).data(name);
+export function noop() {
+
+}
+
+export function findWidget(component, name) {
+    if (!name) {
+        // Just return the jquery node (helps with componentDidMount)
+        return $(ReactDOM.findDOMNode(component));
     }
+    return $(ReactDOM.findDOMNode(component)).data(name);
+}
 
-    function wrapItemsDiv(jsxs) {
-        var acc = [];
-        _.each(jsxs, function (jsx, i) {
-            acc.push(React.createElement('div', {key: i}, jsx));
-        });
-        return acc;
-    }
+export function wrapItemsDiv(jsxs = []) {
+    return jsxs.map(function (jsx, i) {
+        React.createElement('div', { key: i }, jsx);
+    });
+}
 
-    return {
-        findWidget: findWidget,
-        wrapItemsDiv: wrapItemsDiv
-    };
-});
+export function widgetPropTypes(customPropTypes) {
+    return Object.assign({
+        id: PropTypes.string,
+        value: PropTypes.any,
+        onChange: PropTypes.func
+    }, customPropTypes);
+}
+

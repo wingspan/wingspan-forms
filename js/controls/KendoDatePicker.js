@@ -1,35 +1,27 @@
+import React from 'react'
+import DateWidgetMixin from '../mixins/DateWidgetMixin'
 
-define([
-    'underscore', 'react',
-    '../mixins/DateWidgetMixin',
-    '../ImmutableOptimizations'
-], function (_, React, DateWidgetMixin, ImmutableOptimizations) {
-    'use strict';
 
-    var KendoDatePicker = React.createClass({
-        mixins: [
-            DateWidgetMixin('kendoDatePicker'),
-            ImmutableOptimizations(['onChange'])
-        ],
+const KendoDatePicker = React.createClass({
+    mixins: [DateWidgetMixin('kendoDatePicker')],
 
-        statics: {
-            fieldClass: function () { return 'formFieldDatepicker'; }
-        },
+    statics: {
+        fieldClass: function () { return 'formFieldDatepicker'; }
+    },
 
-        getDefaultProps: function () {
-            return {
-                format: 'dd-MMM-yyyy'
-            };
-        },
+    getDefaultProps: function () {
+        return {
+            format: 'dd-MMM-yyyy'
+        };
+    },
 
-        /*jshint ignore:start */
-        render: function () {
-            return (this.props.noControl
-                ? (<span>{this.renderValue()}</span>)
-                : (<input type="text" />));
-        }
-        /*jshint ignore:end */
-    });
-
-    return KendoDatePicker;
+    /*jshint ignore:start */
+    render: function () {
+        return (this.props.noControl
+            ? (<span>{this.renderValue()}</span>)
+            : (<input type="text" />));
+    }
+    /*jshint ignore:end */
 });
+
+export default KendoDatePicker;
