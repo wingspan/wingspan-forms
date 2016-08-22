@@ -16,7 +16,7 @@ define([
     }
 
     /* Getting the display value when the prop value is a scalar means traversing the data source to find
-        the matching value.
+     the matching value.
      */
     function displayValueFromData(props) {
         var dataSource = DataSource.create(props.dataSource);
@@ -89,6 +89,10 @@ define([
                 else if (props.readonly) {
                     this.getWidget().readonly(true);
                 }
+
+                if (_.isObject(props.value)) {
+                    this.getWidget().text(displayValue(props));
+                }
             },
 
             componentDidUpdate: function (prevProps) {
@@ -105,6 +109,10 @@ define([
 
                 if (props.value !== prevProps.value) {
                     kendoWidget.value(rawValue(props));
+
+                    if (_.isObject(props.value)) {
+                        kendoWidget.text(displayValue(props));
+                    }
                 }
 
                 if (props.disabled !== prevProps.disabled) {
