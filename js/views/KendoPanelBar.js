@@ -10,7 +10,7 @@ define([
     var KendoPanelBar = React.createClass({
         /* Not supporting "contentUrls" or "dataSource" because React components are better content */
         propTypes: {
-            animation: PropTypes.oneOfType(PropTypes.object, PropTypes.bool),
+            animation: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
             className: PropTypes.string,
             expandMode: PropTypes.string
         },
