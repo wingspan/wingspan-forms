@@ -1,15 +1,15 @@
+import _ from 'lodash'
 import React from 'react'
 import AutoControl from './AutoControl'
 import ControlCommon from './ControlCommon'
 
-
-var DEFAULTS = {
+const DEFAULTS = {
     readOnly: false,
     disabled: false,
     label: '',
     helpText: ''
 };
-var SUBTEXT_STYLE = {
+const SUBTEXT_STYLE = {
     width: '33%',
     textAlign: 'right',
     lineHeight: '0.5em'
@@ -56,7 +56,7 @@ var FormField = React.createClass({
     /* jshint ignore:start */
     render: function () {
         var props = this.props;
-        var fieldInfo = _.defaults({}, this.props.fieldInfo, DEFAULTS);
+        var fieldInfo = Object.assign({}, DEFAULTS, this.props.fieldInfo);
 
         var hasInfoTooltip = !!fieldInfo.helpText;
         var hasErrorTooltip = (!this.props.isValid[0] && (this.props.isValid[1] || '').length > 0);

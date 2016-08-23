@@ -5,7 +5,18 @@ import $ from 'jquery'
 const PropTypes = React.PropTypes;
 
 export function noop() {
+}
 
+export function isEmpty(thing) {
+    return thing == null || thing === '';
+}
+
+export function isObject(thing) {
+    return typeof thing === "object" && !!thing;
+}
+
+export function isString(thing) {
+    return typeof thing === "string";
 }
 
 export function findWidget(component, name) {
@@ -22,11 +33,19 @@ export function wrapItemsDiv(jsxs = []) {
     });
 }
 
-export function widgetPropTypes(customPropTypes) {
-    return Object.assign({
-        id: PropTypes.string,
-        value: PropTypes.any,
-        onChange: PropTypes.func
-    }, customPropTypes);
+export function widgetConfig(config, moreOptions) {
+    for (var key in moreOptions) {
+        if (moreOptions.hasOwnProperty(key) && !config.hasOwnProperty(key)) {
+            config[key] = moreOptions[key];
+        }
+    }
+    return config;
+}
+
+export function eitherType(type1, type2) {
+    type1 = isString(type1) ? PropTypes[type1] : type1;
+    type2 = isString(type2) ? PropTypes[type2] : type2;
+
+    return PropTypes.oneOfType([type1, type2]);
 }
 

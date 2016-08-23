@@ -1,20 +1,22 @@
 import kendo from 'kendo'
 import React from 'react'
-import { findWidget, noop } from '../ReactCommon'
+import { findWidget, noop, isEmpty, isObject, widgetConfig } from '../ReactCommon'
 
 const PropTypes = React.PropTypes;
+
+const CANNOT_CHANGE = ['template', 'dataSource', 'valueField', 'displayField', 'placeholder'];
 
 function rawValue(props) {
     var value = props.value;
 
-    if (_.isEmpty(value)) {
+    if (isEmpty(value)) {
         return value;
     }
 
     value = Array.isArray(value) ? value : [value];
 
     return value.map(function (val) {
-        return _.isObject(val) ? val[props.valueField] : val;
+        return isObject(val) ? val[props.valueField] : val;
     });
 }
 
@@ -58,7 +60,7 @@ var KendoMultiSelect = React.createClass({
     componentDidMount: function () {
         var $el = findWidget(this);
 
-        var widgetOptions = _.defaults({
+        var widgetOptions = widgetConfig({
             dataTextField: this.props.displayField,
             dataValueField: this.props.valueField,
             dataSource: this.props.dataSource,
@@ -89,8 +91,8 @@ var KendoMultiSelect = React.createClass({
     },
 
     componentWillReceiveProps: function (nextProps) {
-        var cantChange = ['template', 'dataSource', 'valueField', 'displayField', 'placeholder'];
-        console.assert(_.isEqual(_.pick(nextProps, cantChange), _.pick(this.props, cantChange)), 'these props cant change after mount');
+        console.assert(CANNOT_CHANGE.every(name => nextProps[name] == this.props[name]),
+            'cannot change these props after mount', CANNOT_CHANGE);
     },
 
     componentDidUpdate: function (prevProps) {
@@ -114,7 +116,7 @@ var KendoMultiSelect = React.createClass({
 
     onChange: function (event) {
         var kendoWidget = event.sender;
-        var values = _.clone(kendoWidget.value());
+        var values = Object.assign({}, kendoWidget.value());
         var dataItems = kendoWidget.dataItems().map(toPlainObject);
 
         // Before we update the value, we need to clear the filter or some values may not

@@ -1,18 +1,16 @@
 import kendo from 'kendo'
-import _ from 'underscore'
-import { findWidget, noop } from '../ReactCommon'
-
+import { findWidget, isEmpty, isObject, noop, widgetConfig } from '../ReactCommon'
 
 var DataSource = kendo.data.DataSource;
 
 var CANNOT_CHANGE = ['template', 'valueField', 'displayField', 'placeholder', 'filter'];
 
 function rawValue(props) {
-    return _.isObject(props.value) ? props.value[props.valueField] : props.value;
+    return isObject(props.value) ? props.value[props.valueField] : props.value;
 }
 
 function displayValue(props) {
-    return _.isObject(props.value) ? props.value[props.displayField] : props.value;
+    return isObject(props.value) ? props.value[props.displayField] : props.value;
 }
 
 /* Getting the display value when the prop value is a scalar means traversing the data source to find
@@ -47,14 +45,14 @@ function SelectWidgetMixin(widgetName) {
         renderValue: function () {
             var props = this.props;
 
-            if (_.isEmpty(props.value)) {
+            if (isEmpty(props.value)) {
                 return '';
             }
-            if (_.isEmpty(props.displayField)) {
+            if (isEmpty(props.displayField)) {
                 return props.value;
             }
             // If the value is just an ID, the display value is in the DataSource.
-            if (!_.isObject(props.value)) {
+            if (!isObject(props.value)) {
                 return displayValueFromData(props);
             }
             return kendo.toString(displayValue(props));
@@ -69,7 +67,7 @@ function SelectWidgetMixin(widgetName) {
             var props = this.props;
             var $el = findWidget(this);
 
-            $el[widgetName](_.defaults({
+            $el[widgetName](widgetConfig({
                 autoBind: props.autoBind,
                 dataSource: props.dataSource,
                 dataTextField: props.displayField,
@@ -90,7 +88,7 @@ function SelectWidgetMixin(widgetName) {
                 this.getWidget().readonly(true);
             }
 
-            if (_.isObject(props.value)) {
+            if (isObject(props.value)) {
                 this.getWidget().text(displayValue(props));
             }
         },
@@ -110,7 +108,7 @@ function SelectWidgetMixin(widgetName) {
             if (props.value !== prevProps.value) {
                 kendoWidget.value(rawValue(props));
 
-                if (_.isObject(props.value)) {
+                if (isObject(props.value)) {
                     kendoWidget.text(displayValue(props));
                 }
             }
@@ -124,7 +122,8 @@ function SelectWidgetMixin(widgetName) {
         },
 
         componentWillReceiveProps: function (nextProps) {
-            console.assert(_.isEqual(_.pick(nextProps, CANNOT_CHANGE), _.pick(this.props, CANNOT_CHANGE)), 'these props cannot change after mount');
+            console.assert(CANNOT_CHANGE.every(name => nextProps[name] == this.props[name]),
+                'cannot change these props after mount', CANNOT_CHANGE);
         },
 
         componentWillUnmount: function () {

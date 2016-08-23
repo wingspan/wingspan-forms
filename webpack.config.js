@@ -15,7 +15,6 @@ module.exports = {
     externals: {
         "kendo": true,
         "jquery": true,
-        "underscore": true,
         "react": true,
         "react-dom": true
     },

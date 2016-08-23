@@ -35,7 +35,7 @@ var Carousel = React.createClass({
         if (this.props.options.length === 0) {
             // If we have zero options (which can make sense sometimes),
             // a selected value does not make sense.
-            console.assert(_.contains([undefined, null], this.props.value));
+            console.assert(this.props.value == null);
         }
 
         if (this.props.noControl) {
@@ -44,14 +44,14 @@ var Carousel = React.createClass({
 
         return (
             <div className="carousel">
-                <button disabled={N < 2} className="carouselButton backButton"
-                        onClick={_.partial(this.onChange, 'left')}><i className="icon iconPrev"/></button>
+                <button disabled={N < 2} className="carouselButton backButton" data-dir="left"
+                        onClick={this.onChange}><i className="icon iconPrev"/></button>
                 <input className="carouselInput"
                        value={this.displayTextFn(i, N)}
                        readOnly={true}
                        id={this.props.id} />
-                <button disabled={N < 2} className="carouselButton forwardButton"
-                        onClick={_.partial(this.onChange, 'right')}><i className="icon iconNext"/></button>
+                <button disabled={N < 2} className="carouselButton forwardButton" data-dir="right"
+                        onClick={this.onChange}><i className="icon iconNext"/></button>
                 {this.props.onEdit ? (
                     <button className="carouselButton editButton" disabled={this.props.disabled}
                             onClick={this.props.onEdit}>{this.props.buttonLabel}</button>
@@ -60,11 +60,12 @@ var Carousel = React.createClass({
         );
     },
 
-    onChange: function (direction) {
+    onChange: function (e) {
         var i = this.props.value;
         var N = this.props.options.length;
+        var direction = e.target.getAttribute('data-dir');
 
-        console.assert(_.contains(['left', 'right'], direction));
+        console.assert(direction === 'left' || direction === 'right');
         var nextIndex = (direction === 'left' ? (i - 1 + N) % N : (i + 1) % N);
 
         // don't actually move the carousel, the flux state must allow the change first.

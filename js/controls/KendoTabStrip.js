@@ -1,6 +1,8 @@
 import kendo from 'kendo'
 import React from 'react'
-import { findWidget, wrapItemsDiv } from '../ReactCommon'
+import { findWidget, isObject, wrapItemsDiv } from '../ReactCommon'
+
+const $ = kendo.jQuery;
 
 /**
  * Takes a "tabs" prop which is a map from title string to a JSX instance.
@@ -9,7 +11,7 @@ import { findWidget, wrapItemsDiv } from '../ReactCommon'
 var KendoTabStrip = React.createClass({
 
     componentWillMount: function () {
-        console.assert(_.isObject(this.props.tabs) && Object.keys(this.props.tabs).length > 0);
+        console.assert(isObject(this.props.tabs) && Object.keys(this.props.tabs).length > 0);
     },
 
     componentWillUnmount: function () {
@@ -35,21 +37,17 @@ var KendoTabStrip = React.createClass({
 
     /* jshint ignore:start */
     render: function () {
-
-        var lis = [];
-        Object.keys(this.props.tabs).forEach(function (title, index) {
-            var jsx = (index === 0
+        var keys = Object.keys(this.props.tabs);
+        var lis = keys.map(function (title, index) {
+            return index === 0
                 ? (<li className="k-state-active" data-wspt-index={index} key={index}>{title}</li>)
-                : (<li data-wspt-index={index} key={index}>{title}</li>));
-            lis.push(jsx);
+                : (<li data-wspt-index={index} key={index}>{title}</li>);
         });
-
-        var content = wrapItemsDiv(_.values(this.props.tabs));
 
         return (
             <div>
                 <ul>{lis}</ul>
-                {content}
+                {wrapItemsDiv(keys.map(title => this.props.tabs[title]))}
             </div>
             );
     }

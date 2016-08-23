@@ -1,17 +1,11 @@
+import _ from 'lodash'
 import kendo from 'kendo'
 import React from 'react'
-import { findWidget, noop } from '../ReactCommon'
+import { findWidget, noop, eitherType } from '../ReactCommon'
 
 const $ = kendo.jQuery;
 
 var PropTypes = React.PropTypes;
-
-function eitherType(type1, type2) {
-    type1 = _.isString(type1) ? PropTypes[type1] : type1;
-    type2 = _.isString(type2) ? PropTypes[type2] : type2;
-
-    return PropTypes.oneOfType([type1, type2]);
-}
 
 const KendoListView = React.createClass({
     displayName: 'KendoListView',
@@ -79,7 +73,7 @@ const KendoListView = React.createClass({
     },
 
     componentDidUpdate: function (prevProps) {
-        if (this.props.selectable && !_.isEqual(this.props.value, prevProps.value)) {
+        if (this.props.selectable && (this.props.value != prevProps.value)) {
             this.syncSelectionWithKendo();
         }
     },
@@ -100,7 +94,6 @@ const KendoListView = React.createClass({
     },
 
     componentWillUnmount: function () {
-
         findWidget(this, 'kendoListView').destroy();
     },
 

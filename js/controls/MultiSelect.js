@@ -40,25 +40,21 @@ var MultiSelect = React.createClass({
 
         // implements the behavior that the absence of an active property makes it automatically active.
         function isActive(selector) {
-            return _.isUndefined(selector.active) || !! selector.active;
+            return selector.active === undefined || !!selector.active;
         }
 
         if (this.props.isFlat) {
-            selectors = _.filter(selectors, function (selector) {
-                return isActive(selector);
-            });
+            selectors = selectors.filter(isActive);
         } else {
-            selectors = _.filter(selectors, function (group) {
-                return isActive(group);
-            });
-            selectors = _.map(selectors, function (group) {
+            selectors = selectors.filter(isActive);
+            selectors = selectors.map(function (group) {
                 // this clone will copy the primitive valued properties and leave the arrays as references.
                 // this is fine since we'll be replacing those arrays with filtered versions.
-                var g = _.clone(group);
-                g.children = _.filter(group.children, function (child) { return isActive(child); });
+                var g = Object.assign({}, group);
+                g.children = group.children.filter(isActive);
                 return g;
             });
-            selectors = _.filter(selectors, function (g) { return 0 < g.children.length; });
+            selectors = selectors.filter(function (g) { return 0 < g.children.length; });
         }
         return { selectors: selectors };
     },
@@ -74,24 +70,19 @@ var MultiSelect = React.createClass({
         }
 
         if (this.props.isFlat) {
-            selectors = _.map(selectors, function (selector) {
-                return option(selector); // (<option value={selector.id}>{selector.name}</option>);
-            });
+            selectors = selectors.map(option);
         } else {
-            selectors = _.map(selectors, function (group) {
-                var options = _.map(group.children, function(child) {
-                    return option(child); // (<option value={child.id}>{child.name}</option>);
-                });
+            selectors = selectors.map(function (group) {
+                var options = group.children.map(option);
                 return (<optgroup key={group.name} label={group.name}>{options}</optgroup>);
             });
         }
 
         function onChange(event) {
-            var selections = _.map(_.filter(event.target.options, function (opt) {
-                return opt.selected;
-            }), function (opt) {
-                return opt.value;
-            });
+            var optArray = [].slice.call(event.target.options);
+            var selections = optArray
+                .filter(opt => opt.selected)
+                .map(opt => opt.value);
             props.onChange(selections);
         }
         return (

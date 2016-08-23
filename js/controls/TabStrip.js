@@ -1,5 +1,6 @@
+import _ from 'lodash'
 import React from 'react'
-import { findWidget } from '../ReactCommon'
+import { findWidget, isObject } from '../ReactCommon'
 
 const PropTypes = React.PropTypes;
 
@@ -29,7 +30,7 @@ var TabStrip = React.createClass({
     },
 
     componentWillMount: function () {
-        console.assert(_.isObject(this.props.tabs) && Object.keys(this.props.tabs).length > 0);
+        console.assert(isObject(this.props.tabs) && Object.keys(this.props.tabs).length > 0);
         this.stableUniqueId = _.uniqueId('tab-');
     },
 
@@ -47,10 +48,9 @@ var TabStrip = React.createClass({
     render: function () {
         var self = this;
 
-        var lis = [];
         var keys = Object.keys(this.props.tabs),
             len = keys.length;
-        _.each(keys, function (title, index) {
+        var lis = keys.map(function (title, index) {
             var id = `${self.stableUniqueId}-${index}`;
             var classes = [
                 index === 0 ? 'k-first' : null,
@@ -60,16 +60,18 @@ var TabStrip = React.createClass({
                 index === self.props.selectedTab ? 'k-tab-on-top k-state-active' : null
             ];
 
-            lis.push((<li key={index} className={_.compact(classes).join(' ')} role="tab" aria-controls={id}><a className="k-link" onClick={_.partial(self.onTabClick, index)}>{title}</a></li>));
+            return (
+                <li key={index} className={_.compact(classes).join(' ')} role="tab" aria-controls={id}>
+                    <a className="k-link" onClick={_.partial(self.onTabClick, index)}>{title}</a>
+                </li>);
         });
 
-        var divs = [];
-        _.each(_.values(this.props.tabs), function (jsx, index) {
-            var jsx = (index === self.props.selectedTab
-                ? (<div key={index} className="k-content k-state-active" role="tabpanel" aria-expanded="true" style={visibleStyle}>{jsx}</div>)
-                : (<div key={index} className="k-content" aria-hidden="true" role="tabpanel" aria-expanded="false" style={hiddenStyle}>{self.props.elideInactiveContent ? null : jsx}</div>));
-            divs.push(jsx);
-        });
+        var divs = keys.map(key => this.props.tabs[key])
+            .map(function (jsx, index) {
+                return (index === self.props.selectedTab
+                    ? (<div key={index} className="k-content k-state-active" role="tabpanel" aria-expanded="true" style={VISIBLE}>{jsx}</div>)
+                    : (<div key={index} className="k-content" aria-hidden="true" role="tabpanel" aria-expanded="false" style={HIDDEN}>{self.props.elideInactiveContent ? null : jsx}</div>));
+            });
 
         var className = _.compact(['k-widget', 'k-header', 'k-tabstrip', this.props.className]).join(' ');
         return (
@@ -88,7 +90,7 @@ var TabStrip = React.createClass({
     }
 });
 
-var visibleStyle = { display: 'block', height: 'auto', overflow: 'visible', opacity: 1 };
-var hiddenStyle = { height: 'auto', overflow: 'visible', opacity: 1, display: 'none' };
+var VISIBLE = { display: 'block', height: 'auto', overflow: 'visible', opacity: 1 };
+var HIDDEN = { height: 'auto', overflow: 'visible', opacity: 1, display: 'none' };
 
 export default TabStrip;

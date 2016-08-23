@@ -1,31 +1,35 @@
 import kendo from 'kendo'
 import React from 'react'
-import _ from 'underscore'
-import { findWidget, noop } from '../ReactCommon'
+import { findWidget, noop, isObject, isString, eitherType, widgetConfig } from '../ReactCommon'
 
 var $ = kendo.jQuery;
 var PropTypes = React.PropTypes;
 
-function eitherType(type1, type2) {
-    type1 = _.isString(type1) ? PropTypes[type1] : type1;
-    type2 = _.isString(type2) ? PropTypes[type2] : type2;
-
-    return PropTypes.oneOfType([type1, type2]);
-}
 
 function isCellSelection(selectable) {
-    return _.isString(selectable) ? selectable.indexOf('cell') !== -1 : false;
+    return isString(selectable) ? selectable.indexOf('cell') !== -1 : false;
 }
 
 function isMultiSelect(selectable) {
-    return _.isString(selectable) ? selectable.indexOf('multiple') !== -1 : false;
+    return isString(selectable) ? selectable.indexOf('multiple') !== -1 : false;
+}
+
+function isEqualDataSource(d1, d2) {
+    if (d1 === d2) {
+        return true;
+    }
+    if (Array.isArray(d1) && Array.isArray(d2)) {
+        return d1.every((item, index) => item === d2[index]);
+    }
+
+    return false;
 }
 
 function getValueIds(value) {
     if (Array.isArray(value)) {
-        return _.pluck(value, 'id');
+        return value.map(item => item.id);
     }
-    if (_.isObject(value)) {
+    if (isObject(value)) {
         return [value.id];
     }
     return [];
@@ -108,7 +112,7 @@ var KendoGrid = React.createClass({
 
     componentDidMount: function () {
         var $rootNode = findWidget(this);
-        var widgetOptions = _.defaults({
+        var widgetOptions = widgetConfig({
             autoBind: this.props.autoBind,
             dataSource: this.props.dataSource,
             height: this.props.height,
@@ -141,14 +145,7 @@ var KendoGrid = React.createClass({
     componentDidUpdate: function (prevProps) {
         var grid = findWidget(this, 'kendoGrid');
 
-        if (this.props.dataSource instanceof Array) {
-            if (!_.isEqual(this.props.dataSource, prevProps.dataSource)) {
-                // This better be a datasource that was originally built from inline data.
-                // I don't know how to detect this to verify it.
-                grid.dataSource.data(this.props.dataSource);
-            }
-        }
-        else if (prevProps.dataSource !== this.props.dataSource) {
+        if (!isEqualDataSource(prevProps.dataSource, this.props.dataSource)) {
             grid.setDataSource(this.props.dataSource);
         }
 
@@ -206,7 +203,7 @@ var KendoGrid = React.createClass({
 
         // Don't hand the caller an array if they are doing only single selection. It's nicer that way.
         if (!isMultiSelect(this.props.selectable)) {
-            selectedValues = _.first(selectedValues);
+            selectedValues = selectedValues[0];
         }
 
         this.props.onChange(selectedValues);
