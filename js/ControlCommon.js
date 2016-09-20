@@ -1,7 +1,7 @@
 import $ from 'jquery'
 import kendo from 'kendo'
 
-function quadState(disabled, readonly, isValid, noControl) {
+export function quadState(disabled, readonly, isValid, noControl) {
     if (noControl) {
         return 'noControl';
     } else if (disabled) {
@@ -16,27 +16,7 @@ function quadState(disabled, readonly, isValid, noControl) {
     }
 }
 
-function setKendoNumberState(kendoWidget, value, disabled, readonly) {
-    setKendoNumberValue(kendoWidget, value);
-    setKendoDisabledReadonly(kendoWidget, disabled, readonly);
-}
-
-function setKendoNumberValue(kendoWidget, value) {
-    kendoWidget.value(value);
-}
-
-function setKendoDisabledReadonly(kendoWidget, disabled, readonly) {
-    if (disabled) {
-        // disabled beats readonly
-        kendoWidget.enable(false);
-    } else if (readonly) {
-        kendoWidget.readonly(true);
-    } else {
-        kendoWidget.enable(true);
-    }
-}
-
-function attachFormTooltips(body) {
+export function attachFormTooltips(body) {
     var $body = $(body);
 
     function tooltipMarginLeft(target) {
@@ -84,13 +64,13 @@ function attachFormTooltips(body) {
     });
 }
 
-function hideErrorTooltip() {
+export function hideErrorTooltip() {
     var $body = $('body');
 
     $body.data('kendoErrorTooltip').hide();
 }
 
-function refreshErrorTooltip() {
+export function refreshErrorTooltip() {
     var $body = $('body');
     $body.data('kendoErrorTooltip').refresh();
 }
@@ -113,13 +93,3 @@ kendo.ui.Tooltip.fn._initPopup = _.wrap(kendo.ui.Tooltip.fn._initPopup, function
         this.popup.bind('open', this.options.open.bind(this));
     }
 });
-
-module.exports = {
-    quadState: quadState,
-    attachFormTooltips: attachFormTooltips,
-    hideErrorTooltip: hideErrorTooltip,
-    refreshErrorTooltip: refreshErrorTooltip,
-    setKendoNumberState: setKendoNumberState,
-    setKendoNumberValue: setKendoNumberValue,
-    setKendoDisabledReadonly: setKendoDisabledReadonly
-};

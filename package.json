@@ -9,7 +9,7 @@
   },
   "scripts": {
     "babel": "babel js --out-dir lib",
-    "build": "webpack --progress",
+    "build": "npm run babel && webpack",
     "less": "lessc styles/app.less dist/styles/wingspan-forms.css",
     "examples": "webpack --config examples/webpack.config.js",
     "dev": "webpack-dev-server",

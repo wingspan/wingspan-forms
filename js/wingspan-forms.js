@@ -2,7 +2,7 @@
 import AutoControl from './AutoControl'
 import FormField from './FormField'
 import AutoField from './AutoField'
-import ControlCommon from './ControlCommon'
+import * as ControlCommon from './ControlCommon'
 import Button from './controls/Button'
 import Carousel from './controls/Carousel'
 import CheckBox from './controls/CheckBox'
@@ -21,6 +21,7 @@ import KendoPanelBar from './views/KendoPanelBar'
 import KendoTabStrip from './controls/KendoTabStrip'
 import KendoText from './controls/KendoText'
 import KendoTimePicker from './controls/KendoTimePicker'
+import KendoTreeView from './controls/KendoTreeView'
 import MultiSelect from './controls/MultiSelect'
 import MultilineText from './controls/MultilineText'
 import Radio from './controls/Radio'
@@ -54,6 +55,7 @@ module.exports = {
     KendoTabStrip: KendoTabStrip,
     KendoText: KendoText,
     KendoTimePicker: KendoTimePicker,
+    KendoTreeView: KendoTreeView,
     MultiSelect: MultiSelect,
     MultilineText: MultilineText,
     Radio: Radio,
