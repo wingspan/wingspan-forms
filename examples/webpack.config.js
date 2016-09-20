@@ -1,12 +1,20 @@
-var webpack = require('webpack')
+var webpack = require('webpack');
 
 module.exports = {
 
     entry: {
         "controlled-grid": './examples/controlled-grid/js/Page',
         "faceted-search": './examples/faceted-search/js/Page',
-        "form-dynamic": './examples/form-dynamic/js/Page'
+        "form-dynamic": './examples/form-dynamic/js/Page',
+        "form-master-detail": './examples/form-master-detail/js/Page',
+        "form-simple": './examples/form-simple/js/Page',
+        "form-simple-2": './examples/form-simple-2/js/Page',
+        "form-twins": './examples/form-twins/js/Page',
+        "helloworld": './examples/helloworld/js/Page',
+        "sandbox": './examples/sandbox/js/Page',
+        "state-at-top": './examples/state-at-top/js/Page'
     },
+
     output: {
         libraryTarget: 'amd',
         filename: './examples/[name]/js-built/Page.js'
@@ -34,4 +42,4 @@ module.exports = {
         //    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
         //})
     ]
-}
+};
