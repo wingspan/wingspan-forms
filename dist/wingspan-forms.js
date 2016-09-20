@@ -68,6 +68,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _AutoField2 = _interopRequireDefault(_AutoField);
 
+	var _ControlCommon = __webpack_require__(141);
+
+	var _ControlCommon2 = _interopRequireDefault(_ControlCommon);
+
 	var _Button = __webpack_require__(143);
 
 	var _Button2 = _interopRequireDefault(_Button);
@@ -178,11 +182,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	/* Library entry-point */
 	module.exports = {
 	    AutoControl: _AutoControl2.default,
 	    FormField: _FormField2.default,
 	    AutoField: _AutoField2.default,
+	    ControlCommon: _ControlCommon2.default,
 	    Button: _Button2.default,
 	    Carousel: _Carousel2.default,
 	    CheckBox: _CheckBox2.default,
@@ -210,7 +214,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    PromiseButton: _PromiseButton2.default,
 	    SearchBox: _SearchBox2.default,
 	    HoverView: _HoverView2.default
-	};
+	}; /* Library entry-point */
 
 /***/ },
 /* 1 */
@@ -6974,7 +6978,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 
 	    componentDidMount: function componentDidMount() {
-	        var grid = Common.findWidget(this, 'kendoGrid');
+	        var grid = (0, _ReactCommon.findWidget)(this, 'kendoGrid');
 
 	        // The standard kendo grid multiple selection UI requires holding the Control key to select multiple rows.
 	        // Change the behavior to allow individual clicks to toggle the row's selection state.
@@ -7002,7 +7006,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    updateCheckboxValues: function updateCheckboxValues() {
 	        // the SSP page has changed, so we have new DOM.
 	        // Sync up the DOM with the checked state.
-	        var grid = Common.findWidget(this, 'kendoGrid');
+	        var grid = (0, _ReactCommon.findWidget)(this, 'kendoGrid');
 
 	        var valueIDs = grid.select().get().map(function (tr) {
 	            return tr.getAttribute('data-uid');
@@ -7017,7 +7021,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 
 	    onGridChange: function onGridChange(selectedValues) {
-	        var grid = Common.findWidget(this, 'kendoGrid');
+	        var grid = (0, _ReactCommon.findWidget)(this, 'kendoGrid');
 
 	        if (!this.props.multiple) {
 	            this.props.onChange(selectedValues ? selectedValues.toJSON() : null);

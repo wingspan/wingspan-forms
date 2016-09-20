@@ -1,4 +1,4 @@
-var webpack = require('webpack')
+var webpack = require('webpack');
 
 module.exports = {
 
@@ -31,4 +31,4 @@ module.exports = {
         //    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
         //})
     ]
-}
+};

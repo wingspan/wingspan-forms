@@ -2,6 +2,7 @@
 import AutoControl from './AutoControl'
 import FormField from './FormField'
 import AutoField from './AutoField'
+import ControlCommon from './ControlCommon'
 import Button from './controls/Button'
 import Carousel from './controls/Carousel'
 import CheckBox from './controls/CheckBox'
@@ -34,6 +35,7 @@ module.exports = {
     AutoControl: AutoControl,
     FormField: FormField,
     AutoField: AutoField,
+    ControlCommon: ControlCommon,
     Button: Button,
     Carousel: Carousel,
     CheckBox: CheckBox,

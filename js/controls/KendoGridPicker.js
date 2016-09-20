@@ -59,7 +59,7 @@ var KendoGridPicker = React.createClass({displayName: "KendoGridPicker",
     },
 
     componentDidMount: function () {
-        var grid = Common.findWidget(this, 'kendoGrid');
+        var grid = findWidget(this, 'kendoGrid');
 
         // The standard kendo grid multiple selection UI requires holding the Control key to select multiple rows.
         // Change the behavior to allow individual clicks to toggle the row's selection state.
@@ -87,7 +87,7 @@ var KendoGridPicker = React.createClass({displayName: "KendoGridPicker",
     updateCheckboxValues: function () {
         // the SSP page has changed, so we have new DOM.
         // Sync up the DOM with the checked state.
-        var grid = Common.findWidget(this, 'kendoGrid');
+        var grid = findWidget(this, 'kendoGrid');
 
         var valueIDs = grid.select().get().map(function (tr) {
             return tr.getAttribute('data-uid');
@@ -102,7 +102,7 @@ var KendoGridPicker = React.createClass({displayName: "KendoGridPicker",
     },
 
     onGridChange: function (selectedValues) {
-        var grid = Common.findWidget(this, 'kendoGrid');
+        var grid = findWidget(this, 'kendoGrid');
 
         if (!this.props.multiple) {
             this.props.onChange(selectedValues ? selectedValues.toJSON() : null);
