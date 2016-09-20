@@ -21,9 +21,9 @@
     "lodash": "^4.15.0"
   },
   "peerDependencies": {
-    "react": "^15.0.0",
-    "react-dom": "^15.0.0",
-    "jquery": "^1.9.1"
+    "react": ">=15.0.0",
+    "react-dom": ">=15.0.0",
+    "jquery": ">=1.9.1"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
