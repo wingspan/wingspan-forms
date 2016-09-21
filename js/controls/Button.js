@@ -1,30 +1,24 @@
+import React from 'react'
+import { noop } from '../ReactCommon'
 
-define([
-    'underscore', 'react',
-    '../ImmutableOptimizations'
-], function (_, React, ImmutableOptimizations) {
-    'use strict';
+var Button = React.createClass({
 
+    getDefaultProps: function () {
+        return {
+            onClick: noop,
+            disabled: false,
+            className: ''
+        };
+    },
 
-    var Button = React.createClass({
-        mixins: [ImmutableOptimizations(['onClick'])],
+    render: function () {
+        var classes = this.props.className;
 
-        getDefaultProps: function () {
-            return {
-                onClick: undefined,
-                disabled: false,
-                className: undefined // one string, space delimited (if you want to specify more than one class)
-            };
-        },
-
-        render: function () {
-            var classes = _.compact([
-                this.props.className,
-                this.props.disabled ? 'buttonDisabled' : null
-            ]);
-            return (<button className={classes.join(' ')} onClick={this.props.onClick} disabled={this.props.disabled}>{this.props.children}</button>);
+        if (this.props.diabled) {
+            classes += ' buttonDisabled';
         }
-    });
-
-    return Button;
+        return (<button className={classes} onClick={this.props.onClick} disabled={this.props.disabled}>{this.props.children}</button>);
+    }
 });
+
+export default Button;

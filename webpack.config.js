@@ -1,4 +1,4 @@
-var webpack = require('webpack')
+var webpack = require('webpack');
 
 module.exports = {
 
@@ -15,7 +15,6 @@ module.exports = {
     externals: {
         "kendo": true,
         "jquery": true,
-        "underscore": true,
         "react": true,
         "react-dom": true
     },
@@ -32,4 +31,4 @@ module.exports = {
         //    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
         //})
     ]
-}
+};
