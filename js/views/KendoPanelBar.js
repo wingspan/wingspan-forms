@@ -1,11 +1,19 @@
 /* Copyright (c) 2015-2016 Wingspan Technology, Inc. */
 define([
-    'react', '../ReactCommon'
-], function (React, Common) {
+    'react', 'underscore', '../ReactCommon'
+], function (React, _, Common) {
     'use strict';
 
     const Children = React.Children;
     const PropTypes = React.PropTypes;
+
+    const NO_ANIMATION = false;
+
+    function panelsChanged(kids1, kids2) {
+        let toTitle = (c) => c.props.title;
+
+        return !_.isEqual(Children.map(kids1, toTitle), Children.map(kids2, toTitle));
+    }
 
     var KendoPanelBar = React.createClass({
         /* Not supporting "contentUrls" or "dataSource" because React components are better content */
@@ -37,6 +45,16 @@ define([
         componentWillUnmount: function () {
             // Don't destroy() because it destroys all kendo widgets owned by nested components.
             // Common.findWidget(this, 'kendoPanelBar').destroy();
+        },
+
+        componentDidUpdate: function (prevProps) {
+            // When new panels are added in an update, they need to be styled properly
+            if (panelsChanged(this.props.children, prevProps.children)) {
+                let panelBar = Common.findWidget(this, 'kendoPanelBar');
+
+                panelBar._updateClasses();  // Forced to use this private method
+                panelBar.expand(panelBar.element.children('[data-expand=true]'), NO_ANIMATION);
+            }
         },
 
         render: function () {
