@@ -5848,7 +5848,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _ControlCommon = __webpack_require__(147);
 
-	var _ControlCommon2 = _interopRequireDefault(_ControlCommon);
+	var ControlCommon = _interopRequireWildcard(_ControlCommon);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5912,7 +5914,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var hasInfoTooltip = !!fieldInfo.helpText;
 	        var hasErrorTooltip = !this.props.isValid[0] && (this.props.isValid[1] || '').length > 0;
 
-	        var classes = (0, _compact3.default)([this.props.layout, determineFieldClass(this.props.children), _ControlCommon2.default.quadState(fieldInfo.disabled, fieldInfo.readOnly, this.props.isValid, this.props.noControl), hasInfoTooltip ? 'hasTooltip' : null, hasErrorTooltip ? 'hasErrorTooltip' : null, this.props.lockable ? 'lockable' : null]);
+	        var classes = (0, _compact3.default)([this.props.layout, determineFieldClass(this.props.children), ControlCommon.quadState(fieldInfo.disabled, fieldInfo.readOnly, this.props.isValid, this.props.noControl), hasInfoTooltip ? 'hasTooltip' : null, hasErrorTooltip ? 'hasErrorTooltip' : null, this.props.lockable ? 'lockable' : null]);
 
 	        var lockedClasses = (0, _compact3.default)(['fieldLock', this.props.locked ? 'fieldLockOn' : null]);
 	        var styles = {
@@ -5961,7 +5963,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        // If the field has become valid, hide the error tooltip.
 	        if (wasInvalid && newProps.isValid[0]) {
-	            _ControlCommon2.default.hideErrorTooltip();
+	            ControlCommon.hideErrorTooltip();
 	        }
 	    },
 
@@ -5971,7 +5973,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            validationMessageChanged = prevProps.isValid[1] !== this.props.isValid[1];
 
 	        if (wasInvalid && isStillInvalid && validationMessageChanged) {
-	            _ControlCommon2.default.refreshErrorTooltip();
+	            ControlCommon.refreshErrorTooltip();
 	        }
 	    },
 

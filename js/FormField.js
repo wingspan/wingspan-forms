@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React from 'react'
 import AutoControl from './AutoControl'
-import ControlCommon from './ControlCommon'
+import * as ControlCommon from './ControlCommon'
 
 const DEFAULTS = {
     readOnly: false,
