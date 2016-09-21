@@ -16,7 +16,7 @@ define([
     }
 
     /* Getting the display value when the prop value is a scalar means traversing the data source to find
-     the matching value.
+        the matching value.
      */
     function displayValueFromData(props) {
         var dataSource = DataSource.create(props.dataSource);
@@ -139,11 +139,15 @@ define([
                 var value = kendoWidget.value();
                 var valueObject = kendoWidget.dataItem();
 
+                // Don't return a model instance to the caller, just the object data
+                if (_.isObject(valueObject)) {
+                    valueObject = valueObject.toJSON();
+                }
+
                 // Put the original value back until new props force the change
                 kendoWidget.value(rawValue(this.props));
 
-                // Don't return a model instance to the caller, just the object data
-                this.props.onChange(value, valueObject ? valueObject.toJSON() : null);
+                this.props.onChange(value, valueObject);
             }
         };
     }
