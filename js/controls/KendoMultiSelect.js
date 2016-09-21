@@ -15,7 +15,7 @@ define([
             return value;
         }
 
-        value = _.isArray(value) ? value : [value];
+        value = Array.isArray(value) ? value : [value];
 
         return value.map(function (val) {
             return _.isObject(val) ? val[props.valueField] : val;
@@ -24,6 +24,13 @@ define([
 
     function toPlainObject(data) {
         return data.toJSON();
+    }
+
+    function dataSource(props) {
+        if (!_.isEmpty(props.dataSource)) {
+            return props.dataSource;
+        }
+        return Array.isArray(props.value) ? Array.from(props.value) : Array.of(props.value);
     }
 
     var KendoMultiSelect = React.createClass({
@@ -62,29 +69,30 @@ define([
 
         componentDidMount: function () {
             var $el = Common.findWidget(this);
+            var props = this.props;
 
-            var widgetOptions = _.defaults({
-                dataTextField: this.props.displayField,
-                dataValueField: this.props.valueField,
-                dataSource: this.props.dataSource,
-                placeholder: this.props.placeholder,
-                itemTemplate: this.props.template,
+            $el.kendoMultiSelect(_.defaults({
+                dataTextField: props.displayField,
+                dataValueField: props.valueField,
+                dataSource: dataSource(props),
+                placeholder: props.placeholder,
+                itemTemplate: props.template,
                 change: this.onChange
-            }, this.props.options);
+            }, props.options));
 
-            var kendoWidget = $el.kendoMultiSelect(widgetOptions).data('kendoMultiSelect');
+            var kendoWidget = $el.data('kendoMultiSelect');
 
             // the 'value' method is a getter/setter that gets/sets the valueField. It will look up the record
             // in the store via the value set here.
-            if (this.props.value) {
-                kendoWidget.value(rawValue(this.props));
+            if (props.value) {
+                kendoWidget.value(rawValue(props));
             }
 
-            if (this.props.disabled) {
+            if (props.disabled) {
                 // disabled beats readonly
                 kendoWidget.enable(false);
             }
-            else if (this.props.readonly) {
+            else if (props.readonly) {
                 kendoWidget.readonly(true);
             }
         },
@@ -102,7 +110,7 @@ define([
             var kendoWidget = Common.findWidget(this, 'kendoMultiSelect');
 
             if (prevProps.dataSource !== this.props.dataSource) {
-                kendoWidget.setDataSource(this.props.dataSource);
+                kendoWidget.setDataSource(dataSource(this.props));
             }
 
             if (this.props.value !== prevProps.value) {
