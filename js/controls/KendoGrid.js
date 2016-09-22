@@ -78,7 +78,7 @@ var KendoGrid = React.createClass({
     propTypes: {
         className: PropTypes.string,
         height: eitherType('number', 'string'),
-        dataSource: eitherType(PropTypes.object.isRequired, PropTypes.array.isRequired),
+        dataSource: eitherType('object', 'array').isRequired,
         autoBind: PropTypes.bool,
         columns: PropTypes.array,
         toolbar: PropTypes.array,

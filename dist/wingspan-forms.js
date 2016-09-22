@@ -6896,7 +6896,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    propTypes: {
 	        className: PropTypes.string,
 	        height: (0, _ReactCommon.eitherType)('number', 'string'),
-	        dataSource: (0, _ReactCommon.eitherType)(PropTypes.object.isRequired, PropTypes.array.isRequired),
+	        dataSource: (0, _ReactCommon.eitherType)('object', 'array').isRequired,
 	        autoBind: PropTypes.bool,
 	        columns: PropTypes.array,
 	        toolbar: PropTypes.array,
@@ -7223,7 +7223,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    propTypes: {
 	        autoBind: PropTypes.bool,
 	        className: PropTypes.string,
-	        dataSource: (0, _ReactCommon.eitherType)(PropTypes.object.isRequired, PropTypes.array.isRequired),
+	        dataSource: (0, _ReactCommon.eitherType)('object', 'array').isRequired,
 	        template: (0, _ReactCommon.eitherType)('string', 'func'),
 	        selectable: (0, _ReactCommon.eitherType)('bool', 'string'),
 	        scrollToSelectedItem: PropTypes.bool,

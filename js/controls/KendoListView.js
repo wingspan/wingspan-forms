@@ -13,7 +13,7 @@ const KendoListView = React.createClass({
     propTypes: {
         autoBind: PropTypes.bool,
         className: PropTypes.string,
-        dataSource: eitherType(PropTypes.object.isRequired, PropTypes.array.isRequired),
+        dataSource: eitherType('object', 'array').isRequired,
         template: eitherType('string', 'func'),
         selectable: eitherType('bool', 'string'),
         scrollToSelectedItem: PropTypes.bool,
