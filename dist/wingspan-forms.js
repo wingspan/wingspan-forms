@@ -3599,7 +3599,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var PropTypes = _react2.default.PropTypes;
 
-	var CANNOT_CHANGE = ['template', 'dataSource', 'valueField', 'displayField', 'placeholder'];
+	var CANNOT_CHANGE = ['template', 'valueField', 'displayField', 'placeholder'];
 
 	function rawValue(props) {
 	    var value = props.value;

@@ -4,7 +4,7 @@ import { findWidget, noop, isEmpty, isObject, widgetConfig } from '../ReactCommo
 
 const PropTypes = React.PropTypes;
 
-const CANNOT_CHANGE = ['template', 'dataSource', 'valueField', 'displayField', 'placeholder'];
+const CANNOT_CHANGE = ['template', 'valueField', 'displayField', 'placeholder'];
 
 function rawValue(props) {
     var value = props.value;
