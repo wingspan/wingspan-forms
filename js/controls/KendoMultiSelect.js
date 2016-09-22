@@ -39,7 +39,7 @@ var KendoMultiSelect = React.createClass({
         value: PropTypes.array,
         onChange: PropTypes.func,
         id: PropTypes.string,
-        dataSource: PropTypes.oneOfType([PropTypes.array.isRequired, PropTypes.object.isRequired]),
+        dataSource: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
         displayField: PropTypes.string,
         valueField: PropTypes.string,
         disabled: PropTypes.bool,

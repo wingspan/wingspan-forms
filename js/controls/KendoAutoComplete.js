@@ -38,7 +38,7 @@ const KendoAutoComplete = React.createClass({
         onChange: PropTypes.func,
         onSelect: PropTypes.func,
         id: PropTypes.string,
-        dataSource: PropTypes.oneOfType([PropTypes.array.isRequired, PropTypes.object.isRequired]),
+        dataSource: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
         dataTextField: PropTypes.string,
         disabled: PropTypes.bool,
         readonly: PropTypes.bool,

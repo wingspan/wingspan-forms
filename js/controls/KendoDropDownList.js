@@ -11,7 +11,7 @@ const KendoDropDownList = React.createClass({
         value: PropTypes.any,
         onChange: PropTypes.func,
         autoBind: PropTypes.bool,
-        dataSource: PropTypes.oneOfType([PropTypes.array.isRequired, PropTypes.object.isRequired]),
+        dataSource: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
         displayField: PropTypes.string,
         valueField: PropTypes.string,
         disabled: PropTypes.bool,
