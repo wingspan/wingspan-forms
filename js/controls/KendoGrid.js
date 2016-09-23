@@ -146,9 +146,15 @@ var KendoGrid = React.createClass({
 
     componentDidUpdate: function (prevProps) {
         var grid = findWidget(this, 'kendoGrid');
+        var dataSource = this.props.dataSource;
 
-        if (!isEqualDataSource(prevProps.dataSource, this.props.dataSource)) {
-            grid.setDataSource(this.props.dataSource);
+        if (!isEqualDataSource(prevProps.dataSource, dataSource)) {
+            // Cannot call setDataSource() with an array so just update the existing DataSource.
+            if (Array.isArray(dataSource)) {
+                grid.dataSource.data(dataSource);
+            } else {
+                grid.setDataSource(dataSource);
+            }
         }
 
         if (prevProps.value !== this.props.value) {
