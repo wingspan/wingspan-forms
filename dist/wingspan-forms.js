@@ -3490,7 +3490,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    onChange: function onChange(event) {
 	        var kendoWidget = event.sender;
-	        var values = Object.assign({}, kendoWidget.value());
+	        var values = Array.from(kendoWidget.value());
 	        var dataItems = kendoWidget.dataItems().map(toPlainObject);
 
 	        // Before we update the value, we need to clear the filter or some values may not

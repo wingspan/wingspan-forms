@@ -124,7 +124,7 @@ var KendoMultiSelect = React.createClass({
 
     onChange: function (event) {
         var kendoWidget = event.sender;
-        var values = Object.assign({}, kendoWidget.value());
+        var values = Array.from(kendoWidget.value());
         var dataItems = kendoWidget.dataItems().map(toPlainObject);
 
         // Before we update the value, we need to clear the filter or some values may not
