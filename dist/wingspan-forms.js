@@ -3251,7 +3251,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function widgetConfig(config, moreOptions) {
 	    for (var key in moreOptions) {
-	        if (moreOptions.hasOwnProperty(key) && !config.hasOwnProperty(key)) {
+	        if (moreOptions.hasOwnProperty(key) && config[key] == null) {
 	            config[key] = moreOptions[key];
 	        }
 	    }
