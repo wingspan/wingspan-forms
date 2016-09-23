@@ -2932,10 +2932,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var PropTypes = _react2.default.PropTypes;
 
-	function resetCustomValue(mixinOnChange, e) {
+	function resetCustomValue(e) {
 	    var widget = e.sender;
+	    var isCustomValue = widget.value() && widget.select() === -1;
 
-	    if (widget.value() && widget.select() === -1) {
+	    if (isCustomValue) {
 	        //custom has been selected
 	        widget.value(''); //reset widget
 	        // Also clear the filter that the custom value applied so all the options are available
@@ -2944,8 +2945,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    }
 
-	    // Call the base onChange so that the value in props is put back
-	    mixinOnChange.call(this, e);
+	    return isCustomValue;
 	}
 
 	var KendoComboBox = _react2.default.createClass({
@@ -2986,10 +2986,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 
 	    componentWillMount: function componentWillMount() {
+	        var _this = this;
+
 	        // Preventing custom values requires us to hook the change event before the mixin's
 	        // default behavior because we don't want the custom value to be passed to our parent.
 	        if (this.props.preventCustomValues) {
-	            this.onChange = resetCustomValue.bind(this, this.onChange);
+	            this.onChange = function (e) {
+	                resetCustomValue(e);
+	                Object.getPrototypeOf(_this).onChange.call(_this, e);
+	            };
+	        }
+	    },
+
+	    componentDidMount: function componentDidMount() {
+	        var _this2 = this;
+
+	        // When new data is bound in the data source, the current value must be checked against the data.
+	        // If it's not in the bound data set, it must be cleared out.
+	        if (this.props.preventCustomValues) {
+	            this.getWidget().bind('dataBound', function (e) {
+	                if (resetCustomValue(e)) {
+	                    Object.getPrototypeOf(_this2).onChange.call(_this2, e);
+	                }
+	            });
 	        }
 	    },
 

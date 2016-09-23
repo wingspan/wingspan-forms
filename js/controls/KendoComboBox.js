@@ -3,10 +3,11 @@ import SelectWidgetMixin from '../mixins/SelectWidgetMixin'
 
 const PropTypes = React.PropTypes;
 
-function resetCustomValue(mixinOnChange, e) {
+function resetCustomValue(e) {
     var widget = e.sender;
+    var isCustomValue = widget.value() && (widget.select() === -1);
 
-    if (widget.value() && widget.select() === -1) {
+    if (isCustomValue) {
         //custom has been selected
         widget.value(''); //reset widget
         // Also clear the filter that the custom value applied so all the options are available
@@ -15,8 +16,7 @@ function resetCustomValue(mixinOnChange, e) {
         }
     }
 
-    // Call the base onChange so that the value in props is put back
-    mixinOnChange.call(this, e);
+    return isCustomValue;
 }
 
 const KendoComboBox = React.createClass({
@@ -56,7 +56,22 @@ const KendoComboBox = React.createClass({
         // Preventing custom values requires us to hook the change event before the mixin's
         // default behavior because we don't want the custom value to be passed to our parent.
         if (this.props.preventCustomValues) {
-            this.onChange = resetCustomValue.bind(this, this.onChange);
+            this.onChange = (e) => {
+                resetCustomValue(e);
+                Object.getPrototypeOf(this).onChange.call(this, e);
+            }
+        }
+    },
+
+    componentDidMount: function () {
+        // When new data is bound in the data source, the current value must be checked against the data.
+        // If it's not in the bound data set, it must be cleared out.
+        if (this.props.preventCustomValues) {
+            this.getWidget().bind('dataBound', (e) => {
+                if (resetCustomValue(e)) {
+                    Object.getPrototypeOf(this).onChange.call(this, e);
+                }
+            });
         }
     },
 
