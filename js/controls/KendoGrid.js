@@ -18,7 +18,7 @@ function isEqualDataSource(d1, d2) {
     if (d1 === d2) {
         return true;
     }
-    if (Array.isArray(d1) && Array.isArray(d2)) {
+    if (Array.isArray(d1) && Array.isArray(d2) && (d1.length === d2.length)) {
         return d1.every((item, index) => item === d2[index]);
     }
 
