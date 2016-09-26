@@ -1,6 +1,6 @@
 {
   "name": "wingspan-forms",
-  "version": "2.0.0-beta1",
+  "version": "2.0.0-beta2",
   "description": "A forms package for React applications using Kendo UI widgets",
   "main": "lib/wingspan-forms.js",
   "repository": {
@@ -13,6 +13,7 @@
     "less": "lessc styles/app.less dist/styles/wingspan-forms.css",
     "examples": "webpack --config examples/webpack.config.js",
     "dev": "webpack-dev-server",
+    "prepublish": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Wingspan Technology, Inc.",
