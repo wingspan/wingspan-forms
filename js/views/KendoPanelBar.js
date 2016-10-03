@@ -51,7 +51,7 @@ var KendoPanelBar = React.createClass({
     componentDidUpdate: function (prevProps) {
         // When new panels are added in an update, they need to be styled properly
         if (panelsChanged(this.props.children, prevProps.children)) {
-            let panelBar = Common.findWidget(this, 'kendoPanelBar');
+            let panelBar = findWidget(this, 'kendoPanelBar');
 
             panelBar._updateClasses();  // Forced to use this private method
             panelBar.expand(panelBar.element.children('[data-expand=true]'), NO_ANIMATION);

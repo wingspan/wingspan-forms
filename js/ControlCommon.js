@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import kendo from 'kendo'
+import _ from 'lodash'
 
 export function quadState(disabled, readonly, isValid, noControl) {
     if (noControl) {
@@ -14,6 +15,21 @@ export function quadState(disabled, readonly, isValid, noControl) {
     } else {
         return null;
     }
+}
+
+export function isEqualDataSource(d1, d2) {
+    if (d1 === d2) {
+        return true;
+    }
+    // Cannot compare DataSource objects, so return false if either param is not an array.
+    if (!Array.isArray(d1) || !Array.isArray(d2)) {
+        return false;
+    }
+    if (d1.length !== d2.length) {
+        return false;
+    }
+    // Arrays are equal if all items are equal.
+    return d1.every((item, index) => item === d2[index]);
 }
 
 export function attachFormTooltips(body) {

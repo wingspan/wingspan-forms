@@ -1,5 +1,7 @@
 import kendo from 'kendo'
 import React from 'react'
+
+import { isEqualDataSource } from '../ControlCommon'
 import { findWidget, noop, isObject, isString, eitherType, widgetConfig } from '../ReactCommon'
 
 var $ = kendo.jQuery;
@@ -12,17 +14,6 @@ function isCellSelection(selectable) {
 
 function isMultiSelect(selectable) {
     return isString(selectable) ? selectable.indexOf('multiple') !== -1 : false;
-}
-
-function isEqualDataSource(d1, d2) {
-    if (d1 === d2) {
-        return true;
-    }
-    if (Array.isArray(d1) && Array.isArray(d2) && (d1.length === d2.length)) {
-        return d1.every((item, index) => item === d2[index]);
-    }
-
-    return false;
 }
 
 function getValueIds(value) {

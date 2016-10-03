@@ -5,18 +5,15 @@ const PropTypes = React.PropTypes;
 
 function resetCustomValue(e) {
     var widget = e.sender;
-    var isCustomValue = widget.value() && (widget.select() === -1);
 
-    if (isCustomValue) {
+    if (widget.value() && (widget.select() === -1)) {
         //custom has been selected
-        widget.value(''); //reset widget
+        widget.value('');
         // Also clear the filter that the custom value applied so all the options are available
         if (widget.options.filter !== 'none') {
             widget.dataSource.filter(null);
         }
     }
-
-    return isCustomValue;
 }
 
 const KendoComboBox = React.createClass({
@@ -60,18 +57,6 @@ const KendoComboBox = React.createClass({
                 resetCustomValue(e);
                 Object.getPrototypeOf(this).onChange.call(this, e);
             }
-        }
-    },
-
-    componentDidMount: function () {
-        // When new data is bound in the data source, the current value must be checked against the data.
-        // If it's not in the bound data set, it must be cleared out.
-        if (this.props.preventCustomValues) {
-            this.getWidget().bind('dataBound', (e) => {
-                if (resetCustomValue(e)) {
-                    Object.getPrototypeOf(this).onChange.call(this, e);
-                }
-            });
         }
     },
 

@@ -1,10 +1,12 @@
 
 import kendo from 'kendo'
+
+import { isEqualDataSource } from '../ControlCommon'
 import { findWidget, isEmpty, isObject, noop, widgetConfig } from '../ReactCommon'
 
-var DataSource = kendo.data.DataSource;
+const DataSource = kendo.data.DataSource;
 
-var CANNOT_CHANGE = ['template', 'valueField', 'displayField', 'placeholder', 'filter'];
+const CANNOT_CHANGE = ['template', 'valueField', 'displayField', 'placeholder', 'filter'];
 
 function rawValue(props) {
     return isObject(props.value) ? props.value[props.valueField] : props.value;
@@ -102,7 +104,7 @@ function SelectWidgetMixin(widgetName) {
             var props = this.props;
             var kendoWidget = this.getWidget();
 
-            if (props.dataSource !== prevProps.dataSource) {
+            if (!isEqualDataSource(props.dataSource, prevProps.dataSource)) {
                 kendoWidget.setDataSource(props.dataSource);
             }
 
@@ -140,7 +142,7 @@ function SelectWidgetMixin(widgetName) {
             var valueObject = kendoWidget.dataItem();
 
             // Don't return a model instance to the caller, just the object data
-            if (_.isObject(valueObject)) {
+            if (isObject(valueObject)) {
                 valueObject = valueObject.toJSON();
             }
 
