@@ -8,12 +8,17 @@ const DataSource = kendo.data.DataSource;
 
 const CANNOT_CHANGE = ['template', 'valueField', 'displayField', 'placeholder', 'filter'];
 
+/* Don't ever return "undefined" as a value because kendo assumes you're doing a "get" instead of a "set" */
+function notUndefined(value) {
+    return value !== undefined ? value : '';
+}
+
 function rawValue(props) {
-    return isObject(props.value) ? props.value[props.valueField] : props.value;
+    return notUndefined(isObject(props.value) ? props.value[props.valueField] : props.value);
 }
 
 function displayValue(props) {
-    return isObject(props.value) ? props.value[props.displayField] : props.value;
+    return notUndefined(isObject(props.value) ? props.value[props.displayField] : props.value);
 }
 
 /* Getting the display value when the prop value is a scalar means traversing the data source to find
