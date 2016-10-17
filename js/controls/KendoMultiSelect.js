@@ -107,7 +107,7 @@ var KendoMultiSelect = React.createClass({
         var kendoWidget = findWidget(this, 'kendoMultiSelect');
 
         if (prevProps.dataSource !== this.props.dataSource) {
-            kendoWidget.setDataSource(this.props.dataSource);
+            kendoWidget.setDataSource(dataSource(this.props));
         }
 
         if (this.props.value !== prevProps.value) {
