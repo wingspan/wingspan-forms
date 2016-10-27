@@ -15,7 +15,8 @@ var MultilineText = React.createClass({
         noControl: PropTypes.bool,
         minLength: PropTypes.number,
         maxLength: PropTypes.number,
-        trimValue: PropTypes.bool
+        trimValue: PropTypes.bool,
+        style: PropTypes.any
     },
 
     statics: { fieldClass: function () { return 'formFieldTextarea'; } },
@@ -28,7 +29,8 @@ var MultilineText = React.createClass({
             disabled: false,
             readonly: false,
             noControl: false,
-            trimValue: true
+            trimValue: true,
+            style: {}
         };
     },
 
@@ -46,6 +48,7 @@ var MultilineText = React.createClass({
                 onBlur={this.onBlur}
                 placeholder={this.props.placeholder}
                 readOnly={this.props.readonly}
+                style={this.props.style}
                 disabled={this.props.disabled} />
         );
     },

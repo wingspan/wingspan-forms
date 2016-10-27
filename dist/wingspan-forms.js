@@ -6083,7 +6083,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        noControl: PropTypes.bool,
 	        minLength: PropTypes.number,
 	        maxLength: PropTypes.number,
-	        trimValue: PropTypes.bool
+	        trimValue: PropTypes.bool,
+	        style: PropTypes.any
 	    },
 
 	    statics: { fieldClass: function fieldClass() {
@@ -6098,7 +6099,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            disabled: false,
 	            readonly: false,
 	            noControl: false,
-	            trimValue: true
+	            trimValue: true,
+	            style: {}
 	        };
 	    },
 
@@ -6119,6 +6121,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            onBlur: this.onBlur,
 	            placeholder: this.props.placeholder,
 	            readOnly: this.props.readonly,
+	            style: this.props.style,
 	            disabled: this.props.disabled });
 	    },
 	    /* jshint ignore:end */
