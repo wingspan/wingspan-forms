@@ -1,6 +1,6 @@
 {
   "name": "wingspan-forms",
-  "version": "2.0.0-beta5",
+  "version": "2.0.0-beta6",
   "description": "A forms package for React applications using Kendo UI widgets",
   "main": "lib/wingspan-forms.js",
   "repository": {
