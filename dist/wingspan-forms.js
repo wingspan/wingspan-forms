@@ -9582,7 +9582,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /* Not supporting "contentUrls" or "dataSource" because React components are better content */
 	    propTypes: {
 	        animation: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-	        dataSource: PropTypes.object,
+	        dataSource: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 	        className: PropTypes.string,
 	        expandMode: PropTypes.string,
 	        onExpand: PropTypes.func,
